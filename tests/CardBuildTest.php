@@ -22,6 +22,7 @@ use AdaptiveCards\Element\TextBlock;
 use AdaptiveCards\Shared\Authentication;
 use AdaptiveCards\Shared\Metadata;
 use AdaptiveCards\Shared\Refresh;
+use AdaptiveCards\Enum\ImageStyle;
 use PHPUnit\Framework\TestCase;
 
 final class CardBuildTest extends TestCase
@@ -174,6 +175,29 @@ final class CardBuildTest extends TestCase
         self::assertSame('https://adaptivecards.io', $payload['metadata']['webUrl']);
         self::assertSame('refreshVerb', $payload['refresh']['action']['verb']);
         self::assertSame('botConnection', $payload['authentication']['connectionName']);
+        self::assertTrue($card->isValid());
+    }
+
+    public function testActivityUpdateScenarioIsValid(): void
+    {
+        $card = AdaptiveCard::make()
+            ->addTextBlock('Publish Adaptive Card schema', fn ($t) => $t
+                ->weight('bolder')->size('medium')->wrap(true)->style('heading'))
+            ->addColumnSet(fn ($cs) => $cs
+                ->column('auto', fn (Column $c) => $c
+                    ->addImage('https://adaptivecards.io/content/cats/1.png', fn ($img) => $img
+                        ->size('small')->style(ImageStyle::Person)->altText('Matt Hidinger')))
+                ->column('stretch', fn (Column $c) => $c
+                    ->addTextBlock('Matt Hidinger', fn ($t) => $t->weight('bolder')->wrap(true))
+                    ->addTextBlock('Created today', fn ($t) => $t->isSubtle(true)->spacing('none')->wrap(true))))
+            ->addFactSet([
+                'Board:' => 'Adaptive Cards',
+                'List:' => 'Backlog',
+                'Assigned to:' => 'Matt Hidinger',
+            ])
+            ->addAction(OpenUrlAction::make('View', 'https://adaptivecards.io'));
+
+        self::assertSame([], $card->getValidationErrors());
         self::assertTrue($card->isValid());
     }
 }
