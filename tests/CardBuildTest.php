@@ -5,11 +5,23 @@ declare(strict_types=1);
 namespace AdaptiveCards\Tests;
 
 use AdaptiveCards\AdaptiveCard;
+use AdaptiveCards\Action\ExecuteAction;
 use AdaptiveCards\Action\OpenUrlAction;
+use AdaptiveCards\Action\ShowCardAction;
 use AdaptiveCards\Action\SubmitAction;
 use AdaptiveCards\Action\ToggleVisibilityAction;
+use AdaptiveCards\Element\CaptionSource;
 use AdaptiveCards\Element\Column;
+use AdaptiveCards\Element\Inline\TextRun;
+use AdaptiveCards\Element\Media;
+use AdaptiveCards\Element\MediaSource;
+use AdaptiveCards\Element\RichTextBlock;
+use AdaptiveCards\Element\Table;
+use AdaptiveCards\Element\TableColumnDefinition;
 use AdaptiveCards\Element\TextBlock;
+use AdaptiveCards\Shared\Authentication;
+use AdaptiveCards\Shared\Metadata;
+use AdaptiveCards\Shared\Refresh;
 use PHPUnit\Framework\TestCase;
 
 final class CardBuildTest extends TestCase
@@ -90,5 +102,78 @@ final class CardBuildTest extends TestCase
 
         self::assertSame($card->toArray(), json_decode($card->toJson(), true));
         self::assertSame($card->toJson(), (string) $card);
+    }
+
+    public function testTableBuildAndValidation(): void
+    {
+        $card = AdaptiveCard::make()
+            ->addTable(fn (Table $t) => $t
+                ->columns([TableColumnDefinition::make(1), TableColumnDefinition::make(2)])
+                ->addTextRow(['Col 1', 'Col 2'])
+            );
+
+        $payload = $card->toArray();
+        self::assertSame('Table', $payload['body'][0]['type']);
+        self::assertCount(2, $payload['body'][0]['columns']);
+        self::assertCount(1, $payload['body'][0]['rows']);
+        self::assertTrue($card->isValid());
+    }
+
+    public function testMediaBuildAndValidation(): void
+    {
+        $card = AdaptiveCard::make()
+            ->addMedia(fn (Media $m) => $m
+                ->poster('https://example.com/poster.png')
+                ->addSource(MediaSource::make('https://example.com/video.mp4', 'video/mp4'))
+                ->addCaptionSource(CaptionSource::make('https://example.com/captions.vtt', 'vtt', 'English'))
+            );
+
+        $payload = $card->toArray();
+        self::assertSame('Media', $payload['body'][0]['type']);
+        self::assertSame('https://example.com/poster.png', $payload['body'][0]['poster']);
+        self::assertCount(1, $payload['body'][0]['sources']);
+        self::assertCount(1, $payload['body'][0]['captionSources']);
+        self::assertTrue($card->isValid());
+    }
+
+    public function testRichTextBlockBuildAndValidation(): void
+    {
+        $card = AdaptiveCard::make()
+            ->addRichTextBlock(fn (RichTextBlock $r) => $r
+                ->addTextRun('Hello ', fn (TextRun $tr) => $tr->weight('bolder')->color('accent'))
+                ->addInline('world!')
+            );
+
+        $payload = $card->toArray();
+        self::assertSame('RichTextBlock', $payload['body'][0]['type']);
+        self::assertCount(2, $payload['body'][0]['inlines']);
+        self::assertSame('TextRun', $payload['body'][0]['inlines'][0]['type']);
+        self::assertSame('world!', $payload['body'][0]['inlines'][1]);
+        self::assertTrue($card->isValid());
+    }
+
+    public function testShowCardActionBuildAndValidation(): void
+    {
+        $innerCard = AdaptiveCard::make()->addTextBlock('Inner');
+        $card = AdaptiveCard::make()->addAction(ShowCardAction::make('More', $innerCard));
+
+        $payload = $card->toArray();
+        self::assertSame('Action.ShowCard', $payload['actions'][0]['type']);
+        self::assertSame('AdaptiveCard', $payload['actions'][0]['card']['type']);
+        self::assertTrue($card->isValid());
+    }
+
+    public function testSharedStructuresBuildAndValidation(): void
+    {
+        $card = AdaptiveCard::make()
+            ->metadata(Metadata::make('https://adaptivecards.io'))
+            ->refresh(Refresh::make()->action(ExecuteAction::make('Refresh', 'refreshVerb')))
+            ->authentication(Authentication::make()->connectionName('botConnection'));
+
+        $payload = $card->toArray();
+        self::assertSame('https://adaptivecards.io', $payload['metadata']['webUrl']);
+        self::assertSame('refreshVerb', $payload['refresh']['action']['verb']);
+        self::assertSame('botConnection', $payload['authentication']['connectionName']);
+        self::assertTrue($card->isValid());
     }
 }

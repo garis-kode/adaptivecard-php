@@ -15,17 +15,32 @@ final class SchemaValidator
 {
     private const SCHEMA_PATH = __DIR__ . '/../Resources/adaptive-card-1.6.json';
 
+    private static ?object $cachedSchema = null;
+
     private object $schema;
 
     public function __construct(?string $schemaPath = null)
     {
-        $path = $schemaPath ?? self::SCHEMA_PATH;
+        if ($schemaPath !== null) {
+            $this->schema = self::loadSchema($schemaPath);
+            return;
+        }
+
+        if (self::$cachedSchema === null) {
+            self::$cachedSchema = self::loadSchema(self::SCHEMA_PATH);
+        }
+
+        $this->schema = self::$cachedSchema;
+    }
+
+    private static function loadSchema(string $path): object
+    {
         $contents = @file_get_contents($path);
         if ($contents === false) {
             throw new AdaptiveCardException(sprintf('Unable to read Adaptive Card schema at "%s".', $path));
         }
 
-        $this->schema = json_decode($contents, false, 512, JSON_THROW_ON_ERROR);
+        return json_decode($contents, false, 512, JSON_THROW_ON_ERROR);
     }
 
     /**
@@ -38,7 +53,7 @@ final class SchemaValidator
     {
         if (!class_exists(Validator::class)) {
             throw new AdaptiveCardException(
-                'justinrainbow/json-schema is not installed. Run "composer install" in source/php.'
+                'justinrainbow/json-schema is not installed. Run "composer install" to install dependencies.'
             );
         }
 
