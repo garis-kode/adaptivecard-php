@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Element;
 
-use AdaptiveCards\Enum\ImageSetStyle;
 use AdaptiveCards\Enum\ImageSize;
 
 /**
@@ -25,11 +24,6 @@ final class ImageSet extends AbstractElement
     public function imageSize(string|ImageSize $size): self
     {
         return $this->set('imageSize', ImageSize::value($size));
-    }
-
-    public function style(string|ImageSetStyle $style): self
-    {
-        return $this->set('style', ImageSetStyle::value($style));
     }
 
     public function getType(): string

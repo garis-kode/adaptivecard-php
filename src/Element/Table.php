@@ -61,11 +61,6 @@ final class Table extends AbstractElement
         return $this->addRow($row);
     }
 
-    public function firstRowAsHeaders(bool $value = true): self
-    {
-        return $this->set('firstRowAsHeaders', $value);
-    }
-
     public function showGridLines(bool $value = true): self
     {
         return $this->set('showGridLines', $value);

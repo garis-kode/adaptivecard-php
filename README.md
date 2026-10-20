@@ -156,6 +156,703 @@ echo $card->toJson();
 
 ---
 
+## Component Reference
+
+Every Adaptive Cards v1.6 component is available as a strictly typed class with a static `make()` factory and fluent setters that return `$this` for chaining. This section documents each one with a short snippet and its properties.
+
+**Conventions used throughout:**
+
+- Enum-backed setters accept **either** a string or the backed enum case — `->size('large')` and `->size(TextSize::Large)` are equivalent.
+- Container-like types (`AdaptiveCard`, `Container`, `Column`, `TableCell`) share the `addTextBlock()`, `addImage()`, `addContainer()`, … builder helpers (see [Builder Helpers](#builder-helpers)). Each `add*` helper accepts an optional trailing closure that receives the newly created, typed child for configuration.
+- All snippets assume a `$card = AdaptiveCard::make()` and the relevant `use` imports.
+
+**Contents**
+
+- [The Card](#the-card) · [Builder Helpers](#builder-helpers) · [Common Properties](#common-properties)
+- **Elements** — [TextBlock](#textblock) · [RichTextBlock](#richtextblock) · [Image](#image) · [ImageSet](#imageset) · [Media](#media)
+- **Containers & Layout** — [Container](#container) · [ColumnSet & Column](#columnset--column) · [FactSet](#factset) · [Table](#table) · [ActionSet](#actionset)
+- **Actions** — [Action.OpenUrl](#actionopenurl) · [Action.Submit](#actionsubmit) · [Action.ShowCard](#actionshowcard) · [Action.Execute](#actionexecute) · [Action.ToggleVisibility](#actiontogglevisibility)
+- **Inputs** — [Input.Text](#inputtext) · [Input.Number](#inputnumber) · [Input.Date](#inputdate) · [Input.Time](#inputtime) · [Input.Toggle](#inputtoggle) · [Input.ChoiceSet](#inputchoiceset)
+- **Supporting Types** — [BackgroundImage](#backgroundimage) · [Refresh](#refresh) · [Authentication](#authentication) · [Metadata](#metadata)
+- [Enums Appendix](#enums-appendix)
+
+---
+
+### The Card
+
+The root `AdaptiveCard`. Created with `AdaptiveCard::make(string $version = '1.6')`.
+
+```php
+use AdaptiveCards\AdaptiveCard;
+
+$card = AdaptiveCard::make('1.6')
+    ->lang('en')
+    ->speak('You have a new notification')
+    ->minHeight('150px')
+    ->verticalContentAlignment('center')
+    ->addTextBlock('Hello world');
+```
+
+| Method | Description |
+| --- | --- |
+| `version(string)` | Schema version (default `'1.6'`). |
+| `fallbackText(string)` | Text shown by hosts that cannot render the card. |
+| `backgroundImage(string\|BackgroundImage)` | Card background (URL or [BackgroundImage](#backgroundimage)). |
+| `minHeight(string)` | Minimum card height, e.g. `'150px'`. |
+| `verticalContentAlignment(string\|VerticalAlignment)` | `top` / `center` / `bottom`. |
+| `rtl(bool = true)` | Right-to-left layout. |
+| `speak(string)` | Text-to-speech / SSML. |
+| `lang(string)` | ISO-639-1 language code. |
+| `selectAction(AbstractAction)` | Action invoked when the card is tapped. |
+| `addAction(AbstractAction)` / `addActions(iterable)` | Add action(s) to the card's action bar. |
+| `refresh(Refresh)` | [Refresh](#refresh) behaviour. |
+| `authentication(Authentication)` | [Authentication](#authentication) details. |
+| `metadata(Metadata)` | [Metadata](#metadata). |
+| `toArray()` / `toJson()` | Serialize the card. |
+| `validate()` / `isValid()` / `getValidationErrors()` | Schema validation (see [Schema Validation](#schema-validation)). |
+
+The card body is filled with the [Builder Helpers](#builder-helpers) below.
+
+---
+
+### Builder Helpers
+
+`AdaptiveCard`, `Container`, `Column`, and `TableCell` share these helpers (via the `HasItems` trait). Each creates a child, optionally configures it through the closure, appends it, and returns the parent for chaining.
+
+```php
+$card
+    ->addTextBlock('Title', fn ($t) => $t->weight('bolder'))
+    ->addContainer(fn ($c) => $c
+        ->style('emphasis')
+        ->addTextBlock('Nested inside a container')
+    );
+```
+
+| Helper | Child type |
+| --- | --- |
+| `addItem(AbstractElement)` / `addItems(iterable)` | any element (no closure) |
+| `addTextBlock(string $text, ?callable)` | [TextBlock](#textblock) |
+| `addRichTextBlock(?callable)` | [RichTextBlock](#richtextblock) |
+| `addImage(string $url, ?callable)` | [Image](#image) |
+| `addImageSet(?callable)` | [ImageSet](#imageset) |
+| `addMedia(?callable)` | [Media](#media) |
+| `addContainer(?callable)` | [Container](#container) |
+| `addColumnSet(?callable)` | [ColumnSet](#columnset--column) |
+| `addFactSet(array\|list $facts = [], ?callable)` | [FactSet](#factset) |
+| `addTable(?callable)` | [Table](#table) |
+| `addActionSet(?callable)` | [ActionSet](#actionset) |
+| `addTextInput(string $id, ?callable)` | [Input.Text](#inputtext) |
+| `addNumberInput(string $id, ?callable)` | [Input.Number](#inputnumber) |
+| `addDateInput(string $id, ?callable)` | [Input.Date](#inputdate) |
+| `addTimeInput(string $id, ?callable)` | [Input.Time](#inputtime) |
+| `addToggleInput(string $id, string $title, ?callable)` | [Input.Toggle](#inputtoggle) |
+| `addChoiceSetInput(string $id, ?callable)` | [Input.ChoiceSet](#inputchoiceset) |
+
+Every component can also be built explicitly with its `make()` factory and added via `addItem()`:
+
+```php
+use AdaptiveCards\Element\TextBlock;
+
+$card->addItem(TextBlock::make('Built explicitly')->weight('bolder'));
+```
+
+---
+
+### Common Properties
+
+To keep the per-component tables short, these shared setters are listed once here.
+
+**Element properties** — available on every element (`TextBlock`, `Image`, `Container`, inputs, …):
+
+| Method | Description |
+| --- | --- |
+| `id(string)` | Unique element id (required for `targetElements`, input values). |
+| `isVisible(bool = true)` | Initial visibility. |
+| `spacing(string\|Spacing)` | Space above the element. |
+| `separator(bool = true)` | Draw a separating line above. |
+| `height(string\|Height)` | `auto` or `stretch`. |
+| `requires(array)` | Host-capability requirements, e.g. `['adaptiveCards' => '1.3']`. |
+| `fallback(string\|AbstractElement)` | Fallback element or `'drop'`. |
+
+**Action properties** — available on every action:
+
+| Method | Description |
+| --- | --- |
+| `title(string)` | Button label. |
+| `iconUrl(string)` | Icon URL. |
+| `id(string)` | Unique id. |
+| `style(string\|ActionStyle)` | `default` / `positive` / `destructive`. |
+| `tooltip(string)` | Hover tooltip. |
+| `mode(string\|ActionMode)` | `primary` / `secondary`. |
+| `isEnabled(bool = true)` | Enable/disable the action. |
+| `requires(array)` / `fallback(string\|AbstractAction)` | As above. |
+
+**Input properties** — available on every input (in addition to the element properties):
+
+| Method | Description |
+| --- | --- |
+| `label(string)` | Visible label. |
+| `isRequired(bool = true)` | Mark as required. |
+| `errorMessage(string)` | Message shown when validation fails. |
+| `labelPosition(string\|InputLabelPosition)` | `inline` / `above`. |
+| `labelWidth(string\|int)` | e.g. `'40%'` or `40`. |
+| `value(...)` | Initial value. |
+
+---
+
+## Elements
+
+### TextBlock
+
+Displays text with optional styling and markdown. `TextBlock::make(string $text)`.
+
+```php
+use AdaptiveCards\Enum\TextSize;
+
+$card->addTextBlock('Important heading', fn ($t) => $t
+    ->size(TextSize::Large)
+    ->weight('bolder')
+    ->color('accent')
+    ->wrap(true)
+    ->style('heading')
+);
+```
+
+| Method | Description |
+| --- | --- |
+| `text(string)` | The text (supports a markdown subset). |
+| `size(string\|TextSize)` | `default`/`small`/`medium`/`large`/`extraLarge`. |
+| `weight(string\|TextWeight)` | `default`/`lighter`/`bolder`. |
+| `color(string\|Colors)` | `default`/`dark`/`light`/`accent`/`good`/`warning`/`attention`. |
+| `fontType(string\|FontType)` | `default`/`monospace`. |
+| `horizontalAlignment(string\|HorizontalAlignment)` | `left`/`center`/`right`. |
+| `isSubtle(bool = true)` | Render in a subtler color. |
+| `maxLines(int)` | Maximum lines before truncation. |
+| `wrap(bool = true)` | Allow wrapping. |
+| `style(string\|TextBlockStyle)` | `default`/`heading`. |
+
+_+ [common element properties](#common-properties)._
+
+---
+
+### RichTextBlock
+
+Displays a run of inline `TextRun`s with independent formatting. `RichTextBlock::make()`; add inlines with `addTextRun()` (closure receives a `TextRun`) or `addInline()`.
+
+```php
+use AdaptiveCards\Element\RichTextBlock;
+use AdaptiveCards\Enum\Colors;
+
+$card->addRichTextBlock(fn (RichTextBlock $r) => $r
+    ->addTextRun('Warning: ', fn ($run) => $run->weight('bolder')->color(Colors::Attention))
+    ->addTextRun('disk almost full.')
+    ->horizontalAlignment('left')
+);
+```
+
+**RichTextBlock:** `addTextRun(string $text, ?callable)`, `addInline(TextRun|string)`, `horizontalAlignment(string|HorizontalAlignment)` _+ [common element properties](#common-properties)._
+
+**TextRun** (`TextRun::make(string $text)`): `color`, `fontType`, `size`, `weight`, `isSubtle(bool)`, `italic(bool)`, `strikethrough(bool)`, `highlight(bool)`, `underline(bool)`, `selectAction(AbstractAction)`.
+
+---
+
+### Image
+
+A single image. `Image::make(string $url)`.
+
+```php
+use AdaptiveCards\Enum\ImageStyle;
+
+$card->addImage('https://adaptivecards.io/content/cats/1.png', fn ($img) => $img
+    ->altText('A cat')
+    ->size('medium')
+    ->style(ImageStyle::Person)
+    ->selectAction(\AdaptiveCards\Action\OpenUrlAction::make('Open', 'https://example.com'))
+);
+```
+
+| Method | Description |
+| --- | --- |
+| `url(string)` | Image URL (supports data URIs). |
+| `altText(string)` | Alternate text. |
+| `size(string\|ImageSize)` | `auto`/`stretch`/`small`/`medium`/`large`. |
+| `style(string\|ImageStyle)` | `default`/`person`. |
+| `backgroundColor(string)` | Hex background, e.g. `'#DDDDDD'`. |
+| `horizontalAlignment(string\|HorizontalAlignment)` | Alignment. |
+| `width(string)` | Explicit pixel width, e.g. `'50px'`. |
+| `pixelHeight(string)` | Explicit pixel height, e.g. `'50px'`. |
+| `selectAction(AbstractAction)` | Action when tapped. |
+
+_+ [common element properties](#common-properties)._
+
+---
+
+### ImageSet
+
+A gallery of images. `ImageSet::make()`.
+
+```php
+use AdaptiveCards\Element\ImageSet;
+
+$card->addImageSet(fn (ImageSet $s) => $s
+    ->imageSize('medium')
+    ->addImage('https://adaptivecards.io/content/cats/1.png')
+    ->addImage('https://adaptivecards.io/content/cats/2.png')
+);
+```
+
+**ImageSet:** `addImage(Image|string)`, `imageSize(string|ImageSize)` _+ [common element properties](#common-properties)._
+
+---
+
+### Media
+
+Plays audio or video. `Media::make()`.
+
+```php
+use AdaptiveCards\Element\Media;
+
+$card->addMedia(fn (Media $m) => $m
+    ->poster('https://adaptivecards.io/content/poster-video.png')
+    ->altText('Demo video')
+    ->addSource('https://example.com/clip.mp4', 'video/mp4')
+    ->addCaptionSource(\AdaptiveCards\Element\CaptionSource::make('https://example.com/en.vtt', 'vtt', 'English'))
+);
+```
+
+**Media:** `addSource(MediaSource|string $url, ?string $mimeType)`, `addCaptionSource(CaptionSource)`, `poster(string)`, `altText(string)` _+ [common element properties](#common-properties)._
+
+- **MediaSource** — `MediaSource::make(string $url, ?string $mimeType)`.
+- **CaptionSource** — `CaptionSource::make(string $url, string $mimeType, ?string $label)` (schema 1.6+).
+
+---
+
+## Containers & Layout
+
+### Container
+
+Groups elements and supports styling, background, and tap actions. `Container::make()`. Supports all [Builder Helpers](#builder-helpers).
+
+```php
+use AdaptiveCards\Element\Container;
+
+$card->addContainer(fn (Container $c) => $c
+    ->style('emphasis')
+    ->bleed(true)
+    ->verticalContentAlignment('center')
+    ->addTextBlock('Inside an emphasized container')
+);
+```
+
+**Container:** `style(string|ContainerStyle)`, `verticalContentAlignment(string|VerticalAlignment)`, `bleed(bool)`, `minHeight(string)`, `rtl(bool)`, `backgroundImage(string|BackgroundImage)`, `selectAction(AbstractAction)` _+ [builder helpers](#builder-helpers) + [common element properties](#common-properties)._
+
+---
+
+### ColumnSet & Column
+
+Lays out `Column`s side by side. `ColumnSet::make()`; add columns with `column(width, ?callable)` or `addColumn(Column)`. A `Column` supports all [Builder Helpers](#builder-helpers).
+
+```php
+use AdaptiveCards\Element\Column;
+
+$card->addColumnSet(fn ($cs) => $cs
+    ->column('auto', fn (Column $c) => $c
+        ->addImage('https://adaptivecards.io/content/cats/1.png', fn ($i) => $i->size('small'))
+    )
+    ->column('stretch', fn (Column $c) => $c
+        ->verticalContentAlignment('center')
+        ->addTextBlock('Jane Doe', fn ($t) => $t->weight('bolder'))
+    )
+);
+```
+
+**ColumnSet:** `column(string|int|null $width, ?callable)`, `addColumn(Column)`, `style(string|ContainerStyle)`, `bleed(bool)`, `minHeight(string)`, `horizontalAlignment(string|HorizontalAlignment)`, `selectAction(AbstractAction)` _+ [common element properties](#common-properties)._
+
+**Column** (`Column::make(string|int|null $width)`): `width(string|int)` (`'auto'`, `'stretch'`, a relative weight, or `'50px'`), `style`, `verticalContentAlignment`, `bleed`, `minHeight`, `rtl`, `backgroundImage`, `selectAction` _+ [builder helpers](#builder-helpers) + [common element properties](#common-properties)._
+
+---
+
+### FactSet
+
+A list of title/value pairs. `FactSet::make(array|list $facts = [])`. The `addFactSet()` helper accepts a `title => value` map directly.
+
+```php
+$card->addFactSet([
+    'Order ID:' => '#98765',
+    'Status:'   => 'Shipped',
+]);
+```
+
+**FactSet:** `addFact(Fact)`, `fact(string $title, string $value)` _+ [common element properties](#common-properties)._
+**Fact** — `Fact::make(string $title, string $value)`.
+
+---
+
+### Table
+
+Tabular layout (schema 1.5+). `Table::make()`.
+
+```php
+use AdaptiveCards\Element\Table;
+use AdaptiveCards\Element\TableColumnDefinition;
+
+$card->addTable(fn (Table $t) => $t
+    ->columns([TableColumnDefinition::make(2), TableColumnDefinition::make(1)])
+    ->showGridLines(true)
+    ->gridStyle('emphasis')
+    ->addTextRow(['Item', 'Qty'])
+    ->addTextRow(['Keyboard', '1'])
+);
+```
+
+| Method | Description |
+| --- | --- |
+| `columns(array)` | Column definitions (`TableColumnDefinition`, width string, or int). |
+| `addColumn(TableColumnDefinition\|string\|int)` | Append one column. |
+| `addRow(TableRow)` / `addTextRow(array $cells)` | Append a row (`addTextRow` wraps plain strings in cells). |
+| `showGridLines(bool = true)` | Toggle grid lines. |
+| `gridStyle(string\|ContainerStyle)` | Grid container style. |
+| `horizontalCellContentAlignment(string\|HorizontalAlignment)` | Default horizontal cell alignment. |
+| `verticalCellContentAlignment(string\|VerticalAlignment)` | Default vertical cell alignment. |
+
+_+ [common element properties](#common-properties)._
+
+- **TableRow** (`TableRow::make()`): `addCell(TableCell)`, `addTextCell(string $text, ?callable)`, `style`, `horizontalCellContentAlignment`, `verticalCellContentAlignment`.
+- **TableCell** (`TableCell::make()`): behaves like a [Container](#container) — supports all [builder helpers](#builder-helpers) plus `style`, `verticalContentAlignment`, `bleed`, `minHeight`, `rtl`, `backgroundImage`, `selectAction`.
+- **TableColumnDefinition** (`TableColumnDefinition::make(string|int|null $width)`): `horizontalCellContentAlignment`, `verticalCellContentAlignment`.
+
+---
+
+### ActionSet
+
+Renders actions inline in the card body. `ActionSet::make()`.
+
+```php
+use AdaptiveCards\Element\ActionSet;
+use AdaptiveCards\Action\OpenUrlAction;
+
+$card->addActionSet(fn (ActionSet $s) => $s
+    ->addAction(OpenUrlAction::make('Docs', 'https://adaptivecards.io'))
+);
+```
+
+**ActionSet:** `addAction(AbstractAction)`, `addActions(iterable)` _+ [common element properties](#common-properties)._
+
+---
+
+## Actions
+
+All actions share the [action properties](#common-properties) (`title`, `iconUrl`, `style`, `tooltip`, `mode`, `isEnabled`, …). `selectAction(...)` on `Image`/`Container`/`Column`/`TableCell`/`TextRun` accepts any of these except `Action.ShowCard`.
+
+### Action.OpenUrl
+
+Opens a URL. `OpenUrlAction::make(string $title, string $url)`.
+
+```php
+use AdaptiveCards\Action\OpenUrlAction;
+
+$card->addAction(OpenUrlAction::make('Learn more', 'https://adaptivecards.io'));
+```
+
+`url(string)` _+ [common action properties](#common-properties)._
+
+---
+
+### Action.Submit
+
+Gathers inputs and sends them to the host. `SubmitAction::make(?string $title)`.
+
+```php
+use AdaptiveCards\Action\SubmitAction;
+
+$card->addAction(SubmitAction::make('Submit')
+    ->data(['action' => 'save'])
+    ->associatedInputs('Auto')
+);
+```
+
+| Method | Description |
+| --- | --- |
+| `data(array\|string)` | Hidden payload merged with gathered inputs. |
+| `associatedInputs(string\|AssociatedInputs)` | `auto` / `none`. |
+
+_+ [common action properties](#common-properties)._
+
+---
+
+### Action.ShowCard
+
+Reveals a nested card. `ShowCardAction::make(string $title, ?AdaptiveCard $card)`.
+
+```php
+use AdaptiveCards\AdaptiveCard;
+use AdaptiveCards\Action\ShowCardAction;
+
+$nested = AdaptiveCard::make()->addTextBlock('Hidden until expanded');
+$card->addAction(ShowCardAction::make('Details', $nested));
+```
+
+`card(AdaptiveCard)` _+ [common action properties](#common-properties)._
+
+---
+
+### Action.Execute
+
+Sends a Universal Action Model event to a bot (schema 1.4+). `ExecuteAction::make(?string $title, ?string $verb)`.
+
+```php
+use AdaptiveCards\Action\ExecuteAction;
+
+$card->addAction(ExecuteAction::make('Approve', 'approveRequest')
+    ->data(['requestId' => 42])
+    ->associatedInputs('Auto')
+);
+```
+
+`verb(string)`, `data(array|string)`, `associatedInputs(string|AssociatedInputs)` _+ [common action properties](#common-properties)._
+
+---
+
+### Action.ToggleVisibility
+
+Shows/hides/toggles target elements by id. `ToggleVisibilityAction::make(?string $title)`.
+
+```php
+use AdaptiveCards\Action\ToggleVisibilityAction;
+
+$card->addAction(ToggleVisibilityAction::make('Toggle details')
+    ->target('detailsPanel')          // toggle
+    ->target('spinner', false)        // force hide
+);
+```
+
+`target(string $elementId, ?bool $isVisible)`, `addTarget(TargetElement)` _+ [common action properties](#common-properties)._
+**TargetElement** — `TargetElement::make(string $elementId, ?bool $isVisible)` (`true` = show, `false` = hide, `null` = toggle).
+
+---
+
+## Inputs
+
+All inputs share the [input properties](#common-properties) (`label`, `isRequired`, `errorMessage`, `labelPosition`, `labelWidth`, `value`) and the [element properties](#common-properties).
+
+### Input.Text
+
+Free-form text. `TextInput::make(string $id)`.
+
+```php
+use AdaptiveCards\Input\TextInput;
+
+$card->addTextInput('email', fn (TextInput $i) => $i
+    ->label('Email')
+    ->style('email')
+    ->placeholder('you@example.com')
+    ->isRequired(true)
+);
+```
+
+`placeholder(string)`, `isMultiline(bool)`, `maxLength(int)`, `style(string|TextInputStyle)` (`text`/`tel`/`url`/`email`/`password`), `regex(string)`, `inlineAction(AbstractAction)`.
+
+---
+
+### Input.Number
+
+Numeric input. `NumberInput::make(string $id)`.
+
+```php
+use AdaptiveCards\Input\NumberInput;
+
+$card->addNumberInput('qty', fn (NumberInput $i) => $i
+    ->label('Quantity')->min(1)->max(99)->value(1)
+);
+```
+
+`placeholder(string)`, `min(int|float)`, `max(int|float)`.
+
+---
+
+### Input.Date
+
+Date picker (ISO `YYYY-MM-DD`). `DateInput::make(string $id)`.
+
+```php
+use AdaptiveCards\Input\DateInput;
+
+$card->addDateInput('due', fn (DateInput $i) => $i
+    ->label('Due date')->min('2026-01-01')->max('2026-12-31')
+);
+```
+
+`placeholder(string)`, `min(string)`, `max(string)`.
+
+---
+
+### Input.Time
+
+Time picker (`HH:MM`). `TimeInput::make(string $id)`.
+
+```php
+use AdaptiveCards\Input\TimeInput;
+
+$card->addTimeInput('start', fn (TimeInput $i) => $i
+    ->label('Start time')->min('09:00')->max('17:00')
+);
+```
+
+`placeholder(string)`, `min(string)`, `max(string)`.
+
+---
+
+### Input.Toggle
+
+On/off switch. `ToggleInput::make(string $id, string $title)`.
+
+```php
+use AdaptiveCards\Input\ToggleInput;
+
+$card->addToggleInput('newsletter', 'Subscribe to updates', fn (ToggleInput $t) => $t
+    ->value('true')->valueOn('true')->valueOff('false')->wrap(true)
+);
+```
+
+`title(string)`, `valueOn(string)`, `valueOff(string)`, `wrap(bool)`.
+
+---
+
+### Input.ChoiceSet
+
+Dropdown / radio / multi-select. `ChoiceSetInput::make(string $id)`.
+
+```php
+use AdaptiveCards\Input\ChoiceSetInput;
+
+$card->addChoiceSetInput('rating', fn (ChoiceSetInput $c) => $c
+    ->label('Rating')
+    ->style('expanded')
+    ->choices(['Great' => '5', 'Good' => '4', 'Average' => '3'])
+    ->value('5')
+);
+```
+
+| Method | Description |
+| --- | --- |
+| `choice(string $title, string $value)` | Add a single choice. |
+| `addChoice(Choice)` | Add a `Choice` instance. |
+| `choices(array $titleToValue)` | Add several from a `title => value` map. |
+| `isMultiSelect(bool = true)` | Allow multiple selections. |
+| `style(string\|ChoiceInputStyle)` | `compact` / `expanded` / `filtered`. |
+| `placeholder(string)` | Placeholder (compact style). |
+| `wrap(bool = true)` | Wrap choice text. |
+
+**Choice** — `Choice::make(string $title, string $value)`.
+
+---
+
+## Supporting Types
+
+### BackgroundImage
+
+Used by `AdaptiveCard`, `Container`, `Column`, `TableCell` `backgroundImage()`. `BackgroundImage::make(string $url)`.
+
+```php
+use AdaptiveCards\Shared\BackgroundImage;
+
+$card->backgroundImage(BackgroundImage::make('https://example.com/bg.png')
+    ->fillMode('cover')
+    ->horizontalAlignment('center')
+    ->verticalAlignment('top')
+);
+```
+
+`fillMode(string|ImageFillMode)` (`cover`/`repeatHorizontally`/`repeatVertically`/`repeat`), `horizontalAlignment`, `verticalAlignment`.
+
+---
+
+### Refresh
+
+Automatic card refresh (schema 1.4+). `Refresh::make()`.
+
+```php
+use AdaptiveCards\Shared\Refresh;
+use AdaptiveCards\Action\ExecuteAction;
+
+$card->refresh(Refresh::make()
+    ->action(ExecuteAction::make(null, 'refreshData'))
+    ->userIds(['user-1', 'user-2'])
+    ->expires('2026-12-31T23:59:59Z')
+);
+```
+
+`action(ExecuteAction)`, `expires(string)` (ISO-8601, schema 1.6+), `userIds(array)`.
+
+---
+
+### Authentication
+
+OAuth / SSO sign-in details (schema 1.4+). `Authentication::make()`.
+
+```php
+use AdaptiveCards\Shared\Authentication;
+
+$card->authentication(Authentication::make()
+    ->text('Please sign in')
+    ->connectionName('myOAuthConnection')
+    ->tokenExchangeResource([
+        'id'         => 'resource-id',
+        'uri'        => 'api://example',
+        'providerId' => 'provider-id',
+    ])
+    ->buttons([
+        ['type' => 'signin', 'title' => 'Sign in', 'value' => 'https://example.com/signin'],
+    ])
+);
+```
+
+`text(string)`, `connectionName(string)`, `tokenExchangeResource(array)` (keys: `id`, `uri`, `providerId`), `buttons(array $buttons)` (each: `type`, `title`, `value`, optional `image`).
+
+---
+
+### Metadata
+
+Non-rendered card metadata (schema 1.6+). `Metadata::make(?string $webUrl)`.
+
+```php
+use AdaptiveCards\Shared\Metadata;
+
+$card->metadata(Metadata::make('https://example.com/card/123'));
+```
+
+`webUrl(string)`.
+
+---
+
+## Enums Appendix
+
+Every enum setter also accepts the equivalent string, so passing the enum case is optional. Strings must match the exact value listed below (matching is case-sensitive — note `AssociatedInputs` uses `Auto`/`None`). All enums live under `AdaptiveCards\Enum\`.
+
+| Enum | Values |
+| --- | --- |
+| `TextSize` | `default`, `small`, `medium`, `large`, `extraLarge` |
+| `TextWeight` | `default`, `lighter`, `bolder` |
+| `TextBlockStyle` | `default`, `heading` |
+| `Colors` | `default`, `dark`, `light`, `accent`, `good`, `warning`, `attention` |
+| `FontType` | `default`, `monospace` |
+| `HorizontalAlignment` | `left`, `center`, `right` |
+| `VerticalAlignment` | `top`, `center`, `bottom` |
+| `ImageSize` | `auto`, `stretch`, `small`, `medium`, `large` |
+| `ImageStyle` | `default`, `person` |
+| `ImageFillMode` | `cover`, `repeatHorizontally`, `repeatVertically`, `repeat` |
+| `ContainerStyle` | `default`, `emphasis`, `good`, `attention`, `warning`, `accent` |
+| `Spacing` | `none`, `small`, `default`, `medium`, `large`, `extraLarge`, `padding` |
+| `Height` | `auto`, `stretch` |
+| `TextInputStyle` | `text`, `tel`, `url`, `email`, `password` |
+| `ChoiceInputStyle` | `compact`, `expanded`, `filtered` |
+| `ActionStyle` | `default`, `positive`, `destructive` |
+| `ActionMode` | `primary`, `secondary` |
+| `AssociatedInputs` | `Auto`, `None` |
+| `InputLabelPosition` | `inline`, `above` |
+
+---
+
 ## Schema Validation
 
 This library bundles the official Adaptive Cards v1.6 schema and provides methods to check card compliance before sending it to clients or Microsoft Teams webhooks:
