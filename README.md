@@ -1,4 +1,4 @@
-# Adaptive Cards PHP Builder
+# Adaptive Cards Builder for PHP
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/garis-kode/adaptivecard-php.svg?style=flat-square)](https://packagist.org/packages/garis-kode/adaptivecard-php)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
@@ -879,27 +879,6 @@ try {
 
 ---
 
-## Development & Testing
-
-Run unit tests with PHPUnit:
-
-```bash
-composer test
-```
-
-Run static analysis with PHPStan (Level 8):
-
-```bash
-composer analyse
-```
-
-Run both test and analysis checks:
-
-```bash
-composer check
-```
-
----
 
 ## Security
 
