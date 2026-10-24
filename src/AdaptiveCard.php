@@ -60,6 +60,14 @@ final class AdaptiveCard extends Node
     }
 
     /**
+     * The Adaptive Card schema URL.
+     */
+    public function schema(string $schema): self
+    {
+        return $this->set('$schema', $schema);
+    }
+
+    /**
      * Add a card level action, which always appears at the bottom of the card.
      */
     public function addAction(AbstractAction $action): self
@@ -317,7 +325,7 @@ final class AdaptiveCard extends Node
     {
         $base = parent::toArray(); // ['type' => 'AdaptiveCard', 'version' => ..., ...]
 
-        $ordered = ['$schema' => self::SCHEMA_URL, 'type' => $base['type']];
+        $ordered = ['$schema' => $base['$schema'] ?? self::SCHEMA_URL, 'type' => $base['type']];
         if (isset($base['version'])) {
             $ordered['version'] = $base['version'];
         }

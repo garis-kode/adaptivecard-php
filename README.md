@@ -51,7 +51,7 @@ $card = AdaptiveCard::make()
         ->wrap(true)
     )
     ->addTextBlock('Now that we have defined the main rules, we need to produce a schema.')
-    ->addAction(OpenUrlAction::make('Learn more', 'https://adaptivecards.io'));
+    ->addAction(OpenUrlAction::make('https://adaptivecards.io', 'Learn more'));
 
 // Validate against official v1.6 schema
 $card->validate();
@@ -378,7 +378,7 @@ $card->addImage('https://adaptivecards.io/content/cats/1.png', fn ($img) => $img
     ->altText('A cat')
     ->size(ImageSize::Medium)
     ->style(ImageStyle::Person)
-    ->selectAction(\AdaptiveCards\Action\OpenUrlAction::make('Open', 'https://example.com'))
+    ->selectAction(\AdaptiveCards\Action\OpenUrlAction::make('https://example.com', 'Open'))
 );
 ```
 
@@ -550,7 +550,7 @@ use AdaptiveCards\Element\ActionSet;
 use AdaptiveCards\Action\OpenUrlAction;
 
 $card->addActionSet(fn (ActionSet $s) => $s
-    ->addAction(OpenUrlAction::make('Docs', 'https://adaptivecards.io'))
+    ->addAction(OpenUrlAction::make('https://adaptivecards.io', 'Docs'))
 );
 ```
 
@@ -564,12 +564,12 @@ All actions share the [action properties](#common-properties) (`title`, `iconUrl
 
 ### Action.OpenUrl
 
-Opens a URL. `OpenUrlAction::make(string $title, string $url)`.
+Opens a URL. `OpenUrlAction::make(string $url, ?string $title = null)`.
 
 ```php
 use AdaptiveCards\Action\OpenUrlAction;
 
-$card->addAction(OpenUrlAction::make('Learn more', 'https://adaptivecards.io'));
+$card->addAction(OpenUrlAction::make('https://adaptivecards.io', 'Learn more'));
 ```
 
 `url(string)` _+ [common action properties](#common-properties)._

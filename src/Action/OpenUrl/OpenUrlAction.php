@@ -11,15 +11,18 @@ use AdaptiveCards\Action\AbstractAction;
  */
 final class OpenUrlAction extends AbstractAction
 {
-    public function __construct(string $title, string $url)
+    public function __construct(string $url, ?string $title = null)
     {
-        $this->title($title);
         $this->url($url);
+
+        if ($title !== null) {
+            $this->title($title);
+        }
     }
 
-    public static function make(string $title, string $url): self
+    public static function make(string $url, ?string $title = null): self
     {
-        return new self($title, $url);
+        return new self($url, $title);
     }
 
     /**

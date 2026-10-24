@@ -6,6 +6,8 @@ require __DIR__ . '/../vendor/autoload.php';
 
 use AdaptiveCards\AdaptiveCard;
 use AdaptiveCards\Action\OpenUrl\OpenUrlAction;
+use AdaptiveCards\Enum\TextSize;
+use AdaptiveCards\Enum\TextWeight;
 
 /*
  * The smallest useful card: a heading, a paragraph and a link action.
@@ -13,12 +15,12 @@ use AdaptiveCards\Action\OpenUrl\OpenUrlAction;
  */
 $card = AdaptiveCard::make()
     ->addTextBlock('Publish Adaptive Card schema', fn ($t) => $t
-        ->size('medium')
-        ->weight('bolder')
+        ->size(TextSize::Medium)
+        ->weight(TextWeight::Bolder)
         ->wrap(true))
     ->addTextBlock('Now that we have defined the main rules and features of the format, '
         . 'we need to produce a schema and publish it.', fn ($t) => $t->wrap(true))
-    ->addAction(OpenUrlAction::make('Learn more', 'https://adaptivecards.io'));
+    ->addAction(OpenUrlAction::make('https://adaptivecards.io', 'Learn more'));
 
 // Validate against the bundled 1.6 schema before printing (throws on error).
 $card->validate();
