@@ -29,9 +29,9 @@ final class CarouselPage extends AbstractElement
      * border and text inside the container.
      * Valid values: "default", "emphasis", "accent", "good", "attention", "warning".
      */
-    public function style(string|ContainerStyle $style): self
+    public function style(ContainerStyle $style): self
     {
-        return $this->set('style', ContainerStyle::value($style));
+        return $this->set('style', $style->value);
     }
 
     /**
@@ -93,9 +93,9 @@ final class CarouselPage extends AbstractElement
      * Controls how the container's content should be vertically aligned.
      * Valid values: "Top", "Center", "Bottom".
      */
-    public function verticalContentAlignment(string|VerticalAlignment $alignment): self
+    public function verticalContentAlignment(VerticalAlignment $alignment): self
     {
-        return $this->set('verticalContentAlignment', VerticalAlignment::value($alignment));
+        return $this->set('verticalContentAlignment', $alignment->value);
     }
 
     /**

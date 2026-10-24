@@ -311,7 +311,7 @@ trait HasItems
         ?bool $showTitle = null,
         ?string $xAxisTitle = null,
         ?string $yAxisTitle = null,
-        string|ChartColorSet|null $colorSet = null,
+        ?ChartColorSet $colorSet = null,
         ?callable $configure = null,
     ): static {
         return $this->addItem($this->configure(new HorizontalBarChart($title, $data, $showTitle, $xAxisTitle, $yAxisTitle, $colorSet), $configure));
@@ -339,7 +339,7 @@ trait HasItems
         ?bool $showTitle = null,
         ?string $xAxisTitle = null,
         ?string $yAxisTitle = null,
-        string|ChartColorSet|null $colorSet = null,
+        ?ChartColorSet $colorSet = null,
         ?iterable $data = null,
         ?callable $configure = null,
     ): static {
@@ -369,7 +369,7 @@ trait HasItems
         ?bool $showTitle = null,
         ?string $xAxisTitle = null,
         ?string $yAxisTitle = null,
-        string|ChartColorSet|null $colorSet = null,
+        ?ChartColorSet $colorSet = null,
         ?callable $configure = null,
     ): static {
         return $this->addItem($this->configure(new VerticalBarChart($title, $data, $showTitle, $xAxisTitle, $yAxisTitle, $colorSet), $configure));
@@ -385,7 +385,7 @@ trait HasItems
         ?bool $showTitle = null,
         ?string $xAxisTitle = null,
         ?string $yAxisTitle = null,
-        string|ChartColorSet|null $colorSet = null,
+        ?ChartColorSet $colorSet = null,
         ?callable $configure = null,
     ): static {
         return $this->addItem($this->configure(new GroupedVerticalBarChart($title, $data, $showTitle, $xAxisTitle, $yAxisTitle, $colorSet), $configure));

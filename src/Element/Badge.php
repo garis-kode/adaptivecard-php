@@ -17,8 +17,8 @@ final class Badge extends AbstractElement
 {
     public function __construct(
         string $title,
-        string|BadgeSize|null $size = null,
-        string|BadgeStyle|null $style = null,
+        ?BadgeSize $size = null,
+        ?BadgeStyle $style = null,
     ) {
         $this->title($title);
         if ($size !== null) {
@@ -31,8 +31,8 @@ final class Badge extends AbstractElement
 
     public static function make(
         string $title,
-        string|BadgeSize|null $size = null,
-        string|BadgeStyle|null $style = null,
+        ?BadgeSize $size = null,
+        ?BadgeStyle $style = null,
     ): self {
         return new self($title, $size, $style);
     }
@@ -57,36 +57,36 @@ final class Badge extends AbstractElement
      * The size of the badge.
      * Valid values: "Medium", "Large", "ExtraLarge".
      */
-    public function size(string|BadgeSize $size): self
+    public function size(BadgeSize $size): self
     {
-        return $this->set('size', BadgeSize::value($size));
+        return $this->set('size', $size->value);
     }
 
     /**
      * Controls the shape of the badge.
      * Valid values: "Square", "Rounded", "Circular".
      */
-    public function shape(string|BadgeShape $shape): self
+    public function shape(BadgeShape $shape): self
     {
-        return $this->set('shape', BadgeShape::value($shape));
+        return $this->set('shape', $shape->value);
     }
 
     /**
      * The style of the badge.
      * Valid values: "Default", "Subtle", "Informative", "Accent", "Good", "Attention", "Warning".
      */
-    public function style(string|BadgeStyle $style): self
+    public function style(BadgeStyle $style): self
     {
-        return $this->set('style', BadgeStyle::value($style));
+        return $this->set('style', $style->value);
     }
 
     /**
      * Controls the strength of the background color.
      * Valid values: "Filled", "Tint".
      */
-    public function appearance(string|BadgeAppearance $appearance): self
+    public function appearance(BadgeAppearance $appearance): self
     {
-        return $this->set('appearance', BadgeAppearance::value($appearance));
+        return $this->set('appearance', $appearance->value);
     }
 
     /**
@@ -103,9 +103,9 @@ final class Badge extends AbstractElement
      * Controls the position of the icon.
      * Valid values: "Before", "After".
      */
-    public function iconPosition(string|IconPosition $iconPosition): self
+    public function iconPosition(IconPosition $iconPosition): self
     {
-        return $this->set('iconPosition', IconPosition::value($iconPosition));
+        return $this->set('iconPosition', $iconPosition->value);
     }
 
     /**

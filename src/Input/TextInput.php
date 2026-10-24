@@ -62,9 +62,9 @@ final class TextInput extends AbstractInput
      * Style hint for text input.
      * Valid values: "text", "tel", "url", "email", "password".
      */
-    public function style(string|TextInputStyle $style): self
+    public function style(TextInputStyle $style): self
     {
-        return $this->set('style', TextInputStyle::value($style));
+        return $this->set('style', $style->value);
     }
 
     /**

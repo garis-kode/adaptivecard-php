@@ -151,36 +151,36 @@ final class Table extends AbstractElement
      * The style of the table.
      * Valid values: "default", "emphasis", "accent", "good", "attention", "warning".
      */
-    public function style(string|ContainerStyle $style): self
+    public function style(ContainerStyle $style): self
     {
-        return $this->set('style', ContainerStyle::value($style));
+        return $this->set('style', $style->value);
     }
 
     /**
      * Controls the style of grid lines displayed between cells in the table.
      * Valid values: "default", "emphasis", "accent", "good", "attention", "warning".
      */
-    public function gridStyle(string|ContainerStyle $style): self
+    public function gridStyle(ContainerStyle $style): self
     {
-        return $this->set('gridStyle', ContainerStyle::value($style));
+        return $this->set('gridStyle', $style->value);
     }
 
     /**
      * Controls how cells should be horizontally aligned by default across the entire table.
      * Valid values: "Left", "Center", "Right".
      */
-    public function horizontalCellContentAlignment(string|HorizontalAlignment $alignment): self
+    public function horizontalCellContentAlignment(HorizontalAlignment $alignment): self
     {
-        return $this->set('horizontalCellContentAlignment', HorizontalAlignment::value($alignment));
+        return $this->set('horizontalCellContentAlignment', $alignment->value);
     }
 
     /**
      * Controls how cells should be vertically aligned by default across the entire table.
      * Valid values: "Top", "Center", "Bottom".
      */
-    public function verticalCellContentAlignment(string|VerticalAlignment $alignment): self
+    public function verticalCellContentAlignment(VerticalAlignment $alignment): self
     {
-        return $this->set('verticalCellContentAlignment', VerticalAlignment::value($alignment));
+        return $this->set('verticalCellContentAlignment', $alignment->value);
     }
 
     public function getType(): string

@@ -37,18 +37,18 @@ final class RatingInput extends AbstractInput
      * Controls the size of the rating stars.
      * Valid values: "small", "medium", "large".
      */
-    public function size(string|RatingSize $size): self
+    public function size(RatingSize $size): self
     {
-        return $this->set('size', RatingSize::value($size));
+        return $this->set('size', $size->value);
     }
 
     /**
      * Controls the color of the rating stars.
      * Valid values: "neutral", "marigold".
      */
-    public function color(string|RatingColor $color): self
+    public function color(RatingColor $color): self
     {
-        return $this->set('color', RatingColor::value($color));
+        return $this->set('color', $color->value);
     }
 
     /**

@@ -6,8 +6,6 @@ namespace AdaptiveCards\Enum;
 
 enum TextSize: string
 {
-    use EnumValue;
-
     case Default = 'default';
     case Small = 'small';
     case Medium = 'medium';

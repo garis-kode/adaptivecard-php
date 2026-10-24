@@ -6,8 +6,6 @@ namespace AdaptiveCards\Enum;
 
 enum TextInputStyle: string
 {
-    use EnumValue;
-
     case Text = 'text';
     case Tel = 'tel';
     case Url = 'url';

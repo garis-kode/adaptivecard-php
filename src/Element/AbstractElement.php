@@ -49,9 +49,9 @@ abstract class AbstractElement extends Node
      * No space will be added for the first element in a container.
      * Valid values: "None", "ExtraSmall", "Small", "Default", "Medium", "Large", "ExtraLarge", "Padding".
      */
-    public function spacing(string|Spacing $spacing): static
+    public function spacing(Spacing $spacing): static
     {
-        return $this->set('spacing', Spacing::value($spacing));
+        return $this->set('spacing', $spacing->value);
     }
 
     /**
@@ -70,18 +70,18 @@ abstract class AbstractElement extends Node
      * the remaining vertical space in its container.
      * Valid values: "auto", "stretch".
      */
-    public function height(string|Height $height): static
+    public function height(Height $height): static
     {
-        return $this->set('height', Height::value($height));
+        return $this->set('height', $height->value);
     }
 
     /**
      * Controls how the element should be horizontally aligned.
      * Valid values: "Left", "Center", "Right".
      */
-    public function horizontalAlignment(string|HorizontalAlignment $alignment): static
+    public function horizontalAlignment(HorizontalAlignment $alignment): static
     {
-        return $this->set('horizontalAlignment', HorizontalAlignment::value($alignment));
+        return $this->set('horizontalAlignment', $alignment->value);
     }
 
     /**
@@ -93,9 +93,9 @@ abstract class AbstractElement extends Node
      * "atLeast:VeryNarrow", "atMost:VeryNarrow", "atLeast:Narrow", "atMost:Narrow",
      * "atLeast:Standard", "atMost:Standard", "atLeast:Wide", "atMost:Wide".
      */
-    public function targetWidth(string|TargetWidth $targetWidth): static
+    public function targetWidth(TargetWidth $targetWidth): static
     {
-        return $this->set('targetWidth', TargetWidth::value($targetWidth));
+        return $this->set('targetWidth', $targetWidth->value);
     }
 
     /**

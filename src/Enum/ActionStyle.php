@@ -6,8 +6,6 @@ namespace AdaptiveCards\Enum;
 
 enum ActionStyle: string
 {
-    use EnumValue;
-
     case Default = 'default';
     case Positive = 'positive';
     case Destructive = 'destructive';

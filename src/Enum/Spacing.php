@@ -6,8 +6,6 @@ namespace AdaptiveCards\Enum;
 
 enum Spacing: string
 {
-    use EnumValue;
-
     case Default = 'default';
     case None = 'none';
     case ExtraSmall = 'extraSmall';

@@ -59,9 +59,9 @@ final class ChoiceSetInput extends AbstractInput
      * Controls the visual style of the choice set.
      * Valid values: "compact", "expanded", "filtered".
      */
-    public function style(string|ChoiceInputStyle $style): self
+    public function style(ChoiceInputStyle $style): self
     {
-        return $this->set('style', ChoiceInputStyle::value($style));
+        return $this->set('style', $style->value);
     }
 
     /**

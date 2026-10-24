@@ -6,8 +6,6 @@ namespace AdaptiveCards\Enum;
 
 enum ImageFillMode: string
 {
-    use EnumValue;
-
     case Cover = 'cover';
     case RepeatHorizontally = 'repeatHorizontally';
     case RepeatVertically = 'repeatVertically';

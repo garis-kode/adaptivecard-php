@@ -37,9 +37,9 @@ final class PopoverAction extends AbstractAction
      * Controls where the popover should be positioned relative to the target element.
      * Valid values: "Above", "Below", "Before", "After".
      */
-    public function position(string|PopoverPosition $position): self
+    public function position(PopoverPosition $position): self
     {
-        return $this->set('position', PopoverPosition::value($position));
+        return $this->set('position', $position->value);
     }
 
     /**

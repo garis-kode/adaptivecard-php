@@ -6,8 +6,6 @@ namespace AdaptiveCards\Enum;
 
 enum IconStyle: string
 {
-    use EnumValue;
-
     case Regular = 'Regular';
     case Filled = 'Filled';
 }

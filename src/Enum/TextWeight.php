@@ -6,8 +6,6 @@ namespace AdaptiveCards\Enum;
 
 enum TextWeight: string
 {
-    use EnumValue;
-
     case Default = 'default';
     case Lighter = 'lighter';
     case Bolder = 'bolder';

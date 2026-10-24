@@ -29,18 +29,18 @@ final class Container extends AbstractElement
      * border and text inside the container, in such a way that contrast requirements are always met.
      * Valid values: "default", "emphasis", "accent", "good", "attention", "warning".
      */
-    public function style(string|ContainerStyle $style): self
+    public function style(ContainerStyle $style): self
     {
-        return $this->set('style', ContainerStyle::value($style));
+        return $this->set('style', $style->value);
     }
 
     /**
      * Controls how the container's content should be vertically aligned.
      * Valid values: "Top", "Center", "Bottom".
      */
-    public function verticalContentAlignment(string|VerticalAlignment $alignment): self
+    public function verticalContentAlignment(VerticalAlignment $alignment): self
     {
-        return $this->set('verticalContentAlignment', VerticalAlignment::value($alignment));
+        return $this->set('verticalContentAlignment', $alignment->value);
     }
 
     /**

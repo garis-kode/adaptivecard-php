@@ -6,6 +6,7 @@ composer.lock
 # Testing & Cache
 .phpunit.result.cache
 /.phpunit.cache/
+/phpstan.neon
 
 # Logs
 *.log

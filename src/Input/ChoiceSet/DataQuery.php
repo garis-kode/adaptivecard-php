@@ -17,7 +17,7 @@ final class DataQuery extends Node
         ?string $value = null,
         ?int $count = null,
         ?int $skip = null,
-        string|AssociatedInputs|null $associatedInputs = null,
+        ?AssociatedInputs $associatedInputs = null,
     ) {
         if ($dataset !== null) {
             $this->dataset($dataset);
@@ -41,7 +41,7 @@ final class DataQuery extends Node
         ?string $value = null,
         ?int $count = null,
         ?int $skip = null,
-        string|AssociatedInputs|null $associatedInputs = null,
+        ?AssociatedInputs $associatedInputs = null,
     ): self {
         return new self($dataset, $value, $count, $skip, $associatedInputs);
     }
@@ -82,9 +82,9 @@ final class DataQuery extends Node
      * Controls which inputs are associated with the query.
      * Valid values: "auto", "none".
      */
-    public function associatedInputs(string|AssociatedInputs $associatedInputs): self
+    public function associatedInputs(AssociatedInputs $associatedInputs): self
     {
-        return $this->set('associatedInputs', AssociatedInputs::value($associatedInputs));
+        return $this->set('associatedInputs', $associatedInputs->value);
     }
 
     public function getType(): string

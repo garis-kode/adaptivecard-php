@@ -6,8 +6,6 @@ namespace AdaptiveCards\Enum;
 
 enum BadgeAppearance: string
 {
-    use EnumValue;
-
     case Filled = 'Filled';
     case Tint = 'Tint';
 }

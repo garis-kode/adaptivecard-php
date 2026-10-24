@@ -16,13 +16,16 @@ use AdaptiveCards\Enum\VerticalAlignment;
  */
 final class Image extends AbstractElement
 {
-    public function __construct()
+    public function __construct(?string $url = null)
     {
+        if ($url !== null) {
+            $this->url($url);
+        }
     }
 
-    public static function make(): self
+    public static function make(?string $url = null): self
     {
-        return new self();
+        return new self($url);
     }
 
     /**
@@ -45,18 +48,18 @@ final class Image extends AbstractElement
      * Controls the approximate size of the image.
      * Valid values: "Auto", "Stretch", "Small", "Medium", "Large".
      */
-    public function size(string|ImageSize $size): self
+    public function size(ImageSize $size): self
     {
-        return $this->set('size', ImageSize::value($size));
+        return $this->set('size', $size->value);
     }
 
     /**
      * Controls how this element is displayed.
      * Valid values: "Default", "Person".
      */
-    public function style(string|ImageStyle $style): self
+    public function style(ImageStyle $style): self
     {
-        return $this->set('style', ImageStyle::value($style));
+        return $this->set('style', $style->value);
     }
 
     /**
@@ -106,18 +109,18 @@ final class Image extends AbstractElement
      * Controls horizontal content alignment.
      * Valid values: "Left", "Center", "Right".
      */
-    public function horizontalContentAlignment(string|HorizontalAlignment $alignment): self
+    public function horizontalContentAlignment(HorizontalAlignment $alignment): self
     {
-        return $this->set('horizontalContentAlignment', HorizontalAlignment::value($alignment));
+        return $this->set('horizontalContentAlignment', $alignment->value);
     }
 
     /**
      * Controls vertical content alignment.
      * Valid values: "Top", "Center", "Bottom".
      */
-    public function verticalContentAlignment(string|VerticalAlignment $alignment): self
+    public function verticalContentAlignment(VerticalAlignment $alignment): self
     {
-        return $this->set('verticalContentAlignment', VerticalAlignment::value($alignment));
+        return $this->set('verticalContentAlignment', $alignment->value);
     }
 
     /**

@@ -29,9 +29,9 @@ final class ImageSet extends AbstractElement
      * Controls the approximate size of each image in the set.
      * Valid values: "Auto", "Stretch", "Small", "Medium", "Large".
      */
-    public function imageSize(string|ImageSize $size): self
+    public function imageSize(ImageSize $size): self
     {
-        return $this->set('imageSize', ImageSize::value($size));
+        return $this->set('imageSize', $size->value);
     }
 
     public function getType(): string

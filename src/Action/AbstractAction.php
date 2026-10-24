@@ -47,9 +47,9 @@ abstract class AbstractAction extends Node
      * Controls the style of an Action, which influences how the action is
      * displayed, spoken, etc. Valid values: "default", "positive", "destructive".
      */
-    public function style(string|ActionStyle $style): static
+    public function style(ActionStyle $style): static
     {
-        return $this->set('style', ActionStyle::value($style));
+        return $this->set('style', $style->value);
     }
 
     /**
@@ -65,9 +65,9 @@ abstract class AbstractAction extends Node
      * Determines whether the action should be displayed as a button or in
      * the overflow menu. Valid values: "primary", "secondary".
      */
-    public function mode(string|ActionMode $mode): static
+    public function mode(ActionMode $mode): static
     {
-        return $this->set('mode', ActionMode::value($mode));
+        return $this->set('mode', $mode->value);
     }
 
     /**

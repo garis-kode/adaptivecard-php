@@ -6,8 +6,6 @@ namespace AdaptiveCards\Enum;
 
 enum Colors: string
 {
-    use EnumValue;
-
     case Default = 'default';
     case Dark = 'dark';
     case Light = 'light';

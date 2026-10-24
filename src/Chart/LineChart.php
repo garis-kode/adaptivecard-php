@@ -20,7 +20,7 @@ final class LineChart extends AbstractChart
         ?bool $showTitle = null,
         ?string $xAxisTitle = null,
         ?string $yAxisTitle = null,
-        string|ChartColorSet|null $colorSet = null,
+        ?ChartColorSet $colorSet = null,
         ?iterable $data = null,
     ) {
         $this->title($title);
@@ -50,7 +50,7 @@ final class LineChart extends AbstractChart
         ?bool $showTitle = null,
         ?string $xAxisTitle = null,
         ?string $yAxisTitle = null,
-        string|ChartColorSet|null $colorSet = null,
+        ?ChartColorSet $colorSet = null,
         ?iterable $data = null,
     ): self {
         return new self($title, $showTitle, $xAxisTitle, $yAxisTitle, $colorSet, $data);

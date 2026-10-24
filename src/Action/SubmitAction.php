@@ -39,9 +39,9 @@ final class SubmitAction extends AbstractAction
      * Controls which inputs are associated with the action.
      * Valid values: "auto", "none".
      */
-    public function associatedInputs(string|AssociatedInputs $associatedInputs): self
+    public function associatedInputs(AssociatedInputs $associatedInputs): self
     {
-        return $this->set('associatedInputs', AssociatedInputs::value($associatedInputs));
+        return $this->set('associatedInputs', $associatedInputs->value);
     }
 
     /**

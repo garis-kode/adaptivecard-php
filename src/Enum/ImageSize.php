@@ -6,8 +6,6 @@ namespace AdaptiveCards\Enum;
 
 enum ImageSize: string
 {
-    use EnumValue;
-
     case Auto = 'auto';
     case Stretch = 'stretch';
     case Small = 'small';

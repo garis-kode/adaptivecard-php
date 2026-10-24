@@ -41,11 +41,13 @@ composer require garis-kode/adaptivecard-php
 use AdaptiveCards\AdaptiveCard;
 use AdaptiveCards\Action\OpenUrlAction;
 use AdaptiveCards\Element\TextBlock;
+use AdaptiveCards\Enum\TextSize;
+use AdaptiveCards\Enum\TextWeight;
 
 $card = AdaptiveCard::make()
     ->addTextBlock('Publish Adaptive Card schema', fn (TextBlock $t) => $t
-        ->weight('bolder')
-        ->size('medium')
+        ->weight(TextWeight::Bolder)
+        ->size(TextSize::Medium)
         ->wrap(true)
     )
     ->addTextBlock('Now that we have defined the main rules, we need to produce a schema.')
@@ -67,20 +69,23 @@ echo $card->toJson();
 ```php
 use AdaptiveCards\AdaptiveCard;
 use AdaptiveCards\Element\Column;
+use AdaptiveCards\Enum\ImageSize;
 use AdaptiveCards\Enum\ImageStyle;
+use AdaptiveCards\Enum\Spacing;
+use AdaptiveCards\Enum\TextWeight;
 
 $card = AdaptiveCard::make()
     ->addColumnSet(fn ($cs) => $cs
         ->column('auto', fn (Column $c) => $c
             ->addImage('https://adaptivecards.io/content/cats/1.png', fn ($img) => $img
-                ->size('small')
+                ->size(ImageSize::Small)
                 ->style(ImageStyle::Person)
                 ->altText('Avatar')
             )
         )
         ->column('stretch', fn (Column $c) => $c
-            ->addTextBlock('Jane Doe', fn ($t) => $t->weight('bolder')->wrap(true))
-            ->addTextBlock('Software Engineer', fn ($t) => $t->isSubtle(true)->spacing('none'))
+            ->addTextBlock('Jane Doe', fn ($t) => $t->weight(TextWeight::Bolder)->wrap(true))
+            ->addTextBlock('Software Engineer', fn ($t) => $t->isSubtle(true)->spacing(Spacing::None))
         )
     );
 
@@ -92,13 +97,16 @@ echo $card->toJson();
 ```php
 use AdaptiveCards\AdaptiveCard;
 use AdaptiveCards\Action\SubmitAction;
+use AdaptiveCards\Enum\TextInputStyle;
+use AdaptiveCards\Enum\TextSize;
+use AdaptiveCards\Enum\TextWeight;
 use AdaptiveCards\Input\Choice;
 use AdaptiveCards\Input\ChoiceSetInput;
 use AdaptiveCards\Input\TextInput;
 use AdaptiveCards\Input\ToggleInput;
 
 $card = AdaptiveCard::make()
-    ->addTextBlock('Feedback Form', fn ($t) => $t->size('large')->weight('bolder'))
+    ->addTextBlock('Feedback Form', fn ($t) => $t->size(TextSize::Large)->weight(TextWeight::Bolder))
     ->addTextInput('name', fn (TextInput $i) => $i
         ->label('Your Name')
         ->placeholder('Jane Doe')
@@ -107,7 +115,7 @@ $card = AdaptiveCard::make()
     )
     ->addTextInput('email', fn (TextInput $i) => $i
         ->label('Email Address')
-        ->style('email')
+        ->style(TextInputStyle::Email)
     )
     ->addChoiceSetInput('rating', fn (ChoiceSetInput $c) => $c
         ->label('Rating')
@@ -162,7 +170,7 @@ Every Adaptive Cards v1.6 component is available as a strictly typed class with 
 
 **Conventions used throughout:**
 
-- Enum-backed setters accept **either** a string or the backed enum case — `->size('large')` and `->size(TextSize::Large)` are equivalent.
+- Enum-backed setters strictly accept the backed enum case — e.g. `->size(TextSize::Large)`.
 - Container-like types (`AdaptiveCard`, `Container`, `Column`, `TableCell`) share the `addTextBlock()`, `addImage()`, `addContainer()`, … builder helpers (see [Builder Helpers](#builder-helpers)). Each `add*` helper accepts an optional trailing closure that receives the newly created, typed child for configuration.
 - All snippets assume a `$card = AdaptiveCard::make()` and the relevant `use` imports.
 
@@ -199,7 +207,7 @@ $card = AdaptiveCard::make('1.6')
 | `fallbackText(string)` | Text shown by hosts that cannot render the card. |
 | `backgroundImage(string\|BackgroundImage)` | Card background (URL or [BackgroundImage](#backgroundimage)). |
 | `minHeight(string)` | Minimum card height, e.g. `'150px'`. |
-| `verticalContentAlignment(string\|VerticalAlignment)` | `top` / `center` / `bottom`. |
+| `verticalContentAlignment(VerticalAlignment)` | `top` / `center` / `bottom`. |
 | `rtl(bool = true)` | Right-to-left layout. |
 | `speak(string)` | Text-to-speech / SSML. |
 | `lang(string)` | ISO-639-1 language code. |
@@ -268,9 +276,9 @@ To keep the per-component tables short, these shared setters are listed once her
 | --- | --- |
 | `id(string)` | Unique element id (required for `targetElements`, input values). |
 | `isVisible(bool = true)` | Initial visibility. |
-| `spacing(string\|Spacing)` | Space above the element. |
+| `spacing(Spacing)` | Space above the element. |
 | `separator(bool = true)` | Draw a separating line above. |
-| `height(string\|Height)` | `auto` or `stretch`. |
+| `height(Height)` | `auto` or `stretch`. |
 | `requires(array)` | Host-capability requirements, e.g. `['adaptiveCards' => '1.3']`. |
 | `fallback(string\|AbstractElement)` | Fallback element or `'drop'`. |
 
@@ -281,9 +289,9 @@ To keep the per-component tables short, these shared setters are listed once her
 | `title(string)` | Button label. |
 | `iconUrl(string)` | Icon URL. |
 | `id(string)` | Unique id. |
-| `style(string\|ActionStyle)` | `default` / `positive` / `destructive`. |
+| `style(ActionStyle)` | `default` / `positive` / `destructive`. |
 | `tooltip(string)` | Hover tooltip. |
-| `mode(string\|ActionMode)` | `primary` / `secondary`. |
+| `mode(ActionMode)` | `primary` / `secondary`. |
 | `isEnabled(bool = true)` | Enable/disable the action. |
 | `requires(array)` / `fallback(string\|AbstractAction)` | As above. |
 
@@ -294,7 +302,7 @@ To keep the per-component tables short, these shared setters are listed once her
 | `label(string)` | Visible label. |
 | `isRequired(bool = true)` | Mark as required. |
 | `errorMessage(string)` | Message shown when validation fails. |
-| `labelPosition(string\|InputLabelPosition)` | `inline` / `above`. |
+| `labelPosition(InputLabelPosition)` | `inline` / `above`. |
 | `labelWidth(string\|int)` | e.g. `'40%'` or `40`. |
 | `value(...)` | Initial value. |
 
@@ -321,15 +329,15 @@ $card->addTextBlock('Important heading', fn ($t) => $t
 | Method | Description |
 | --- | --- |
 | `text(string)` | The text (supports a markdown subset). |
-| `size(string\|TextSize)` | `default`/`small`/`medium`/`large`/`extraLarge`. |
-| `weight(string\|TextWeight)` | `default`/`lighter`/`bolder`. |
-| `color(string\|Colors)` | `default`/`dark`/`light`/`accent`/`good`/`warning`/`attention`. |
-| `fontType(string\|FontType)` | `default`/`monospace`. |
-| `horizontalAlignment(string\|HorizontalAlignment)` | `left`/`center`/`right`. |
+| `size(TextSize)` | `default`/`small`/`medium`/`large`/`extraLarge`. |
+| `weight(TextWeight)` | `default`/`lighter`/`bolder`. |
+| `color(Colors)` | `default`/`dark`/`light`/`accent`/`good`/`warning`/`attention`. |
+| `fontType(FontType)` | `default`/`monospace`. |
+| `horizontalAlignment(HorizontalAlignment)` | `left`/`center`/`right`. |
 | `isSubtle(bool = true)` | Render in a subtler color. |
 | `maxLines(int)` | Maximum lines before truncation. |
 | `wrap(bool = true)` | Allow wrapping. |
-| `style(string\|TextBlockStyle)` | `default`/`heading`. |
+| `style(TextBlockStyle)` | `default`/`heading`. |
 
 _+ [common element properties](#common-properties)._
 
@@ -342,15 +350,17 @@ Displays a run of inline `TextRun`s with independent formatting. `RichTextBlock:
 ```php
 use AdaptiveCards\Element\RichTextBlock;
 use AdaptiveCards\Enum\Colors;
+use AdaptiveCards\Enum\HorizontalAlignment;
+use AdaptiveCards\Enum\TextWeight;
 
 $card->addRichTextBlock(fn (RichTextBlock $r) => $r
-    ->addTextRun('Warning: ', fn ($run) => $run->weight('bolder')->color(Colors::Attention))
+    ->addTextRun('Warning: ', fn ($run) => $run->weight(TextWeight::Bolder)->color(Colors::Attention))
     ->addTextRun('disk almost full.')
-    ->horizontalAlignment('left')
+    ->horizontalAlignment(HorizontalAlignment::Left)
 );
 ```
 
-**RichTextBlock:** `addTextRun(string $text, ?callable)`, `addInline(TextRun|string)`, `horizontalAlignment(string|HorizontalAlignment)` _+ [common element properties](#common-properties)._
+**RichTextBlock:** `addTextRun(string $text, ?callable)`, `addInline(TextRun|string)`, `horizontalAlignment(HorizontalAlignment)` _+ [common element properties](#common-properties)._
 
 **TextRun** (`TextRun::make(string $text)`): `color`, `fontType`, `size`, `weight`, `isSubtle(bool)`, `italic(bool)`, `strikethrough(bool)`, `highlight(bool)`, `underline(bool)`, `selectAction(AbstractAction)`.
 
@@ -361,11 +371,12 @@ $card->addRichTextBlock(fn (RichTextBlock $r) => $r
 A single image. `Image::make()`.
 
 ```php
+use AdaptiveCards\Enum\ImageSize;
 use AdaptiveCards\Enum\ImageStyle;
 
 $card->addImage('https://adaptivecards.io/content/cats/1.png', fn ($img) => $img
     ->altText('A cat')
-    ->size('medium')
+    ->size(ImageSize::Medium)
     ->style(ImageStyle::Person)
     ->selectAction(\AdaptiveCards\Action\OpenUrlAction::make('Open', 'https://example.com'))
 );
@@ -375,10 +386,10 @@ $card->addImage('https://adaptivecards.io/content/cats/1.png', fn ($img) => $img
 | --- | --- |
 | `url(string)` | Image URL (supports data URIs). |
 | `altText(string)` | Alternate text. |
-| `size(string\|ImageSize)` | `auto`/`stretch`/`small`/`medium`/`large`. |
-| `style(string\|ImageStyle)` | `default`/`person`. |
+| `size(ImageSize)` | `auto`/`stretch`/`small`/`medium`/`large`. |
+| `style(ImageStyle)` | `default`/`person`. |
 | `backgroundColor(string)` | Hex background, e.g. `'#DDDDDD'`. |
-| `horizontalAlignment(string\|HorizontalAlignment)` | Alignment. |
+| `horizontalAlignment(HorizontalAlignment)` | Alignment. |
 | `width(string)` | Explicit pixel width, e.g. `'50px'`. |
 | `pixelHeight(string)` | Explicit pixel height, e.g. `'50px'`. |
 | `selectAction(AbstractAction)` | Action when tapped. |
@@ -393,15 +404,16 @@ A gallery of images. `ImageSet::make()`.
 
 ```php
 use AdaptiveCards\Element\ImageSet;
+use AdaptiveCards\Enum\ImageSize;
 
 $card->addImageSet(fn (ImageSet $s) => $s
-    ->imageSize('medium')
+    ->imageSize(ImageSize::Medium)
     ->addImage('https://adaptivecards.io/content/cats/1.png')
     ->addImage('https://adaptivecards.io/content/cats/2.png')
 );
 ```
 
-**ImageSet:** `addImage(Image|string)`, `imageSize(string|ImageSize)` _+ [common element properties](#common-properties)._
+**ImageSet:** `addImage(Image|string)`, `imageSize(ImageSize)` _+ [common element properties](#common-properties)._
 
 ---
 
@@ -435,16 +447,18 @@ Groups elements and supports styling, background, and tap actions. `Container::m
 
 ```php
 use AdaptiveCards\Element\Container;
+use AdaptiveCards\Enum\ContainerStyle;
+use AdaptiveCards\Enum\VerticalAlignment;
 
 $card->addContainer(fn (Container $c) => $c
-    ->style('emphasis')
+    ->style(ContainerStyle::Emphasis)
     ->bleed(true)
-    ->verticalContentAlignment('center')
+    ->verticalContentAlignment(VerticalAlignment::Center)
     ->addTextBlock('Inside an emphasized container')
 );
 ```
 
-**Container:** `style(string|ContainerStyle)`, `verticalContentAlignment(string|VerticalAlignment)`, `bleed(bool)`, `minHeight(string)`, `rtl(bool)`, `backgroundImage(string|BackgroundImage)`, `selectAction(AbstractAction)` _+ [builder helpers](#builder-helpers) + [common element properties](#common-properties)._
+**Container:** `style(ContainerStyle)`, `verticalContentAlignment(VerticalAlignment)`, `bleed(bool)`, `minHeight(string)`, `rtl(bool)`, `backgroundImage(string|BackgroundImage)`, `selectAction(AbstractAction)` _+ [builder helpers](#builder-helpers) + [common element properties](#common-properties)._
 
 ---
 
@@ -454,19 +468,22 @@ Lays out `Column`s side by side. `ColumnSet::make()`; add columns with `column(w
 
 ```php
 use AdaptiveCards\Element\Column;
+use AdaptiveCards\Enum\ImageSize;
+use AdaptiveCards\Enum\TextWeight;
+use AdaptiveCards\Enum\VerticalAlignment;
 
 $card->addColumnSet(fn ($cs) => $cs
     ->column('auto', fn (Column $c) => $c
-        ->addImage('https://adaptivecards.io/content/cats/1.png', fn ($i) => $i->size('small'))
+        ->addImage('https://adaptivecards.io/content/cats/1.png', fn ($i) => $i->size(ImageSize::Small))
     )
     ->column('stretch', fn (Column $c) => $c
-        ->verticalContentAlignment('center')
-        ->addTextBlock('Jane Doe', fn ($t) => $t->weight('bolder'))
+        ->verticalContentAlignment(VerticalAlignment::Center)
+        ->addTextBlock('Jane Doe', fn ($t) => $t->weight(TextWeight::Bolder))
     )
 );
 ```
 
-**ColumnSet:** `column(string|int|null $width, ?callable)`, `addColumn(Column)`, `style(string|ContainerStyle)`, `bleed(bool)`, `minHeight(string)`, `horizontalAlignment(string|HorizontalAlignment)`, `selectAction(AbstractAction)` _+ [common element properties](#common-properties)._
+**ColumnSet:** `column(string|int|null $width, ?callable)`, `addColumn(Column)`, `style(ContainerStyle)`, `bleed(bool)`, `minHeight(string)`, `horizontalAlignment(HorizontalAlignment)`, `selectAction(AbstractAction)` _+ [common element properties](#common-properties)._
 
 **Column** (`Column::make(string|int|null $width)`): `width(string|int)` (`'auto'`, `'stretch'`, a relative weight, or `'50px'`), `style`, `verticalContentAlignment`, `bleed`, `minHeight`, `rtl`, `backgroundImage`, `selectAction` _+ [builder helpers](#builder-helpers) + [common element properties](#common-properties)._
 
@@ -495,11 +512,12 @@ Tabular layout (schema 1.5+). `Table::make()`.
 ```php
 use AdaptiveCards\Element\Table;
 use AdaptiveCards\Element\TableColumnDefinition;
+use AdaptiveCards\Enum\ContainerStyle;
 
 $card->addTable(fn (Table $t) => $t
     ->columns([TableColumnDefinition::make(2), TableColumnDefinition::make(1)])
     ->showGridLines(true)
-    ->gridStyle('emphasis')
+    ->gridStyle(ContainerStyle::Emphasis)
     ->addTextRow(['Item', 'Qty'])
     ->addTextRow(['Keyboard', '1'])
 );
@@ -511,9 +529,9 @@ $card->addTable(fn (Table $t) => $t
 | `addColumn(TableColumnDefinition\|string\|int)` | Append one column. |
 | `addRow(TableRow)` / `addTextRow(array $cells)` | Append a row (`addTextRow` wraps plain strings in cells). |
 | `showGridLines(bool = true)` | Toggle grid lines. |
-| `gridStyle(string\|ContainerStyle)` | Grid container style. |
-| `horizontalCellContentAlignment(string\|HorizontalAlignment)` | Default horizontal cell alignment. |
-| `verticalCellContentAlignment(string\|VerticalAlignment)` | Default vertical cell alignment. |
+| `gridStyle(ContainerStyle)` | Grid container style. |
+| `horizontalCellContentAlignment(HorizontalAlignment)` | Default horizontal cell alignment. |
+| `verticalCellContentAlignment(VerticalAlignment)` | Default vertical cell alignment. |
 
 _+ [common element properties](#common-properties)._
 
@@ -564,17 +582,18 @@ Gathers inputs and sends them to the host. `SubmitAction::make(string $title)`.
 
 ```php
 use AdaptiveCards\Action\SubmitAction;
+use AdaptiveCards\Enum\AssociatedInputs;
 
 $card->addAction(SubmitAction::make('Submit')
     ->data(['action' => 'save'])
-    ->associatedInputs('Auto')
+    ->associatedInputs(AssociatedInputs::Auto)
 );
 ```
 
 | Method | Description |
 | --- | --- |
 | `data(array\|string)` | Hidden payload merged with gathered inputs. |
-| `associatedInputs(string\|AssociatedInputs)` | `auto` / `none`. |
+| `associatedInputs(AssociatedInputs)` | `auto` / `none`. |
 
 _+ [common action properties](#common-properties)._
 
@@ -602,15 +621,16 @@ Sends a Universal Action Model event to a bot (schema 1.4+). `ExecuteAction::mak
 
 ```php
 use AdaptiveCards\Action\ExecuteAction;
+use AdaptiveCards\Enum\AssociatedInputs;
 
 $card->addAction(ExecuteAction::make('Approve')
     ->verb('approveRequest')
     ->data(['requestId' => 42])
-    ->associatedInputs('Auto')
+    ->associatedInputs(AssociatedInputs::Auto)
 );
 ```
 
-`verb(string)`, `data(array|string)`, `associatedInputs(string|AssociatedInputs)` _+ [common action properties](#common-properties)._
+`verb(string)`, `data(array|string)`, `associatedInputs(AssociatedInputs)` _+ [common action properties](#common-properties)._
 
 ---
 
@@ -658,17 +678,18 @@ All inputs share the [input properties](#common-properties) (`label`, `isRequire
 Free-form text. `TextInput::make(string $id, ?string $label = null, ?string $placeholder = null)`.
 
 ```php
+use AdaptiveCards\Enum\TextInputStyle;
 use AdaptiveCards\Input\TextInput;
 
 $card->addTextInput('email', fn (TextInput $i) => $i
     ->label('Email')
-    ->style('email')
+    ->style(TextInputStyle::Email)
     ->placeholder('you@example.com')
     ->isRequired(true)
 );
 ```
 
-`placeholder(string)`, `isMultiline(bool)`, `maxLength(int)`, `style(string|TextInputStyle)` (`text`/`tel`/`url`/`email`/`password`), `regex(string)`, `inlineAction(AbstractAction)`.
+`placeholder(string)`, `isMultiline(bool)`, `maxLength(int)`, `style(TextInputStyle)` (`text`/`tel`/`url`/`email`/`password`), `regex(string)`, `inlineAction(AbstractAction)`.
 
 ---
 
@@ -757,7 +778,7 @@ $card->addChoiceSetInput('rating', fn (ChoiceSetInput $c) => $c
 | `addChoice(Choice)` | Add a `Choice` instance. |
 | `choices(array $titleToValue)` | Add several from a `title => value` map. |
 | `isMultiSelect(bool = true)` | Allow multiple selections. |
-| `style(string\|ChoiceInputStyle)` | `compact` / `expanded` / `filtered`. |
+| `style(ChoiceInputStyle)` | `compact` / `expanded` / `filtered`. |
 | `placeholder(string)` | Placeholder (compact style). |
 | `wrap(bool = true)` | Wrap choice text. |
 
@@ -772,16 +793,19 @@ $card->addChoiceSetInput('rating', fn (ChoiceSetInput $c) => $c
 Used by `AdaptiveCard`, `Container`, `Column`, `TableCell` `backgroundImage()`. `BackgroundImage::make(string $url)`.
 
 ```php
+use AdaptiveCards\Enum\HorizontalAlignment;
+use AdaptiveCards\Enum\ImageFillMode;
+use AdaptiveCards\Enum\VerticalAlignment;
 use AdaptiveCards\Shared\BackgroundImage;
 
 $card->backgroundImage(BackgroundImage::make('https://example.com/bg.png')
-    ->fillMode('cover')
-    ->horizontalAlignment('center')
-    ->verticalAlignment('top')
+    ->fillMode(ImageFillMode::Cover)
+    ->horizontalAlignment(HorizontalAlignment::Center)
+    ->verticalAlignment(VerticalAlignment::Top)
 );
 ```
 
-`fillMode(string|ImageFillMode)` (`cover`/`repeatHorizontally`/`repeatVertically`/`repeat`), `horizontalAlignment`, `verticalAlignment`.
+`fillMode(ImageFillMode)` (`cover`/`repeatHorizontally`/`repeatVertically`/`repeat`), `horizontalAlignment(HorizontalAlignment)`, `verticalAlignment(VerticalAlignment)`.
 
 ---
 

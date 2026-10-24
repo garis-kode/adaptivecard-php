@@ -47,36 +47,36 @@ final class TextRun extends AbstractElement
      * Controls the color of TextRun elements.
      * Valid values: "default", "dark", "light", "accent", "good", "warning", "attention".
      */
-    public function color(string|Colors $color): self
+    public function color(Colors $color): self
     {
-        return $this->set('color', Colors::value($color));
+        return $this->set('color', $color->value);
     }
 
     /**
      * Type of font to use for rendering.
      * Valid values: "default", "monospace".
      */
-    public function fontType(string|FontType $fontType): self
+    public function fontType(FontType $fontType): self
     {
-        return $this->set('fontType', FontType::value($fontType));
+        return $this->set('fontType', $fontType->value);
     }
 
     /**
      * Controls size of text.
      * Valid values: "small", "default", "medium", "large", "extraLarge".
      */
-    public function size(string|TextSize $size): self
+    public function size(TextSize $size): self
     {
-        return $this->set('size', TextSize::value($size));
+        return $this->set('size', $size->value);
     }
 
     /**
      * Controls the weight of TextRun elements.
      * Valid values: "default", "lighter", "bolder".
      */
-    public function weight(string|TextWeight $weight): self
+    public function weight(TextWeight $weight): self
     {
-        return $this->set('weight', TextWeight::value($weight));
+        return $this->set('weight', $weight->value);
     }
 
     /**

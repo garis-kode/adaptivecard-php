@@ -6,8 +6,6 @@ namespace AdaptiveCards\Enum;
 
 enum InputLabelPosition: string
 {
-    use EnumValue;
-
     case Inline = 'inline';
     case Above = 'above';
 }

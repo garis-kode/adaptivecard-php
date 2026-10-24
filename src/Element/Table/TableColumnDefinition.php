@@ -41,18 +41,18 @@ final class TableColumnDefinition extends Node
      * Controls how cells should be horizontally aligned in this column.
      * Valid values: "Left", "Center", "Right".
      */
-    public function horizontalCellContentAlignment(string|HorizontalAlignment $alignment): self
+    public function horizontalCellContentAlignment(HorizontalAlignment $alignment): self
     {
-        return $this->set('horizontalCellContentAlignment', HorizontalAlignment::value($alignment));
+        return $this->set('horizontalCellContentAlignment', $alignment->value);
     }
 
     /**
      * Controls how cells should be vertically aligned in this column.
      * Valid values: "Top", "Center", "Bottom".
      */
-    public function verticalCellContentAlignment(string|VerticalAlignment $alignment): self
+    public function verticalCellContentAlignment(VerticalAlignment $alignment): self
     {
-        return $this->set('verticalCellContentAlignment', VerticalAlignment::value($alignment));
+        return $this->set('verticalCellContentAlignment', $alignment->value);
     }
 
     public function getType(): ?string

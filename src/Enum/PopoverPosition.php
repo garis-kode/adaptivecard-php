@@ -6,8 +6,6 @@ namespace AdaptiveCards\Enum;
 
 enum PopoverPosition: string
 {
-    use EnumValue;
-
     case Above = 'Above';
     case Below = 'Below';
     case Before = 'Before';

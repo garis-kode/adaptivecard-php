@@ -9,8 +9,6 @@ namespace AdaptiveCards\Enum;
  */
 enum Height: string
 {
-    use EnumValue;
-
     case Auto = 'auto';
     case Stretch = 'stretch';
 }

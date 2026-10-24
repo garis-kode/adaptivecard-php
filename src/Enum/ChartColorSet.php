@@ -9,8 +9,6 @@ namespace AdaptiveCards\Enum;
  */
 enum ChartColorSet: string
 {
-    use EnumValue;
-
     case Categorical = 'categorical';
     case Diverging = 'diverging';
     case Sequential = 'sequential';

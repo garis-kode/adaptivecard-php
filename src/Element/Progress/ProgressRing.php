@@ -47,9 +47,9 @@ final class ProgressRing extends AbstractElement
      * Controls the size of the progress ring.
      * Valid values: "Small", "Medium", "Large", "ExtraLarge".
      */
-    public function size(string|ProgressRingSize $size): self
+    public function size(ProgressRingSize $size): self
     {
-        return $this->set('size', ProgressRingSize::value($size));
+        return $this->set('size', $size->value);
     }
 
     public function getType(): string

@@ -6,8 +6,6 @@ namespace AdaptiveCards\Enum;
 
 enum IconSize: string
 {
-    use EnumValue;
-
     case XxSmall = 'xxSmall';
     case XSmall = 'xSmall';
     case Small = 'Small';

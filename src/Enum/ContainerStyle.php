@@ -6,8 +6,6 @@ namespace AdaptiveCards\Enum;
 
 enum ContainerStyle: string
 {
-    use EnumValue;
-
     case Default = 'default';
     case Emphasis = 'emphasis';
     case Good = 'good';

@@ -6,8 +6,6 @@ namespace AdaptiveCards\Enum;
 
 enum TargetWidth: string
 {
-    use EnumValue;
-
     case VeryNarrow = 'VeryNarrow';
     case Narrow = 'Narrow';
     case Standard = 'Standard';

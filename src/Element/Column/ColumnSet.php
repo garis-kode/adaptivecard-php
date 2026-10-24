@@ -49,9 +49,9 @@ final class ColumnSet extends AbstractElement
      * border and text inside the container, in such a way that contrast requirements are always met.
      * Valid values: "default", "emphasis", "accent", "good", "attention", "warning".
      */
-    public function style(string|ContainerStyle $style): self
+    public function style(ContainerStyle $style): self
     {
-        return $this->set('style', ContainerStyle::value($style));
+        return $this->set('style', $style->value);
     }
 
     /**

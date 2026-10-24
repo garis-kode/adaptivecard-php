@@ -6,8 +6,6 @@ namespace AdaptiveCards\Enum;
 
 enum ActionMode: string
 {
-    use EnumValue;
-
     case Primary = 'primary';
     case Secondary = 'secondary';
 }

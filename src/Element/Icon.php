@@ -36,27 +36,27 @@ final class Icon extends AbstractElement
      * Controls the color of Icon elements.
      * Valid values: "default", "dark", "light", "accent", "good", "warning", "attention".
      */
-    public function color(string|Colors $color): self
+    public function color(Colors $color): self
     {
-        return $this->set('color', Colors::value($color));
+        return $this->set('color', $color->value);
     }
 
     /**
      * Controls the size of the icon.
      * Valid values: "xxSmall", "xSmall", "small", "standard", "medium", "large", "xLarge", "xxLarge".
      */
-    public function size(string|IconSize $size): self
+    public function size(IconSize $size): self
     {
-        return $this->set('size', IconSize::value($size));
+        return $this->set('size', $size->value);
     }
 
     /**
      * Controls the style of the icon.
      * Valid values: "regular", "filled".
      */
-    public function style(string|IconStyle $style): self
+    public function style(IconStyle $style): self
     {
-        return $this->set('style', IconStyle::value($style));
+        return $this->set('style', $style->value);
     }
 
     /**

@@ -6,8 +6,6 @@ namespace AdaptiveCards\Enum;
 
 enum RatingSize: string
 {
-    use EnumValue;
-
     case Medium = 'Medium';
     case Large = 'Large';
 }

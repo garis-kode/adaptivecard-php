@@ -56,9 +56,9 @@ final class TableRow extends AbstractElement
      * The style of the table row.
      * Valid values: "default", "emphasis", "accent", "good", "attention", "warning".
      */
-    public function style(string|ContainerStyle $style): self
+    public function style(ContainerStyle $style): self
     {
-        return $this->set('style', ContainerStyle::value($style));
+        return $this->set('style', $style->value);
     }
 
     /**
@@ -81,18 +81,18 @@ final class TableRow extends AbstractElement
      * Controls how cells should be horizontally aligned in this row.
      * Valid values: "Left", "Center", "Right".
      */
-    public function horizontalCellContentAlignment(string|HorizontalAlignment $alignment): self
+    public function horizontalCellContentAlignment(HorizontalAlignment $alignment): self
     {
-        return $this->set('horizontalCellContentAlignment', HorizontalAlignment::value($alignment));
+        return $this->set('horizontalCellContentAlignment', $alignment->value);
     }
 
     /**
      * Controls how cells should be vertically aligned in this row.
      * Valid values: "Top", "Center", "Bottom".
      */
-    public function verticalCellContentAlignment(string|VerticalAlignment $alignment): self
+    public function verticalCellContentAlignment(VerticalAlignment $alignment): self
     {
-        return $this->set('verticalCellContentAlignment', VerticalAlignment::value($alignment));
+        return $this->set('verticalCellContentAlignment', $alignment->value);
     }
 
     public function getType(): string

@@ -6,8 +6,6 @@ namespace AdaptiveCards\Enum;
 
 enum RatingColor: string
 {
-    use EnumValue;
-
     case Neutral = 'Neutral';
     case Marigold = 'Marigold';
 }

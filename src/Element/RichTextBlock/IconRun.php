@@ -36,9 +36,9 @@ final class IconRun extends AbstractElement
     /**
      * Controls the color of IconRun elements.
      */
-    public function color(string|Colors $color): self
+    public function color(Colors $color): self
     {
-        return $this->set('color', Colors::value($color));
+        return $this->set('color', $color->value);
     }
 
     /**
@@ -54,9 +54,9 @@ final class IconRun extends AbstractElement
     /**
      * Controls the style of the icon.
      */
-    public function style(string|IconStyle $style): self
+    public function style(IconStyle $style): self
     {
-        return $this->set('style', IconStyle::value($style));
+        return $this->set('style', $style->value);
     }
 
     /**

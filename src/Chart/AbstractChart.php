@@ -24,9 +24,9 @@ abstract class AbstractChart extends AbstractElement
      * Controls the color set used to style the chart.
      * Valid values: "categorical", "sequential", "diverging", "sequentialRed", "sequentialGreen", "sequentialYellow".
      */
-    public function colorSet(string|ChartColorSet $colorSet): static
+    public function colorSet(ChartColorSet $colorSet): static
     {
-        return $this->set('colorSet', ChartColorSet::value($colorSet));
+        return $this->set('colorSet', $colorSet->value);
     }
 
     /**

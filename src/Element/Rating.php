@@ -50,27 +50,27 @@ final class Rating extends AbstractElement
      * Controls the size of the rating stars.
      * Valid values: "small", "medium", "large".
      */
-    public function size(string|RatingSize $size): self
+    public function size(RatingSize $size): self
     {
-        return $this->set('size', RatingSize::value($size));
+        return $this->set('size', $size->value);
     }
 
     /**
      * Controls the color of the rating stars.
      * Valid values: "neutral", "marigold".
      */
-    public function color(string|RatingColor $color): self
+    public function color(RatingColor $color): self
     {
-        return $this->set('color', RatingColor::value($color));
+        return $this->set('color', $color->value);
     }
 
     /**
      * Controls the style of the rating stars.
      * Valid values: "default", "compact".
      */
-    public function style(string|RatingStyle $style): self
+    public function style(RatingStyle $style): self
     {
-        return $this->set('style', RatingStyle::value($style));
+        return $this->set('style', $style->value);
     }
 
     public function getType(): string

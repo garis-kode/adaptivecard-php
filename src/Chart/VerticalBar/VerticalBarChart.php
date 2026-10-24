@@ -22,7 +22,7 @@ final class VerticalBarChart extends AbstractChart
         ?bool $showTitle = null,
         ?string $xAxisTitle = null,
         ?string $yAxisTitle = null,
-        string|ChartColorSet|null $colorSet = null,
+        ?ChartColorSet $colorSet = null,
     ) {
         $this->title($title);
         $this->data($data);
@@ -50,7 +50,7 @@ final class VerticalBarChart extends AbstractChart
         ?bool $showTitle = null,
         ?string $xAxisTitle = null,
         ?string $yAxisTitle = null,
-        string|ChartColorSet|null $colorSet = null,
+        ?ChartColorSet $colorSet = null,
     ): self {
         return new self($title, $data, $showTitle, $xAxisTitle, $yAxisTitle, $colorSet);
     }

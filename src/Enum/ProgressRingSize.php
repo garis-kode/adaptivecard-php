@@ -6,8 +6,6 @@ namespace AdaptiveCards\Enum;
 
 enum ProgressRingSize: string
 {
-    use EnumValue;
-
     case Tiny = 'Tiny';
     case Small = 'Small';
     case Medium = 'Medium';
