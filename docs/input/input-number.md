@@ -1,6 +1,6 @@
 # Input.Number
 
-**Works in:** Teams, Copilot, Outlook
+**Works in:** Teams · Copilot · Outlook
 
 An input to allow the user to enter a number.
 
@@ -34,7 +34,7 @@ An input to allow the user to enter a number.
 
 ## Valid values
 
-### Fallback values
+### Valid `fallback` values
 
 `fallback` accepts an element object of one of the following types, or the string `"drop"`:
 
@@ -45,11 +45,11 @@ An input to allow the user to enter a number.
 - `CodeBlock`, `Persona`, `PersonaSet`, `Graph resource`, `File`, `Calendar event`
 - `"drop"`
 
-### Spacing values
+### Valid `spacing` values
 
 `"None"`, `"ExtraSmall"`, `"Small"`, `"Default"`, `"Medium"`, `"Large"`, `"ExtraLarge"`, `"Padding"`.
 
-### Target width values
+### Valid `targetWidth` values
 
 `"VeryNarrow"`, `"Narrow"`, `"Standard"`, `"Wide"`, `"atLeast:VeryNarrow"`, `"atMost:VeryNarrow"`, `"atLeast:Narrow"`, `"atMost:Narrow"`, `"atLeast:Standard"`, `"atMost:Standard"`, `"atLeast:Wide"`, `"atMost:Wide"`.
 

@@ -1,10 +1,12 @@
 # RichTextBlock
 
-**Works in:** Teams, Copilot, Outlook
+**Works in:** Teams · Copilot · Outlook
+
 A rich text block that displays formatted text.
 
 RichTextBlock allows you to break out of the limitations of Markdown and format text with different fonts, font sizes, colors and more. Use RichTextBlock to present dynamic, expressive, and visually appealing text.
 
+## Example
 
 ```json
 {
@@ -126,7 +128,9 @@ RichTextBlock allows you to break out of the limitations of Markdown and format 
   ]
 }
 ```
+
 ## Why use RichTextBlock
+
 The RichTextBlock element enhances your cards with:
 
 Enhanced visual communication: Combine various text styles to draw attention to key info.
@@ -136,6 +140,7 @@ Brand consistency: Apply custom colors and highlights to align text with your ov
 Use the RichTextBlock element to help create cards that are informative and engaging. Your message will stand out while remaining accessible.
 
 ## Examples
+
 ### Flash sale promotion
 
 This flash sale card features bold headlines, inline icons, a crossed-out original price, and a vibrant sale price. They work together to showcase a promotional offer.
@@ -1077,7 +1082,9 @@ This card uses italic formatting and a large quotation mark. Together they deliv
   }
 }
 ```
+
 ## Best practices
+
 To make the most of the RichTextBlock element, consider these best practices:
 
 Clarity through moderation: Use rich text formatting purposefully. Overusing multiple styles in a single block can overwhelm users. Choose a single strong style for emphasis and stick to it.
@@ -1085,116 +1092,139 @@ Consistent styling: Apply design patterns consistently across your cards. For in
 Accessibility matters: Ensure any inline images have descriptive alternative text. Verify that color choices offer sufficient contrast for readability, especially in different host environments.
 Test across hosts: Adaptive Cards can render differently depending on the host app. Always preview your cards in the target host to ensure the rich text formatting displays as expected.
 Use inline elements intentionally: Incorporate inline icons or images only when they add value. They should serve as visual cues rather than decorative elements that might distract from the core message.
+
 ## Related topics
+
 TextBlock
 Icon
 Image
+
 ## Schema
 
 | Name | Type | Default | Description | In version |
 | --- | --- | --- | --- | --- |
-| `type` | string | `—` | Must be RichTextBlock. | 1.0 |
-| `inlines` | Array of object | `—` | string The inlines making up the rich text block. Valid values: TextRun, IconRun, ImageRun, CitationRun | 1.2 |
-| `labelFor` | string | `—` | Teams The Id of the input the RichTextBlock should act as the label of. | 1.5 |
-| `fallback` | One of object / string | `—` | An alternate element to render if the type of this one is unsupported or if the host application doesn't support all the capabilities specified in the requires property. Valid values: Container, ActionSet, ColumnSet, Media, RichTextBlock, Table, TextBlock, FactSet, ImageSet, Image, Input.Text, Input.Date, Input.Time, Input.Number, Input.Toggle, Input.ChoiceSet, Input.Rating, Rating, CompoundButton, Icon, Carousel, TabSet, Accordion, Badge, ProgressRing, ProgressBar, LoopComponent, Chart.Donut, Chart.Pie, Chart.VerticalBar.Grouped, Chart.VerticalBar, Chart.HorizontalBar, Chart.HorizontalBar.Stacked, Chart.Line, Chart.Gauge, CodeBlock, Persona, PersonaSet, Graph resource, File, Calendar event, "drop" | 1.2 |
-| `grid.area` | string | `—` | Teams The area of a Layout.AreaGrid layout in which an element should be displayed. | 1.5 |
-| `height` | string | `"auto"` | The height of the element. When set to stretch, the element will use the remaining vertical space in its container. Valid values: "auto", "stretch" | 1.1 |
-| `horizontalAlignment` | string | `—` | Controls how the element should be horizontally aligned. Valid values: "Left", "Center", "Right" | 1.0 |
-| `id` | string | `—` | A unique identifier for the element or action. Input elements must have an id, otherwise they will not be validated and their values will not be sent to the Bot. | 1.0 |
-| `isSortKey` | boolean | `false` | Controls whether the element should be used as a sort key by elements that allow sorting across a collection of elements. | 1.5 |
-| `isVisible` | boolean | `true` | Controls the visibility of the element. | 1.2 |
-| `isVisible.dynamic` | string | `—` | Preview Defines an expression whose evaluated value will be used to update the isVisible property of the element at runtime. | 1.5 |
-| `key` | string | `—` | Defines an optional key for the object. Keys are seldom needed, but in some scenarios, specifying keys can help maintain visual state in the host application. | 1.0 |
-| `lang` | string | `—` | The locale associated with the element. | 1.1 |
-| `requires` | object | `{}` | A list of capabilities the element requires the host application to support. If the host application doesn't support at least one of the listed capabilities, the element is not rendered (or its fallback is rendered if provided). Valid values: HostCapabilities | 1.2 |
-| `separator` | boolean | `false` | Controls whether a separator line should be displayed above the element to visually separate it from the previous element. No separator will be displayed for the first element in a container, even if this property is set to true. | 1.0 |
-| `spacing` | string | `"Default"` | Controls the amount of space between this element and the previous one. No space will be added for the first element in a container. Valid values: "None", "ExtraSmall", "Small", "Default", "Medium", "Large", "ExtraLarge", "Padding" | 1.0 |
-| `targetWidth` | string | `—` | TeamsCopilot Controls for which card width the element should be displayed. If targetWidth isn't specified, the element is rendered at all card widths. Using targetWidth makes it possible to author responsive cards that adapt their layout to the available horizontal space. For more details, see Responsive layout. Valid values: "VeryNarrow", "Narrow", "Standard", "Wide", "atLeast:VeryNarrow", "atMost:VeryNarrow", "atLeast:Narrow", "atMost:Narrow", "atLeast:Standard", "atMost:Standard", "atLeast:Wide", "atMost:Wide" | 1.0 |
+| `type` | `string` | — | Must be `RichTextBlock`. | 1.0 |
+| `inlines` | `array of object` | — | The inlines making up the rich text block. Valid values: `TextRun`, `IconRun`, `ImageRun`, `CitationRun`. | 1.2 |
+| `labelFor` | `string` | — | **Teams.** The Id of the input the RichTextBlock should act as the label of. | 1.5 |
+| `fallback` | `object or string` | — | An alternate element to render if the type of this one is unsupported or if the host application doesn't support all the capabilities specified in the requires property. See valid values below. | 1.2 |
+| `grid.area` | `string` | — | **Teams.** The area of a `Layout.AreaGrid` layout in which an element should be displayed. | 1.5 |
+| `height` | `string` | `"auto"` | The height of the element. When set to stretch, the element will use the remaining vertical space in its container. Valid values: `"auto"`, `"stretch"`. | 1.1 |
+| `horizontalAlignment` | `string` | — | Controls how the element should be horizontally aligned. Valid values: `"Left"`, `"Center"`, `"Right"`. | 1.0 |
+| `id` | `string` | — | A unique identifier for the element or action. Input elements must have an id, otherwise they will not be validated and their values will not be sent to the Bot. | 1.0 |
+| `isSortKey` | `boolean` | `false` | Controls whether the element should be used as a sort key by elements that allow sorting across a collection of elements. | 1.5 |
+| `isVisible` | `boolean` | `true` | Controls the visibility of the element. | 1.2 |
+| `isVisible.dynamic` | `string` | — | **Preview.** Defines an expression whose evaluated value will be used to update the isVisible property of the element at runtime. | 1.5 |
+| `key` | `string` | — | Defines an optional key for the object. Keys are seldom needed, but in some scenarios, specifying keys can help maintain visual state in the host application. | 1.0 |
+| `lang` | `string` | — | The locale associated with the element. | 1.1 |
+| `requires` | `object` | `{}` | A list of capabilities the element requires the host application to support. If the host application doesn't support at least one of the listed capabilities, the element is not rendered (or its fallback is rendered if provided). Valid values: `HostCapabilities`. | 1.2 |
+| `separator` | `boolean` | `false` | Controls whether a separator line should be displayed above the element to visually separate it from the previous element. No separator will be displayed for the first element in a container, even if this property is set to true. | 1.0 |
+| `spacing` | `string` | `"Default"` | Controls the amount of space between this element and the previous one. No space will be added for the first element in a container. Valid values: `"None"`, `"ExtraSmall"`, `"Small"`, `"Default"`, `"Medium"`, `"Large"`, `"ExtraLarge"`, `"Padding"`. | 1.0 |
+| `targetWidth` | `string` | — | **Teams/Copilot.** Controls for which card width the element should be displayed. If targetWidth isn't specified, the element is rendered at all card widths. Using targetWidth makes it possible to author responsive cards that adapt their layout to the available horizontal space. For more details, see Responsive layout. See valid values below. | 1.0 |
+
+### Valid `fallback` values
+
+`Container`, `ActionSet`, `ColumnSet`, `Media`, `RichTextBlock`, `Table`, `TextBlock`, `FactSet`, `ImageSet`, `Image`, `Input.Text`, `Input.Date`, `Input.Time`, `Input.Number`, `Input.Toggle`, `Input.ChoiceSet`, `Input.Rating`, `Rating`, `CompoundButton`, `Icon`, `Carousel`, `TabSet`, `Accordion`, `Badge`, `ProgressRing`, `ProgressBar`, `LoopComponent`, `Chart.Donut`, `Chart.Pie`, `Chart.VerticalBar.Grouped`, `Chart.VerticalBar`, `Chart.HorizontalBar`, `Chart.HorizontalBar.Stacked`, `Chart.Line`, `Chart.Gauge`, `CodeBlock`, `Persona`, `PersonaSet`, `Graph resource`, `File`, `Calendar event`, `"drop"`.
+
+### Valid `targetWidth` values
+
+`"VeryNarrow"`, `"Narrow"`, `"Standard"`, `"Wide"`, `"atLeast:VeryNarrow"`, `"atMost:VeryNarrow"`, `"atLeast:Narrow"`, `"atMost:Narrow"`, `"atLeast:Standard"`, `"atMost:Standard"`, `"atLeast:Wide"`, `"atMost:Wide"`.
 
 ---
 
-# TextRun
+## TextRun
 
-**Works in:** Teams, Copilot, Outlook
+**Works in:** Teams · Copilot · Outlook
 
 A block of text inside a RichTextBlock element.
 
-## Schema
+### Schema
 
 | Name | Type | Default | Description | In version |
 | --- | --- | --- | --- | --- |
-| `type` | string | `—` | Must be TextRun. | 1.0 |
-| `highlight` | boolean | `false` | Controls whether the text is highlighted. | 1.2 |
-| `italic` | boolean | `false` | Controls whether text is italicized. | 1.2 |
-| `strikethrough` | boolean | `false` | Controls whether text is struck through. | 1.2 |
-| `underline` | boolean | `false` | Controls whether text is underlined. | 1.3 |
-| `color` | string | `—` | Text color. Valid values: Default, Dark, Light, Accent, Good, Warning, Attention. | 1.0 |
-| `fallback` | object or string | `—` | Alternate element if unsupported. Valid values: Container, ActionSet, ColumnSet, Media, RichTextBlock, Table, TextBlock, FactSet, ImageSet, Image, Input.Text, Input.Date, Input.Time, Input.Number, Input.Toggle, Input.ChoiceSet, Input.Rating, Rating, CompoundButton, Icon, Carousel, TabSet, Accordion, Badge, ProgressRing, ProgressBar, LoopComponent, Chart.Donut, Chart.Pie, Chart.VerticalBar.Grouped, Chart.VerticalBar, Chart.HorizontalBar, Chart.HorizontalBar.Stacked, Chart.Line, Chart.Gauge, CodeBlock, Persona, PersonaSet, Graph resource, File, Calendar event, `"drop"` | 1.2 |
-| `fontType` | string | `—` | Font type. Valid values: Default, Monospace. | 1.2 |
-| `grid.area` | string | `—` | Teams: area of a Layout.AreaGrid layout. | 1.5 |
-| `id` | string | `—` | Unique identifier; required for input elements to be validated and submitted. | 1.0 |
-| `isSortKey` | boolean | `false` | Whether the element is used as a collection sort key. | 1.5 |
-| `isSubtle` | boolean | `—` | Controls whether text is rendered in a subtler variant of the selected color. | 1.0 |
-| `isVisible` | boolean | `true` | Controls visibility. | 1.2 |
-| `isVisible.dynamic` | string | `—` | Preview: expression used to update isVisible at runtime. | 1.5 |
-| `key` | string | `—` | Optional key that can help maintain visual state. | 1.0 |
-| `lang` | string | `—` | Locale associated with the element. | 1.1 |
-| `selectAction` | object | `—` | Action invoked on click/tap; Action.ShowCard unsupported. Valid values: Action.Execute, Action.InsertImage, Action.OpenUrl, Action.OpenUrlDialog, Action.Popover, Action.ResetInputs, Action.RunCommands, Action.Submit, Action.ToggleVisibility | 1.1 |
-| `size` | string | `—` | Text size. Valid values: Small, Default, Medium, Large, ExtraLarge. | 1.0 |
-| `text` | string | `—` | Text to display; a subset of Markdown is supported. | 1.0 |
-| `text.dynamic` | string | `—` | Preview: expression to update text at runtime. | 1.5 |
-| `weight` | string | `—` | Text weight. Valid values: Lighter, Default, Bolder. | 1.0 |
+| `type` | `string` | — | Must be `TextRun`. | 1.0 |
+| `highlight` | `boolean` | `false` | Controls whether the text is highlighted. | 1.2 |
+| `italic` | `boolean` | `false` | Controls whether text is italicized. | 1.2 |
+| `strikethrough` | `boolean` | `false` | Controls whether text is struck through. | 1.2 |
+| `underline` | `boolean` | `false` | Controls whether text is underlined. | 1.3 |
+| `color` | `string` | — | Text color. Valid values: `Default`, `Dark`, `Light`, `Accent`, `Good`, `Warning`, `Attention`. | 1.0 |
+| `fallback` | `object or string` | — | Alternate element if unsupported. See valid values below. | 1.2 |
+| `fontType` | `string` | — | Font type. Valid values: `Default`, `Monospace`. | 1.2 |
+| `grid.area` | `string` | — | **Teams.** Area of a `Layout.AreaGrid` layout. | 1.5 |
+| `id` | `string` | — | Unique identifier; required for input elements to be validated and submitted. | 1.0 |
+| `isSortKey` | `boolean` | `false` | Whether the element is used as a collection sort key. | 1.5 |
+| `isSubtle` | `boolean` | — | Controls whether text is rendered in a subtler variant of the selected color. | 1.0 |
+| `isVisible` | `boolean` | `true` | Controls visibility. | 1.2 |
+| `isVisible.dynamic` | `string` | — | **Preview.** Expression used to update isVisible at runtime. | 1.5 |
+| `key` | `string` | — | Optional key that can help maintain visual state. | 1.0 |
+| `lang` | `string` | — | Locale associated with the element. | 1.1 |
+| `selectAction` | `object` | — | Action invoked on click/tap; `Action.ShowCard` unsupported. Valid values: `Action.Execute`, `Action.InsertImage`, `Action.OpenUrl`, `Action.OpenUrlDialog`, `Action.Popover`, `Action.ResetInputs`, `Action.RunCommands`, `Action.Submit`, `Action.ToggleVisibility`. | 1.1 |
+| `size` | `string` | — | Text size. Valid values: `Small`, `Default`, `Medium`, `Large`, `ExtraLarge`. | 1.0 |
+| `text` | `string` | — | Text to display; a subset of Markdown is supported. | 1.0 |
+| `text.dynamic` | `string` | — | **Preview.** Expression to update text at runtime. | 1.5 |
+| `weight` | `string` | — | Text weight. Valid values: `Lighter`, `Default`, `Bolder`. | 1.0 |
+
+### Valid `fallback` values
+
+`Container`, `ActionSet`, `ColumnSet`, `Media`, `RichTextBlock`, `Table`, `TextBlock`, `FactSet`, `ImageSet`, `Image`, `Input.Text`, `Input.Date`, `Input.Time`, `Input.Number`, `Input.Toggle`, `Input.ChoiceSet`, `Input.Rating`, `Rating`, `CompoundButton`, `Icon`, `Carousel`, `TabSet`, `Accordion`, `Badge`, `ProgressRing`, `ProgressBar`, `LoopComponent`, `Chart.Donut`, `Chart.Pie`, `Chart.VerticalBar.Grouped`, `Chart.VerticalBar`, `Chart.HorizontalBar`, `Chart.HorizontalBar.Stacked`, `Chart.Line`, `Chart.Gauge`, `CodeBlock`, `Persona`, `PersonaSet`, `Graph resource`, `File`, `Calendar event`, `"drop"`.
 
 ---
 
-# IconRun
+## IconRun
 
-**Works in:** Teams, Copilot, Outlook
+**Works in:** Teams · Copilot · Outlook
 
 An inline icon inside a RichTextBlock element.
 
-## Schema
+### Schema
 
 | Name | Type | Default | Description | In version |
 | --- | --- | --- | --- | --- |
-| `type` | string | `—` | Must be IconRun. | 1.0 |
-| `color` | string | `"Default"` | Icon color. Valid values: Default, Dark, Light, Accent, Good, Warning, Attention. | 1.5 |
-| `name` | string | `—` | Name of the inline icon. | 1.5 |
-| `selectAction` | object | `—` | Action invoked on click/tap; Action.ShowCard unsupported. Valid values: Action.Execute, Action.InsertImage, Action.OpenUrl, Action.OpenUrlDialog, Action.Popover, Action.ResetInputs, Action.RunCommands, Action.Submit, Action.ToggleVisibility | 1.5 |
-| `size` | string | `"Default"` | Valid values: Small, Default, Medium, Large, ExtraLarge. | 1.5 |
-| `style` | string | `"Regular"` | Valid values: Regular, Filled. | 1.5 |
-| `fallback` | object or string | `—` | Alternate element if unsupported. Valid values: Container, ActionSet, ColumnSet, Media, RichTextBlock, Table, TextBlock, FactSet, ImageSet, Image, Input.Text, Input.Date, Input.Time, Input.Number, Input.Toggle, Input.ChoiceSet, Input.Rating, Rating, CompoundButton, Icon, Carousel, TabSet, Accordion, Badge, ProgressRing, ProgressBar, LoopComponent, Chart.Donut, Chart.Pie, Chart.VerticalBar.Grouped, Chart.VerticalBar, Chart.HorizontalBar, Chart.HorizontalBar.Stacked, Chart.Line, Chart.Gauge, CodeBlock, Persona, PersonaSet, Graph resource, File, Calendar event, `"drop"` | 1.2 |
-| `grid.area` | string | `—` | Teams: area of a Layout.AreaGrid layout. | 1.5 |
-| `id` | string | `—` | Unique identifier; required for input elements to be validated and submitted. | 1.0 |
-| `isSortKey` | boolean | `false` | Whether the element is used as a collection sort key. | 1.5 |
-| `isVisible` | boolean | `true` | Controls visibility. | 1.2 |
-| `isVisible.dynamic` | string | `—` | Preview: expression used to update isVisible at runtime. | 1.5 |
-| `key` | string | `—` | Optional key that can help maintain visual state. | 1.0 |
-| `lang` | string | `—` | Locale associated with the element. | 1.1 |
+| `type` | `string` | — | Must be `IconRun`. | 1.0 |
+| `color` | `string` | `"Default"` | Icon color. Valid values: `Default`, `Dark`, `Light`, `Accent`, `Good`, `Warning`, `Attention`. | 1.5 |
+| `name` | `string` | — | Name of the inline icon. | 1.5 |
+| `selectAction` | `object` | — | Action invoked on click/tap; `Action.ShowCard` unsupported. Valid values: `Action.Execute`, `Action.InsertImage`, `Action.OpenUrl`, `Action.OpenUrlDialog`, `Action.Popover`, `Action.ResetInputs`, `Action.RunCommands`, `Action.Submit`, `Action.ToggleVisibility`. | 1.5 |
+| `size` | `string` | `"Default"` | Valid values: `Small`, `Default`, `Medium`, `Large`, `ExtraLarge`. | 1.5 |
+| `style` | `string` | `"Regular"` | Valid values: `Regular`, `Filled`. | 1.5 |
+| `fallback` | `object or string` | — | Alternate element if unsupported. See valid values below. | 1.2 |
+| `grid.area` | `string` | — | **Teams.** Area of a `Layout.AreaGrid` layout. | 1.5 |
+| `id` | `string` | — | Unique identifier; required for input elements to be validated and submitted. | 1.0 |
+| `isSortKey` | `boolean` | `false` | Whether the element is used as a collection sort key. | 1.5 |
+| `isVisible` | `boolean` | `true` | Controls visibility. | 1.2 |
+| `isVisible.dynamic` | `string` | — | **Preview.** Expression used to update isVisible at runtime. | 1.5 |
+| `key` | `string` | — | Optional key that can help maintain visual state. | 1.0 |
+| `lang` | `string` | — | Locale associated with the element. | 1.1 |
+
+### Valid `fallback` values
+
+`Container`, `ActionSet`, `ColumnSet`, `Media`, `RichTextBlock`, `Table`, `TextBlock`, `FactSet`, `ImageSet`, `Image`, `Input.Text`, `Input.Date`, `Input.Time`, `Input.Number`, `Input.Toggle`, `Input.ChoiceSet`, `Input.Rating`, `Rating`, `CompoundButton`, `Icon`, `Carousel`, `TabSet`, `Accordion`, `Badge`, `ProgressRing`, `ProgressBar`, `LoopComponent`, `Chart.Donut`, `Chart.Pie`, `Chart.VerticalBar.Grouped`, `Chart.VerticalBar`, `Chart.HorizontalBar`, `Chart.HorizontalBar.Stacked`, `Chart.Line`, `Chart.Gauge`, `CodeBlock`, `Persona`, `PersonaSet`, `Graph resource`, `File`, `Calendar event`, `"drop"`.
 
 ---
 
-# ImageRun
+## ImageRun
 
-**Works in:** Teams, Copilot, Outlook
+**Works in:** Teams · Copilot · Outlook
 
 An inline image inside a RichTextBlock element.
 
-## Schema
+### Schema
 
 | Name | Type | Default | Description | In version |
 | --- | --- | --- | --- | --- |
-| `type` | string | `—` | Must be ImageRun. | 1.0 |
-| `selectAction` | object | `—` | Action invoked on click/tap; Action.ShowCard unsupported. Valid values: Action.Execute, Action.InsertImage, Action.OpenUrl, Action.OpenUrlDialog, Action.Popover, Action.ResetInputs, Action.RunCommands, Action.Submit, Action.ToggleVisibility | 1.5 |
-| `size` | string | `"Default"` | Valid values: Small, Default, Medium, Large, ExtraLarge. | 1.5 |
-| `style` | string | `"Default"` | Valid values: Default, Person, RoundedCorners. | 1.5 |
-| `themedUrls` | array of objects | `—` | Theme-specific image URLs. Valid values: ThemedUrl. | 1.5 |
-| `url` | string | `—` | Image URL or Base64 Data URI. Supported formats: PNG, JPEG, GIF, SVG. | 1.5 |
-| `fallback` | object or string | `—` | Alternate element if unsupported. Valid values: Container, ActionSet, ColumnSet, Media, RichTextBlock, Table, TextBlock, FactSet, ImageSet, Image, Input.Text, Input.Date, Input.Time, Input.Number, Input.Toggle, Input.ChoiceSet, Input.Rating, Rating, CompoundButton, Icon, Carousel, TabSet, Accordion, Badge, ProgressRing, ProgressBar, LoopComponent, Chart.Donut, Chart.Pie, Chart.VerticalBar.Grouped, Chart.VerticalBar, Chart.HorizontalBar, Chart.HorizontalBar.Stacked, Chart.Line, Chart.Gauge, CodeBlock, Persona, PersonaSet, Graph resource, File, Calendar event, `"drop"` | 1.2 |
-| `grid.area` | string | `—` | Teams: area of a Layout.AreaGrid layout. | 1.5 |
-| `id` | string | `—` | Unique identifier; required for input elements to be validated and submitted. | 1.0 |
-| `isSortKey` | boolean | `false` | Whether the element is used as a collection sort key. | 1.5 |
-| `isVisible` | boolean | `true` | Controls visibility. | 1.2 |
-| `isVisible.dynamic` | string | `—` | Preview: expression used to update isVisible at runtime. | 1.5 |
-| `key` | string | `—` | Optional key that can help maintain visual state. | 1.0 |
-| `lang` | string | `—` | Locale associated with the element. | 1.1 |
+| `type` | `string` | — | Must be `ImageRun`. | 1.0 |
+| `selectAction` | `object` | — | Action invoked on click/tap; `Action.ShowCard` unsupported. Valid values: `Action.Execute`, `Action.InsertImage`, `Action.OpenUrl`, `Action.OpenUrlDialog`, `Action.Popover`, `Action.ResetInputs`, `Action.RunCommands`, `Action.Submit`, `Action.ToggleVisibility`. | 1.5 |
+| `size` | `string` | `"Default"` | Valid values: `Small`, `Default`, `Medium`, `Large`, `ExtraLarge`. | 1.5 |
+| `style` | `string` | `"Default"` | Valid values: `Default`, `Person`, `RoundedCorners`. | 1.5 |
+| `themedUrls` | `array of objects` | — | Theme-specific image URLs. Valid values: `ThemedUrl`. | 1.5 |
+| `url` | `string` | — | Image URL or Base64 Data URI. Supported formats: PNG, JPEG, GIF, SVG. | 1.5 |
+| `fallback` | `object or string` | — | Alternate element if unsupported. See valid values below. | 1.2 |
+| `grid.area` | `string` | — | **Teams.** Area of a `Layout.AreaGrid` layout. | 1.5 |
+| `id` | `string` | — | Unique identifier; required for input elements to be validated and submitted. | 1.0 |
+| `isSortKey` | `boolean` | `false` | Whether the element is used as a collection sort key. | 1.5 |
+| `isVisible` | `boolean` | `true` | Controls visibility. | 1.2 |
+| `isVisible.dynamic` | `string` | — | **Preview.** Expression used to update isVisible at runtime. | 1.5 |
+| `key` | `string` | — | Optional key that can help maintain visual state. | 1.0 |
+| `lang` | `string` | — | Locale associated with the element. | 1.1 |
+
+### Valid `fallback` values
+
+`Container`, `ActionSet`, `ColumnSet`, `Media`, `RichTextBlock`, `Table`, `TextBlock`, `FactSet`, `ImageSet`, `Image`, `Input.Text`, `Input.Date`, `Input.Time`, `Input.Number`, `Input.Toggle`, `Input.ChoiceSet`, `Input.Rating`, `Rating`, `CompoundButton`, `Icon`, `Carousel`, `TabSet`, `Accordion`, `Badge`, `ProgressRing`, `ProgressBar`, `LoopComponent`, `Chart.Donut`, `Chart.Pie`, `Chart.VerticalBar.Grouped`, `Chart.VerticalBar`, `Chart.HorizontalBar`, `Chart.HorizontalBar.Stacked`, `Chart.Line`, `Chart.Gauge`, `CodeBlock`, `Persona`, `PersonaSet`, `Graph resource`, `File`, `Calendar event`, `"drop"`.

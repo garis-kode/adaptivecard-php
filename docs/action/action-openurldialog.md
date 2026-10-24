@@ -1,6 +1,6 @@
 # Action.OpenUrlDialog
 
-**Works in:** Word, PowerPoint
+**Works in:** Word · PowerPoint
 
 Opens a task module in a modal dialog hosting the content at a provided URL.
 
@@ -39,7 +39,7 @@ Opens a task module in a modal dialog hosting the content at a provided URL.
 | `tooltip.dynamic` | `string` | — | **Preview.** Expression evaluated at runtime to update `tooltip`. | 1.5 |
 | `tooltip.toggled` | `string` | — | **Preview.** Tooltip displayed in toggled state; applies only when `behavior` is `Toggle`. | 1.5 |
 
-### Valid values for `fallback`
+### Valid `fallback` values
 
 - `Action.Submit`
 - `Action.OpenUrl`
@@ -53,7 +53,7 @@ Opens a task module in a modal dialog hosting the content at a provided URL.
 - `Action.RunCommands`
 - `"drop"`
 
-### Valid values for `menuActions`
+### Valid `menuActions` values
 
 - `Action.Execute`
 - `Action.InsertImage`

@@ -1,6 +1,6 @@
 # Action.OpenUrl
 
-**Works in:** Teams, Copilot, Outlook
+**Works in:** Teams · Copilot · Outlook
 
 Opens the provided URL in either a separate browser tab or within the host application.
 

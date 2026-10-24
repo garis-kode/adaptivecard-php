@@ -99,4 +99,3 @@ Hex colors are shown in **the same order as the source**. Each swatch is represe
 | 6 | `#f3c66f` |
 | 7 | `#f4d77d` |
 | 8 | `#fae6b8` |
-

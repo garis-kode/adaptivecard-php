@@ -6,7 +6,7 @@ A carousel with sliding pages.
 
 With the `Carousel` element, you can present a series of related content pages and allow the end-user to navigate between them using a horizontal sliding mechanism. Each page can contain interactive elements, like buttons or links, so users can take action directly from the carousel. This feature is particularly useful for displaying a collection of items, such as product listings, news articles, or image galleries, in a compact and interactive format.
 
-## Basic example
+## Example
 
 ```json
 {
@@ -91,7 +91,7 @@ Using the Carousel element can enhance user engagement. It provides a visually a
 
 ## Examples
 
-## Product showcase
+### Product showcase
 
 ```json
 {
@@ -816,7 +816,7 @@ Using the Carousel element can enhance user engagement. It provides a visually a
 }
 ```
 
-## Company news
+### Company news
 
 ```json
 {
@@ -1114,7 +1114,7 @@ Using the Carousel element can enhance user engagement. It provides a visually a
 }
 ```
 
-## Onboarding
+### Onboarding
 
 ```json
 {
@@ -1759,7 +1759,7 @@ Using the Carousel element can enhance user engagement. It provides a visually a
 
 Set `autoLoopInterval` (in milliseconds) to advance pages automatically. Leave it undefined to disable auto-rotation; the minimum accepted value is `1000`. Rotation pauses automatically on hover, focus, drag, and the Space key.
 
-## Auto-rotating pages example
+### Auto-rotating pages example
 
 ```json
 {
@@ -1925,62 +1925,78 @@ To make the most of the Carousel element, consider the following best practices:
 - **Use high-quality images:** Images should be high-quality and optimized for fast loading.
 - **Maintain accessibility:** Provide alternative text for images. Use background images with appropriate Dark or Light font colors for text overlays. Ensure readability through proper contrast. See Background images for more details.
 
-## Carousel schema
+## Schema
 
 | Name | Type | Default | Description | In version |
 | --- | --- | --- | --- | --- |
-| `type` | string | — | Must be `Carousel`. | 1.0 |
-| `autoLoopInterval` | number | — | Preview: milliseconds between automatic advances; undefined disables; minimum 1000. | 1.5 |
-| `pageAnimation` | string | `"Slide"` | Navigation animation: `Slide`, `CrossFade`, `None`. | 1.5 |
-| `pages` | array of objects | — | Pages in carousel; valid: `CarouselPage`. | — |
-| `bleed` | boolean | `false` | Extends into parent padding, edge-to-edge. | 1.2 |
-| `fallback` | object / string | — | Alternate element when unsupported. Valid types include Container, ActionSet, ColumnSet, Media, RichTextBlock, Table, TextBlock, FactSet, ImageSet, Image, Input.Text, Input.Date, Input.Time, Input.Number, Input.Toggle, Input.ChoiceSet, Input.Rating, Rating, CompoundButton, Icon, Carousel, TabSet, Accordion, Badge, ProgressRing, ProgressBar, LoopComponent, Chart.Donut, Chart.Pie, Chart.VerticalBar.Grouped, Chart.VerticalBar, Chart.HorizontalBar, Chart.HorizontalBar.Stacked, Chart.Line, Chart.Gauge, CodeBlock, Persona, PersonaSet, Graph resource, File, Calendar event, or "drop". | 1.2 |
-| `grid.area` | string | — | Teams: Area within a Layout.AreaGrid layout. | 1.5 |
-| `height` | string | `"auto"` | Height: `auto` or `stretch`; stretch fills remaining container space. | 1.1 |
-| `id` | string | — | Unique identifier for an element or action. Inputs require an id for validation and submission. | 1.0 |
-| `isSortKey` | boolean | `false` | Use as a sort key when sorting collections. | 1.5 |
-| `isVisible` | boolean | `true` | Controls visibility. | 1.2 |
-| `isVisible.dynamic` | string | — | Preview: expression to update visibility at runtime. | 1.5 |
-| `key` | string | — | Optional key to help preserve visual state. | 1.0 |
-| `lang` | string | — | Locale associated with the element. | 1.1 |
-| `minHeight` | string | — | Minimum height in `<number>px` format. | 1.2 |
-| `requires` | object | `{}` | Required host capabilities (HostCapabilities); otherwise fallback or no rendering. | 1.2 |
-| `separator` | boolean | `false` | Separator above element except if first in container. | 1.0 |
-| `spacing` | string | `"Default"` | Spacing before element: None, ExtraSmall, Small, Default, Medium, Large, ExtraLarge, Padding. | 1.0 |
-| `targetWidth` | string | — | Controls which card widths render the element. Values: VeryNarrow, Narrow, Standard, Wide, atLeast:VeryNarrow, atMost:VeryNarrow, atLeast:Narrow, atMost:Narrow, atLeast:Standard, atMost:Standard, atLeast:Wide, atMost:Wide. Omission renders at all widths. | 1.0 |
+| `type` | `string` | — | Must be `Carousel`. | 1.0 |
+| `autoLoopInterval` | `number` | — | **Preview.** Milliseconds between automatic advances; undefined disables; minimum 1000. | 1.5 |
+| `pageAnimation` | `string` | `"Slide"` | Navigation animation. Valid values: `Slide`, `CrossFade`, `None`. | 1.5 |
+| `pages` | `array of objects` | — | Pages in carousel. Valid values: `CarouselPage`. | — |
+| `bleed` | `boolean` | `false` | Extends into parent padding, edge-to-edge. | 1.2 |
+| `fallback` | `object or string` | — | Alternate element when unsupported. See valid values below. | 1.2 |
+| `grid.area` | `string` | — | **Teams.** Area within a `Layout.AreaGrid` layout. | 1.5 |
+| `height` | `string` | `"auto"` | Height; stretch fills remaining container space. Valid values: `auto`, `stretch`. | 1.1 |
+| `id` | `string` | — | Unique identifier for an element or action. Inputs require an id for validation and submission. | 1.0 |
+| `isSortKey` | `boolean` | `false` | Use as a sort key when sorting collections. | 1.5 |
+| `isVisible` | `boolean` | `true` | Controls visibility. | 1.2 |
+| `isVisible.dynamic` | `string` | — | **Preview.** Expression to update visibility at runtime. | 1.5 |
+| `key` | `string` | — | Optional key to help preserve visual state. | 1.0 |
+| `lang` | `string` | — | Locale associated with the element. | 1.1 |
+| `minHeight` | `string` | — | Minimum height in `<number>px` format. | 1.2 |
+| `requires` | `object` | `{}` | Required host capabilities. Valid value: `HostCapabilities`. Otherwise fallback or no rendering. | 1.2 |
+| `separator` | `boolean` | `false` | Separator above element except if first in container. | 1.0 |
+| `spacing` | `string` | `"Default"` | Spacing before element. Valid values: `None`, `ExtraSmall`, `Small`, `Default`, `Medium`, `Large`, `ExtraLarge`, `Padding`. | 1.0 |
+| `targetWidth` | `string` | — | Controls which card widths render the element. Omission renders at all widths. See valid values below. | 1.0 |
+
+### Valid `fallback` values
+
+`Container`, `ActionSet`, `ColumnSet`, `Media`, `RichTextBlock`, `Table`, `TextBlock`, `FactSet`, `ImageSet`, `Image`, `Input.Text`, `Input.Date`, `Input.Time`, `Input.Number`, `Input.Toggle`, `Input.ChoiceSet`, `Input.Rating`, `Rating`, `CompoundButton`, `Icon`, `Carousel`, `TabSet`, `Accordion`, `Badge`, `ProgressRing`, `ProgressBar`, `LoopComponent`, `Chart.Donut`, `Chart.Pie`, `Chart.VerticalBar.Grouped`, `Chart.VerticalBar`, `Chart.HorizontalBar`, `Chart.HorizontalBar.Stacked`, `Chart.Line`, `Chart.Gauge`, `CodeBlock`, `Persona`, `PersonaSet`, `Graph resource`, `File`, `Calendar event`, `"drop"`.
+
+### Valid `targetWidth` values
+
+`VeryNarrow`, `Narrow`, `Standard`, `Wide`, `atLeast:VeryNarrow`, `atMost:VeryNarrow`, `atLeast:Narrow`, `atMost:Narrow`, `atLeast:Standard`, `atMost:Standard`, `atLeast:Wide`, `atMost:Wide`.
 
 ---
 
-# CarouselPage
+## CarouselPage
 
-**Works in:** Teams, Copilot, Outlook
+**Works in:** Teams · Copilot · Outlook
 
 A page inside a `Carousel` element.
 
-## CarouselPage schema
+### Schema
 
 | Name | Type | Default | Description | In version |
 | --- | --- | --- | --- | --- |
-| `type` | string | — | Must be `CarouselPage`. | 1.0 |
-| `items` | array of objects | — | Allowed elements: Accordion, ActionSet, Badge, Carousel, Chart.Donut, Chart.Gauge, Chart.HorizontalBar, Chart.HorizontalBar.Stacked, Chart.Line, Chart.Pie, Chart.VerticalBar, Chart.VerticalBar.Grouped, CodeBlock, ColumnSet, Calendar event, File, Graph resource, Persona, PersonaSet, CompoundButton, Container, FactSet, Icon, Image, ImageSet, Input.ChoiceSet, Input.Date, Input.Number, Input.Rating, Input.Text, Input.Time, Input.Toggle, LoopComponent, Media, ProgressBar, ProgressRing, Rating, RichTextBlock, Table, TabSet, TextBlock. | 1.0 |
-| `backgroundImage` | string / object | — | Container background image, valid: BackgroundImage. | 1.0 |
-| `fallback` | object / string | — | Alternate element when unsupported. Valid types include Container, ActionSet, ColumnSet, Media, RichTextBlock, Table, TextBlock, FactSet, ImageSet, Image, Input.Text, Input.Date, Input.Time, Input.Number, Input.Toggle, Input.ChoiceSet, Input.Rating, Rating, CompoundButton, Icon, Carousel, TabSet, Accordion, Badge, ProgressRing, ProgressBar, LoopComponent, Chart.Donut, Chart.Pie, Chart.VerticalBar.Grouped, Chart.VerticalBar, Chart.HorizontalBar, Chart.HorizontalBar.Stacked, Chart.Line, Chart.Gauge, CodeBlock, Persona, PersonaSet, Graph resource, File, Calendar event, or "drop". | 1.2 |
-| `grid.area` | string | — | Teams: Area within a Layout.AreaGrid layout. | 1.5 |
-| `height` | string | `"auto"` | Height: `auto` or `stretch`; stretch fills remaining container space. | 1.1 |
-| `id` | string | — | Unique identifier for an element or action. Inputs require an id for validation and submission. | 1.0 |
-| `isSortKey` | boolean | `false` | Use as a sort key when sorting collections. | 1.5 |
-| `isVisible` | boolean | `true` | Controls visibility. | 1.2 |
-| `isVisible.dynamic` | string | — | Preview: expression to update visibility at runtime. | 1.5 |
-| `key` | string | — | Optional key to help preserve visual state. | 1.0 |
-| `lang` | string | — | Locale associated with the element. | 1.1 |
-| `layouts` | array of objects | — | Teams: dynamic container layouts; Layout.Stack, Layout.Flow, Layout.AreaGrid. | 1.5 |
-| `maxHeight` | string | — | Teams: maximum height in `<number>px`; content overflow adds vertical scrollbar. | 1.5 |
-| `minHeight` | string | — | Minimum height in `<number>px`. | 1.2 |
-| `requires` | object | `{}` | Required host capabilities (HostCapabilities); otherwise fallback or no rendering. | 1.2 |
-| `roundedCorners` | boolean | `false` | Teams: rounded corners for container. | 1.5 |
-| `rtl` | boolean | — | Sets left-to-right or right-to-left rendering. | 1.0 |
-| `selectAction` | object | — | On-click/tap action. Action.ShowCard not supported. Valid: Action.Execute, Action.InsertImage, Action.OpenUrl, Action.OpenUrlDialog, Action.Popover, Action.ResetInputs, Action.RunCommands, Action.Submit, Action.ToggleVisibility. | 1.1 |
-| `showBorder` | boolean | `false` | Teams: show border around container. | 1.5 |
-| `style` | string | — | Container colors for background, border, text: default, emphasis, accent, good, attention, warning. | 1.0 |
-| `targetWidth` | string | — | Controls which card widths render the element. Values: VeryNarrow, Narrow, Standard, Wide, atLeast:VeryNarrow, atMost:VeryNarrow, atLeast:Narrow, atMost:Narrow, atLeast:Standard, atMost:Standard, atLeast:Wide, atMost:Wide. Omission renders at all widths. | 1.0 |
+| `type` | `string` | — | Must be `CarouselPage`. | 1.0 |
+| `items` | `array of objects` | — | Allowed elements. Valid values: `Accordion`, `ActionSet`, `Badge`, `Carousel`, `Chart.Donut`, `Chart.Gauge`, `Chart.HorizontalBar`, `Chart.HorizontalBar.Stacked`, `Chart.Line`, `Chart.Pie`, `Chart.VerticalBar`, `Chart.VerticalBar.Grouped`, `CodeBlock`, `ColumnSet`, `Calendar event`, `File`, `Graph resource`, `Persona`, `PersonaSet`, `CompoundButton`, `Container`, `FactSet`, `Icon`, `Image`, `ImageSet`, `Input.ChoiceSet`, `Input.Date`, `Input.Number`, `Input.Rating`, `Input.Text`, `Input.Time`, `Input.Toggle`, `LoopComponent`, `Media`, `ProgressBar`, `ProgressRing`, `Rating`, `RichTextBlock`, `Table`, `TabSet`, `TextBlock`. | 1.0 |
+| `backgroundImage` | `string or object` | — | Container background image. Valid value: `BackgroundImage`. | 1.0 |
+| `fallback` | `object or string` | — | Alternate element when unsupported. See valid values below. | 1.2 |
+| `grid.area` | `string` | — | **Teams.** Area within a `Layout.AreaGrid` layout. | 1.5 |
+| `height` | `string` | `"auto"` | Height; stretch fills remaining container space. Valid values: `auto`, `stretch`. | 1.1 |
+| `id` | `string` | — | Unique identifier for an element or action. Inputs require an id for validation and submission. | 1.0 |
+| `isSortKey` | `boolean` | `false` | Use as a sort key when sorting collections. | 1.5 |
+| `isVisible` | `boolean` | `true` | Controls visibility. | 1.2 |
+| `isVisible.dynamic` | `string` | — | **Preview.** Expression to update visibility at runtime. | 1.5 |
+| `key` | `string` | — | Optional key to help preserve visual state. | 1.0 |
+| `lang` | `string` | — | Locale associated with the element. | 1.1 |
+| `layouts` | `array of objects` | — | **Teams.** Dynamic container layouts. Valid values: `Layout.Stack`, `Layout.Flow`, `Layout.AreaGrid`. | 1.5 |
+| `maxHeight` | `string` | — | **Teams.** Maximum height in `<number>px`; content overflow adds vertical scrollbar. | 1.5 |
+| `minHeight` | `string` | — | Minimum height in `<number>px`. | 1.2 |
+| `requires` | `object` | `{}` | Required host capabilities. Valid value: `HostCapabilities`. Otherwise fallback or no rendering. | 1.2 |
+| `roundedCorners` | `boolean` | `false` | **Teams.** Rounded corners for container. | 1.5 |
+| `rtl` | `boolean` | — | Sets left-to-right or right-to-left rendering. | 1.0 |
+| `selectAction` | `object` | — | On-click/tap action. `Action.ShowCard` not supported. Valid values: `Action.Execute`, `Action.InsertImage`, `Action.OpenUrl`, `Action.OpenUrlDialog`, `Action.Popover`, `Action.ResetInputs`, `Action.RunCommands`, `Action.Submit`, `Action.ToggleVisibility`. | 1.1 |
+| `showBorder` | `boolean` | `false` | **Teams.** Show border around container. | 1.5 |
+| `style` | `string` | — | Container colors for background, border, text. Valid values: `default`, `emphasis`, `accent`, `good`, `attention`, `warning`. | 1.0 |
+| `targetWidth` | `string` | — | Controls which card widths render the element. Omission renders at all widths. See valid values below. | 1.0 |
+
+### Valid `fallback` values
+
+`Container`, `ActionSet`, `ColumnSet`, `Media`, `RichTextBlock`, `Table`, `TextBlock`, `FactSet`, `ImageSet`, `Image`, `Input.Text`, `Input.Date`, `Input.Time`, `Input.Number`, `Input.Toggle`, `Input.ChoiceSet`, `Input.Rating`, `Rating`, `CompoundButton`, `Icon`, `Carousel`, `TabSet`, `Accordion`, `Badge`, `ProgressRing`, `ProgressBar`, `LoopComponent`, `Chart.Donut`, `Chart.Pie`, `Chart.VerticalBar.Grouped`, `Chart.VerticalBar`, `Chart.HorizontalBar`, `Chart.HorizontalBar.Stacked`, `Chart.Line`, `Chart.Gauge`, `CodeBlock`, `Persona`, `PersonaSet`, `Graph resource`, `File`, `Calendar event`, `"drop"`.
+
+### Valid `targetWidth` values
+
+`VeryNarrow`, `Narrow`, `Standard`, `Wide`, `atLeast:VeryNarrow`, `atMost:VeryNarrow`, `atLeast:Narrow`, `atMost:Narrow`, `atLeast:Standard`, `atMost:Standard`, `atLeast:Wide`, `atMost:Wide`.
 | `verticalContentAlignment` | string | — | Vertical content alignment: Top, Center, Bottom. | 1.1 |

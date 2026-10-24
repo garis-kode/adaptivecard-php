@@ -1,6 +1,6 @@
 # Input.Time
 
-**Works in:** Teams, Copilot, Outlook
+**Works in:** Teams · Copilot · Outlook
 
 An input to allow the user to select a time.
 
@@ -10,7 +10,7 @@ An input to allow the user to select a time.
 | --- | --- | --- | --- | --- |
 | `type` | `string` | — | Must be `Input.Time`. | 1.0 |
 | `errorMessage` | `string` | — | The error message to display when the input fails validation. See *Input validation* for more details. | 1.3 |
-| `fallback` | `object` or `string` | — | An alternate element to render if this type is unsupported or if the host does not support all capabilities specified in `requires`. See [Fallback values](#fallback-values). | 1.2 |
+| `fallback` | `object` or `string` | — | An alternate element to render if this type is unsupported or if the host does not support all capabilities specified in `requires`. See [Valid `fallback` values](#valid-fallback-values). | 1.2 |
 | `grid.area` | `string` | — | **Teams.** The area of a `Layout.AreaGrid` layout in which an element should be displayed. | 1.5 |
 | `height` | `string` | `"auto"` | The height of the element. When set to `"stretch"`, the element uses the remaining vertical space in its container. Valid: `"auto"`, `"stretch"`. | 1.1 |
 | `id` | `string` | — | A unique identifier for the element or action. Input elements must have an `id`; otherwise they will not be validated and their values will not be sent to the Bot. | 1.0 |
@@ -27,14 +27,14 @@ An input to allow the user to select a time.
 | `requires` | `object` (`HostCapabilities`) | `{}` | A list of capabilities the element requires the host application to support. If any are unsupported, the element is not rendered, or its `fallback` is rendered if provided. | 1.2 |
 | `separator` | `boolean` | `false` | Controls whether a separator line is displayed above the element. No separator appears for the first element in a container, even when true. | 1.0 |
 | `showLabel` | `boolean` | `true` | **Preview.** Controls whether the input label is visually rendered. When false, the label is still applied as the input's accessible name. | 1.5 |
-| `spacing` | `string` | `"Default"` | Controls the space between this element and the previous one. None is added for the first element in a container. See [Spacing values](#spacing-values). | 1.0 |
-| `targetWidth` | `string` | — | **Teams, Copilot.** Controls for which card widths the element is displayed. If omitted, the element renders at all widths. See [Target width values](#target-width-values). | 1.0 |
+| `spacing` | `string` | `"Default"` | Controls the space between this element and the previous one. None is added for the first element in a container. See [Valid `spacing` values](#valid-spacing-values). | 1.0 |
+| `targetWidth` | `string` | — | **Teams, Copilot.** Controls for which card widths the element is displayed. If omitted, the element renders at all widths. See [Valid `targetWidth` values](#valid-targetwidth-values). | 1.0 |
 | `value` | `string` | — | The default value of the input, in `HH:MM` format. | 1.0 |
-| `valueChangedAction` | `object` | — | **Teams.** An action executed when the value of the input changes. See [Value-changed actions](#value-changed-actions). | 1.5 |
+| `valueChangedAction` | `object` | — | **Teams.** An action executed when the value of the input changes. See [Valid `valueChangedAction` values](#valid-valuechangedaction-values). | 1.5 |
 
 ## Valid values
 
-### Fallback values
+### Valid `fallback` values
 
 `fallback` can be one of these element types, or the string `"drop"`:
 
@@ -45,14 +45,14 @@ An input to allow the user to select a time.
 - `CodeBlock`, `Persona`, `PersonaSet`, `Graph resource`, `File`, `Calendar event`
 - `"drop"`
 
-### Spacing values
+### Valid `spacing` values
 
 `"None"`, `"ExtraSmall"`, `"Small"`, `"Default"`, `"Medium"`, `"Large"`, `"ExtraLarge"`, `"Padding"`
 
-### Target width values
+### Valid `targetWidth` values
 
 `"VeryNarrow"`, `"Narrow"`, `"Standard"`, `"Wide"`, `"atLeast:VeryNarrow"`, `"atMost:VeryNarrow"`, `"atLeast:Narrow"`, `"atMost:Narrow"`, `"atLeast:Standard"`, `"atMost:Standard"`, `"atLeast:Wide"`, `"atMost:Wide"`
 
-### Value-changed actions
+### Valid `valueChangedAction` values
 
 `Action.OpenUrlDialog`, `Action.Popover`, `Action.ResetInputs`, `Action.RunCommands`

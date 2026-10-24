@@ -6,8 +6,6 @@ A spinning ring element, to indicate progress.
 
 ## Example
 
-**Card — JSON**
-
 ```json
 {
   "type": "AdaptiveCard",
@@ -126,12 +124,12 @@ A spinning ring element, to indicate progress.
 | `requires` | `object` | `{}` | List of host capabilities required to display the element; otherwise it is not rendered or its fallback is rendered. Valid value: `HostCapabilities`. | 1.2 |
 | `separator` | `boolean` | `false` | Whether a separator line appears above the element. No separator appears for the first element in a container. | 1.0 |
 | `spacing` | `string` | `"Default"` | Space between this element and the previous one. No space is added for the first element. Valid values: `"None"`, `"ExtraSmall"`, `"Small"`, `"Default"`, `"Medium"`, `"Large"`, `"ExtraLarge"`, `"Padding"`. | 1.0 |
-| `targetWidth` | `string` | — | **TeamsCopilot.** Card widths at which to display this element. If unspecified, displays at all widths. See valid values below. | 1.0 |
+| `targetWidth` | `string` | — | **Teams/Copilot.** Card widths at which to display this element. If unspecified, displays at all widths. See valid values below. | 1.0 |
 
-### `fallback` valid values
+### Valid `fallback` values
 
 `Container`, `ActionSet`, `ColumnSet`, `Media`, `RichTextBlock`, `Table`, `TextBlock`, `FactSet`, `ImageSet`, `Image`, `Input.Text`, `Input.Date`, `Input.Time`, `Input.Number`, `Input.Toggle`, `Input.ChoiceSet`, `Input.Rating`, `Rating`, `CompoundButton`, `Icon`, `Carousel`, `TabSet`, `Accordion`, `Badge`, `ProgressRing`, `ProgressBar`, `LoopComponent`, `Chart.Donut`, `Chart.Pie`, `Chart.VerticalBar.Grouped`, `Chart.VerticalBar`, `Chart.HorizontalBar`, `Chart.HorizontalBar.Stacked`, `Chart.Line`, `Chart.Gauge`, `CodeBlock`, `Persona`, `PersonaSet`, `Graph resource`, `File`, `Calendar event`, `"drop"`.
 
-### `targetWidth` valid values
+### Valid `targetWidth` values
 
 `"VeryNarrow"`, `"Narrow"`, `"Standard"`, `"Wide"`, `"atLeast:VeryNarrow"`, `"atMost:VeryNarrow"`, `"atLeast:Narrow"`, `"atMost:Narrow"`, `"atLeast:Standard"`, `"atMost:Standard"`, `"atLeast:Wide"`, `"atMost:Wide"`.

@@ -1,11 +1,12 @@
 # ProgressBar
 
-**Works in:** Teams  
-**Description:** A progress bar element, to represent a value within a range.
+**Works in:** Teams
+
+A progress bar element, to represent a value within a range.
 
 The `ProgressBar` element visually communicates progress or system states with modern, clear design. It helps users quickly assess whether a task is ongoing or a specific state (e.g., error or near-full capacity) exists.
 
-## Card example: ProgressBar styles
+## Example
 
 ```json
 {
@@ -234,24 +235,24 @@ Colors can be used to convey further detail:
 
 | Name | Type | Default | Description | In version |
 | --- | --- | --- | --- | --- |
-| `type` | string | — | Must be `ProgressBar`. | 1.0 |
-| `color` | string | `"Accent"` | The color of the progress bar. `color` has no effect in indeterminate mode, which always uses the accent color. Valid values: `"Accent"`, `"Good"`, `"Warning"`, `"Attention"`. | 1.5 |
-| `max` | number | `100` | The maximum value of the progress bar. | 1.5 |
-| `value` | number | — | The value of the progress bar. Must be between 0 and `max`. | 1.5 |
-| `fallback` | object or string | — | An alternate element to render if this type is unsupported or the host lacks required capabilities. See valid values below. | 1.2 |
-| `grid.area` | string | — | **Teams.** The area of a `Layout.AreaGrid` layout in which an element should be displayed. | 1.5 |
-| `height` | string | `"auto"` | Height; `"stretch"` uses remaining vertical space. Valid values: `"auto"`, `"stretch"`. | 1.1 |
-| `horizontalAlignment` | string | — | Horizontal alignment. Valid values: `"Left"`, `"Center"`, `"Right"`. | 1.0 |
-| `id` | string | — | A unique identifier for the element or action. Inputs must have an `id` to be validated and sent to the Bot. | 1.0 |
-| `isSortKey` | boolean | `false` | Whether the element is used as a sort key by elements supporting sorting across a collection. | 1.5 |
-| `isVisible` | boolean | `true` | Controls visibility of the element. | 1.2 |
-| `isVisible.dynamic` | string | — | **Preview.** Expression whose evaluated value updates `isVisible` at runtime. | 1.5 |
-| `key` | string | — | Optional object key; may help maintain visual state in the host application. | 1.0 |
-| `lang` | string | — | Locale associated with the element. | 1.1 |
-| `requires` | object | `{}` | Required host capabilities; uses fallback or does not render if unmet. Valid value: `HostCapabilities`. | 1.2 |
-| `separator` | boolean | `false` | Whether a separator is shown above the element. Not displayed for first element in a container. | 1.0 |
-| `spacing` | string | `"Default"` | Spacing from preceding element (not applied to first element). Valid values: `"None"`, `"ExtraSmall"`, `"Small"`, `"Default"`, `"Medium"`, `"Large"`, `"ExtraLarge"`, `"Padding"`. | 1.0 |
-| `targetWidth` | string | — | **Teams/Copilot.** Card widths on which the element appears. Omitted means all widths. See valid values below. | 1.0 |
+| `type` | `string` | — | Must be `ProgressBar`. | 1.0 |
+| `color` | `string` | `"Accent"` | The color of the progress bar. `color` has no effect in indeterminate mode, which always uses the accent color. Valid values: `"Accent"`, `"Good"`, `"Warning"`, `"Attention"`. | 1.5 |
+| `max` | `number` | `100` | The maximum value of the progress bar. | 1.5 |
+| `value` | `number` | — | The value of the progress bar. Must be between 0 and `max`. | 1.5 |
+| `fallback` | `object or string` | — | An alternate element to render if this type is unsupported or the host lacks required capabilities. See valid values below. | 1.2 |
+| `grid.area` | `string` | — | **Teams.** The area of a `Layout.AreaGrid` layout in which an element should be displayed. | 1.5 |
+| `height` | `string` | `"auto"` | Height; `"stretch"` uses remaining vertical space. Valid values: `"auto"`, `"stretch"`. | 1.1 |
+| `horizontalAlignment` | `string` | — | Horizontal alignment. Valid values: `"Left"`, `"Center"`, `"Right"`. | 1.0 |
+| `id` | `string` | — | A unique identifier for the element or action. Inputs must have an `id` to be validated and sent to the Bot. | 1.0 |
+| `isSortKey` | `boolean` | `false` | Whether the element is used as a sort key by elements supporting sorting across a collection. | 1.5 |
+| `isVisible` | `boolean` | `true` | Controls visibility of the element. | 1.2 |
+| `isVisible.dynamic` | `string` | — | **Preview.** Expression whose evaluated value updates `isVisible` at runtime. | 1.5 |
+| `key` | `string` | — | Optional object key; may help maintain visual state in the host application. | 1.0 |
+| `lang` | `string` | — | Locale associated with the element. | 1.1 |
+| `requires` | `object` | `{}` | Required host capabilities; uses fallback or does not render if unmet. Valid value: `HostCapabilities`. | 1.2 |
+| `separator` | `boolean` | `false` | Whether a separator is shown above the element. Not displayed for first element in a container. | 1.0 |
+| `spacing` | `string` | `"Default"` | Spacing from preceding element (not applied to first element). Valid values: `"None"`, `"ExtraSmall"`, `"Small"`, `"Default"`, `"Medium"`, `"Large"`, `"ExtraLarge"`, `"Padding"`. | 1.0 |
+| `targetWidth` | `string` | — | **Teams/Copilot.** Card widths on which the element appears. Omitted means all widths. See valid values below. | 1.0 |
 
 ### Valid `fallback` values
 

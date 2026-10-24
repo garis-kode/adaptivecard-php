@@ -4,7 +4,7 @@
 
 A badge element to show an icon and/or text in a compact form over a colored background.
 
-## Card example
+## Example
 
 ```json
 {
@@ -305,29 +305,29 @@ A badge element to show an icon and/or text in a compact form over a colored bac
 
 | Name | Type | Default | Description | In version |
 | --- | --- | --- | --- | --- |
-| type | string | — | Must be `Badge`. | 1.0 |
-| appearance | string | `"Filled"` | Controls background color strength. Values: `Filled`, `Tint`. | 1.5 |
-| icon | string | — | Adaptive Card icon catalog name, format `<icon-name>[,regular|filled]`. Default icon style is regular. | 1.5 |
-| iconPosition | string | `"Before"` | Icon placement: `Before`, `After`. | 1.5 |
-| shape | string | `"Circular"` | Badge shape: `Square`, `Rounded`, `Circular`. | 1.5 |
-| size | string | `"Medium"` | Badge size: `Medium`, `Large`, `ExtraLarge`. | 1.5 |
-| style | string | `"Default"` | Badge style: `Default`, `Subtle`, `Informative`, `Accent`, `Good`, `Attention`, `Warning`. | 1.5 |
-| text | string | — | Text to display. | 1.5 |
-| tooltip | string | — | Tooltip displayed when hovering over the badge. | 1.5 |
-| fallback | object or string | — | Alternate element if unsupported or required capabilities are unavailable. See valid values below. | 1.2 |
-| grid.area | string | — | Area in a `Layout.AreaGrid` layout. Teams. | 1.5 |
-| height | string | `"auto"` | Height: `auto`, `stretch`. Stretch uses remaining container space. | 1.1 |
-| horizontalAlignment | string | — | Horizontal alignment: `Left`, `Center`, `Right`. | 1.0 |
-| id | string | — | Unique element/action ID. Inputs require an ID for validation and submission to the bot. | 1.0 |
-| isSortKey | boolean | `false` | Whether the element is a sort key for sortable collections. | 1.5 |
-| isVisible | boolean | `true` | Controls element visibility. | 1.2 |
-| isVisible.dynamic | string | — | Preview: runtime expression used to update `isVisible`. | 1.5 |
-| key | string | — | Optional object key that can help retain visual state. | 1.0 |
-| lang | string | — | Locale associated with the element. | 1.1 |
-| requires | object | `{}` | Required host capabilities. If unmet, fallback renders if supplied. Valid value: `HostCapabilities`. | 1.2 |
-| separator | boolean | `false` | Show a separator above the element (not shown for first item in a container). | 1.0 |
-| spacing | string | `"Default"` | Spacing before element: `None`, `ExtraSmall`, `Small`, `Default`, `Medium`, `Large`, `ExtraLarge`, `Padding`. | 1.0 |
-| targetWidth | string | — | Responsive width target. See valid values below. Teams/Copilot. | 1.0 |
+| `type` | `string` | — | Must be `Badge`. | 1.0 |
+| `appearance` | `string` | `"Filled"` | Controls background color strength. Valid values: `Filled`, `Tint`. | 1.5 |
+| `icon` | `string` | — | Adaptive Card icon catalog name, format `<icon-name>[,regular|filled]`. Default icon style is regular. | 1.5 |
+| `iconPosition` | `string` | `"Before"` | Icon placement. Valid values: `Before`, `After`. | 1.5 |
+| `shape` | `string` | `"Circular"` | Badge shape. Valid values: `Square`, `Rounded`, `Circular`. | 1.5 |
+| `size` | `string` | `"Medium"` | Badge size. Valid values: `Medium`, `Large`, `ExtraLarge`. | 1.5 |
+| `style` | `string` | `"Default"` | Badge style. Valid values: `Default`, `Subtle`, `Informative`, `Accent`, `Good`, `Attention`, `Warning`. | 1.5 |
+| `text` | `string` | — | Text to display. | 1.5 |
+| `tooltip` | `string` | — | Tooltip displayed when hovering over the badge. | 1.5 |
+| `fallback` | `object or string` | — | Alternate element if unsupported or required capabilities are unavailable. See valid values below. | 1.2 |
+| `grid.area` | `string` | — | **Teams.** Area in a `Layout.AreaGrid` layout. | 1.5 |
+| `height` | `string` | `"auto"` | Height. Stretch uses remaining container space. Valid values: `auto`, `stretch`. | 1.1 |
+| `horizontalAlignment` | `string` | — | Horizontal alignment. Valid values: `Left`, `Center`, `Right`. | 1.0 |
+| `id` | `string` | — | Unique element/action ID. Inputs require an ID for validation and submission to the bot. | 1.0 |
+| `isSortKey` | `boolean` | `false` | Whether the element is a sort key for sortable collections. | 1.5 |
+| `isVisible` | `boolean` | `true` | Controls element visibility. | 1.2 |
+| `isVisible.dynamic` | `string` | — | **Preview.** Runtime expression used to update `isVisible`. | 1.5 |
+| `key` | `string` | — | Optional object key that can help retain visual state. | 1.0 |
+| `lang` | `string` | — | Locale associated with the element. | 1.1 |
+| `requires` | `object` | `{}` | Required host capabilities. If unmet, fallback renders if supplied. Valid value: `HostCapabilities`. | 1.2 |
+| `separator` | `boolean` | `false` | Show a separator above the element (not shown for first item in a container). | 1.0 |
+| `spacing` | `string` | `"Default"` | Spacing before element. Valid values: `None`, `ExtraSmall`, `Small`, `Default`, `Medium`, `Large`, `ExtraLarge`, `Padding`. | 1.0 |
+| `targetWidth` | `string` | — | **Teams/Copilot.** Responsive width target. See valid values below. | 1.0 |
 
 ### Valid `fallback` values
 

@@ -1,6 +1,6 @@
 # Input.Text
 
-**Works in:** Teams, Copilot, Outlook
+**Works in:** Teams · Copilot · Outlook
 
 An input to allow the user to enter text.
 
@@ -37,7 +37,7 @@ An input to allow the user to enter text.
 
 ## Valid values
 
-### Fallback values
+### Valid `fallback` values
 
 `fallback` accepts one of the following element objects or the string `"drop"`:
 
@@ -48,18 +48,18 @@ An input to allow the user to enter text.
 - `CodeBlock`, `Persona`, `PersonaSet`, `Graph resource`, `File`, `Calendar event`
 - `"drop"`
 
-### Inline action values
+### Valid `inlineAction` values
 
 `Action.Execute`, `Action.InsertImage`, `Action.OpenUrl`, `Action.OpenUrlDialog`, `Action.Popover`, `Action.ResetInputs`, `Action.RunCommands`, `Action.Submit`, `Action.ToggleVisibility`.
 
-### Spacing values
+### Valid `spacing` values
 
 `"None"`, `"ExtraSmall"`, `"Small"`, `"Default"`, `"Medium"`, `"Large"`, `"ExtraLarge"`, `"Padding"`.
 
-### Target width values
+### Valid `targetWidth` values
 
 `"VeryNarrow"`, `"Narrow"`, `"Standard"`, `"Wide"`, `"atLeast:VeryNarrow"`, `"atMost:VeryNarrow"`, `"atLeast:Narrow"`, `"atMost:Narrow"`, `"atLeast:Standard"`, `"atMost:Standard"`, `"atLeast:Wide"`, `"atMost:Wide"`.
 
-### Value-changed action values
+### Valid `valueChangedAction` values
 
 `Action.OpenUrlDialog`, `Action.Popover`, `Action.ResetInputs`, `Action.RunCommands`.
