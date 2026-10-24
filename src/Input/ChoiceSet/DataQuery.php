@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Input\ChoiceSet;
 
+use AdaptiveCards\Enum\AssociatedInputs;
 use AdaptiveCards\Node;
 
 /**
@@ -16,11 +17,23 @@ final class DataQuery extends Node
         ?string $value = null,
         ?int $count = null,
         ?int $skip = null,
+        string|AssociatedInputs|null $associatedInputs = null,
     ) {
-        $this->set('dataset', $dataset);
-        $this->set('value', $value);
-        $this->set('count', $count);
-        $this->set('skip', $skip);
+        if ($dataset !== null) {
+            $this->dataset($dataset);
+        }
+        if ($value !== null) {
+            $this->value($value);
+        }
+        if ($count !== null) {
+            $this->count($count);
+        }
+        if ($skip !== null) {
+            $this->skip($skip);
+        }
+        if ($associatedInputs !== null) {
+            $this->associatedInputs($associatedInputs);
+        }
     }
 
     public static function make(
@@ -28,8 +41,9 @@ final class DataQuery extends Node
         ?string $value = null,
         ?int $count = null,
         ?int $skip = null,
+        string|AssociatedInputs|null $associatedInputs = null,
     ): self {
-        return new self($dataset, $value, $count, $skip);
+        return new self($dataset, $value, $count, $skip, $associatedInputs);
     }
 
     public function dataset(string $dataset): self
@@ -50,6 +64,11 @@ final class DataQuery extends Node
     public function skip(int $skip): self
     {
         return $this->set('skip', $skip);
+    }
+
+    public function associatedInputs(string|AssociatedInputs $associatedInputs): self
+    {
+        return $this->set('associatedInputs', AssociatedInputs::value($associatedInputs));
     }
 
     public function getType(): string

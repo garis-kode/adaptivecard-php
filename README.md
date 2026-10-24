@@ -304,7 +304,7 @@ To keep the per-component tables short, these shared setters are listed once her
 
 ### TextBlock
 
-Displays text with optional styling and markdown. `TextBlock::make(string $text)`.
+Displays text with optional styling and markdown. `TextBlock::make(?string $text = null, ?bool $wrap = null)`.
 
 ```php
 use AdaptiveCards\Enum\TextSize;
@@ -358,7 +358,7 @@ $card->addRichTextBlock(fn (RichTextBlock $r) => $r
 
 ### Image
 
-A single image. `Image::make(string $url)`.
+A single image. `Image::make()`.
 
 ```php
 use AdaptiveCards\Enum\ImageStyle;
@@ -422,7 +422,7 @@ $card->addMedia(fn (Media $m) => $m
 
 **Media:** `addSource(MediaSource|string $url, ?string $mimeType)`, `addCaptionSource(CaptionSource)`, `poster(string)`, `altText(string)` _+ [common element properties](#common-properties)._
 
-- **MediaSource** — `MediaSource::make(string $url, ?string $mimeType)`.
+- **MediaSource** — `MediaSource::make(?string $url = null, ?string $mimeType = null)`.
 - **CaptionSource** — `CaptionSource::make(string $url, string $mimeType, ?string $label)` (schema 1.6+).
 
 ---
@@ -474,7 +474,7 @@ $card->addColumnSet(fn ($cs) => $cs
 
 ### FactSet
 
-A list of title/value pairs. `FactSet::make(array|list $facts = [])`. The `addFactSet()` helper accepts a `title => value` map directly.
+A list of title/value pairs. `FactSet::make()`. The `addFactSet()` helper accepts a `title => value` map directly.
 
 ```php
 $card->addFactSet([
@@ -483,7 +483,7 @@ $card->addFactSet([
 ]);
 ```
 
-**FactSet:** `addFact(Fact)`, `fact(string $title, string $value)` _+ [common element properties](#common-properties)._
+**FactSet:** `facts(iterable $facts)`, `addFact(Fact)`, `fact(string $title, string $value)` _+ [common element properties](#common-properties)._
 **Fact** — `Fact::make(string $title, string $value)`.
 
 ---
@@ -560,7 +560,7 @@ $card->addAction(OpenUrlAction::make('Learn more', 'https://adaptivecards.io'));
 
 ### Action.Submit
 
-Gathers inputs and sends them to the host. `SubmitAction::make(?string $title)`.
+Gathers inputs and sends them to the host. `SubmitAction::make(string $title)`.
 
 ```php
 use AdaptiveCards\Action\SubmitAction;
@@ -582,14 +582,14 @@ _+ [common action properties](#common-properties)._
 
 ### Action.ShowCard
 
-Reveals a nested card. `ShowCardAction::make(string $title, ?AdaptiveCard $card)`.
+Reveals a nested card. `ShowCardAction::make(AdaptiveCard $card, ?string $title = null)`.
 
 ```php
 use AdaptiveCards\AdaptiveCard;
 use AdaptiveCards\Action\ShowCardAction;
 
 $nested = AdaptiveCard::make()->addTextBlock('Hidden until expanded');
-$card->addAction(ShowCardAction::make('Details', $nested));
+$card->addAction(ShowCardAction::make($nested, 'Details'));
 ```
 
 `card(AdaptiveCard)` _+ [common action properties](#common-properties)._
@@ -598,12 +598,13 @@ $card->addAction(ShowCardAction::make('Details', $nested));
 
 ### Action.Execute
 
-Sends a Universal Action Model event to a bot (schema 1.4+). `ExecuteAction::make(?string $title, ?string $verb)`.
+Sends a Universal Action Model event to a bot (schema 1.4+). `ExecuteAction::make(string $title)`.
 
 ```php
 use AdaptiveCards\Action\ExecuteAction;
 
-$card->addAction(ExecuteAction::make('Approve', 'approveRequest')
+$card->addAction(ExecuteAction::make('Approve')
+    ->verb('approveRequest')
     ->data(['requestId' => 42])
     ->associatedInputs('Auto')
 );
@@ -615,7 +616,7 @@ $card->addAction(ExecuteAction::make('Approve', 'approveRequest')
 
 ### Action.ToggleVisibility
 
-Shows/hides/toggles target elements by id. `ToggleVisibilityAction::make(?string $title)`.
+Shows/hides/toggles target elements by id. `ToggleVisibilityAction::make(string $title)`.
 
 ```php
 use AdaptiveCards\Action\ToggleVisibilityAction;
@@ -631,13 +632,30 @@ $card->addAction(ToggleVisibilityAction::make('Toggle details')
 
 ---
 
+### Action.InsertImage
+
+Inserts an image into the host application canvas (Word/PowerPoint, schema 1.5+). `InsertImageAction::make(string $url, string $altText, ?string $title = null)`.
+
+```php
+use AdaptiveCards\Action\InsertImageAction;
+
+$card->addAction(InsertImageAction::make('https://example.com/logo.png', 'Company Logo')
+    ->title('Insert Logo')
+    ->insertPosition('Top')
+);
+```
+
+`url(string)`, `altText(string)`, `insertPosition(string)` (`Selection`/`Top`/`Bottom`) _+ [common action properties](#common-properties)._
+
+---
+
 ## Inputs
 
 All inputs share the [input properties](#common-properties) (`label`, `isRequired`, `errorMessage`, `labelPosition`, `labelWidth`, `value`) and the [element properties](#common-properties).
 
 ### Input.Text
 
-Free-form text. `TextInput::make(string $id)`.
+Free-form text. `TextInput::make(string $id, ?string $label = null, ?string $placeholder = null)`.
 
 ```php
 use AdaptiveCards\Input\TextInput;
@@ -656,7 +674,7 @@ $card->addTextInput('email', fn (TextInput $i) => $i
 
 ### Input.Number
 
-Numeric input. `NumberInput::make(string $id)`.
+Numeric input. `NumberInput::make(string $id, ?string $label = null, ?string $placeholder = null)`.
 
 ```php
 use AdaptiveCards\Input\NumberInput;
@@ -672,7 +690,7 @@ $card->addNumberInput('qty', fn (NumberInput $i) => $i
 
 ### Input.Date
 
-Date picker (ISO `YYYY-MM-DD`). `DateInput::make(string $id)`.
+Date picker (ISO `YYYY-MM-DD`). `DateInput::make(string $id, ?string $label = null)`.
 
 ```php
 use AdaptiveCards\Input\DateInput;
@@ -688,7 +706,7 @@ $card->addDateInput('due', fn (DateInput $i) => $i
 
 ### Input.Time
 
-Time picker (`HH:MM`). `TimeInput::make(string $id)`.
+Time picker (`HH:MM`). `TimeInput::make(string $id, ?string $label = null)`.
 
 ```php
 use AdaptiveCards\Input\TimeInput;
@@ -704,7 +722,7 @@ $card->addTimeInput('start', fn (TimeInput $i) => $i
 
 ### Input.Toggle
 
-On/off switch. `ToggleInput::make(string $id, string $title)`.
+On/off switch. `ToggleInput::make(string $id, ?string $title = null)`.
 
 ```php
 use AdaptiveCards\Input\ToggleInput;
@@ -776,7 +794,8 @@ use AdaptiveCards\Shared\Refresh;
 use AdaptiveCards\Action\ExecuteAction;
 
 $card->refresh(Refresh::make()
-    ->action(ExecuteAction::make(null, 'refreshData'))
+    ->action(ExecuteAction::make('Refresh')
+        ->verb('refreshData'))
     ->userIds(['user-1', 'user-2'])
     ->expires('2026-12-31T23:59:59Z')
 );

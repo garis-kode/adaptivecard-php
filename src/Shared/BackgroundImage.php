@@ -16,12 +16,17 @@ final class BackgroundImage extends Node
 {
     public function __construct(string $url)
     {
-        $this->set('url', $url);
+        $this->url($url);
     }
 
     public static function make(string $url): self
     {
         return new self($url);
+    }
+
+    public function url(string $url): self
+    {
+        return $this->set('url', $url);
     }
 
     public function fillMode(string|ImageFillMode $fillMode): self

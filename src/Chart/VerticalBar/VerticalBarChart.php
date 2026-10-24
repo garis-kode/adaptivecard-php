@@ -6,17 +6,50 @@ namespace AdaptiveCards\Chart\VerticalBar;
 
 use AdaptiveCards\Chart\AbstractChart;
 use AdaptiveCards\Chart\Data\DataPoint;
+use AdaptiveCards\Enum\ChartColorSet;
 
 final class VerticalBarChart extends AbstractChart
 {
-    public static function make(?string $title = null): self
-    {
-        $chart = new self();
-        if ($title !== null) {
-            $chart->title($title);
+    /**
+     * @param iterable<DataPoint|array<string, mixed>> $data
+     */
+    public function __construct(
+        string $title,
+        iterable $data,
+        ?bool $showTitle = null,
+        ?string $xAxisTitle = null,
+        ?string $yAxisTitle = null,
+        string|ChartColorSet|null $colorSet = null,
+    ) {
+        $this->title($title);
+        $this->data($data);
+      
+        if ($showTitle !== null) {
+            $this->showTitle($showTitle);
         }
+        if ($xAxisTitle !== null) {
+            $this->xAxisTitle($xAxisTitle);
+        }
+        if ($yAxisTitle !== null) {
+            $this->yAxisTitle($yAxisTitle);
+        }
+        if ($colorSet !== null) {
+            $this->colorSet($colorSet);
+        }
+    }
 
-        return $chart;
+    /**
+     * @param iterable<DataPoint|array<string, mixed>> $data
+     */
+    public static function make(
+        string $title,
+        iterable $data,
+        ?bool $showTitle = null,
+        ?string $xAxisTitle = null,
+        ?string $yAxisTitle = null,
+        string|ChartColorSet|null $colorSet = null,
+    ): self {
+        return new self($title, $data, $showTitle, $xAxisTitle, $yAxisTitle, $colorSet);
     }
 
     /**

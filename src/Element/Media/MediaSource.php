@@ -11,15 +11,29 @@ use AdaptiveCards\Node;
  */
 final class MediaSource extends Node
 {
-    public function __construct(string $url, ?string $mimeType = null)
+    public function __construct(?string $url = null, ?string $mimeType = null)
     {
-        $this->set('url', $url);
-        $this->set('mimeType', $mimeType);
+        if ($url !== null) {
+            $this->url($url);
+        }
+        if ($mimeType !== null) {
+            $this->mimeType($mimeType);
+        }
     }
 
-    public static function make(string $url, ?string $mimeType = null): self
+    public static function make(?string $url = null, ?string $mimeType = null): self
     {
         return new self($url, $mimeType);
+    }
+
+    public function url(string $url): self
+    {
+        return $this->set('url', $url);
+    }
+
+    public function mimeType(string $mimeType): self
+    {
+        return $this->set('mimeType', $mimeType);
     }
 
     public function getType(): ?string

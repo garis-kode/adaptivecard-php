@@ -13,9 +13,9 @@ final class MentionedEntity extends Node
 {
     public function __construct(string $id, string $name, string $mentionType = 'Person')
     {
-        $this->set('id', $id);
-        $this->set('name', $name);
-        $this->set('mentionType', $mentionType);
+        $this->id($id);
+        $this->name($name);
+        $this->mentionType($mentionType);
     }
 
     public static function make(string $id, string $name, string $mentionType = 'Person'): self

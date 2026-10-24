@@ -15,14 +15,31 @@ use AdaptiveCards\Enum\IconPosition;
  */
 final class Badge extends AbstractElement
 {
-    public function __construct(?string $text = null)
-    {
-        $this->set('text', $text);
+    public function __construct(
+        string $title,
+        string|BadgeSize|null $size = null,
+        string|BadgeStyle|null $style = null,
+    ) {
+        $this->title($title);
+        if ($size !== null) {
+            $this->size($size);
+        }
+        if ($style !== null) {
+            $this->style($style);
+        }
     }
 
-    public static function make(?string $text = null): self
+    public static function make(
+        string $title,
+        string|BadgeSize|null $size = null,
+        string|BadgeStyle|null $style = null,
+    ): self {
+        return new self($title, $size, $style);
+    }
+
+    public function title(string $title): self
     {
-        return new self($text);
+        return $this->text($title);
     }
 
     public function text(string $text): self

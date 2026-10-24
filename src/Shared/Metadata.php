@@ -13,7 +13,9 @@ final class Metadata extends Node
 {
     public function __construct(?string $webUrl = null)
     {
-        $this->set('webUrl', $webUrl);
+        if ($webUrl !== null) {
+            $this->webUrl($webUrl);
+        }
     }
 
     public static function make(?string $webUrl = null): self

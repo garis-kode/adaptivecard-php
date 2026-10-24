@@ -18,7 +18,7 @@ final class TextRun extends AbstractElement
 {
     public function __construct(string $text)
     {
-        $this->set('text', $text);
+        $this->text($text);
     }
 
     public static function make(string $text): self

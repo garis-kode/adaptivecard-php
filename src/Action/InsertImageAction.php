@@ -6,15 +6,19 @@ namespace AdaptiveCards\Action;
 
 final class InsertImageAction extends AbstractAction
 {
-    public function __construct(?string $title = null, ?string $url = null)
+    public function __construct(string $url, string $altText, ?string $title = null)
     {
-        $this->set('title', $title);
-        $this->set('url', $url);
+        $this->url($url);
+        $this->altText($altText);
+      
+        if ($title !== null) {
+            $this->title($title);
+        }
     }
 
-    public static function make(?string $title = null, ?string $url = null): self
+    public static function make(string $url, string $altText, ?string $title = null): self
     {
-        return new self($title, $url);
+        return new self($url, $altText, $title);
     }
 
     public function url(string $url): self

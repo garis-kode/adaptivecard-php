@@ -12,9 +12,17 @@ use AdaptiveCards\Enum\RatingSize;
  */
 final class RatingInput extends AbstractInput
 {
-    public static function make(string $id): self
+    public function __construct(string $id, ?string $label = null)
     {
-        return new self($id);
+        parent::__construct($id);
+        if ($label !== null) {
+            $this->label($label);
+        }
+    }
+
+    public static function make(string $id, ?string $label = null): self
+    {
+        return new self($id, $label);
     }
 
     public function max(float|int $max): self

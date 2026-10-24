@@ -13,24 +13,13 @@ use AdaptiveCards\Enum\RatingStyle;
  */
 final class Rating extends AbstractElement
 {
-    public function __construct(
-        float|int|null $value = null,
-        float|int $max = 5,
-        ?int $count = null,
-    ) {
-        $this->set('value', $value);
-        if ($max !== 5) {
-            $this->set('max', $max);
-        }
-        $this->set('count', $count);
+    public function __construct()
+    {
     }
 
-    public static function make(
-        float|int|null $value = null,
-        float|int $max = 5,
-        ?int $count = null,
-    ): self {
-        return new self($value, $max, $count);
+    public static function make(): self
+    {
+        return new self();
     }
 
     public function value(float|int $value): self

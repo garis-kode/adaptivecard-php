@@ -9,14 +9,31 @@ use AdaptiveCards\Chart\Data\ChartSeries;
 
 final class StackedHorizontalBarChart extends AbstractChart
 {
-    public static function make(?string $title = null): self
-    {
-        $chart = new self();
-        if ($title !== null) {
-            $chart->title($title);
+    /**
+     * @param iterable<ChartSeries|array<string, mixed>> $data
+     */
+    public function __construct(
+        string $title,
+        iterable $data,
+        ?bool $showTitle = null,
+    ) {
+        $this->title($title);
+        $this->data($data);
+       
+        if ($showTitle !== null) {
+            $this->showTitle($showTitle);
         }
+    }
 
-        return $chart;
+    /**
+     * @param iterable<ChartSeries|array<string, mixed>> $data
+     */
+    public static function make(
+        string $title,
+        iterable $data,
+        ?bool $showTitle = null,
+    ): self {
+        return new self($title, $data, $showTitle);
     }
 
     /**

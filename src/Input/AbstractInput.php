@@ -16,7 +16,7 @@ abstract class AbstractInput extends AbstractElement
 {
     public function __construct(string $id)
     {
-        $this->set('id', $id);
+        $this->id($id);
     }
 
     public function label(string $label): static

@@ -12,15 +12,16 @@ use AdaptiveCards\Enum\AssociatedInputs;
  */
 final class ExecuteAction extends AbstractAction
 {
-    public function __construct(?string $title = null, ?string $verb = null)
+    public function __construct(?string $title = null)
     {
-        $this->set('title', $title);
-        $this->set('verb', $verb);
+        if ($title !== null) {
+            $this->title($title);
+        }
     }
 
-    public static function make(?string $title = null, ?string $verb = null): self
+    public static function make(?string $title = null): self
     {
-        return new self($title, $verb);
+        return new self($title);
     }
 
     public function verb(string $verb): self

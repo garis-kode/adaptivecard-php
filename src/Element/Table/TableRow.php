@@ -25,6 +25,18 @@ final class TableRow extends AbstractElement
     }
 
     /**
+     * @param iterable<TableCell> $cells
+     */
+    public function cells(iterable $cells): self
+    {
+        foreach ($cells as $cell) {
+            $this->addCell($cell);
+        }
+
+        return $this;
+    }
+
+    /**
      * Convenience: add a cell containing a single TextBlock.
      */
     public function addTextCell(string $text, ?callable $configure = null): self

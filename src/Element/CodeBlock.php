@@ -9,22 +9,13 @@ namespace AdaptiveCards\Element;
  */
 final class CodeBlock extends AbstractElement
 {
-    public function __construct(
-        ?string $codeSnippet = null,
-        string $language = 'PlainText',
-        ?int $startLineNumber = null,
-    ) {
-        $this->set('codeSnippet', $codeSnippet);
-        $this->set('language', $language);
-        $this->set('startLineNumber', $startLineNumber);
+    public function __construct()
+    {
     }
 
-    public static function make(
-        ?string $codeSnippet = null,
-        string $language = 'PlainText',
-        ?int $startLineNumber = null,
-    ): self {
-        return new self($codeSnippet, $language, $startLineNumber);
+    public static function make(): self
+    {
+        return new self();
     }
 
     public function codeSnippet(string $codeSnippet): self

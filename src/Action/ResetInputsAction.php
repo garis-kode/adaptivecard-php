@@ -6,23 +6,16 @@ namespace AdaptiveCards\Action;
 
 final class ResetInputsAction extends AbstractAction
 {
-    /**
-     * @param list<string>|null $targetInputIds
-     */
-    public function __construct(?string $title = null, ?array $targetInputIds = null)
+    public function __construct(?string $title = null)
     {
-        $this->set('title', $title);
-        if ($targetInputIds !== null) {
-            $this->targetInputIds($targetInputIds);
+        if ($title !== null) {
+            $this->title($title);
         }
     }
 
-    /**
-     * @param list<string>|null $targetInputIds
-     */
-    public static function make(?string $title = null, ?array $targetInputIds = null): self
+    public static function make(?string $title = null): self
     {
-        return new self($title, $targetInputIds);
+        return new self($title);
     }
 
     /**

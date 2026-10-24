@@ -13,8 +13,12 @@ final class CompoundButton extends AbstractElement
 {
     public function __construct(?string $title = null, ?string $description = null)
     {
-        $this->set('title', $title);
-        $this->set('description', $description);
+        if ($title !== null) {
+            $this->title($title);
+        }
+        if ($description !== null) {
+            $this->description($description);
+        }
     }
 
     public static function make(?string $title = null, ?string $description = null): self

@@ -16,14 +16,19 @@ use AdaptiveCards\Enum\TextWeight;
  */
 final class TextBlock extends AbstractElement
 {
-    public function __construct(string $text)
+    public function __construct(?string $text = null, ?bool $wrap = null)
     {
-        $this->set('text', $text);
+        if ($text !== null) {
+            $this->text($text);
+        }
+        if ($wrap !== null) {
+            $this->wrap($wrap);
+        }
     }
 
-    public static function make(string $text): self
+    public static function make(?string $text = null, ?bool $wrap = null): self
     {
-        return new self($text);
+        return new self($text, $wrap);
     }
 
     public function text(string $text): self

@@ -14,14 +14,13 @@ use AdaptiveCards\Enum\IconStyle;
  */
 final class Icon extends AbstractElement
 {
-    public function __construct(?string $name = null)
+    public function __construct()
     {
-        $this->set('name', $name);
     }
 
-    public static function make(?string $name = null): self
+    public static function make(): self
     {
-        return new self($name);
+        return new self();
     }
 
     public function name(string $name): self

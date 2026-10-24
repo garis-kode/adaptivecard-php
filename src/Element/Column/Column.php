@@ -19,19 +19,13 @@ final class Column extends AbstractElement
 {
     use HasItems;
 
-    /**
-     * @param string|int|null $width "auto", "stretch", a weight (e.g. 2) or pixels ("50px").
-     */
-    public function __construct(string|int|null $width = null)
+    public function __construct()
     {
-        if ($width !== null) {
-            $this->set('width', $width);
-        }
     }
 
-    public static function make(string|int|null $width = null): self
+    public static function make(): self
     {
-        return new self($width);
+        return new self();
     }
 
     public function width(string|int $width): self

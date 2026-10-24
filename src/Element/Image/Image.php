@@ -6,22 +6,23 @@ namespace AdaptiveCards\Element\Image;
 
 use AdaptiveCards\Action\AbstractAction;
 use AdaptiveCards\Element\AbstractElement;
+use AdaptiveCards\Enum\HorizontalAlignment;
 use AdaptiveCards\Enum\ImageSize;
 use AdaptiveCards\Enum\ImageStyle;
+use AdaptiveCards\Enum\VerticalAlignment;
 
 /**
  * Displays an image.
  */
 final class Image extends AbstractElement
 {
-    public function __construct(string $url)
+    public function __construct()
     {
-        $this->set('url', $url);
     }
 
-    public static function make(string $url): self
+    public static function make(): self
     {
-        return new self($url);
+        return new self();
     }
 
     public function url(string $url): self
@@ -63,6 +64,49 @@ final class Image extends AbstractElement
     public function pixelHeight(string $height): self
     {
         return $this->set('height', $height);
+    }
+
+    public function allowExpand(bool $allow = true): self
+    {
+        return $this->set('allowExpand', $allow);
+    }
+
+    /**
+     * @param "Cover"|"Contain"|"Fill"|string $fitMode
+     */
+    public function fitMode(string $fitMode): self
+    {
+        return $this->set('fitMode', $fitMode);
+    }
+
+    public function horizontalContentAlignment(string|HorizontalAlignment $alignment): self
+    {
+        return $this->set('horizontalContentAlignment', HorizontalAlignment::value($alignment));
+    }
+
+    public function verticalContentAlignment(string|VerticalAlignment $alignment): self
+    {
+        return $this->set('verticalContentAlignment', VerticalAlignment::value($alignment));
+    }
+
+    /**
+     * @param list<array<string, mixed>> $themedUrls
+     */
+    public function themedUrls(array $themedUrls): self
+    {
+        return $this->set('themedUrls', $themedUrls);
+    }
+
+    /**
+     * @param TeamsImageProperties|array<string, mixed> $properties
+     */
+    public function msteams(TeamsImageProperties|array $properties, bool $useCamelCaseKey = false): self
+    {
+        if ($useCamelCaseKey) {
+            return $this->set('msTeams', $properties);
+        }
+
+        return $this->set('msteams', $properties);
     }
 
     public function selectAction(AbstractAction $action): self

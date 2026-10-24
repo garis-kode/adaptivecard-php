@@ -12,9 +12,16 @@ use AdaptiveCards\Enum\ProgressRingSize;
  */
 final class ProgressRing extends AbstractElement
 {
-    public static function make(): self
+    public function __construct(?string $label = null)
     {
-        return new self();
+        if ($label !== null) {
+            $this->label($label);
+        }
+    }
+
+    public static function make(?string $label = null): self
+    {
+        return new self($label);
     }
 
     public function label(string $label): self

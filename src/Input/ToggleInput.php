@@ -9,13 +9,16 @@ namespace AdaptiveCards\Input;
  */
 final class ToggleInput extends AbstractInput
 {
-    public function __construct(string $id, string $title)
+    public function __construct(string $id, ?string $title = null)
     {
         parent::__construct($id);
-        $this->set('title', $title);
+    
+        if ($title !== null) {
+            $this->title($title);
+        }
     }
 
-    public static function make(string $id, string $title): self
+    public static function make(string $id, ?string $title = null): self
     {
         return new self($id, $title);
     }

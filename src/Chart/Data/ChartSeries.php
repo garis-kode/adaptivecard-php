@@ -20,10 +20,10 @@ final class ChartSeries extends Node
         ?string $color = null,
     ) {
         if ($legendOrTitle !== null) {
-            $this->set('legend', $legendOrTitle);
+            $this->legend($legendOrTitle);
         }
         if ($color !== null) {
-            $this->set('color', $color);
+            $this->color($color);
         }
         foreach ($data as $point) {
             $this->addPoint($point);
@@ -74,11 +74,23 @@ final class ChartSeries extends Node
     }
 
     /**
+     * @param DataPoint|array<string, mixed> $point
+     */
+    public function addValue(DataPoint|array $point): self
+    {
+        return $this->push('values', $point);
+    }
+
+    /**
      * @param iterable<DataPoint|array<string, mixed>> $points
      */
     public function values(iterable $points): self
     {
-        return $this->data($points);
+        foreach ($points as $point) {
+            $this->addValue($point);
+        }
+
+        return $this;
     }
 
     public function getType(): ?string

@@ -5,17 +5,52 @@ declare(strict_types=1);
 namespace AdaptiveCards\Chart;
 
 use AdaptiveCards\Chart\Data\ChartSeries;
+use AdaptiveCards\Enum\ChartColorSet;
 
 final class LineChart extends AbstractChart
 {
-    public static function make(?string $title = null): self
-    {
-        $chart = new self();
-        if ($title !== null) {
-            $chart->title($title);
+    /**
+     * @param iterable<ChartSeries|array<string, mixed>>|null $data
+     */
+    public function __construct(
+        string $title,
+        ?bool $showTitle = null,
+        ?string $xAxisTitle = null,
+        ?string $yAxisTitle = null,
+        string|ChartColorSet|null $colorSet = null,
+        ?iterable $data = null,
+    ) {
+        $this->title($title);
+     
+        if ($showTitle !== null) {
+            $this->showTitle($showTitle);
         }
+        if ($xAxisTitle !== null) {
+            $this->xAxisTitle($xAxisTitle);
+        }
+        if ($yAxisTitle !== null) {
+            $this->yAxisTitle($yAxisTitle);
+        }
+        if ($colorSet !== null) {
+            $this->colorSet($colorSet);
+        }
+        if ($data !== null) {
+            $this->data($data);
+        }
+    }
 
-        return $chart;
+    /**
+     * @param iterable<ChartSeries|array<string, mixed>>|null $data
+     */
+    public static function make(
+        string $title,
+        ?bool $showTitle = null,
+        ?string $xAxisTitle = null,
+        ?string $yAxisTitle = null,
+        string|ChartColorSet|null $colorSet = null,
+        ?iterable $data = null,
+    ): self {
+        return new self($title, $showTitle, $xAxisTitle, $yAxisTitle, $colorSet, $data);
     }
 
     public function yMin(float|int $yMin): self

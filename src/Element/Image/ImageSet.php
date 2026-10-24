@@ -19,7 +19,7 @@ final class ImageSet extends AbstractElement
 
     public function addImage(Image|string $image): self
     {
-        return $this->push('images', $image instanceof Image ? $image : new Image($image));
+        return $this->push('images', $image instanceof Image ? $image : (new Image())->url($image));
     }
 
     public function imageSize(string|ImageSize $size): self

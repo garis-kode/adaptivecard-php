@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Support;
 
+use AdaptiveCards\Chart\Data\ChartSeries;
+use AdaptiveCards\Chart\Data\DataPoint;
 use AdaptiveCards\Chart\DonutChart;
 use AdaptiveCards\Chart\Gauge\GaugeChart;
+use AdaptiveCards\Chart\Gauge\GaugeSegment;
 use AdaptiveCards\Chart\HorizontalBar\HorizontalBarChart;
 use AdaptiveCards\Chart\HorizontalBar\StackedHorizontalBarChart;
 use AdaptiveCards\Chart\LineChart;
@@ -32,6 +35,7 @@ use AdaptiveCards\Element\Rating;
 use AdaptiveCards\Element\RichTextBlock\RichTextBlock;
 use AdaptiveCards\Element\Table\Table;
 use AdaptiveCards\Element\TextBlock;
+use AdaptiveCards\Enum\ChartColorSet;
 use AdaptiveCards\Input\ChoiceSet\ChoiceSetInput;
 use AdaptiveCards\Input\DateInput;
 use AdaptiveCards\Input\NumberInput;
@@ -81,7 +85,9 @@ trait HasItems
 
     public function addImage(string $url, ?callable $configure = null): static
     {
-        return $this->addItem($this->configure(new Image($url), $configure));
+        $image = (new Image())->url($url);
+
+        return $this->addItem($this->configure($image, $configure));
     }
 
     public function addRichTextBlock(?callable $configure = null): static
@@ -104,7 +110,12 @@ trait HasItems
      */
     public function addFactSet(array $facts = [], ?callable $configure = null): static
     {
-        return $this->addItem($this->configure(new FactSet($facts), $configure));
+        $factSet = new FactSet();
+        if ($facts !== []) {
+            $factSet->facts($facts);
+        }
+
+        return $this->addItem($this->configure($factSet, $configure));
     }
 
     public function addImageSet(?callable $configure = null): static
@@ -139,56 +150,111 @@ trait HasItems
 
     public function addCodeBlock(string $code, string $language = 'PlainText', ?callable $configure = null): static
     {
-        return $this->addItem($this->configure(new CodeBlock($code, $language), $configure));
+        $codeBlock = (new CodeBlock())->codeSnippet($code)->language($language);
+
+        return $this->addItem($this->configure($codeBlock, $configure));
     }
 
-    public function addCompoundButton(string $title, ?callable $configure = null): static
-    {
-        return $this->addItem($this->configure(new CompoundButton($title), $configure));
+    public function addCompoundButton(
+        ?string $title = null,
+        ?string $description = null,
+        ?callable $configure = null,
+    ): static {
+        return $this->addItem($this->configure(new CompoundButton($title, $description), $configure));
     }
 
     public function addIcon(string $name, ?callable $configure = null): static
     {
-        return $this->addItem($this->configure(new Icon($name), $configure));
+        $icon = (new Icon())->name($name);
+
+        return $this->addItem($this->configure($icon, $configure));
     }
 
     public function addProgressBar(float|int|null $value = null, float|int $max = 100, ?callable $configure = null): static
     {
-        return $this->addItem($this->configure(new ProgressBar($value, $max), $configure));
+        $bar = new ProgressBar();
+        if ($value !== null) {
+            $bar->value($value);
+        }
+        if ($max !== 100) {
+            $bar->max($max);
+        }
+
+        return $this->addItem($this->configure($bar, $configure));
     }
 
-    public function addProgressRing(?callable $configure = null): static
+    /**
+     * @param (callable(ProgressRing): mixed)|null $configure
+     */
+    public function addProgressRing(?string $label = null, ?callable $configure = null): static
     {
-        return $this->addItem($this->configure(new ProgressRing(), $configure));
+        return $this->addItem($this->configure(new ProgressRing($label), $configure));
     }
 
     public function addRating(float|int|null $value = null, float|int $max = 5, ?callable $configure = null): static
     {
-        return $this->addItem($this->configure(new Rating($value, $max), $configure));
+        $rating = new Rating();
+        if ($value !== null) {
+            $rating->value($value);
+        }
+        if ($max !== 5) {
+            $rating->max($max);
+        }
+
+        return $this->addItem($this->configure($rating, $configure));
     }
 
-    public function addTextInput(string $id, ?callable $configure = null): static
-    {
-        return $this->addItem($this->configure(new TextInput($id), $configure));
+    /**
+     * @param (callable(TextInput): mixed)|null $configure
+     */
+    public function addTextInput(
+        string $id,
+        ?string $label = null,
+        ?string $placeholder = null,
+        ?callable $configure = null,
+    ): static {
+        return $this->addItem($this->configure(new TextInput($id, $label, $placeholder), $configure));
     }
 
-    public function addNumberInput(string $id, ?callable $configure = null): static
-    {
-        return $this->addItem($this->configure(new NumberInput($id), $configure));
+    /**
+     * @param (callable(NumberInput): mixed)|null $configure
+     */
+    public function addNumberInput(
+        string $id,
+        ?string $label = null,
+        ?string $placeholder = null,
+        ?callable $configure = null,
+    ): static {
+        return $this->addItem($this->configure(new NumberInput($id, $label, $placeholder), $configure));
     }
 
-    public function addDateInput(string $id, ?callable $configure = null): static
+    /**
+     * @param (callable(DateInput): mixed)|null $configure
+     */
+    public function addDateInput(string $id, ?string $label = null, ?callable $configure = null): static
     {
-        return $this->addItem($this->configure(new DateInput($id), $configure));
+        return $this->addItem($this->configure(new DateInput($id, $label), $configure));
     }
 
-    public function addTimeInput(string $id, ?callable $configure = null): static
-    {
-        return $this->addItem($this->configure(new TimeInput($id), $configure));
+    /**
+     * @param (callable(TimeInput): mixed)|null $configure
+     */
+    public function addTimeInput(
+        string $id,
+        ?string $label = null,
+        ?callable $configure = null,
+    ): static {
+        return $this->addItem($this->configure(new TimeInput($id, $label), $configure));
     }
 
-    public function addToggleInput(string $id, string $title, ?callable $configure = null): static
-    {
+    /**
+     * @param (callable(ToggleInput): mixed)|null $configure
+     */
+    public function addToggleInput(
+        string $id,
+        ?string $title = null,
+        ?callable $configure = null,
+    ): static {
         return $this->addItem($this->configure(new ToggleInput($id, $title), $configure));
     }
 
@@ -197,49 +263,132 @@ trait HasItems
         return $this->addItem($this->configure(new ChoiceSetInput($id), $configure));
     }
 
-    public function addRatingInput(string $id, ?callable $configure = null): static
-    {
-        return $this->addItem($this->configure(new RatingInput($id), $configure));
+    /**
+     * @param (callable(RatingInput): mixed)|null $configure
+     */
+    public function addRatingInput(
+        string $id,
+        ?string $label = null,
+        ?callable $configure = null,
+    ): static {
+        return $this->addItem($this->configure(new RatingInput($id, $label), $configure));
     }
 
-    public function addDonutChart(?string $title = null, ?callable $configure = null): static
-    {
-        return $this->addItem($this->configure(DonutChart::make($title), $configure));
+    /**
+     * @param iterable<DataPoint|array<string, mixed>>|null $data
+     * @param (callable(DonutChart): mixed)|null $configure
+     */
+    public function addDonutChart(
+        string $title,
+        ?bool $showTitle = null,
+        ?iterable $data = null,
+        ?callable $configure = null,
+    ): static {
+        return $this->addItem($this->configure(new DonutChart($title, $showTitle, $data), $configure));
     }
 
-    public function addGaugeChart(?string $title = null, ?callable $configure = null): static
-    {
-        return $this->addItem($this->configure(GaugeChart::make($title), $configure));
+    /**
+     * @param iterable<GaugeSegment|array<string, mixed>>|null $segments
+     * @param (callable(GaugeChart): mixed)|null $configure
+     */
+    public function addGaugeChart(
+        string $title,
+        ?bool $showTitle = null,
+        float|int|null $value = null,
+        ?iterable $segments = null,
+        ?callable $configure = null,
+    ): static {
+        return $this->addItem($this->configure(new GaugeChart($title, $showTitle, $value, $segments), $configure));
     }
 
-    public function addHorizontalBarChart(?string $title = null, ?callable $configure = null): static
-    {
-        return $this->addItem($this->configure(HorizontalBarChart::make($title), $configure));
+    /**
+     * @param iterable<DataPoint|array<string, mixed>> $data
+     * @param (callable(HorizontalBarChart): mixed)|null $configure
+     */
+    public function addHorizontalBarChart(
+        string $title,
+        iterable $data,
+        ?bool $showTitle = null,
+        ?string $xAxisTitle = null,
+        ?string $yAxisTitle = null,
+        string|ChartColorSet|null $colorSet = null,
+        ?callable $configure = null,
+    ): static {
+        return $this->addItem($this->configure(new HorizontalBarChart($title, $data, $showTitle, $xAxisTitle, $yAxisTitle, $colorSet), $configure));
     }
 
-    public function addStackedHorizontalBarChart(?string $title = null, ?callable $configure = null): static
-    {
-        return $this->addItem($this->configure(StackedHorizontalBarChart::make($title), $configure));
+    /**
+     * @param iterable<ChartSeries|array<string, mixed>> $data
+     * @param (callable(StackedHorizontalBarChart): mixed)|null $configure
+     */
+    public function addStackedHorizontalBarChart(
+        string $title,
+        iterable $data,
+        ?bool $showTitle = null,
+        ?callable $configure = null,
+    ): static {
+        return $this->addItem($this->configure(new StackedHorizontalBarChart($title, $data, $showTitle), $configure));
     }
 
-    public function addLineChart(?string $title = null, ?callable $configure = null): static
-    {
-        return $this->addItem($this->configure(LineChart::make($title), $configure));
+    /**
+     * @param iterable<ChartSeries|array<string, mixed>>|null $data
+     * @param (callable(LineChart): mixed)|null $configure
+     */
+    public function addLineChart(
+        string $title,
+        ?bool $showTitle = null,
+        ?string $xAxisTitle = null,
+        ?string $yAxisTitle = null,
+        string|ChartColorSet|null $colorSet = null,
+        ?iterable $data = null,
+        ?callable $configure = null,
+    ): static {
+        return $this->addItem($this->configure(new LineChart($title, $showTitle, $xAxisTitle, $yAxisTitle, $colorSet, $data), $configure));
     }
 
-    public function addPieChart(?string $title = null, ?callable $configure = null): static
-    {
-        return $this->addItem($this->configure(PieChart::make($title), $configure));
+    /**
+     * @param iterable<DataPoint|array<string, mixed>>|null $data
+     * @param (callable(PieChart): mixed)|null $configure
+     */
+    public function addPieChart(
+        string $title,
+        ?bool $showTitle = null,
+        ?iterable $data = null,
+        ?callable $configure = null,
+    ): static {
+        return $this->addItem($this->configure(new PieChart($title, $showTitle, $data), $configure));
     }
 
-    public function addVerticalBarChart(?string $title = null, ?callable $configure = null): static
-    {
-        return $this->addItem($this->configure(VerticalBarChart::make($title), $configure));
+    /**
+     * @param iterable<DataPoint|array<string, mixed>> $data
+     * @param (callable(VerticalBarChart): mixed)|null $configure
+     */
+    public function addVerticalBarChart(
+        string $title,
+        iterable $data,
+        ?bool $showTitle = null,
+        ?string $xAxisTitle = null,
+        ?string $yAxisTitle = null,
+        string|ChartColorSet|null $colorSet = null,
+        ?callable $configure = null,
+    ): static {
+        return $this->addItem($this->configure(new VerticalBarChart($title, $data, $showTitle, $xAxisTitle, $yAxisTitle, $colorSet), $configure));
     }
 
-    public function addGroupedVerticalBarChart(?string $title = null, ?callable $configure = null): static
-    {
-        return $this->addItem($this->configure(GroupedVerticalBarChart::make($title), $configure));
+    /**
+     * @param iterable<ChartSeries|array<string, mixed>>|null $data
+     * @param (callable(GroupedVerticalBarChart): mixed)|null $configure
+     */
+    public function addGroupedVerticalBarChart(
+        string $title,
+        ?iterable $data = null,
+        ?bool $showTitle = null,
+        ?string $xAxisTitle = null,
+        ?string $yAxisTitle = null,
+        string|ChartColorSet|null $colorSet = null,
+        ?callable $configure = null,
+    ): static {
+        return $this->addItem($this->configure(new GroupedVerticalBarChart($title, $data, $showTitle, $xAxisTitle, $yAxisTitle, $colorSet), $configure));
     }
 
     /**

@@ -11,17 +11,13 @@ use AdaptiveCards\Element\AbstractElement;
  */
 final class ProgressBar extends AbstractElement
 {
-    public function __construct(float|int|null $value = null, float|int $max = 100)
+    public function __construct()
     {
-        $this->set('value', $value);
-        if ($max !== 100) {
-            $this->set('max', $max);
-        }
     }
 
-    public static function make(float|int|null $value = null, float|int $max = 100): self
+    public static function make(): self
     {
-        return new self($value, $max);
+        return new self();
     }
 
     public function value(float|int|null $value): self

@@ -13,8 +13,8 @@ final class Mention extends Node
 {
     public function __construct(string $text, MentionedEntity $mentioned)
     {
-        $this->set('text', $text);
-        $this->set('mentioned', $mentioned);
+        $this->text($text);
+        $this->mentioned($mentioned);
     }
 
     public static function make(string $text, MentionedEntity $mentioned): self

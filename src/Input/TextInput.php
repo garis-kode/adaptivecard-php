@@ -12,9 +12,26 @@ use AdaptiveCards\Enum\TextInputStyle;
  */
 final class TextInput extends AbstractInput
 {
-    public static function make(string $id): self
-    {
-        return new self($id);
+    public function __construct(
+        string $id,
+        ?string $label = null,
+        ?string $placeholder = null,
+    ) {
+        parent::__construct($id);
+        if ($label !== null) {
+            $this->label($label);
+        }
+        if ($placeholder !== null) {
+            $this->placeholder($placeholder);
+        }
+    }
+
+    public static function make(
+        string $id,
+        ?string $label = null,
+        ?string $placeholder = null,
+    ): self {
+        return new self($id, $label, $placeholder);
     }
 
     public function placeholder(string $placeholder): self

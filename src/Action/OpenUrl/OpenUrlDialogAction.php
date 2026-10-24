@@ -8,15 +8,28 @@ use AdaptiveCards\Action\AbstractAction;
 
 final class OpenUrlDialogAction extends AbstractAction
 {
-    public function __construct(?string $title = null, ?string $url = null)
-    {
-        $this->set('title', $title);
-        $this->set('url', $url);
+    public function __construct(
+        string $dialogTitle,
+        string $dialogHeight,
+        string $url,
+        ?string $title = null,
+    ) {
+        $this->dialogTitle($dialogTitle);
+        $this->dialogHeight($dialogHeight);
+        $this->url($url);
+       
+        if ($title !== null) {
+            $this->title($title);
+        }
     }
 
-    public static function make(?string $title = null, ?string $url = null): self
-    {
-        return new self($title, $url);
+    public static function make(
+        string $dialogTitle,
+        string $dialogHeight,
+        string $url,
+        ?string $title = null,
+    ): self {
+        return new self($dialogTitle, $dialogHeight, $url, $title);
     }
 
     public function url(string $url): self

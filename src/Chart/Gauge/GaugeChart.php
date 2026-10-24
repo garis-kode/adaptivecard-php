@@ -8,17 +8,37 @@ use AdaptiveCards\Chart\AbstractChart;
 
 final class GaugeChart extends AbstractChart
 {
-    public static function make(?string $title = null, float|int|null $value = null): self
-    {
-        $chart = new self();
-        if ($title !== null) {
-            $chart->title($title);
+    /**
+     * @param iterable<GaugeSegment|array<string, mixed>>|null $segments
+     */
+    public function __construct(
+        string $title,
+        ?bool $showTitle = null,
+        float|int|null $value = null,
+        ?iterable $segments = null,
+    ) {
+        $this->title($title);
+        if ($showTitle !== null) {
+            $this->showTitle($showTitle);
         }
         if ($value !== null) {
-            $chart->value($value);
+            $this->value($value);
         }
+        if ($segments !== null) {
+            $this->segments($segments);
+        }
+    }
 
-        return $chart;
+    /**
+     * @param iterable<GaugeSegment|array<string, mixed>>|null $segments
+     */
+    public static function make(
+        string $title,
+        ?bool $showTitle = null,
+        float|int|null $value = null,
+        ?iterable $segments = null,
+    ): self {
+        return new self($title, $showTitle, $value, $segments);
     }
 
     public function value(float|int $value): self

@@ -12,9 +12,34 @@ use AdaptiveCards\Element\AbstractElement;
  */
 final class RichTextBlock extends AbstractElement
 {
-    public static function make(): self
+    /**
+     * @param iterable<TextRun|IconRun|ImageRun|string>|null $inlines
+     */
+    public function __construct(?iterable $inlines = null)
     {
-        return new self();
+        if ($inlines !== null) {
+            $this->inlines($inlines);
+        }
+    }
+
+    /**
+     * @param iterable<TextRun|IconRun|ImageRun|string>|null $inlines
+     */
+    public static function make(?iterable $inlines = null): self
+    {
+        return new self($inlines);
+    }
+
+    /**
+     * @param iterable<TextRun|IconRun|ImageRun|string> $inlines
+     */
+    public function inlines(iterable $inlines): self
+    {
+        foreach ($inlines as $inline) {
+            $this->addInline($inline);
+        }
+
+        return $this;
     }
 
     /**
@@ -54,6 +79,11 @@ final class RichTextBlock extends AbstractElement
         }
 
         return $this->addInline($run);
+    }
+
+    public function labelFor(string $inputId): self
+    {
+        return $this->set('labelFor', $inputId);
     }
 
     public function getType(): string

@@ -13,9 +13,12 @@ final class GaugeSegment extends Node
 {
     public function __construct(string $legend, float|int $size, ?string $color = null)
     {
-        $this->set('legend', $legend);
-        $this->set('size', $size);
-        $this->set('color', $color);
+        $this->legend($legend);
+        $this->size($size);
+       
+        if ($color !== null) {
+            $this->color($color);
+        }
     }
 
     public static function make(string $legend, float|int $size, ?string $color = null): self

@@ -11,27 +11,30 @@ use AdaptiveCards\Element\AbstractElement;
  */
 final class FactSet extends AbstractElement
 {
+    public function __construct()
+    {
+    }
+
+    public static function make(): self
+    {
+        return new self();
+    }
+
     /**
      * @param array<string, string>|list<Fact> $facts Either an associative
      *        title => value map or a list of Fact objects.
      */
-    public function __construct(array $facts = [])
+    public function facts(array $facts): self
     {
         foreach ($facts as $key => $value) {
             if ($value instanceof Fact) {
                 $this->addFact($value);
             } else {
-                $this->addFact(new Fact((string) $key, (string) $value));
+                $this->fact((string) $key, $value);
             }
         }
-    }
 
-    /**
-     * @param array<string, string>|list<Fact> $facts
-     */
-    public static function make(array $facts = []): self
-    {
-        return new self($facts);
+        return $this;
     }
 
     public function addFact(Fact $fact): self

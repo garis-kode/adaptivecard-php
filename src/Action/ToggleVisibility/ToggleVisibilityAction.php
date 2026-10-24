@@ -13,7 +13,9 @@ final class ToggleVisibilityAction extends AbstractAction
 {
     public function __construct(?string $title = null)
     {
-        $this->set('title', $title);
+        if ($title !== null) {
+            $this->title($title);
+        }
     }
 
     public static function make(?string $title = null): self
@@ -37,6 +39,22 @@ final class ToggleVisibilityAction extends AbstractAction
     public function addTarget(TargetElement $target): self
     {
         return $this->push('targetElements', $target);
+    }
+
+    /**
+     * @param iterable<string|TargetElement> $targets
+     */
+    public function targetElements(iterable $targets): self
+    {
+        foreach ($targets as $target) {
+            if ($target instanceof TargetElement) {
+                $this->addTarget($target);
+            } else {
+                $this->target($target);
+            }
+        }
+
+        return $this;
     }
 
     public function suppressAriaControls(bool $suppress = true): self

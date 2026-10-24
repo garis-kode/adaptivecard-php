@@ -30,7 +30,10 @@ final class ColumnSet extends AbstractElement
      */
     public function column(string|int|null $width = null, ?callable $configure = null): self
     {
-        $column = new Column($width);
+        $column = new Column();
+        if ($width !== null) {
+            $column->width($width);
+        }
         if ($configure !== null) {
             $configure($column);
         }

@@ -14,18 +14,40 @@ use AdaptiveCards\Enum\VerticalAlignment;
  */
 final class Table extends AbstractElement
 {
-    public static function make(): self
-    {
-        return new self();
+    /**
+     * @param iterable<TableColumnDefinition|string|int>|null $columns
+     * @param iterable<TableRow|iterable<TableCell>>|null $rows
+     */
+    public function __construct(
+        ?iterable $columns = null,
+        ?iterable $rows = null,
+    ) {
+        if ($columns !== null) {
+            $this->columns($columns);
+        }
+        if ($rows !== null) {
+            $this->rows($rows);
+        }
+    }
+
+    /**
+     * @param iterable<TableColumnDefinition|string|int>|null $columns
+     * @param iterable<TableRow|iterable<TableCell>>|null $rows
+     */
+    public static function make(
+        ?iterable $columns = null,
+        ?iterable $rows = null,
+    ): self {
+        return new self($columns, $rows);
     }
 
     /**
      * Define columns. Integers/strings become column widths; pass
      * TableColumnDefinition objects for full control.
      *
-     * @param list<TableColumnDefinition|string|int> $columns
+     * @param iterable<TableColumnDefinition|string|int> $columns
      */
-    public function columns(array $columns): self
+    public function columns(iterable $columns): self
     {
         foreach ($columns as $column) {
             $this->addColumn($column);
@@ -40,6 +62,24 @@ final class Table extends AbstractElement
             'columns',
             $column instanceof TableColumnDefinition ? $column : new TableColumnDefinition($column)
         );
+    }
+
+    /**
+     * @param iterable<TableRow|iterable<TableCell>> $rows
+     */
+    public function rows(iterable $rows): self
+    {
+        foreach ($rows as $row) {
+            if ($row instanceof TableRow) {
+                $this->addRow($row);
+            } elseif (is_iterable($row)) {
+                $tableRow = new TableRow();
+                $tableRow->cells($row);
+                $this->addRow($tableRow);
+            }
+        }
+
+        return $this;
     }
 
     public function addRow(TableRow $row): self

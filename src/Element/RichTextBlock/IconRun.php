@@ -16,7 +16,7 @@ final class IconRun extends AbstractElement
 {
     public function __construct(string $name)
     {
-        $this->set('name', $name);
+        $this->name($name);
     }
 
     public static function make(string $name): self

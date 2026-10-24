@@ -16,9 +16,9 @@ final class StringResource extends Node
      */
     public function __construct(string $defaultValue, array $localizedValues = [])
     {
-        $this->set('defaultValue', $defaultValue);
+        $this->defaultValue($defaultValue);
         if ($localizedValues !== []) {
-            $this->set('localizedValues', $localizedValues);
+            $this->localizedValues($localizedValues);
         }
     }
 

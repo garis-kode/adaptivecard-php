@@ -8,14 +8,33 @@ use AdaptiveCards\Chart\Data\DataPoint;
 
 final class PieChart extends AbstractChart
 {
-    public static function make(?string $title = null): self
-    {
-        $chart = new self();
-        if ($title !== null) {
-            $chart->title($title);
+    /**
+     * @param iterable<DataPoint|array<string, mixed>>|null $data
+     */
+    public function __construct(
+        string $title,
+        ?bool $showTitle = null,
+        ?iterable $data = null,
+    ) {
+        $this->title($title);
+      
+        if ($showTitle !== null) {
+            $this->showTitle($showTitle);
         }
+        if ($data !== null) {
+            $this->data($data);
+        }
+    }
 
-        return $chart;
+    /**
+     * @param iterable<DataPoint|array<string, mixed>>|null $data
+     */
+    public static function make(
+        string $title,
+        ?bool $showTitle = null,
+        ?iterable $data = null,
+    ): self {
+        return new self($title, $showTitle, $data);
     }
 
     /**

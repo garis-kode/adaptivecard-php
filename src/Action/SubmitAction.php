@@ -13,7 +13,9 @@ final class SubmitAction extends AbstractAction
 {
     public function __construct(?string $title = null)
     {
-        $this->set('title', $title);
+        if ($title !== null) {
+            $this->title($title);
+        }
     }
 
     public static function make(?string $title = null): self
@@ -39,8 +41,12 @@ final class SubmitAction extends AbstractAction
     /**
      * @param array<string, mixed> $properties
      */
-    public function msteams(array $properties): self
+    public function msteams(array $properties, bool $useCamelCaseKey = false): self
     {
+        if ($useCamelCaseKey) {
+            return $this->set('msTeams', $properties);
+        }
+
         return $this->set('msteams', $properties);
     }
 

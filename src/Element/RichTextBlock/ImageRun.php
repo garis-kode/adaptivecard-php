@@ -14,7 +14,7 @@ final class ImageRun extends AbstractElement
 {
     public function __construct(string $url)
     {
-        $this->set('url', $url);
+        $this->url($url);
     }
 
     public static function make(string $url): self

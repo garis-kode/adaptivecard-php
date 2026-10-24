@@ -27,19 +27,31 @@ final class Authentication extends Node
     }
 
     /**
-     * @param array<string, mixed> $resource
+     * @param TokenExchangeResource|array<string, mixed> $resource
      */
-    public function tokenExchangeResource(array $resource): self
+    public function tokenExchangeResource(TokenExchangeResource|array $resource): self
     {
         return $this->set('tokenExchangeResource', $resource);
     }
 
     /**
-     * @param list<array<string, mixed>> $buttons
+     * @param AuthCardButton|array<string, mixed> $button
      */
-    public function buttons(array $buttons): self
+    public function addButton(AuthCardButton|array $button): self
     {
-        return $this->set('buttons', $buttons);
+        return $this->push('buttons', $button);
+    }
+
+    /**
+     * @param iterable<AuthCardButton|array<string, mixed>> $buttons
+     */
+    public function buttons(iterable $buttons): self
+    {
+        foreach ($buttons as $button) {
+            $this->addButton($button);
+        }
+
+        return $this;
     }
 
     public function getType(): ?string

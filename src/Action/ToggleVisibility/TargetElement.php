@@ -17,13 +17,26 @@ final class TargetElement extends Node
 {
     public function __construct(string $elementId, ?bool $isVisible = null)
     {
-        $this->set('elementId', $elementId);
-        $this->set('isVisible', $isVisible);
+        $this->elementId($elementId);
+       
+        if ($isVisible !== null) {
+            $this->isVisible($isVisible);
+        }
     }
 
     public static function make(string $elementId, ?bool $isVisible = null): self
     {
         return new self($elementId, $isVisible);
+    }
+
+    public function elementId(string $elementId): self
+    {
+        return $this->set('elementId', $elementId);
+    }
+
+    public function isVisible(bool $isVisible = true): self
+    {
+        return $this->set('isVisible', $isVisible);
     }
 
     public function getType(): ?string

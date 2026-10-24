@@ -39,7 +39,7 @@ final class AdaptiveCard extends Node
 
     public function __construct(string $version = self::DEFAULT_VERSION)
     {
-        $this->set('version', $version);
+        $this->version($version);
     }
 
     public static function make(string $version = self::DEFAULT_VERSION): self
@@ -79,6 +79,14 @@ final class AdaptiveCard extends Node
         return $this;
     }
 
+    /**
+     * @param iterable<AbstractAction> $actions
+     */
+    public function actions(iterable $actions): self
+    {
+        return $this->addActions($actions);
+    }
+
     public function selectAction(AbstractAction $action): self
     {
         return $this->set('selectAction', $action);
@@ -109,6 +117,9 @@ final class AdaptiveCard extends Node
         return $this->set('fallback', $fallback);
     }
 
+    /**
+     * @param array<string, string> $requires
+     */
     public function requires(array $requires): self
     {
         return $this->set('requires', $requires);
@@ -167,8 +178,12 @@ final class AdaptiveCard extends Node
     /**
      * @param TeamsCardProperties|array<string, mixed> $msteams
      */
-    public function msteams(TeamsCardProperties|array $msteams): self
+    public function msteams(TeamsCardProperties|array $msteams, bool $useCamelCaseKey = false): self
     {
+        if ($useCamelCaseKey) {
+            return $this->set('msTeams', $msteams);
+        }
+
         return $this->set('msteams', $msteams);
     }
 

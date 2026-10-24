@@ -11,15 +11,18 @@ use AdaptiveCards\AdaptiveCard;
  */
 final class ShowCardAction extends AbstractAction
 {
-    public function __construct(?string $title = null, ?AdaptiveCard $card = null)
+    public function __construct(AdaptiveCard $card, ?string $title = null)
     {
-        $this->set('title', $title);
-        $this->set('card', $card);
+        $this->card($card);
+       
+        if ($title !== null) {
+            $this->title($title);
+        }
     }
 
-    public static function make(string $title, ?AdaptiveCard $card = null): self
+    public static function make(AdaptiveCard $card, ?string $title = null): self
     {
-        return new self($title, $card);
+        return new self($card, $title);
     }
 
     public function card(AdaptiveCard $card): self

@@ -10,15 +10,16 @@ use AdaptiveCards\Node;
 
 final class PopoverAction extends AbstractAction
 {
-    public function __construct(?string $title = null, Node|AbstractElement|null $content = null)
+    public function __construct(?string $title = null)
     {
-        $this->set('title', $title);
-        $this->set('content', $content);
+        if ($title !== null) {
+            $this->title($title);
+        }
     }
 
-    public static function make(?string $title = null, Node|AbstractElement|null $content = null): self
+    public static function make(?string $title = null): self
     {
-        return new self($title, $content);
+        return new self($title);
     }
 
     public function content(Node|AbstractElement $content): self

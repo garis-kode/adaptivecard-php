@@ -19,12 +19,19 @@ final class TableColumnDefinition extends Node
      */
     public function __construct(string|int|null $width = null)
     {
-        $this->set('width', $width);
+        if ($width !== null) {
+            $this->width($width);
+        }
     }
 
     public static function make(string|int|null $width = null): self
     {
         return new self($width);
+    }
+
+    public function width(string|int $width): self
+    {
+        return $this->set('width', $width);
     }
 
     public function horizontalCellContentAlignment(string|HorizontalAlignment $alignment): self
