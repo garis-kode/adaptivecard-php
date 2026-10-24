@@ -8,6 +8,7 @@ use AdaptiveCards\Action\AbstractAction;
 use AdaptiveCards\Element\AbstractElement;
 use AdaptiveCards\Enum\ContainerStyle;
 use AdaptiveCards\Enum\VerticalAlignment;
+use AdaptiveCards\Layout\AbstractLayout;
 use AdaptiveCards\Shared\BackgroundImage;
 use AdaptiveCards\Support\HasItems;
 
@@ -41,6 +42,28 @@ final class TableCell extends AbstractElement
     public function minHeight(string $minHeight): self
     {
         return $this->set('minHeight', $minHeight);
+    }
+
+    public function maxHeight(string $maxHeight): self
+    {
+        return $this->set('maxHeight', $maxHeight);
+    }
+
+    public function addLayout(AbstractLayout $layout): self
+    {
+        return $this->push('layouts', $layout);
+    }
+
+    /**
+     * @param iterable<AbstractLayout> $layouts
+     */
+    public function layouts(iterable $layouts): self
+    {
+        foreach ($layouts as $layout) {
+            $this->addLayout($layout);
+        }
+
+        return $this;
     }
 
     public function rtl(bool $rtl = true): self

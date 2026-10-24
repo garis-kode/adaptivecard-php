@@ -53,6 +53,21 @@ final class ColumnSet extends AbstractElement
         return $this->set('minHeight', $minHeight);
     }
 
+    public function minWidth(string $minWidth): self
+    {
+        return $this->set('minWidth', $minWidth);
+    }
+
+    public function roundedCorners(bool $value = true): self
+    {
+        return $this->set('roundedCorners', $value);
+    }
+
+    public function showBorder(bool $value = true): self
+    {
+        return $this->set('showBorder', $value);
+    }
+
     public function selectAction(AbstractAction $action): self
     {
         return $this->set('selectAction', $action);

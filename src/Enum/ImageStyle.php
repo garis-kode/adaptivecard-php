@@ -10,4 +10,5 @@ enum ImageStyle: string
 
     case Default = 'default';
     case Person = 'person';
+    case RoundedCorners = 'RoundedCorners';
 }

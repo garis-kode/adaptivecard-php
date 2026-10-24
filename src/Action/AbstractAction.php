@@ -54,6 +54,74 @@ abstract class AbstractAction extends Node
         return $this->set('isEnabled', $enabled);
     }
 
+    public function isEnabledDynamic(string $expression): static
+    {
+        return $this->set('isEnabled.dynamic', $expression);
+    }
+
+    public function isVisible(bool $visible = true): static
+    {
+        return $this->set('isVisible', $visible);
+    }
+
+    public function isVisibleDynamic(string $expression): static
+    {
+        return $this->set('isVisible.dynamic', $expression);
+    }
+
+    public function titleDynamic(string $expression): static
+    {
+        return $this->set('title.dynamic', $expression);
+    }
+
+    public function toggledTitle(string $title): static
+    {
+        return $this->set('title.toggled', $title);
+    }
+
+    public function tooltipDynamic(string $expression): static
+    {
+        return $this->set('tooltip.dynamic', $expression);
+    }
+
+    public function toggledTooltip(string $tooltip): static
+    {
+        return $this->set('tooltip.toggled', $tooltip);
+    }
+
+    /**
+     * @param iterable<AbstractAction> $actions
+     */
+    public function menuActions(iterable $actions): static
+    {
+        foreach ($actions as $action) {
+            $this->addMenuAction($action);
+        }
+
+        return $this;
+    }
+
+    public function addMenuAction(AbstractAction $action): static
+    {
+        return $this->push('menuActions', $action);
+    }
+
+    /**
+     * @param array<string, string> $themedUrls
+     */
+    public function themedIconUrls(array $themedUrls): static
+    {
+        return $this->set('themedIconUrls', $themedUrls);
+    }
+
+    /**
+     * @param array<string, string> $themedUrls
+     */
+    public function toggledThemedIconUrls(array $themedUrls): static
+    {
+        return $this->set('themedIconUrls.toggled', $themedUrls);
+    }
+
     public function conditionallyEnabled(bool $enabled = true): static
     {
         return $this->set('conditionallyEnabled', $enabled);

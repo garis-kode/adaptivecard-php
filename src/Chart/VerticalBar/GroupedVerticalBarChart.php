@@ -44,6 +44,21 @@ final class GroupedVerticalBarChart extends AbstractChart
         return $this;
     }
 
+    public function showBarValues(bool $show = true): self
+    {
+        return $this->set('showBarValues', $show);
+    }
+
+    public function yMin(float|int $min): self
+    {
+        return $this->set('yMin', $min);
+    }
+
+    public function yMax(float|int $max): self
+    {
+        return $this->set('yMax', $max);
+    }
+
     public function getType(): string
     {
         return 'Chart.VerticalBar.Grouped';

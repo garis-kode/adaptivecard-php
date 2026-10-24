@@ -62,6 +62,16 @@ final class ChoiceSetInput extends AbstractInput
         return $this->set('wrap', $wrap);
     }
 
+    public function minColumnWidth(string $width): self
+    {
+        return $this->set('minColumnWidth', $width);
+    }
+
+    public function useMultipleColumns(bool $multiple = true): self
+    {
+        return $this->set('useMultipleColumns', $multiple);
+    }
+
     public function dataQuery(DataQuery $dataQuery): self
     {
         return $this->set('choices.data', $dataQuery);

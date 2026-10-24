@@ -25,6 +25,11 @@ final class ToggleInput extends AbstractInput
         return $this->set('title', $title);
     }
 
+    public function showTitle(bool $show = true): self
+    {
+        return $this->set('showTitle', $show);
+    }
+
     public function valueOn(string $valueOn): self
     {
         return $this->set('valueOn', $valueOn);

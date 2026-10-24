@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace AdaptiveCards\Element\RichTextBlock;
 
 use AdaptiveCards\Action\AbstractAction;
+use AdaptiveCards\Element\AbstractElement;
 use AdaptiveCards\Enum\Colors;
 use AdaptiveCards\Enum\IconStyle;
-use AdaptiveCards\Node;
 
 /**
  * An inline icon inside a RichTextBlock element.
  */
-final class IconRun extends Node
+final class IconRun extends AbstractElement
 {
     public function __construct(string $name)
     {

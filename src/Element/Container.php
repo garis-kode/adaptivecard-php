@@ -43,6 +43,21 @@ final class Container extends AbstractElement
         return $this->set('minHeight', $minHeight);
     }
 
+    public function maxHeight(string $maxHeight): self
+    {
+        return $this->set('maxHeight', $maxHeight);
+    }
+
+    public function roundedCorners(bool $value = true): self
+    {
+        return $this->set('roundedCorners', $value);
+    }
+
+    public function showBorder(bool $value = true): self
+    {
+        return $this->set('showBorder', $value);
+    }
+
     public function rtl(bool $rtl = true): self
     {
         return $this->set('rtl', $rtl);

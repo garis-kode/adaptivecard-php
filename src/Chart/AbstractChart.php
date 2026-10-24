@@ -36,4 +36,19 @@ abstract class AbstractChart extends AbstractElement
     {
         return $this->set('yAxisTitle', $yAxisTitle);
     }
+
+    public function maxWidth(string $maxWidth): static
+    {
+        return $this->set('maxWidth', $maxWidth);
+    }
+
+    public function showLegend(bool $show = true): static
+    {
+        return $this->set('showLegend', $show);
+    }
+
+    public function showTitle(bool $show = true): static
+    {
+        return $this->set('showTitle', $show);
+    }
 }

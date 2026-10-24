@@ -21,11 +21,6 @@ final class GaugeChart extends AbstractChart
         return $chart;
     }
 
-    public function showTitle(bool $showTitle = true): self
-    {
-        return $this->set('showTitle', $showTitle);
-    }
-
     public function value(float|int $value): self
     {
         return $this->set('value', $value);
@@ -64,6 +59,31 @@ final class GaugeChart extends AbstractChart
         }
 
         return $this;
+    }
+
+    public function showMinMax(bool $show = true): self
+    {
+        return $this->set('showMinMax', $show);
+    }
+
+    public function showNeedle(bool $show = true): self
+    {
+        return $this->set('showNeedle', $show);
+    }
+
+    public function showOutlines(bool $show = true): self
+    {
+        return $this->set('showOutlines', $show);
+    }
+
+    public function subLabel(string $subLabel): self
+    {
+        return $this->set('subLabel', $subLabel);
+    }
+
+    public function valueFormat(string $format): self
+    {
+        return $this->set('valueFormat', $format);
     }
 
     public function getType(): string

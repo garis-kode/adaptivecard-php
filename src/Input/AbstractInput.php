@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Input;
 
+use AdaptiveCards\Action\AbstractAction;
 use AdaptiveCards\Element\AbstractElement;
 use AdaptiveCards\Enum\InputLabelPosition;
 
@@ -46,5 +47,15 @@ abstract class AbstractInput extends AbstractElement
     public function value(string|int|float|bool $value): static
     {
         return $this->set('value', $value);
+    }
+
+    public function showLabel(bool $show = true): static
+    {
+        return $this->set('showLabel', $show);
+    }
+
+    public function valueChangedAction(AbstractAction $action): static
+    {
+        return $this->set('valueChangedAction', $action);
     }
 }

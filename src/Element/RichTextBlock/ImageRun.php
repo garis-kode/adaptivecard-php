@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace AdaptiveCards\Element\RichTextBlock;
 
 use AdaptiveCards\Action\AbstractAction;
-use AdaptiveCards\Node;
+use AdaptiveCards\Element\AbstractElement;
 
 /**
  * An inline image inside a RichTextBlock element.
  */
-final class ImageRun extends Node
+final class ImageRun extends AbstractElement
 {
     public function __construct(string $url)
     {

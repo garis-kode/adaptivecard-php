@@ -19,6 +19,13 @@ trait EnumValue
 
         $resolved = self::tryFrom($value);
         if ($resolved === null) {
+            $lower = strtolower($value);
+            foreach (self::cases() as $case) {
+                if (strtolower($case->name) === $lower || strtolower($case->value) === $lower) {
+                    return $case;
+                }
+            }
+
             throw new AdaptiveCardException(sprintf(
                 'Invalid %s value "%s". Allowed values: %s',
                 (new \ReflectionClass(self::class))->getShortName(),

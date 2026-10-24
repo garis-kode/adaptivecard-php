@@ -67,6 +67,31 @@ final class Table extends AbstractElement
         return $this->set('showGridLines', $value);
     }
 
+    public function firstRowAsHeaders(bool $value = true): self
+    {
+        return $this->set('firstRowAsHeaders', $value);
+    }
+
+    public function roundedCorners(bool $value = true): self
+    {
+        return $this->set('roundedCorners', $value);
+    }
+
+    public function showBorder(bool $value = true): self
+    {
+        return $this->set('showBorder', $value);
+    }
+
+    public function minWidth(string $width): self
+    {
+        return $this->set('minWidth', $width);
+    }
+
+    public function style(string|ContainerStyle $style): self
+    {
+        return $this->set('style', ContainerStyle::value($style));
+    }
+
     public function gridStyle(string|ContainerStyle $style): self
     {
         return $this->set('gridStyle', ContainerStyle::value($style));

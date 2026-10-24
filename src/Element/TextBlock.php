@@ -31,6 +31,11 @@ final class TextBlock extends AbstractElement
         return $this->set('text', $text);
     }
 
+    public function textDynamic(string $expression): self
+    {
+        return $this->set('text.dynamic', $expression);
+    }
+
     public function size(string|TextSize $size): self
     {
         return $this->set('size', TextSize::value($size));

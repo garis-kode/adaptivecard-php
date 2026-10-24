@@ -40,6 +40,16 @@ final class TableRow extends AbstractElement
         return $this->set('style', ContainerStyle::value($style));
     }
 
+    public function roundedCorners(bool $value = true): self
+    {
+        return $this->set('roundedCorners', $value);
+    }
+
+    public function showBorder(bool $value = true): self
+    {
+        return $this->set('showBorder', $value);
+    }
+
     public function horizontalCellContentAlignment(string|HorizontalAlignment $alignment): self
     {
         return $this->set('horizontalCellContentAlignment', HorizontalAlignment::value($alignment));

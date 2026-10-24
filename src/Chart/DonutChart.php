@@ -23,6 +23,26 @@ final class DonutChart extends AbstractChart
         return $this->set('innerRadius', $innerRadius);
     }
 
+    public function showOutlines(bool $show = true): self
+    {
+        return $this->set('showOutlines', $show);
+    }
+
+    public function thickness(string|int|float $thickness): self
+    {
+        return $this->set('thickness', $thickness);
+    }
+
+    public function value(string|int|float $value): self
+    {
+        return $this->set('value', $value);
+    }
+
+    public function valueColor(string $color): self
+    {
+        return $this->set('valueColor', $color);
+    }
+
     /**
      * @param DataPoint|array<string, mixed> $point
      */

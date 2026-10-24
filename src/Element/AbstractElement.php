@@ -27,6 +27,11 @@ abstract class AbstractElement extends Node
         return $this->set('isVisible', $visible);
     }
 
+    public function isVisibleDynamic(string $expression): static
+    {
+        return $this->set('isVisible.dynamic', $expression);
+    }
+
     public function spacing(string|Spacing $spacing): static
     {
         return $this->set('spacing', Spacing::value($spacing));
@@ -60,11 +65,6 @@ abstract class AbstractElement extends Node
     public function isSortKey(bool $isSortKey = true): static
     {
         return $this->set('isSortKey', $isSortKey);
-    }
-
-    public function key(string $key): static
-    {
-        return $this->set('key', $key);
     }
 
     public function lang(string $lang): static

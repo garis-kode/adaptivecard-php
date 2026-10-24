@@ -5,16 +5,16 @@ declare(strict_types=1);
 namespace AdaptiveCards\Element\RichTextBlock;
 
 use AdaptiveCards\Action\AbstractAction;
+use AdaptiveCards\Element\AbstractElement;
 use AdaptiveCards\Enum\Colors;
 use AdaptiveCards\Enum\FontType;
 use AdaptiveCards\Enum\TextSize;
 use AdaptiveCards\Enum\TextWeight;
-use AdaptiveCards\Node;
 
 /**
  * A styled run of text inside a {@see RichTextBlock}.
  */
-final class TextRun extends Node
+final class TextRun extends AbstractElement
 {
     public function __construct(string $text)
     {
@@ -24,6 +24,16 @@ final class TextRun extends Node
     public static function make(string $text): self
     {
         return new self($text);
+    }
+
+    public function text(string $text): self
+    {
+        return $this->set('text', $text);
+    }
+
+    public function textDynamic(string $expression): self
+    {
+        return $this->set('text.dynamic', $expression);
     }
 
     public function color(string|Colors $color): self

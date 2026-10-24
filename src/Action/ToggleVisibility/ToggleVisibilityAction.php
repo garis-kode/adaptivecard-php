@@ -39,6 +39,11 @@ final class ToggleVisibilityAction extends AbstractAction
         return $this->push('targetElements', $target);
     }
 
+    public function suppressAriaControls(bool $suppress = true): self
+    {
+        return $this->set('suppressAriaControls', $suppress);
+    }
+
     public function getType(): string
     {
         return 'Action.ToggleVisibility';

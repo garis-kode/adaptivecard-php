@@ -28,6 +28,11 @@ final class LineChart extends AbstractChart
         return $this->set('yMax', $yMax);
     }
 
+    public function xAxisLabelMinWidth(string|int $width): self
+    {
+        return $this->set('xAxisLabelMinWidth', $width);
+    }
+
     /**
      * @param ChartSeries|array<string, mixed> $series
      */

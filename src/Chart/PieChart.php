@@ -38,6 +38,26 @@ final class PieChart extends AbstractChart
         return $this;
     }
 
+    public function showOutlines(bool $show = true): self
+    {
+        return $this->set('showOutlines', $show);
+    }
+
+    public function thickness(string|int|float $thickness): self
+    {
+        return $this->set('thickness', $thickness);
+    }
+
+    public function value(string|int|float $value): self
+    {
+        return $this->set('value', $value);
+    }
+
+    public function valueColor(string $color): self
+    {
+        return $this->set('valueColor', $color);
+    }
+
     public function getType(): string
     {
         return 'Chart.Pie';

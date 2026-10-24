@@ -73,6 +73,14 @@ final class ChartSeries extends Node
         return $this;
     }
 
+    /**
+     * @param iterable<DataPoint|array<string, mixed>> $points
+     */
+    public function values(iterable $points): self
+    {
+        return $this->data($points);
+    }
+
     public function getType(): ?string
     {
         return null;

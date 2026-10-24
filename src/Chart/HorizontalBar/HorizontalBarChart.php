@@ -39,6 +39,11 @@ final class HorizontalBarChart extends AbstractChart
         return $this;
     }
 
+    public function displayMode(string $mode): self
+    {
+        return $this->set('displayMode', $mode);
+    }
+
     public function getType(): string
     {
         return 'Chart.HorizontalBar';

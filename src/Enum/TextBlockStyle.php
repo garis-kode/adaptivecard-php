@@ -10,4 +10,5 @@ enum TextBlockStyle: string
 
     case Default = 'default';
     case Heading = 'heading';
+    case ColumnHeader = 'columnHeader';
 }

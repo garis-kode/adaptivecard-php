@@ -99,6 +99,31 @@ final class AdaptiveCard extends Node
         return $this->set('minHeight', $minHeight);
     }
 
+    public function id(string $id): self
+    {
+        return $this->set('id', $id);
+    }
+
+    public function fallback(mixed $fallback): self
+    {
+        return $this->set('fallback', $fallback);
+    }
+
+    public function requires(array $requires): self
+    {
+        return $this->set('requires', $requires);
+    }
+
+    public function gridArea(string $gridArea): self
+    {
+        return $this->set('grid.area', $gridArea);
+    }
+
+    public function isSortKey(bool $isSortKey = true): self
+    {
+        return $this->set('isSortKey', $isSortKey);
+    }
+
     public function verticalContentAlignment(string|VerticalAlignment $alignment): self
     {
         return $this->set('verticalContentAlignment', VerticalAlignment::value($alignment));

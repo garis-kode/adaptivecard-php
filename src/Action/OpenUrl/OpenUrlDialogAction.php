@@ -47,23 +47,6 @@ final class OpenUrlDialogAction extends AbstractAction
         return $this->set('dialogHeight', $dialogHeight);
     }
 
-    public function addMenuAction(AbstractAction $action): self
-    {
-        return $this->push('menuActions', $action);
-    }
-
-    /**
-     * @param iterable<AbstractAction> $actions
-     */
-    public function menuActions(iterable $actions): self
-    {
-        foreach ($actions as $action) {
-            $this->addMenuAction($action);
-        }
-
-        return $this;
-    }
-
     public function getType(): string
     {
         return 'Action.OpenUrlDialog';
