@@ -9,34 +9,34 @@ Gathers input values, merges them with the `data` property if specified, and sen
 | Name | Type | Default | Description | In version |
 | --- | --- | --- | --- | --- |
 | `type` | `string` | — | Must be `Action.Submit`. | 1.0 |
-| `msteams` | `object` | — | Teams-specific metadata associated with the action. Valid value: `TeamsSubmitActionProperties`. | 1.0 |
-| `msTeams` | `object` | — | Teams-specific metadata associated with the action. Equivalent to `msteams`. Valid value: `TeamsSubmitActionProperties`. | 1.0 |
-| `associatedInputs` | `string` | — | The IDs of the inputs associated with the Action.Submit. When executed, values of the associated inputs are sent to the Bot. See Input validation for details. Valid values: `auto`, `none`. | 1.3 |
-| `behavior` | `string` | `Default` | **Preview.** Controls action behavior. `Toggle` alternates between normal and toggled states each time the action executes. Valid values: `Default`, `Toggle`. | 1.5 |
-| `conditionallyEnabled` | `boolean` | `false` | **Teams.** Enables the action only if at least one required input has been filled. | 1.5 |
-| `data` | `string` or `object` | — | The data sent to the Bot. An object is merged with input values as key/value pairs keyed by input ID. A string prevents input values from being sent. Valid value: `SubmitActionData`. | 1.0 |
-| `fallback` | `object` or `string` | — | Alternate action to render if unsupported or if required capabilities are unavailable. Valid values: `Action.Submit`, `Action.OpenUrl`, `Action.Execute`, `Action.ToggleVisibility`, `Action.ShowCard`, `Action.ResetInputs`, `Action.Popover`, `Action.OpenUrlDialog`, `Action.InsertImage`, `Action.RunCommands`, `drop`. | 1.2 |
-| `iconUrl` | `string` | — | URL or Base64 Data URI for a PNG, GIF, JPEG, or SVG icon to the left of the title. Also supports `icon:&lt;icon-name&gt;[,regular\|filled]`, such as `icon:Calendar` or `icon:Calendar,filled`. | 1.1 |
-| `iconUrl.toggled` | `string` | — | **Preview.** Icon URL in the toggled state; same formats as `iconUrl`. Only applies with `behavior: Toggle`. | 1.5 |
-| `id` | `string` | — | Unique identifier for the element/action. Inputs must have an `id` to be validated and sent to the Bot. | 1.0 |
-| `initialState` | `string` | `Normal` | **Preview.** Initial toggle state; only when `behavior` is `Toggle`. Valid values: `Normal`, `Toggled`. | 1.5 |
-| `isEnabled` | `boolean` | `true` | Enables or disables the action. Disabled actions cannot be clicked; buttons visually reflect the disabled state. | 1.5 |
-| `isEnabled.dynamic` | `string` | — | **Preview.** Expression evaluated at runtime to update `isEnabled`. | 1.5 |
-| `isVisible` | `boolean` | `true` | **Preview.** Controls action visibility. | 1.5 |
-| `isVisible.dynamic` | `string` | — | **Preview.** Expression evaluated at runtime to update `isVisible`. | 1.5 |
+| `msteams` | `object` | — | **Teams.** Teams-specific metadata associated with the action. Valid values: `TeamsSubmitActionProperties`. | 1.0 |
+| `msTeams` | `object` | — | Teams-specific metadata associated with the action. Equivalent to `msteams`. Valid values: `TeamsSubmitActionProperties`. | 1.0 |
+| `associatedInputs` | `string` | — | The Ids of the inputs associated with the `Action.Submit`. When the action is executed, the values of the associated inputs are sent to the Bot. See **Input validation** for more details. Valid values: `"auto"`, `"none"`. | 1.3 |
+| `behavior` | `string` | `"Default"` | **Preview.** Controls the behavior of the action. When set to `Toggle`, the action acts as a toggle that alternates between the normal and toggled states each time it's executed. Valid values: `"Default"`, `"Toggle"`. | 1.5 |
+| `conditionallyEnabled` | `boolean` | `false` | **Teams.** Controls if the action is enabled only if at least one required input has been filled by the user. | 1.5 |
+| `data` | One of `string` or `object` | — | The data to send to the Bot when the action is executed. When expressed as an object, `data` is sent back to the Bot when the action is executed, adorned with the values of the inputs expressed as key/value pairs, where the key is the Id of the input. If `data` is expressed as a string, input values are not sent to the Bot. Valid values: `SubmitActionData`. | 1.0 |
+| `fallback` | One of `object` or `string` | — | An alternate action to render if the type of this one is unsupported or if the host application doesn't support all the capabilities specified in the `requires` property. Valid values: `Action.Submit`, `Action.OpenUrl`, `Action.Execute`, `Action.ToggleVisibility`, `Action.ShowCard`, `Action.ResetInputs`, `Action.Popover`, `Action.OpenUrlDialog`, `Action.InsertImage`, `Action.RunCommands`, `"drop"`. | 1.2 |
+| `iconUrl` | `string` | — | A URL (or Base64-encoded Data URI) to a PNG, GIF, JPEG or SVG image to be displayed on the left of the action's title. `iconUrl` also accepts the `icon:<icon-name>[,regular\|filled]` format to display an icon from the vast Adaptive Card icon catalog instead of an image. For example, use `icon:Calendar` for the regular style or `icon:Calendar,filled` for the filled style. | 1.1 |
+| `iconUrl.toggled` | `string` | — | **Preview.** The icon URL to use when the action is in the toggled state. Accepts the same formats as `iconUrl`. Only applies when `behavior` is set to `Toggle`. | 1.5 |
+| `id` | `string` | — | A unique identifier for the element or action. Input elements must have an `id`, otherwise they will not be validated and their values will not be sent to the Bot. | 1.0 |
+| `initialState` | `string` | `"Normal"` | **Preview.** Controls the initial toggle state of the action. Only applies when `behavior` is set to `Toggle`. Valid values: `"Normal"`, `"Toggled"`. | 1.5 |
+| `isEnabled` | `boolean` | `true` | Controls the enabled state of the action. A disabled action cannot be clicked. If the action is represented as a button, the button's style will reflect this state. | 1.5 |
+| `isEnabled.dynamic` | `string` | — | **Preview.** Defines an expression whose evaluated value will be used to update the `isEnabled` property of the action at runtime. | 1.5 |
+| `isVisible` | `boolean` | `true` | **Preview.** Controls the visibility of the action. | 1.5 |
+| `isVisible.dynamic` | `string` | — | **Preview.** Defines an expression whose evaluated value will be used to update the `isVisible` property of the action at runtime. | 1.5 |
 | `key` | `string` | — | Defines an optional key for the object. Keys are seldom needed, but in some scenarios, specifying keys can help maintain visual state in the host application. | 1.0 |
-| `menuActions` | `array of object` | — | **Teams.** Actions shown in a Split action button overflow menu. Valid values: `Action.Execute`, `Action.InsertImage`, `Action.OpenUrl`, `Action.OpenUrlDialog`, `Action.ResetInputs`, `Action.RunCommands`, `Action.Submit`, `Action.ToggleVisibility`. | 1.5 |
-| `mode` | `string` | `primary` | Controls whether action is primary or secondary; secondary actions appear in an overflow menu. Valid values: `primary`, `secondary`. | 1.5 |
-| `requires` | `object` | `{}` | Capabilities required of the host. If unavailable, action is not rendered, or fallback is rendered. Valid value: `HostCapabilities`. | 1.2 |
-| `style` | `string` | `default` | Controls the visual and spoken representations of the action. Valid values: `default`, `positive`, `destructive`. | 1.2 |
-| `themedIconUrls` | `array of object` | — | **Teams.** Theme-specific icon URLs. Valid value: `ThemedUrl`. | 1.5 |
-| `themedIconUrls.toggled` | `array of object` | — | **Preview.** Theme-specific icon URLs for the toggled state; only when behavior is `Toggle`. Valid value: `ThemedUrl`. | 1.5 |
-| `title` | `string` | — | Title of the action as shown on buttons. | 1.0 |
-| `title.dynamic` | `string` | — | **Preview.** Runtime expression updating the action title. | 1.5 |
-| `title.toggled` | `string` | — | **Preview.** Title in toggled state, only when behavior is `Toggle`. | 1.5 |
-| `tooltip` | `string` | — | Tooltip displayed on hover. | 1.5 |
-| `tooltip.dynamic` | `string` | — | **Preview.** Runtime expression updating the tooltip. | 1.5 |
-| `tooltip.toggled` | `string` | — | **Preview.** Tooltip displayed in toggled state, only when behavior is `Toggle`. | 1.5 |
+| `menuActions` | Array of `object` | — | **Teams.** The actions to display in the overflow menu of a Split action button. Valid values: `Action.Execute`, `Action.InsertImage`, `Action.OpenUrl`, `Action.OpenUrlDialog`, `Action.ResetInputs`, `Action.RunCommands`, `Action.Submit`, `Action.ToggleVisibility`. | 1.5 |
+| `mode` | `string` | `"primary"` | Controls if the action is primary or secondary. Secondary actions appear in an overflow menu. Valid values: `"primary"`, `"secondary"`. | 1.5 |
+| `requires` | `object` | `{}` | A list of capabilities the element requires the host application to support. If the host application doesn't support at least one of the listed capabilities, the element is not rendered (or its fallback is rendered if provided). Valid values: `HostCapabilities`. | 1.2 |
+| `style` | `string` | `"default"` | Control the style of the action, affecting its visual and spoken representations. Valid values: `"default"`, `"positive"`, `"destructive"`. | 1.2 |
+| `themedIconUrls` | Array of `object` | — | **Teams.** A set of theme-specific icon URLs. Valid values: `ThemedUrl`. | 1.5 |
+| `themedIconUrls.toggled` | Array of `object` | — | **Preview.** A set of theme-specific icon URLs to use when the action is in the toggled state. Only applies when `behavior` is set to `Toggle`. Valid values: `ThemedUrl`. | 1.5 |
+| `title` | `string` | — | The title of the action, as it appears on buttons. | 1.0 |
+| `title.dynamic` | `string` | — | **Preview.** Defines an expression whose evaluated value will be used to update the `title` property of the action at runtime. | 1.5 |
+| `title.toggled` | `string` | — | **Preview.** The title to display when the action is in the toggled state. Only applies when `behavior` is set to `Toggle`. | 1.5 |
+| `tooltip` | `string` | — | The tooltip text to display when the action is hovered over. | 1.5 |
+| `tooltip.dynamic` | `string` | — | **Preview.** Defines an expression whose evaluated value will be used to update the `tooltip` property of the action at runtime. | 1.5 |
+| `tooltip.toggled` | `string` | — | **Preview.** The tooltip to display when the action is in the toggled state. Only applies when `behavior` is set to `Toggle`. | 1.5 |
 
 ---
 
@@ -50,7 +50,7 @@ Teams-specific properties associated with the action.
 
 | Name | Type | Default | Description | In version |
 | --- | --- | --- | --- | --- |
-| `feedback` | `object` | — | Defines how feedback is provided to the end-user when the action is executed. Valid value: `TeamsSubmitActionFeedback`. | 1.0 |
+| `feedback` | `object` | — | Defines how feedback is provided to the end-user when the action is executed. Valid values: `TeamsSubmitActionFeedback`. | 1.0 |
 | `key` | `string` | — | Defines an optional key for the object. Keys are seldom needed, but in some scenarios, specifying keys can help maintain visual state in the host application. | 1.0 |
 
 ---
@@ -97,9 +97,9 @@ Represents Teams-specific data in an `Action.Submit` to send a message back to t
 | Name | Type | Default | Description | In version |
 | --- | --- | --- | --- | --- |
 | `type` | `string` | — | Must be `messageBack`. | 1.0 |
-| `displayText` | `string` | — | Optional text displayed as a new conversation message as if the user sent it; not sent to the Bot. | 1.0 |
-| `text` | `string` | — | Text sent to the Bot. | 1.0 |
-| `value` | `any` | — | Optional additional value sent to the Bot; may encode context such as identifiers or a JSON object. | 1.0 |
+| `displayText` | `string` | — | The optional text that will be displayed as a new message in the conversation, as if the end-user sent it. `displayText` is not sent to the Bot. | 1.0 |
+| `text` | `string` | — | The text that will be sent to the Bot. | 1.0 |
+| `value` | `any` | — | Optional additional value that will be sent to the Bot. For instance, `value` can encode specific context for the action, such as unique identifiers or a JSON object. | 1.0 |
 | `key` | `string` | — | Defines an optional key for the object. Keys are seldom needed, but in some scenarios, specifying keys can help maintain visual state in the host application. | 1.0 |
 
 ---
@@ -115,7 +115,7 @@ Represents Teams-specific data in an `Action.Submit` to make an Invoke request t
 | Name | Type | Default | Description | In version |
 | --- | --- | --- | --- | --- |
 | `type` | `string` | — | Must be `invoke`. | 1.0 |
-| `value` | `any` or `object` | — | Object sent with the Invoke request. Can be strongly typed to trigger specific Teams actions. Valid value: `CollabStageInvokeDataValue`. | 1.0 |
+| `value` | One of `any` or `object` | — | The object to send to the Bot with the Invoke request. Can be strongly typed as one of the below values to trigger a specific action in Teams. Valid values: `CollabStageInvokeDataValue`. | 1.0 |
 | `key` | `string` | — | Defines an optional key for the object. Keys are seldom needed, but in some scenarios, specifying keys can help maintain visual state in the host application. | 1.0 |
 
 ---
@@ -146,7 +146,7 @@ Represents Teams-specific data in an `Action.Submit` to sign in a user.
 | Name | Type | Default | Description | In version |
 | --- | --- | --- | --- | --- |
 | `type` | `string` | — | Must be `signin`. | 1.0 |
-| `value` | `string` | — | URL to redirect the end-user for signing in. | 1.0 |
+| `value` | `string` | — | The URL to redirect the end-user for signing in. | 1.0 |
 | `key` | `string` | — | Defines an optional key for the object. Keys are seldom needed, but in some scenarios, specifying keys can help maintain visual state in the host application. | 1.0 |
 
 ---
@@ -162,7 +162,7 @@ Data for invoking a collaboration stage action.
 | Name | Type | Default | Description | In version |
 | --- | --- | --- | --- | --- |
 | `type` | `string` | — | Must be `tab/tabInfoAction`. | — |
-| `tabInfo` | `object` | — | Information about the iFrame content rendered in the collaboration stage popout window. Valid value: `TabInfo`. | — |
+| `tabInfo` | `object` | — | Provides information about the iFrame content, rendered in the collab stage popout window. Valid values: `TabInfo`. | — |
 
 ---
 
@@ -176,7 +176,7 @@ Represents the data of an `Action.Submit`.
 
 | Name | Type | Default | Description | In version |
 | --- | --- | --- | --- | --- |
-| `msteams` | `object` | — | Optional Teams-specific portion of action data. Valid values: `ImBackSubmitActionData`, `InvokeSubmitActionData`, `MessageBackSubmitActionData`, `SigninSubmitActionData`, `TaskFetchSubmitActionData`. | 1.0 |
-| `msTeams` | `object` | — | Optional Teams-specific portion of action data; equivalent to `msteams`. Valid values: `ImBackSubmitActionData`, `InvokeSubmitActionData`, `MessageBackSubmitActionData`, `SigninSubmitActionData`, `TaskFetchSubmitActionData`. | 1.0 |
+| `msteams` | `object` | — | Defines the optional Teams-specific portion of the action's data. Valid values: `ImBackSubmitActionData`, `InvokeSubmitActionData`, `MessageBackSubmitActionData`, `SigninSubmitActionData`, `TaskFetchSubmitActionData`. | 1.0 |
+| `msTeams` | `object` | — | Defines the optional Teams-specific portion of the action's data. Equivalent to `msteams`. Valid values: `ImBackSubmitActionData`, `InvokeSubmitActionData`, `MessageBackSubmitActionData`, `SigninSubmitActionData`, `TaskFetchSubmitActionData`. | 1.0 |
 | `key` | `string` | — | Defines an optional key for the object. Keys are seldom needed, but in some scenarios, specifying keys can help maintain visual state in the host application. | 1.0 |
-| `[key: string]` | `any` | — | Additional arbitrary data properties. | — |
+| `[key: string]` | `any` | — | — | — |

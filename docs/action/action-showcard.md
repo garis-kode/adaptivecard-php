@@ -62,27 +62,27 @@ Expands or collapses an embedded card within the main card.
 | Name | Type | Default | Description | In version |
 | --- | --- | --- | --- | --- |
 | `type` | `string` | — | Must be `Action.ShowCard`. | 1.0 |
-| `card` | `object` | — | The card that should be displayed when the action is executed. Valid value: `AdaptiveCard`. | 1.0 |
-| `behavior` | `string` | `"Default"` | **Preview.** Controls the behavior of the action. When set to `Toggle`, the action alternates between normal and toggled states each time it executes. Valid values: `Default`, `Toggle`. | 1.5 |
-| `fallback` | `object` or `string` | — | An alternate action to render if this type is unsupported or the host does not support all required capabilities. Valid values: `Action.Submit`, `Action.OpenUrl`, `Action.Execute`, `Action.ToggleVisibility`, `Action.ShowCard`, `Action.ResetInputs`, `Action.Popover`, `Action.OpenUrlDialog`, `Action.InsertImage`, `Action.RunCommands`, `drop`. | 1.2 |
-| `iconUrl` | `string` | — | URL or Base64 Data URI for a PNG, GIF, JPEG, or SVG displayed to the left of the title. Also accepts `icon:<icon-name>[,regular\|filled]`, such as `icon:Calendar` or `icon:Calendar,filled`. | 1.1 |
-| `iconUrl.toggled` | `string` | — | **Preview.** Icon URL for the toggled state. Accepts the same formats as `iconUrl`. Applies only when `behavior` is `Toggle`. | 1.5 |
-| `id` | `string` | — | Unique identifier for an element or action. Inputs must have an ID to be validated and included in data sent to the Bot. | 1.0 |
-| `initialState` | `string` | `"Normal"` | **Preview.** Initial toggle state, used only when `behavior` is `Toggle`. Valid values: `Normal`, `Toggled`. | 1.5 |
-| `isEnabled` | `boolean` | `true` | Whether the action is enabled. Disabled actions cannot be clicked, and buttons visually reflect that state. | 1.5 |
-| `isEnabled.dynamic` | `string` | — | **Preview.** Expression evaluated at runtime to update `isEnabled`. | 1.5 |
-| `isVisible` | `boolean` | `true` | **Preview.** Whether the action is visible. | 1.5 |
-| `isVisible.dynamic` | `string` | — | **Preview.** Expression evaluated at runtime to update `isVisible`. | 1.5 |
-| `key` | `string` | — | Optional object key. Usually unnecessary; can help preserve visual state in a host application. | 1.0 |
-| `menuActions` | `array of objects` | — | **Teams.** Actions in the overflow menu of a split action button. Valid values: `Action.Execute`, `Action.InsertImage`, `Action.OpenUrl`, `Action.OpenUrlDialog`, `Action.ResetInputs`, `Action.RunCommands`, `Action.Submit`, `Action.ToggleVisibility`. | 1.5 |
-| `mode` | `string` | `"primary"` | Whether the action is primary or secondary. Secondary actions appear in an overflow menu. Valid values: `primary`, `secondary`. | 1.5 |
-| `requires` | `object` | `{}` | List of host capabilities required. If unsupported, the element is not rendered, or its `fallback` is rendered. Valid value: `HostCapabilities`. | 1.2 |
-| `style` | `string` | `"default"` | Controls the action's visual and spoken representations. Valid values: `default`, `positive`, `destructive`. | 1.2 |
-| `themedIconUrls` | `array of objects` | — | **Teams.** Theme-specific icon URLs. Valid value: `ThemedUrl`. | 1.5 |
-| `themedIconUrls.toggled` | `array of objects` | — | **Preview.** Theme-specific icon URLs for the toggled state, used only when `behavior` is `Toggle`. Valid value: `ThemedUrl`. | 1.5 |
-| `title` | `string` | — | Title of the action as displayed on buttons. | 1.0 |
-| `title.dynamic` | `string` | — | **Preview.** Expression evaluated at runtime to update `title`. | 1.5 |
-| `title.toggled` | `string` | — | **Preview.** Title shown in the toggled state, used only when `behavior` is `Toggle`. | 1.5 |
-| `tooltip` | `string` | — | Tooltip displayed when hovering over the action. | 1.5 |
-| `tooltip.dynamic` | `string` | — | **Preview.** Expression evaluated at runtime to update `tooltip`. | 1.5 |
-| `tooltip.toggled` | `string` | — | **Preview.** Tooltip shown in the toggled state, used only when `behavior` is `Toggle`. | 1.5 |
+| `card` | `object` | — | The card that should be displayed when the action is executed. Valid values: `AdaptiveCard`. | 1.0 |
+| `behavior` | `string` | `"Default"` | **Preview.** Controls the behavior of the action. When set to `Toggle`, the action acts as a toggle that alternates between the normal and toggled states each time it's executed. Valid values: `"Default"`, `"Toggle"`. | 1.5 |
+| `fallback` | One of `object` or `string` | — | An alternate action to render if the type of this one is unsupported or if the host application doesn't support all the capabilities specified in the `requires` property. Valid values: `Action.Submit`, `Action.OpenUrl`, `Action.Execute`, `Action.ToggleVisibility`, `Action.ShowCard`, `Action.ResetInputs`, `Action.Popover`, `Action.OpenUrlDialog`, `Action.InsertImage`, `Action.RunCommands`, `"drop"`. | 1.2 |
+| `iconUrl` | `string` | — | A URL (or Base64-encoded Data URI) to a PNG, GIF, JPEG or SVG image to be displayed on the left of the action's title. `iconUrl` also accepts the `icon:<icon-name>[,regular\|filled]` format to display an icon from the vast Adaptive Card icon catalog instead of an image. For example, use `icon:Calendar` for the regular style or `icon:Calendar,filled` for the filled style. | 1.1 |
+| `iconUrl.toggled` | `string` | — | **Preview.** The icon URL to use when the action is in the toggled state. Accepts the same formats as `iconUrl`. Only applies when `behavior` is set to `Toggle`. | 1.5 |
+| `id` | `string` | — | A unique identifier for the element or action. Input elements must have an `id`, otherwise they will not be validated and their values will not be sent to the Bot. | 1.0 |
+| `initialState` | `string` | `"Normal"` | **Preview.** Controls the initial toggle state of the action. Only applies when `behavior` is set to `Toggle`. Valid values: `"Normal"`, `"Toggled"`. | 1.5 |
+| `isEnabled` | `boolean` | `true` | Controls the enabled state of the action. A disabled action cannot be clicked. If the action is represented as a button, the button's style will reflect this state. | 1.5 |
+| `isEnabled.dynamic` | `string` | — | **Preview.** Defines an expression whose evaluated value will be used to update the `isEnabled` property of the action at runtime. | 1.5 |
+| `isVisible` | `boolean` | `true` | **Preview.** Controls the visibility of the action. | 1.5 |
+| `isVisible.dynamic` | `string` | — | **Preview.** Defines an expression whose evaluated value will be used to update the `isVisible` property of the action at runtime. | 1.5 |
+| `key` | `string` | — | Defines an optional key for the object. Keys are seldom needed, but in some scenarios, specifying keys can help maintain visual state in the host application. | 1.0 |
+| `menuActions` | Array of `object` | — | **Teams.** The actions to display in the overflow menu of a Split action button. Valid values: `Action.Execute`, `Action.InsertImage`, `Action.OpenUrl`, `Action.OpenUrlDialog`, `Action.ResetInputs`, `Action.RunCommands`, `Action.Submit`, `Action.ToggleVisibility`. | 1.5 |
+| `mode` | `string` | `"primary"` | Controls if the action is primary or secondary. Secondary actions appear in an overflow menu. Valid values: `"primary"`, `"secondary"`. | 1.5 |
+| `requires` | `object` | `{}` | A list of capabilities the element requires the host application to support. If the host application doesn't support at least one of the listed capabilities, the element is not rendered (or its fallback is rendered if provided). Valid values: `HostCapabilities`. | 1.2 |
+| `style` | `string` | `"default"` | Control the style of the action, affecting its visual and spoken representations. Valid values: `"default"`, `"positive"`, `"destructive"`. | 1.2 |
+| `themedIconUrls` | Array of `object` | — | **Teams.** A set of theme-specific icon URLs. Valid values: `ThemedUrl`. | 1.5 |
+| `themedIconUrls.toggled` | Array of `object` | — | **Preview.** A set of theme-specific icon URLs to use when the action is in the toggled state. Only applies when `behavior` is set to `Toggle`. Valid values: `ThemedUrl`. | 1.5 |
+| `title` | `string` | — | The title of the action, as it appears on buttons. | 1.0 |
+| `title.dynamic` | `string` | — | **Preview.** Defines an expression whose evaluated value will be used to update the `title` property of the action at runtime. | 1.5 |
+| `title.toggled` | `string` | — | **Preview.** The title to display when the action is in the toggled state. Only applies when `behavior` is set to `Toggle`. | 1.5 |
+| `tooltip` | `string` | — | The tooltip text to display when the action is hovered over. | 1.5 |
+| `tooltip.dynamic` | `string` | — | **Preview.** Defines an expression whose evaluated value will be used to update the `tooltip` property of the action at runtime. | 1.5 |
+| `tooltip.toggled` | `string` | — | **Preview.** The tooltip to display when the action is in the toggled state. Only applies when `behavior` is set to `Toggle`. | 1.5 |

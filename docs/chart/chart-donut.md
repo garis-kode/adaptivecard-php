@@ -57,37 +57,97 @@ A donut chart.
 
 ### Small donut chart
 
-To render a smaller donut chart, use `showTitle`, `showLegend`, `showOutlines`, `maxWidth`, `value`, and `valueColor`. The supplied source displays the values **81** and **42** for this example but does not include a JSON payload, so none is inferred here.
+Use the `showTitle`, `showLegend`, `showOutlines`, `maxWidth`, `value` and `valueColor` properties to render a small Donut chart:
+
+```json
+{
+  "type": "AdaptiveCard",
+  "version": "1.5",
+  "layouts": [
+    {
+      "type": "Layout.Flow"
+    }
+  ],
+  "body": [
+    {
+      "type": "Chart.Donut",
+      "title": "Vocabulary",
+      "showTitle": false,
+      "showLegend": false,
+      "maxWidth": "50px",
+      "value": "81",
+      "valueColor": "good",
+      "thickness": "thin",
+      "showOutlines": false,
+      "data": [
+        {
+          "legend": "Achieved",
+          "value": 81,
+          "color": "good"
+        },
+        {
+          "legend": "Remaining",
+          "value": 19,
+          "color": "neutral"
+        }
+      ]
+    },
+    {
+      "type": "Chart.Donut",
+      "title": "Grammar",
+      "showTitle": false,
+      "showLegend": false,
+      "maxWidth": "50px",
+      "value": "42",
+      "valueColor": "divergingRed",
+      "thickness": "thin",
+      "showOutlines": false,
+      "data": [
+        {
+          "legend": "Achieved",
+          "value": 43,
+          "color": "divergingRed"
+        },
+        {
+          "legend": "Remaining",
+          "value": 57,
+          "color": "neutral"
+        }
+      ]
+    }
+  ]
+}
+```
 
 ## Schema
 
 | Name | Type | Default | Description | In version |
 | --- | --- | --- | --- | --- |
 | `type` | `string` | — | Must be `Chart.Donut`. | 1.0 |
-| `colorSet` | `string` | — | The name of the set of colors to use to render the chart. See Chart colors reference. Valid values: `categorical`, `sequential`, `sequentialred`, `sequentialgreen`, `sequentialyellow`, `diverging`. | 1.5 |
-| `data` | `Array of object` | — | The data to display in the chart. Valid values: `DonutChartData`. | 1.5 |
-| `fallback` | `object` or `string` | — | An alternate element if unsupported or capabilities in `requires` are unavailable. Valid values: `Container`, `ActionSet`, `ColumnSet`, `Media`, `RichTextBlock`, `Table`, `TextBlock`, `FactSet`, `ImageSet`, `Image`, `Input.Text`, `Input.Date`, `Input.Time`, `Input.Number`, `Input.Toggle`, `Input.ChoiceSet`, `Input.Rating`, `Rating`, `CompoundButton`, `Icon`, `Carousel`, `TabSet`, `Accordion`, `Badge`, `ProgressRing`, `ProgressBar`, `LoopComponent`, `Chart.Donut`, `Chart.Pie`, `Chart.VerticalBar.Grouped`, `Chart.VerticalBar`, `Chart.HorizontalBar`, `Chart.HorizontalBar.Stacked`, `Chart.Line`, `Chart.Gauge`, `CodeBlock`, `Persona`, `PersonaSet`, `Graph resource`, `File`, `Calendar event`, `"drop"`. | 1.2 |
+| `colorSet` | `string` | — | The name of the set of colors to use to render the chart. See **Chart colors reference**. Valid values: `"categorical"`, `"sequential"`, `"sequentialred"`, `"sequentialgreen"`, `"sequentialyellow"`, `"diverging"`. | 1.5 |
+| `data` | Array of `object` | — | The data to display in the chart. Valid values: `DonutChartData`. | 1.5 |
+| `fallback` | One of `object` or `string` | — | An alternate element to render if the type of this one is unsupported or if the host application doesn't support all the capabilities specified in the `requires` property. Valid values: `Container`, `ActionSet`, `ColumnSet`, `Media`, `RichTextBlock`, `Table`, `TextBlock`, `FactSet`, `ImageSet`, `Image`, `Input.Text`, `Input.Date`, `Input.Time`, `Input.Number`, `Input.Toggle`, `Input.ChoiceSet`, `Input.Rating`, `Rating`, `CompoundButton`, `Icon`, `Carousel`, `TabSet`, `Accordion`, `Badge`, `ProgressRing`, `ProgressBar`, `LoopComponent`, `Chart.Donut`, `Chart.Pie`, `Chart.VerticalBar.Grouped`, `Chart.VerticalBar`, `Chart.HorizontalBar`, `Chart.HorizontalBar.Stacked`, `Chart.Line`, `Chart.Gauge`, `CodeBlock`, `Persona`, `PersonaSet`, `Graph resource`, `File`, `Calendar event`, `"drop"`. | 1.2 |
 | `grid.area` | `string` | — | **Teams.** The area of a `Layout.AreaGrid` layout in which an element should be displayed. | 1.5 |
-| `height` | `string` | `"auto"` | The height of the element. With `stretch`, uses the remaining vertical space in its container. Valid values: `auto`, `stretch`. | 1.1 |
-| `horizontalAlignment` | `string` | — | Controls horizontal alignment. Valid values: `Left`, `Center`, `Right`. | 1.0 |
-| `id` | `string` | — | A unique identifier for the element or action. Inputs without an `id` will not be validated or submitted. | 1.0 |
-| `isSortKey` | `boolean` | `false` | Controls whether the element is used as a sort key by collections that support sorting. | 1.5 |
-| `isVisible` | `boolean` | `true` | Controls visibility of the element. | 1.2 |
-| `isVisible.dynamic` | `string` | — | **Preview.** Expression evaluated at runtime to update `isVisible`. | 1.5 |
-| `key` | `string` | — | Optional key for maintaining visual state in certain host scenarios. | 1.0 |
+| `height` | `string` | `"auto"` | The height of the element. When set to `stretch`, the element will use the remaining vertical space in its container. Valid values: `"auto"`, `"stretch"`. | 1.1 |
+| `horizontalAlignment` | `string` | — | Controls how the element should be horizontally aligned. Valid values: `"Left"`, `"Center"`, `"Right"`. | 1.0 |
+| `id` | `string` | — | A unique identifier for the element or action. Input elements must have an `id`, otherwise they will not be validated and their values will not be sent to the Bot. | 1.0 |
+| `isSortKey` | `boolean` | `false` | Controls whether the element should be used as a sort key by elements that allow sorting across a collection of elements. | 1.5 |
+| `isVisible` | `boolean` | `true` | Controls the visibility of the element. | 1.2 |
+| `isVisible.dynamic` | `string` | — | **Preview.** Defines an expression whose evaluated value will be used to update the `isVisible` property of the element at runtime. | 1.5 |
+| `key` | `string` | — | Defines an optional key for the object. Keys are seldom needed, but in some scenarios, specifying keys can help maintain visual state in the host application. | 1.0 |
 | `lang` | `string` | — | The locale associated with the element. | 1.1 |
-| `maxWidth` | `string` | — | **Teams.** The maximum width, in pixels, of the chart. Valid values: `<number>px`. | 1.5 |
-| `requires` | `object` | `{}` | Required host capabilities; otherwise renders the fallback if specified. Valid values: `HostCapabilities`. | 1.2 |
-| `separator` | `boolean` | `false` | Whether to display a separator above this element, except when it is the first in a container. | 1.0 |
-| `showLegend` | `boolean` | `true` | **Teams.** Controls whether the chart's legend is displayed. | 1.5 |
-| `showOutlines` | `boolean` | `true` | **Teams.** Controls whether outlines around donut segments are displayed. | 1.5 |
-| `showTitle` | `boolean` | `false` | **Teams.** Controls whether the chart's title is displayed. | 1.5 |
-| `spacing` | `string` | `"Default"` | Space between this element and the previous one (not applied to the first element). Valid values: `None`, `ExtraSmall`, `Small`, `Default`, `Medium`, `Large`, `ExtraLarge`, `Padding`. | 1.0 |
-| `targetWidth` | `string` | — | **Teams, Copilot.** Controls the card widths at which the element is displayed; omission displays at all widths. See Responsive layout. Valid values: `VeryNarrow`, `Narrow`, `Standard`, `Wide`, `atLeast:VeryNarrow`, `atMost:VeryNarrow`, `atLeast:Narrow`, `atMost:Narrow`, `atLeast:Standard`, `atMost:Standard`, `atLeast:Wide`, `atMost:Wide`. | 1.0 |
-| `thickness` | `string` | `"Thick"` | **Teams.** Thickness of the donut segments; documentation states the default is Thick. Valid values: `Thin`, `Thick`. | 1.5 |
-| `title` | `string` | — | Title of the chart. | 1.5 |
-| `value` | `string` | — | **Teams.** Value displayed in the center of a donut chart; ignored for pie charts. | 1.5 |
-| `valueColor` | `string` | — | **Teams.** Color of the value displayed in the donut center. Valid values: `good`, `warning`, `attention`, `neutral`, `categoricalRed`, `categoricalPurple`, `categoricalLavender`, `categoricalBlue`, `categoricalLightBlue`, `categoricalTeal`, `categoricalGreen`, `categoricalLime`, `categoricalMarigold`, `sequential1`, `sequential2`, `sequential3`, `sequential4`, `sequential5`, `sequential6`, `sequential7`, `sequential8`, `divergingBlue`, `divergingLightBlue`, `divergingCyan`, `divergingTeal`, `divergingYellow`, `divergingPeach`, `divergingLightRed`, `divergingRed`, `divergingMaroon`, `divergingGray`, `sequentialRed1`, `sequentialRed2`, `sequentialRed3`, `sequentialRed4`, `sequentialRed5`, `sequentialRed6`, `sequentialRed7`, `sequentialRed8`, `sequentialGreen1`, `sequentialGreen2`, `sequentialGreen3`, `sequentialGreen4`, `sequentialGreen5`, `sequentialGreen6`, `sequentialGreen7`, `sequentialGreen8`, `sequentialYellow1`, `sequentialYellow2`, `sequentialYellow3`, `sequentialYellow4`, `sequentialYellow5`, `sequentialYellow6`, `sequentialYellow7`, `sequentialYellow8`. | 1.5 |
+| `maxWidth` | `string` | — | **Teams.** The maximum width, in pixels, of the chart, in the `<number>px` format. Valid values: `"<number>px"`. | 1.5 |
+| `requires` | `object` | `{}` | A list of capabilities the element requires the host application to support. If the host application doesn't support at least one of the listed capabilities, the element is not rendered (or its fallback is rendered if provided). Valid values: `HostCapabilities`. | 1.2 |
+| `separator` | `boolean` | `false` | Controls whether a separator line should be displayed above the element to visually separate it from the previous element. No separator will be displayed for the first element in a container, even if this property is set to true. | 1.0 |
+| `showLegend` | `boolean` | `true` | **Teams.** Controls whether the chart's legend should be displayed. | 1.5 |
+| `showOutlines` | `boolean` | `true` | **Teams.** Controls whether the outlines of the donut segments are displayed. | 1.5 |
+| `showTitle` | `boolean` | `false` | **Teams.** Controls whether the chart's title should be displayed. Defaults to false. | 1.5 |
+| `spacing` | `string` | `"Default"` | Controls the amount of space between this element and the previous one. No space will be added for the first element in a container. Valid values: `"None"`, `"ExtraSmall"`, `"Small"`, `"Default"`, `"Medium"`, `"Large"`, `"ExtraLarge"`, `"Padding"`. | 1.0 |
+| `targetWidth` | `string` | — | **Teams · Copilot.** Controls for which card width the element should be displayed. If `targetWidth` isn't specified, the element is rendered at all card widths. Using `targetWidth` makes it possible to author responsive cards that adapt their layout to the available horizontal space. For more details, see **Responsive layout**. Valid values: `"VeryNarrow"`, `"Narrow"`, `"Standard"`, `"Wide"`, `"atLeast:VeryNarrow"`, `"atMost:VeryNarrow"`, `"atLeast:Narrow"`, `"atMost:Narrow"`, `"atLeast:Standard"`, `"atMost:Standard"`, `"atLeast:Wide"`, `"atMost:Wide"`. | 1.0 |
+| `thickness` | `string` | — | **Teams.** Controls the thickness of the donut segments. Default is Thick. Valid values: `"Thin"`, `"Thick"`. | 1.5 |
+| `title` | `string` | — | The title of the chart. | 1.5 |
+| `value` | `string` | — | **Teams.** The value that should be displayed in the center of a Donut chart. `value` is ignored for Pie charts. | 1.5 |
+| `valueColor` | `string` | — | **Teams.** Controls the color of the value displayed in the center of a Donut chart. Valid values: `"good"`, `"warning"`, `"attention"`, `"neutral"`, `"categoricalRed"`, `"categoricalPurple"`, `"categoricalLavender"`, `"categoricalBlue"`, `"categoricalLightBlue"`, `"categoricalTeal"`, `"categoricalGreen"`, `"categoricalLime"`, `"categoricalMarigold"`, `"sequential1"`, `"sequential2"`, `"sequential3"`, `"sequential4"`, `"sequential5"`, `"sequential6"`, `"sequential7"`, `"sequential8"`, `"divergingBlue"`, `"divergingLightBlue"`, `"divergingCyan"`, `"divergingTeal"`, `"divergingYellow"`, `"divergingPeach"`, `"divergingLightRed"`, `"divergingRed"`, `"divergingMaroon"`, `"divergingGray"`, `"sequentialRed1"`, `"sequentialRed2"`, `"sequentialRed3"`, `"sequentialRed4"`, `"sequentialRed5"`, `"sequentialRed6"`, `"sequentialRed7"`, `"sequentialRed8"`, `"sequentialGreen1"`, `"sequentialGreen2"`, `"sequentialGreen3"`, `"sequentialGreen4"`, `"sequentialGreen5"`, `"sequentialGreen6"`, `"sequentialGreen7"`, `"sequentialGreen8"`, `"sequentialYellow1"`, `"sequentialYellow2"`, `"sequentialYellow3"`, `"sequentialYellow4"`, `"sequentialYellow5"`, `"sequentialYellow6"`, `"sequentialYellow7"`, `"sequentialYellow8"`. | 1.5 |
 
 ## DonutChartData
 
@@ -99,9 +159,7 @@ A data point in a donut chart.
 
 | Name | Type | Default | Description | In version |
 | --- | --- | --- | --- | --- |
-| `color` | `string` | — | Color for the data point. See Chart colors reference. Valid values: `good`, `warning`, `attention`, `neutral`, `categoricalRed`, `categoricalPurple`, `categoricalLavender`, `categoricalBlue`, `categoricalLightBlue`, `categoricalTeal`, `categoricalGreen`, `categoricalLime`, `categoricalMarigold`, `sequential1`, `sequential2`, `sequential3`, `sequential4`, `sequential5`, `sequential6`, `sequential7`, `sequential8`, `divergingBlue`, `divergingLightBlue`, `divergingCyan`, `divergingTeal`, `divergingYellow`, `divergingPeach`, `divergingLightRed`, `divergingRed`, `divergingMaroon`, `divergingGray`, `sequentialRed1`, `sequentialRed2`, `sequentialRed3`, `sequentialRed4`, `sequentialRed5`, `sequentialRed6`, `sequentialRed7`, `sequentialRed8`, `sequentialGreen1`, `sequentialGreen2`, `sequentialGreen3`, `sequentialGreen4`, `sequentialGreen5`, `sequentialGreen6`, `sequentialGreen7`, `sequentialGreen8`, `sequentialYellow1`, `sequentialYellow2`, `sequentialYellow3`, `sequentialYellow4`, `sequentialYellow5`, `sequentialYellow6`, `sequentialYellow7`, `sequentialYellow8`. | 1.5 |
-| `value` | `number` | `0` | Value associated with the data point. | 1.5 |
-| `key` | `string` | — | Optional key, useful in some scenarios for maintaining visual state in host applications. | 1.0 |
+| `color` | `string` | — | The color to use for the data point. See **Chart colors reference**. Valid values: `"good"`, `"warning"`, `"attention"`, `"neutral"`, `"categoricalRed"`, `"categoricalPurple"`, `"categoricalLavender"`, `"categoricalBlue"`, `"categoricalLightBlue"`, `"categoricalTeal"`, `"categoricalGreen"`, `"categoricalLime"`, `"categoricalMarigold"`, `"sequential1"`, `"sequential2"`, `"sequential3"`, `"sequential4"`, `"sequential5"`, `"sequential6"`, `"sequential7"`, `"sequential8"`, `"divergingBlue"`, `"divergingLightBlue"`, `"divergingCyan"`, `"divergingTeal"`, `"divergingYellow"`, `"divergingPeach"`, `"divergingLightRed"`, `"divergingRed"`, `"divergingMaroon"`, `"divergingGray"`, `"sequentialRed1"`, `"sequentialRed2"`, `"sequentialRed3"`, `"sequentialRed4"`, `"sequentialRed5"`, `"sequentialRed6"`, `"sequentialRed7"`, `"sequentialRed8"`, `"sequentialGreen1"`, `"sequentialGreen2"`, `"sequentialGreen3"`, `"sequentialGreen4"`, `"sequentialGreen5"`, `"sequentialGreen6"`, `"sequentialGreen7"`, `"sequentialGreen8"`, `"sequentialYellow1"`, `"sequentialYellow2"`, `"sequentialYellow3"`, `"sequentialYellow4"`, `"sequentialYellow5"`, `"sequentialYellow6"`, `"sequentialYellow7"`, `"sequentialYellow8"`. | 1.5 |
+| `value` | `number` | `0` | The value associated with the data point. | 1.5 |
+| `key` | `string` | — | Defines an optional key for the object. Keys are seldom needed, but in some scenarios, specifying keys can help maintain visual state in the host application. | 1.0 |
 | `legend` | `string` | — | The legend of the chart. | 1.5 |
-
-> **Notes:** `valueColor` and `DonutChartData.color` accept the same chart color names shown above. Property names, defaults, and version information are transcribed from the supplied documentation; `thickness` has a prose-stated default of `Thick`.

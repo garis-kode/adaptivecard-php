@@ -1104,9 +1104,9 @@ Image
 | Name | Type | Default | Description | In version |
 | --- | --- | --- | --- | --- |
 | `type` | `string` | — | Must be `RichTextBlock`. | 1.0 |
-| `inlines` | `array of object` | — | The inlines making up the rich text block. Valid values: `TextRun`, `IconRun`, `ImageRun`, `CitationRun`. | 1.2 |
+| `inlines` | Array of `object` or `string` | — | The inlines making up the rich text block. Valid values: `TextRun`, `IconRun`, `ImageRun`, `CitationRun`. | 1.2 |
 | `labelFor` | `string` | — | **Teams.** The Id of the input the RichTextBlock should act as the label of. | 1.5 |
-| `fallback` | `object or string` | — | An alternate element to render if the type of this one is unsupported or if the host application doesn't support all the capabilities specified in the requires property. See valid values below. | 1.2 |
+| `fallback` | One of `object` or `string` | — | An alternate element to render if the type of this one is unsupported or if the host application doesn't support all the capabilities specified in the `requires` property. Valid values: `Container`, `ActionSet`, `ColumnSet`, `Media`, `RichTextBlock`, `Table`, `TextBlock`, `FactSet`, `ImageSet`, `Image`, `Input.Text`, `Input.Date`, `Input.Time`, `Input.Number`, `Input.Toggle`, `Input.ChoiceSet`, `Input.Rating`, `Rating`, `CompoundButton`, `Icon`, `Carousel`, `TabSet`, `Accordion`, `Badge`, `ProgressRing`, `ProgressBar`, `LoopComponent`, `Chart.Donut`, `Chart.Pie`, `Chart.VerticalBar.Grouped`, `Chart.VerticalBar`, `Chart.HorizontalBar`, `Chart.HorizontalBar.Stacked`, `Chart.Line`, `Chart.Gauge`, `CodeBlock`, `Persona`, `PersonaSet`, `Graph resource`, `File`, `Calendar event`, `"drop"`. | 1.2 |
 | `grid.area` | `string` | — | **Teams.** The area of a `Layout.AreaGrid` layout in which an element should be displayed. | 1.5 |
 | `height` | `string` | `"auto"` | The height of the element. When set to stretch, the element will use the remaining vertical space in its container. Valid values: `"auto"`, `"stretch"`. | 1.1 |
 | `horizontalAlignment` | `string` | — | Controls how the element should be horizontally aligned. Valid values: `"Left"`, `"Center"`, `"Right"`. | 1.0 |
@@ -1119,15 +1119,7 @@ Image
 | `requires` | `object` | `{}` | A list of capabilities the element requires the host application to support. If the host application doesn't support at least one of the listed capabilities, the element is not rendered (or its fallback is rendered if provided). Valid values: `HostCapabilities`. | 1.2 |
 | `separator` | `boolean` | `false` | Controls whether a separator line should be displayed above the element to visually separate it from the previous element. No separator will be displayed for the first element in a container, even if this property is set to true. | 1.0 |
 | `spacing` | `string` | `"Default"` | Controls the amount of space between this element and the previous one. No space will be added for the first element in a container. Valid values: `"None"`, `"ExtraSmall"`, `"Small"`, `"Default"`, `"Medium"`, `"Large"`, `"ExtraLarge"`, `"Padding"`. | 1.0 |
-| `targetWidth` | `string` | — | **Teams/Copilot.** Controls for which card width the element should be displayed. If targetWidth isn't specified, the element is rendered at all card widths. Using targetWidth makes it possible to author responsive cards that adapt their layout to the available horizontal space. For more details, see Responsive layout. See valid values below. | 1.0 |
-
-### Valid `fallback` values
-
-`Container`, `ActionSet`, `ColumnSet`, `Media`, `RichTextBlock`, `Table`, `TextBlock`, `FactSet`, `ImageSet`, `Image`, `Input.Text`, `Input.Date`, `Input.Time`, `Input.Number`, `Input.Toggle`, `Input.ChoiceSet`, `Input.Rating`, `Rating`, `CompoundButton`, `Icon`, `Carousel`, `TabSet`, `Accordion`, `Badge`, `ProgressRing`, `ProgressBar`, `LoopComponent`, `Chart.Donut`, `Chart.Pie`, `Chart.VerticalBar.Grouped`, `Chart.VerticalBar`, `Chart.HorizontalBar`, `Chart.HorizontalBar.Stacked`, `Chart.Line`, `Chart.Gauge`, `CodeBlock`, `Persona`, `PersonaSet`, `Graph resource`, `File`, `Calendar event`, `"drop"`.
-
-### Valid `targetWidth` values
-
-`"VeryNarrow"`, `"Narrow"`, `"Standard"`, `"Wide"`, `"atLeast:VeryNarrow"`, `"atMost:VeryNarrow"`, `"atLeast:Narrow"`, `"atMost:Narrow"`, `"atLeast:Standard"`, `"atMost:Standard"`, `"atLeast:Wide"`, `"atMost:Wide"`.
+| `targetWidth` | `string` | — | **Teams · Copilot.** Controls for which card width the element should be displayed. If `targetWidth` isn't specified, the element is rendered at all card widths. Using `targetWidth` makes it possible to author responsive cards that adapt their layout to the available horizontal space. For more details, see **Responsive layout**. Valid values: `"VeryNarrow"`, `"Narrow"`, `"Standard"`, `"Wide"`, `"atLeast:VeryNarrow"`, `"atMost:VeryNarrow"`, `"atLeast:Narrow"`, `"atMost:Narrow"`, `"atLeast:Standard"`, `"atMost:Standard"`, `"atLeast:Wide"`, `"atMost:Wide"`. | 1.0 |
 
 ---
 
@@ -1142,30 +1134,26 @@ A block of text inside a RichTextBlock element.
 | Name | Type | Default | Description | In version |
 | --- | --- | --- | --- | --- |
 | `type` | `string` | — | Must be `TextRun`. | 1.0 |
-| `highlight` | `boolean` | `false` | Controls whether the text is highlighted. | 1.2 |
-| `italic` | `boolean` | `false` | Controls whether text is italicized. | 1.2 |
-| `strikethrough` | `boolean` | `false` | Controls whether text is struck through. | 1.2 |
-| `underline` | `boolean` | `false` | Controls whether text is underlined. | 1.3 |
-| `color` | `string` | — | Text color. Valid values: `Default`, `Dark`, `Light`, `Accent`, `Good`, `Warning`, `Attention`. | 1.0 |
-| `fallback` | `object or string` | — | Alternate element if unsupported. See valid values below. | 1.2 |
-| `fontType` | `string` | — | Font type. Valid values: `Default`, `Monospace`. | 1.2 |
-| `grid.area` | `string` | — | **Teams.** Area of a `Layout.AreaGrid` layout. | 1.5 |
-| `id` | `string` | — | Unique identifier; required for input elements to be validated and submitted. | 1.0 |
-| `isSortKey` | `boolean` | `false` | Whether the element is used as a collection sort key. | 1.5 |
-| `isSubtle` | `boolean` | — | Controls whether text is rendered in a subtler variant of the selected color. | 1.0 |
-| `isVisible` | `boolean` | `true` | Controls visibility. | 1.2 |
-| `isVisible.dynamic` | `string` | — | **Preview.** Expression used to update isVisible at runtime. | 1.5 |
-| `key` | `string` | — | Optional key that can help maintain visual state. | 1.0 |
-| `lang` | `string` | — | Locale associated with the element. | 1.1 |
-| `selectAction` | `object` | — | Action invoked on click/tap; `Action.ShowCard` unsupported. Valid values: `Action.Execute`, `Action.InsertImage`, `Action.OpenUrl`, `Action.OpenUrlDialog`, `Action.Popover`, `Action.ResetInputs`, `Action.RunCommands`, `Action.Submit`, `Action.ToggleVisibility`. | 1.1 |
-| `size` | `string` | — | Text size. Valid values: `Small`, `Default`, `Medium`, `Large`, `ExtraLarge`. | 1.0 |
-| `text` | `string` | — | Text to display; a subset of Markdown is supported. | 1.0 |
-| `text.dynamic` | `string` | — | **Preview.** Expression to update text at runtime. | 1.5 |
-| `weight` | `string` | — | Text weight. Valid values: `Lighter`, `Default`, `Bolder`. | 1.0 |
-
-### Valid `fallback` values
-
-`Container`, `ActionSet`, `ColumnSet`, `Media`, `RichTextBlock`, `Table`, `TextBlock`, `FactSet`, `ImageSet`, `Image`, `Input.Text`, `Input.Date`, `Input.Time`, `Input.Number`, `Input.Toggle`, `Input.ChoiceSet`, `Input.Rating`, `Rating`, `CompoundButton`, `Icon`, `Carousel`, `TabSet`, `Accordion`, `Badge`, `ProgressRing`, `ProgressBar`, `LoopComponent`, `Chart.Donut`, `Chart.Pie`, `Chart.VerticalBar.Grouped`, `Chart.VerticalBar`, `Chart.HorizontalBar`, `Chart.HorizontalBar.Stacked`, `Chart.Line`, `Chart.Gauge`, `CodeBlock`, `Persona`, `PersonaSet`, `Graph resource`, `File`, `Calendar event`, `"drop"`.
+| `highlight` | `boolean` | `false` | Controls if the text should be highlighted. | 1.2 |
+| `italic` | `boolean` | `false` | Controls if the text should be italicized. | 1.2 |
+| `strikethrough` | `boolean` | `false` | Controls if the text should be struck through. | 1.2 |
+| `underline` | `boolean` | `false` | Controls if the text should be underlined. | 1.3 |
+| `color` | `string` | — | The color of the text. Valid values: `"Default"`, `"Dark"`, `"Light"`, `"Accent"`, `"Good"`, `"Warning"`, `"Attention"`. | 1.0 |
+| `fallback` | One of `object` or `string` | — | An alternate element to render if the type of this one is unsupported or if the host application doesn't support all the capabilities specified in the `requires` property. Valid values: `Container`, `ActionSet`, `ColumnSet`, `Media`, `RichTextBlock`, `Table`, `TextBlock`, `FactSet`, `ImageSet`, `Image`, `Input.Text`, `Input.Date`, `Input.Time`, `Input.Number`, `Input.Toggle`, `Input.ChoiceSet`, `Input.Rating`, `Rating`, `CompoundButton`, `Icon`, `Carousel`, `TabSet`, `Accordion`, `Badge`, `ProgressRing`, `ProgressBar`, `LoopComponent`, `Chart.Donut`, `Chart.Pie`, `Chart.VerticalBar.Grouped`, `Chart.VerticalBar`, `Chart.HorizontalBar`, `Chart.HorizontalBar.Stacked`, `Chart.Line`, `Chart.Gauge`, `CodeBlock`, `Persona`, `PersonaSet`, `Graph resource`, `File`, `Calendar event`, `"drop"`. | 1.2 |
+| `fontType` | `string` | — | The type of font to use for rendering. Valid values: `"Default"`, `"Monospace"`. | 1.2 |
+| `grid.area` | `string` | — | **Teams.** The area of a `Layout.AreaGrid` layout in which an element should be displayed. | 1.5 |
+| `id` | `string` | — | A unique identifier for the element or action. Input elements must have an `id`, otherwise they will not be validated and their values will not be sent to the Bot. | 1.0 |
+| `isSortKey` | `boolean` | `false` | Controls whether the element should be used as a sort key by elements that allow sorting across a collection of elements. | 1.5 |
+| `isSubtle` | `boolean` | — | Controls whether the text should be renderer using a subtler variant of the select color. | 1.0 |
+| `isVisible` | `boolean` | `true` | Controls the visibility of the element. | 1.2 |
+| `isVisible.dynamic` | `string` | — | **Preview.** Defines an expression whose evaluated value will be used to update the `isVisible` property of the element at runtime. | 1.5 |
+| `key` | `string` | — | Defines an optional key for the object. Keys are seldom needed, but in some scenarios, specifying keys can help maintain visual state in the host application. | 1.0 |
+| `lang` | `string` | — | The locale associated with the element. | 1.1 |
+| `selectAction` | `object` | — | An Action that will be invoked when the text is tapped or clicked. `Action.ShowCard` is not supported. Valid values: `Action.Execute`, `Action.InsertImage`, `Action.OpenUrl`, `Action.OpenUrlDialog`, `Action.Popover`, `Action.ResetInputs`, `Action.RunCommands`, `Action.Submit`, `Action.ToggleVisibility`. | 1.1 |
+| `size` | `string` | — | The size of the text. Valid values: `"Small"`, `"Default"`, `"Medium"`, `"Large"`, `"ExtraLarge"`. | 1.0 |
+| `text` | `string` | — | The text to display. A subset of markdown is supported. | 1.0 |
+| `text.dynamic` | `string` | — | **Preview.** Defines an expression whose evaluated value will be used to update the `text` property of the TextBlock at runtime. | 1.5 |
+| `weight` | `string` | — | The weight of the text. Valid values: `"Lighter"`, `"Default"`, `"Bolder"`. | 1.0 |
 
 ---
 
@@ -1180,23 +1168,19 @@ An inline icon inside a RichTextBlock element.
 | Name | Type | Default | Description | In version |
 | --- | --- | --- | --- | --- |
 | `type` | `string` | — | Must be `IconRun`. | 1.0 |
-| `color` | `string` | `"Default"` | Icon color. Valid values: `Default`, `Dark`, `Light`, `Accent`, `Good`, `Warning`, `Attention`. | 1.5 |
-| `name` | `string` | — | Name of the inline icon. | 1.5 |
-| `selectAction` | `object` | — | Action invoked on click/tap; `Action.ShowCard` unsupported. Valid values: `Action.Execute`, `Action.InsertImage`, `Action.OpenUrl`, `Action.OpenUrlDialog`, `Action.Popover`, `Action.ResetInputs`, `Action.RunCommands`, `Action.Submit`, `Action.ToggleVisibility`. | 1.5 |
-| `size` | `string` | `"Default"` | Valid values: `Small`, `Default`, `Medium`, `Large`, `ExtraLarge`. | 1.5 |
-| `style` | `string` | `"Regular"` | Valid values: `Regular`, `Filled`. | 1.5 |
-| `fallback` | `object or string` | — | Alternate element if unsupported. See valid values below. | 1.2 |
-| `grid.area` | `string` | — | **Teams.** Area of a `Layout.AreaGrid` layout. | 1.5 |
-| `id` | `string` | — | Unique identifier; required for input elements to be validated and submitted. | 1.0 |
-| `isSortKey` | `boolean` | `false` | Whether the element is used as a collection sort key. | 1.5 |
-| `isVisible` | `boolean` | `true` | Controls visibility. | 1.2 |
-| `isVisible.dynamic` | `string` | — | **Preview.** Expression used to update isVisible at runtime. | 1.5 |
-| `key` | `string` | — | Optional key that can help maintain visual state. | 1.0 |
-| `lang` | `string` | — | Locale associated with the element. | 1.1 |
-
-### Valid `fallback` values
-
-`Container`, `ActionSet`, `ColumnSet`, `Media`, `RichTextBlock`, `Table`, `TextBlock`, `FactSet`, `ImageSet`, `Image`, `Input.Text`, `Input.Date`, `Input.Time`, `Input.Number`, `Input.Toggle`, `Input.ChoiceSet`, `Input.Rating`, `Rating`, `CompoundButton`, `Icon`, `Carousel`, `TabSet`, `Accordion`, `Badge`, `ProgressRing`, `ProgressBar`, `LoopComponent`, `Chart.Donut`, `Chart.Pie`, `Chart.VerticalBar.Grouped`, `Chart.VerticalBar`, `Chart.HorizontalBar`, `Chart.HorizontalBar.Stacked`, `Chart.Line`, `Chart.Gauge`, `CodeBlock`, `Persona`, `PersonaSet`, `Graph resource`, `File`, `Calendar event`, `"drop"`.
+| `color` | `string` | `"Default"` | The color of the inline icon. Valid values: `"Default"`, `"Dark"`, `"Light"`, `"Accent"`, `"Good"`, `"Warning"`, `"Attention"`. | 1.5 |
+| `name` | `string` | — | The name of the inline icon to display. | 1.5 |
+| `selectAction` | `object` | — | An Action that will be invoked when the inline icon is tapped or clicked. `Action.ShowCard` is not supported. Valid values: `Action.Execute`, `Action.InsertImage`, `Action.OpenUrl`, `Action.OpenUrlDialog`, `Action.Popover`, `Action.ResetInputs`, `Action.RunCommands`, `Action.Submit`, `Action.ToggleVisibility`. | 1.5 |
+| `size` | `string` | `"Default"` | The size of the inline icon. Valid values: `"Small"`, `"Default"`, `"Medium"`, `"Large"`, `"ExtraLarge"`. | 1.5 |
+| `style` | `string` | `"Regular"` | The style of the inline icon. Valid values: `"Regular"`, `"Filled"`. | 1.5 |
+| `fallback` | One of `object` or `string` | — | An alternate element to render if the type of this one is unsupported or if the host application doesn't support all the capabilities specified in the `requires` property. Valid values: `Container`, `ActionSet`, `ColumnSet`, `Media`, `RichTextBlock`, `Table`, `TextBlock`, `FactSet`, `ImageSet`, `Image`, `Input.Text`, `Input.Date`, `Input.Time`, `Input.Number`, `Input.Toggle`, `Input.ChoiceSet`, `Input.Rating`, `Rating`, `CompoundButton`, `Icon`, `Carousel`, `TabSet`, `Accordion`, `Badge`, `ProgressRing`, `ProgressBar`, `LoopComponent`, `Chart.Donut`, `Chart.Pie`, `Chart.VerticalBar.Grouped`, `Chart.VerticalBar`, `Chart.HorizontalBar`, `Chart.HorizontalBar.Stacked`, `Chart.Line`, `Chart.Gauge`, `CodeBlock`, `Persona`, `PersonaSet`, `Graph resource`, `File`, `Calendar event`, `"drop"`. | 1.2 |
+| `grid.area` | `string` | — | **Teams.** The area of a `Layout.AreaGrid` layout in which an element should be displayed. | 1.5 |
+| `id` | `string` | — | A unique identifier for the element or action. Input elements must have an `id`, otherwise they will not be validated and their values will not be sent to the Bot. | 1.0 |
+| `isSortKey` | `boolean` | `false` | Controls whether the element should be used as a sort key by elements that allow sorting across a collection of elements. | 1.5 |
+| `isVisible` | `boolean` | `true` | Controls the visibility of the element. | 1.2 |
+| `isVisible.dynamic` | `string` | — | **Preview.** Defines an expression whose evaluated value will be used to update the `isVisible` property of the element at runtime. | 1.5 |
+| `key` | `string` | — | Defines an optional key for the object. Keys are seldom needed, but in some scenarios, specifying keys can help maintain visual state in the host application. | 1.0 |
+| `lang` | `string` | — | The locale associated with the element. | 1.1 |
 
 ---
 
@@ -1211,20 +1195,16 @@ An inline image inside a RichTextBlock element.
 | Name | Type | Default | Description | In version |
 | --- | --- | --- | --- | --- |
 | `type` | `string` | — | Must be `ImageRun`. | 1.0 |
-| `selectAction` | `object` | — | Action invoked on click/tap; `Action.ShowCard` unsupported. Valid values: `Action.Execute`, `Action.InsertImage`, `Action.OpenUrl`, `Action.OpenUrlDialog`, `Action.Popover`, `Action.ResetInputs`, `Action.RunCommands`, `Action.Submit`, `Action.ToggleVisibility`. | 1.5 |
-| `size` | `string` | `"Default"` | Valid values: `Small`, `Default`, `Medium`, `Large`, `ExtraLarge`. | 1.5 |
-| `style` | `string` | `"Default"` | Valid values: `Default`, `Person`, `RoundedCorners`. | 1.5 |
-| `themedUrls` | `array of objects` | — | Theme-specific image URLs. Valid values: `ThemedUrl`. | 1.5 |
-| `url` | `string` | — | Image URL or Base64 Data URI. Supported formats: PNG, JPEG, GIF, SVG. | 1.5 |
-| `fallback` | `object or string` | — | Alternate element if unsupported. See valid values below. | 1.2 |
-| `grid.area` | `string` | — | **Teams.** Area of a `Layout.AreaGrid` layout. | 1.5 |
-| `id` | `string` | — | Unique identifier; required for input elements to be validated and submitted. | 1.0 |
-| `isSortKey` | `boolean` | `false` | Whether the element is used as a collection sort key. | 1.5 |
-| `isVisible` | `boolean` | `true` | Controls visibility. | 1.2 |
-| `isVisible.dynamic` | `string` | — | **Preview.** Expression used to update isVisible at runtime. | 1.5 |
-| `key` | `string` | — | Optional key that can help maintain visual state. | 1.0 |
-| `lang` | `string` | — | Locale associated with the element. | 1.1 |
-
-### Valid `fallback` values
-
-`Container`, `ActionSet`, `ColumnSet`, `Media`, `RichTextBlock`, `Table`, `TextBlock`, `FactSet`, `ImageSet`, `Image`, `Input.Text`, `Input.Date`, `Input.Time`, `Input.Number`, `Input.Toggle`, `Input.ChoiceSet`, `Input.Rating`, `Rating`, `CompoundButton`, `Icon`, `Carousel`, `TabSet`, `Accordion`, `Badge`, `ProgressRing`, `ProgressBar`, `LoopComponent`, `Chart.Donut`, `Chart.Pie`, `Chart.VerticalBar.Grouped`, `Chart.VerticalBar`, `Chart.HorizontalBar`, `Chart.HorizontalBar.Stacked`, `Chart.Line`, `Chart.Gauge`, `CodeBlock`, `Persona`, `PersonaSet`, `Graph resource`, `File`, `Calendar event`, `"drop"`.
+| `selectAction` | `object` | — | An Action that will be invoked when the image is tapped or clicked. `Action.ShowCard` is not supported. Valid values: `Action.Execute`, `Action.InsertImage`, `Action.OpenUrl`, `Action.OpenUrlDialog`, `Action.Popover`, `Action.ResetInputs`, `Action.RunCommands`, `Action.Submit`, `Action.ToggleVisibility`. | 1.5 |
+| `size` | `string` | `"Default"` | The size of the inline image. Valid values: `"Small"`, `"Default"`, `"Medium"`, `"Large"`, `"ExtraLarge"`. | 1.5 |
+| `style` | `string` | `"Default"` | The style of the inline image. Valid values: `"Default"`, `"Person"`, `"RoundedCorners"`. | 1.5 |
+| `themedUrls` | Array of `object` | — | A set of theme-specific image URLs. Valid values: `ThemedUrl`. | 1.5 |
+| `url` | `string` | — | The URL (or Base64-encoded Data URI) of the image. Acceptable formats are PNG, JPEG, GIF and SVG. | 1.5 |
+| `fallback` | One of `object` or `string` | — | An alternate element to render if the type of this one is unsupported or if the host application doesn't support all the capabilities specified in the `requires` property. Valid values: `Container`, `ActionSet`, `ColumnSet`, `Media`, `RichTextBlock`, `Table`, `TextBlock`, `FactSet`, `ImageSet`, `Image`, `Input.Text`, `Input.Date`, `Input.Time`, `Input.Number`, `Input.Toggle`, `Input.ChoiceSet`, `Input.Rating`, `Rating`, `CompoundButton`, `Icon`, `Carousel`, `TabSet`, `Accordion`, `Badge`, `ProgressRing`, `ProgressBar`, `LoopComponent`, `Chart.Donut`, `Chart.Pie`, `Chart.VerticalBar.Grouped`, `Chart.VerticalBar`, `Chart.HorizontalBar`, `Chart.HorizontalBar.Stacked`, `Chart.Line`, `Chart.Gauge`, `CodeBlock`, `Persona`, `PersonaSet`, `Graph resource`, `File`, `Calendar event`, `"drop"`. | 1.2 |
+| `grid.area` | `string` | — | **Teams.** The area of a `Layout.AreaGrid` layout in which an element should be displayed. | 1.5 |
+| `id` | `string` | — | A unique identifier for the element or action. Input elements must have an `id`, otherwise they will not be validated and their values will not be sent to the Bot. | 1.0 |
+| `isSortKey` | `boolean` | `false` | Controls whether the element should be used as a sort key by elements that allow sorting across a collection of elements. | 1.5 |
+| `isVisible` | `boolean` | `true` | Controls the visibility of the element. | 1.2 |
+| `isVisible.dynamic` | `string` | — | **Preview.** Defines an expression whose evaluated value will be used to update the `isVisible` property of the element at runtime. | 1.5 |
+| `key` | `string` | — | Defines an optional key for the object. Keys are seldom needed, but in some scenarios, specifying keys can help maintain visual state in the host application. | 1.0 |
+| `lang` | `string` | — | The locale associated with the element. | 1.1 |

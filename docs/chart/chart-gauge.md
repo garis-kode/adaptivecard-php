@@ -61,47 +61,35 @@ A gauge chart.
 
 | Name | Type | Default | Description | In version |
 | --- | --- | --- | --- | --- |
-| `type` | string | — | Must be `Chart.Gauge`. | 1.0 |
-| `colorSet` | `string` | — | Name of the color set used to render the chart. See Chart colors reference. Valid values: `categorical`, `sequential`, `sequentialred`, `sequentialgreen`, `sequentialyellow`, `diverging`. | 1.5 |
-| `fallback` | `object` or `string` | — | Alternate element if the type or required capabilities are unsupported. See [Valid `fallback` values](#valid-fallback-values). | 1.2 |
-| `grid.area` | `string` | — | **Teams.** Area of a `Layout.AreaGrid` layout where the element is displayed. | 1.5 |
-| `height` | `string` | `"auto"` | Element height; `stretch` uses remaining vertical space. Valid values: `auto`, `stretch`. | 1.1 |
-| `horizontalAlignment` | `string` | — | Horizontal alignment. Valid values: `Left`, `Center`, `Right`. | 1.0 |
-| `id` | `string` | — | Unique element/action identifier. Input elements require an ID for validation and submission to the Bot. | 1.0 |
-| `isSortKey` | `boolean` | `false` | Whether the element is used as a sort key by sortable collections. | 1.5 |
-| `isVisible` | `boolean` | `true` | Controls visibility. | 1.2 |
-| `isVisible.dynamic` | `string` | — | **Preview.** Expression evaluated at runtime to update `isVisible`. | 1.5 |
-| `key` | `string` | — | Optional object key; can help maintain visual state in some hosts. | 1.0 |
-| `lang` | `string` | — | Locale associated with the element. | 1.1 |
-| `max` | `number` | — | Maximum value of the gauge. | 1.5 |
-| `maxWidth` | `string` | — | **Teams.** Maximum chart width in pixels, formatted as `<number>px`. | 1.5 |
-| `min` | `number` | `0` | Minimum value of the gauge. | 1.5 |
-| `requires` | `object` | `{}` | Required host capabilities (`HostCapabilities`). If not supported, the element is hidden or its fallback is rendered. | 1.2 |
-| `segments` | `array of objects` | — | Gauge segments (`GaugeChartLegend`). | 1.5 |
-| `separator` | `boolean` | `false` | Displays a separating line above the element, except for the first element in a container. | 1.0 |
-| `showLegend` | `boolean` | `true` | **Teams.** Whether to display the chart legend. | 1.5 |
-| `showMinMax` | `boolean` | `true` | Whether to display minimum and maximum values. | 1.5 |
-| `showNeedle` | `boolean` | `true` | **Teams.** Whether to display the gauge needle. | 1.5 |
-| `showOutlines` | `boolean` | `true` | **Teams.** Whether to display segment outlines. | 1.5 |
-| `showTitle` | `boolean` | `false` | **Teams.** Whether to display the chart title. | 1.5 |
-| `spacing` | `string` | `"Default"` | Space before the element (not applied to the first element). Valid values: `None`, `ExtraSmall`, `Small`, `Default`, `Medium`, `Large`, `ExtraLarge`, `Padding`. | 1.0 |
-| `subLabel` | `string` | — | Gauge sub-label. | 1.5 |
-| `targetWidth` | `string` | — | **Teams, Copilot.** Responsive card-width condition; otherwise displayed at all widths. See [Valid `targetWidth` values](#valid-targetwidth-values). | 1.0 |
-| `title` | `string` | — | Chart title. | 1.5 |
-| `value` | `number` | `0` | Gauge value. | 1.5 |
-| `valueFormat` | `string` | `"Percentage"` | Display format. Valid values: `Percentage`, `Fraction`. | 1.5 |
-
-## Valid values
-
-### Valid `fallback` values
-
-`fallback` accepts an alternate element of one of these types, or `"drop"`:
-
-`Container`, `ActionSet`, `ColumnSet`, `Media`, `RichTextBlock`, `Table`, `TextBlock`, `FactSet`, `ImageSet`, `Image`, `Input.Text`, `Input.Date`, `Input.Time`, `Input.Number`, `Input.Toggle`, `Input.ChoiceSet`, `Input.Rating`, `Rating`, `CompoundButton`, `Icon`, `Carousel`, `TabSet`, `Accordion`, `Badge`, `ProgressRing`, `ProgressBar`, `LoopComponent`, `Chart.Donut`, `Chart.Pie`, `Chart.VerticalBar.Grouped`, `Chart.VerticalBar`, `Chart.HorizontalBar`, `Chart.HorizontalBar.Stacked`, `Chart.Line`, `Chart.Gauge`, `CodeBlock`, `Persona`, `PersonaSet`, `Graph resource`, `File`, `Calendar event`.
-
-### Valid `targetWidth` values
-
-`VeryNarrow`, `Narrow`, `Standard`, `Wide`, `atLeast:VeryNarrow`, `atMost:VeryNarrow`, `atLeast:Narrow`, `atMost:Narrow`, `atLeast:Standard`, `atMost:Standard`, `atLeast:Wide`, `atMost:Wide`.
+| `type` | `string` | — | Must be `Chart.Gauge`. | 1.0 |
+| `colorSet` | `string` | — | The name of the set of colors to use to render the chart. See **Chart colors reference**. Valid values: `"categorical"`, `"sequential"`, `"sequentialred"`, `"sequentialgreen"`, `"sequentialyellow"`, `"diverging"`. | 1.5 |
+| `fallback` | One of `object` or `string` | — | An alternate element to render if the type of this one is unsupported or if the host application doesn't support all the capabilities specified in the `requires` property. Valid values: `Container`, `ActionSet`, `ColumnSet`, `Media`, `RichTextBlock`, `Table`, `TextBlock`, `FactSet`, `ImageSet`, `Image`, `Input.Text`, `Input.Date`, `Input.Time`, `Input.Number`, `Input.Toggle`, `Input.ChoiceSet`, `Input.Rating`, `Rating`, `CompoundButton`, `Icon`, `Carousel`, `TabSet`, `Accordion`, `Badge`, `ProgressRing`, `ProgressBar`, `LoopComponent`, `Chart.Donut`, `Chart.Pie`, `Chart.VerticalBar.Grouped`, `Chart.VerticalBar`, `Chart.HorizontalBar`, `Chart.HorizontalBar.Stacked`, `Chart.Line`, `Chart.Gauge`, `CodeBlock`, `Persona`, `PersonaSet`, `Graph resource`, `File`, `Calendar event`, `"drop"`. | 1.2 |
+| `grid.area` | `string` | — | **Teams.** The area of a `Layout.AreaGrid` layout in which an element should be displayed. | 1.5 |
+| `height` | `string` | `"auto"` | The height of the element. When set to `stretch`, the element will use the remaining vertical space in its container. Valid values: `"auto"`, `"stretch"`. | 1.1 |
+| `horizontalAlignment` | `string` | — | Controls how the element should be horizontally aligned. Valid values: `"Left"`, `"Center"`, `"Right"`. | 1.0 |
+| `id` | `string` | — | A unique identifier for the element or action. Input elements must have an `id`, otherwise they will not be validated and their values will not be sent to the Bot. | 1.0 |
+| `isSortKey` | `boolean` | `false` | Controls whether the element should be used as a sort key by elements that allow sorting across a collection of elements. | 1.5 |
+| `isVisible` | `boolean` | `true` | Controls the visibility of the element. | 1.2 |
+| `isVisible.dynamic` | `string` | — | **Preview.** Defines an expression whose evaluated value will be used to update the `isVisible` property of the element at runtime. | 1.5 |
+| `key` | `string` | — | Defines an optional key for the object. Keys are seldom needed, but in some scenarios, specifying keys can help maintain visual state in the host application. | 1.0 |
+| `lang` | `string` | — | The locale associated with the element. | 1.1 |
+| `max` | `number` | — | The maximum value of the gauge. | 1.5 |
+| `maxWidth` | `string` | — | **Teams.** The maximum width, in pixels, of the chart, in the `<number>px` format. Valid values: `"<number>px"`. | 1.5 |
+| `min` | `number` | `0` | The minimum value of the gauge. | 1.5 |
+| `requires` | `object` | `{}` | A list of capabilities the element requires the host application to support. If the host application doesn't support at least one of the listed capabilities, the element is not rendered (or its fallback is rendered if provided). Valid values: `HostCapabilities`. | 1.2 |
+| `segments` | Array of `object` | — | The segments to display in the gauge. Valid values: `GaugeChartLegend`. | 1.5 |
+| `separator` | `boolean` | `false` | Controls whether a separator line should be displayed above the element to visually separate it from the previous element. No separator will be displayed for the first element in a container, even if this property is set to true. | 1.0 |
+| `showLegend` | `boolean` | `true` | **Teams.** Controls whether the chart's legend should be displayed. | 1.5 |
+| `showMinMax` | `boolean` | `true` | Controls whether the min/max values should be displayed. | 1.5 |
+| `showNeedle` | `boolean` | `true` | **Teams.** Controls whether the gauge's needle is displayed. Default is true. | 1.5 |
+| `showOutlines` | `boolean` | `true` | **Teams.** Controls whether the outlines of the gauge segments are displayed. | 1.5 |
+| `showTitle` | `boolean` | `false` | **Teams.** Controls whether the chart's title should be displayed. Defaults to false. | 1.5 |
+| `spacing` | `string` | `"Default"` | Controls the amount of space between this element and the previous one. No space will be added for the first element in a container. Valid values: `"None"`, `"ExtraSmall"`, `"Small"`, `"Default"`, `"Medium"`, `"Large"`, `"ExtraLarge"`, `"Padding"`. | 1.0 |
+| `subLabel` | `string` | — | The sub-label of the gauge. | 1.5 |
+| `targetWidth` | `string` | — | **Teams · Copilot.** Controls for which card width the element should be displayed. If `targetWidth` isn't specified, the element is rendered at all card widths. Using `targetWidth` makes it possible to author responsive cards that adapt their layout to the available horizontal space. For more details, see **Responsive layout**. Valid values: `"VeryNarrow"`, `"Narrow"`, `"Standard"`, `"Wide"`, `"atLeast:VeryNarrow"`, `"atMost:VeryNarrow"`, `"atLeast:Narrow"`, `"atMost:Narrow"`, `"atLeast:Standard"`, `"atMost:Standard"`, `"atLeast:Wide"`, `"atMost:Wide"`. | 1.0 |
+| `title` | `string` | — | The title of the chart. | 1.5 |
+| `value` | `number` | `0` | The value of the gauge. | 1.5 |
+| `valueFormat` | `string` | `"Percentage"` | The format used to display the gauge's value. Valid values: `"Percentage"`, `"Fraction"`. | 1.5 |
 
 ## GaugeChartLegend
 
@@ -113,17 +101,7 @@ The legend of the chart.
 
 | Name | Type | Default | Description | In version |
 | --- | --- | --- | --- | --- |
-| `color` | `string` | — | Segment color. See Chart colors reference and [Chart colors](#chart-colors). | 1.5 |
-| `legend` | `string` | — | Legend text associated with the segment. | 1.5 |
-| `size` | `number` | `0` | Size of the segment. | 1.5 |
-| `key` | `string` | — | Optional object key; can help maintain visual state in some hosts. | 1.0 |
-
-### Chart colors
-
-- **Semantic:** `good`, `warning`, `attention`, `neutral`
-- **Categorical:** `categoricalRed`, `categoricalPurple`, `categoricalLavender`, `categoricalBlue`, `categoricalLightBlue`, `categoricalTeal`, `categoricalGreen`, `categoricalLime`, `categoricalMarigold`
-- **Sequential:** `sequential1`, `sequential2`, `sequential3`, `sequential4`, `sequential5`, `sequential6`, `sequential7`, `sequential8`
-- **Diverging:** `divergingBlue`, `divergingLightBlue`, `divergingCyan`, `divergingTeal`, `divergingYellow`, `divergingPeach`, `divergingLightRed`, `divergingRed`, `divergingMaroon`, `divergingGray`
-- **Sequential red:** `sequentialRed1`, `sequentialRed2`, `sequentialRed3`, `sequentialRed4`, `sequentialRed5`, `sequentialRed6`, `sequentialRed7`, `sequentialRed8`
-- **Sequential green:** `sequentialGreen1`, `sequentialGreen2`, `sequentialGreen3`, `sequentialGreen4`, `sequentialGreen5`, `sequentialGreen6`, `sequentialGreen7`, `sequentialGreen8`
-- **Sequential yellow:** `sequentialYellow1`, `sequentialYellow2`, `sequentialYellow3`, `sequentialYellow4`, `sequentialYellow5`, `sequentialYellow6`, `sequentialYellow7`, `sequentialYellow8`
+| `color` | `string` | — | The color to use for the segment. See **Chart colors reference**. Valid values: `"good"`, `"warning"`, `"attention"`, `"neutral"`, `"categoricalRed"`, `"categoricalPurple"`, `"categoricalLavender"`, `"categoricalBlue"`, `"categoricalLightBlue"`, `"categoricalTeal"`, `"categoricalGreen"`, `"categoricalLime"`, `"categoricalMarigold"`, `"sequential1"`, `"sequential2"`, `"sequential3"`, `"sequential4"`, `"sequential5"`, `"sequential6"`, `"sequential7"`, `"sequential8"`, `"divergingBlue"`, `"divergingLightBlue"`, `"divergingCyan"`, `"divergingTeal"`, `"divergingYellow"`, `"divergingPeach"`, `"divergingLightRed"`, `"divergingRed"`, `"divergingMaroon"`, `"divergingGray"`, `"sequentialRed1"`, `"sequentialRed2"`, `"sequentialRed3"`, `"sequentialRed4"`, `"sequentialRed5"`, `"sequentialRed6"`, `"sequentialRed7"`, `"sequentialRed8"`, `"sequentialGreen1"`, `"sequentialGreen2"`, `"sequentialGreen3"`, `"sequentialGreen4"`, `"sequentialGreen5"`, `"sequentialGreen6"`, `"sequentialGreen7"`, `"sequentialGreen8"`, `"sequentialYellow1"`, `"sequentialYellow2"`, `"sequentialYellow3"`, `"sequentialYellow4"`, `"sequentialYellow5"`, `"sequentialYellow6"`, `"sequentialYellow7"`, `"sequentialYellow8"`. | 1.5 |
+| `legend` | `string` | — | The legend text associated with the segment. | 1.5 |
+| `size` | `number` | `0` | The size of the segment. | 1.5 |
+| `key` | `string` | — | Defines an optional key for the object. Keys are seldom needed, but in some scenarios, specifying keys can help maintain visual state in the host application. | 1.0 |

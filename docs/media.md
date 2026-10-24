@@ -53,35 +53,23 @@ A media element that makes it possible to embed videos inside a card.
 | Name | Type | Default | Description | In version |
 | --- | --- | --- | --- | --- |
 | `type` | `string` | — | Must be `Media`. | 1.0 |
-| `altText` | `string` | — | Alternate text for accessibility. | 1.1 |
-| `captionSources` | `array of objects` | — | Caption sources for the media. Not used for YouTube, Dailymotion, or Vimeo sources. Valid value: `CaptionSource`. | 1.6 |
-| `fallback` | `object or string` | — | Alternate element if the element or required capabilities are unsupported. See supported fallback values below. | 1.2 |
-| `grid.area` | `string` | — | **Teams.** Area in a `Layout.AreaGrid` layout where the element is displayed. | 1.5 |
-| `height` | `string` | `"auto"` | Height of the element; `stretch` uses remaining vertical space. Valid values: `auto`, `stretch`. | 1.1 |
-| `id` | `string` | — | Unique identifier for the element or action. Input elements must have an ID to be validated and sent to the bot. | 1.0 |
-| `isSortKey` | `boolean` | `false` | Whether the element is used as a sort key by collections that support sorting. | 1.5 |
-| `isVisible` | `boolean` | `true` | Controls visibility. | 1.2 |
-| `isVisible.dynamic` | `string` | — | **Preview.** Expression evaluated at runtime to update `isVisible`. | 1.5 |
-| `key` | `string` | — | Optional object key, occasionally useful for maintaining visual state. | 1.0 |
-| `lang` | `string` | — | Locale associated with the element. | 1.1 |
-| `poster` | `string` | — | URL of the poster image to display. | 1.1 |
-| `requires` | `object` | `{}` | Required host capabilities. If unsupported, the element is not rendered or its fallback is rendered. Valid value: `HostCapabilities`. | 1.2 |
-| `separator` | `boolean` | `false` | Displays a separator above the element, except when first in a container. | 1.0 |
-| `sources` | `array of objects` | — | Media sources. Only one source can be specified for YouTube, Dailymotion, and Vimeo. Valid value: `MediaSource`. | 1.1 |
-| `spacing` | `string` | `"Default"` | Space between this and preceding element; none for the first element. See values below. | 1.0 |
-| `targetWidth` | `string` | — | **Teams/Copilot.** Restricts which card widths display the element; unspecified means all widths. See values below. | 1.0 |
-
-### Valid `fallback` values
-
-`Container`, `ActionSet`, `ColumnSet`, `Media`, `RichTextBlock`, `Table`, `TextBlock`, `FactSet`, `ImageSet`, `Image`, `Input.Text`, `Input.Date`, `Input.Time`, `Input.Number`, `Input.Toggle`, `Input.ChoiceSet`, `Input.Rating`, `Rating`, `CompoundButton`, `Icon`, `Carousel`, `TabSet`, `Accordion`, `Badge`, `ProgressRing`, `ProgressBar`, `LoopComponent`, `Chart.Donut`, `Chart.Pie`, `Chart.VerticalBar.Grouped`, `Chart.VerticalBar`, `Chart.HorizontalBar`, `Chart.HorizontalBar.Stacked`, `Chart.Line`, `Chart.Gauge`, `CodeBlock`, `Persona`, `PersonaSet`, `Graph resource`, `File`, `Calendar event`, `"drop"`.
-
-### Valid `spacing` values
-
-`None`, `ExtraSmall`, `Small`, `Default`, `Medium`, `Large`, `ExtraLarge`, `Padding`.
-
-### Valid `targetWidth` values
-
-`VeryNarrow`, `Narrow`, `Standard`, `Wide`, `atLeast:VeryNarrow`, `atMost:VeryNarrow`, `atLeast:Narrow`, `atMost:Narrow`, `atLeast:Standard`, `atMost:Standard`, `atLeast:Wide`, `atMost:Wide`.
+| `altText` | `string` | — | The alternate text for the media, used for accessibility purposes. | 1.1 |
+| `captionSources` | Array of `object` | — | The caption sources for the media. Caption sources are not used for YouTube, Dailymotion or Vimeo sources. Valid values: `CaptionSource`. | 1.6 |
+| `fallback` | One of `object` or `string` | — | An alternate element to render if the type of this one is unsupported or if the host application doesn't support all the capabilities specified in the `requires` property. Valid values: `Container`, `ActionSet`, `ColumnSet`, `Media`, `RichTextBlock`, `Table`, `TextBlock`, `FactSet`, `ImageSet`, `Image`, `Input.Text`, `Input.Date`, `Input.Time`, `Input.Number`, `Input.Toggle`, `Input.ChoiceSet`, `Input.Rating`, `Rating`, `CompoundButton`, `Icon`, `Carousel`, `TabSet`, `Accordion`, `Badge`, `ProgressRing`, `ProgressBar`, `LoopComponent`, `Chart.Donut`, `Chart.Pie`, `Chart.VerticalBar.Grouped`, `Chart.VerticalBar`, `Chart.HorizontalBar`, `Chart.HorizontalBar.Stacked`, `Chart.Line`, `Chart.Gauge`, `CodeBlock`, `Persona`, `PersonaSet`, `Graph resource`, `File`, `Calendar event`, `"drop"`. | 1.2 |
+| `grid.area` | `string` | — | **Teams.** The area of a `Layout.AreaGrid` layout in which an element should be displayed. | 1.5 |
+| `height` | `string` | `"auto"` | The height of the element. When set to `stretch`, the element will use the remaining vertical space in its container. Valid values: `"auto"`, `"stretch"`. | 1.1 |
+| `id` | `string` | — | A unique identifier for the element or action. Input elements must have an `id`, otherwise they will not be validated and their values will not be sent to the Bot. | 1.0 |
+| `isSortKey` | `boolean` | `false` | Controls whether the element should be used as a sort key by elements that allow sorting across a collection of elements. | 1.5 |
+| `isVisible` | `boolean` | `true` | Controls the visibility of the element. | 1.2 |
+| `isVisible.dynamic` | `string` | — | **Preview.** Defines an expression whose evaluated value will be used to update the `isVisible` property of the element at runtime. | 1.5 |
+| `key` | `string` | — | Defines an optional key for the object. Keys are seldom needed, but in some scenarios, specifying keys can help maintain visual state in the host application. | 1.0 |
+| `lang` | `string` | — | The locale associated with the element. | 1.1 |
+| `poster` | `string` | — | The URL of the poster image to display. | 1.1 |
+| `requires` | `object` | `{}` | A list of capabilities the element requires the host application to support. If the host application doesn't support at least one of the listed capabilities, the element is not rendered (or its fallback is rendered if provided). Valid values: `HostCapabilities`. | 1.2 |
+| `separator` | `boolean` | `false` | Controls whether a separator line should be displayed above the element to visually separate it from the previous element. No separator will be displayed for the first element in a container, even if this property is set to true. | 1.0 |
+| `sources` | Array of `object` | — | The sources for the media. For YouTube, Dailymotion and Vimeo, only one source can be specified. Valid values: `MediaSource`. | 1.1 |
+| `spacing` | `string` | `"Default"` | Controls the amount of space between this element and the previous one. No space will be added for the first element in a container. Valid values: `"None"`, `"ExtraSmall"`, `"Small"`, `"Default"`, `"Medium"`, `"Large"`, `"ExtraLarge"`, `"Padding"`. | 1.0 |
+| `targetWidth` | `string` | — | **Teams · Copilot.** Controls for which card width the element should be displayed. If `targetWidth` isn't specified, the element is rendered at all card widths. Using `targetWidth` makes it possible to author responsive cards that adapt their layout to the available horizontal space. For more details, see **Responsive layout**. Valid values: `"VeryNarrow"`, `"Narrow"`, `"Standard"`, `"Wide"`, `"atLeast:VeryNarrow"`, `"atMost:VeryNarrow"`, `"atLeast:Narrow"`, `"atMost:Narrow"`, `"atLeast:Standard"`, `"atMost:Standard"`, `"atLeast:Wide"`, `"atMost:Wide"`. | 1.0 |
 
 ---
 
@@ -95,9 +83,9 @@ Defines the source URL of a media stream. YouTube, Dailymotion, Vimeo, and Micro
 
 | Name | Type | Default | Description | In version |
 | --- | --- | --- | --- | --- |
-| `key` | `string` | — | Optional object key, occasionally useful for maintaining visual state. | 1.0 |
-| `mimeType` | `string` | — | MIME type of the source. | 1.1 |
-| `url` | `string` | — | URL of the source. | 1.1 |
+| `key` | `string` | — | Defines an optional key for the object. Keys are seldom needed, but in some scenarios, specifying keys can help maintain visual state in the host application. | 1.0 |
+| `mimeType` | `string` | — | The MIME type of the source. | 1.1 |
+| `url` | `string` | — | The URL of the source. | 1.1 |
 
 ---
 
@@ -105,13 +93,13 @@ Defines the source URL of a media stream. YouTube, Dailymotion, Vimeo, and Micro
 
 **Works in:** Teams · Copilot · Outlook
 
-Defines a source URL for video captions.
+Defines a source URL for a video captions.
 
 ### Schema
 
 | Name | Type | Default | Description | In version |
 | --- | --- | --- | --- | --- |
-| `label` | `string` | — | Label of the caption source. | 1.6 |
-| `key` | `string` | — | Optional object key, occasionally useful for maintaining visual state. | 1.0 |
-| `mimeType` | `string` | — | MIME type of the source. | 1.1 |
-| `url` | `string` | — | URL of the source. | 1.1 |
+| `label` | `string` | — | The label of this caption source. | 1.6 |
+| `key` | `string` | — | Defines an optional key for the object. Keys are seldom needed, but in some scenarios, specifying keys can help maintain visual state in the host application. | 1.0 |
+| `mimeType` | `string` | — | The MIME type of the source. | 1.1 |
+| `url` | `string` | — | The URL of the source. | 1.1 |
