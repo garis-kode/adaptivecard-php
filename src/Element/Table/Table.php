@@ -15,7 +15,7 @@ use AdaptiveCards\Enum\VerticalAlignment;
 final class Table extends AbstractElement
 {
     /**
-     * @param iterable<TableColumnDefinition|string|int>|null $columns
+     * @param iterable<TableColumnDefinition>|null $columns
      * @param iterable<TableRow|iterable<TableCell>>|null $rows
      */
     public function __construct(
@@ -31,7 +31,7 @@ final class Table extends AbstractElement
     }
 
     /**
-     * @param iterable<TableColumnDefinition|string|int>|null $columns
+     * @param iterable<TableColumnDefinition>|null $columns
      * @param iterable<TableRow|iterable<TableCell>>|null $rows
      */
     public static function make(
@@ -42,10 +42,7 @@ final class Table extends AbstractElement
     }
 
     /**
-     * Define columns. Integers/strings become column widths; pass
-     * TableColumnDefinition objects for full control.
-     *
-     * @param iterable<TableColumnDefinition|string|int> $columns
+     * @param iterable<TableColumnDefinition> $columns
      */
     public function columns(iterable $columns): self
     {
@@ -56,12 +53,9 @@ final class Table extends AbstractElement
         return $this;
     }
 
-    public function addColumn(TableColumnDefinition|string|int $column): self
+    public function addColumn(TableColumnDefinition $column): self
     {
-        return $this->push(
-            'columns',
-            $column instanceof TableColumnDefinition ? $column : new TableColumnDefinition($column)
-        );
+        return $this->push('columns', $column);
     }
 
     /**

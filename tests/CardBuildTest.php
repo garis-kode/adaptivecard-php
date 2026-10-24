@@ -30,6 +30,7 @@ use AdaptiveCards\Element\Fact\Fact;
 use AdaptiveCards\Element\Fact\FactSet;
 use AdaptiveCards\Element\Icon;
 use AdaptiveCards\Element\Image\Image;
+use AdaptiveCards\Element\Image\ImageSet;
 use AdaptiveCards\Element\Progress\ProgressBar;
 use AdaptiveCards\Element\Progress\ProgressRing;
 use AdaptiveCards\Element\Rating;
@@ -668,7 +669,13 @@ final class CardBuildTest extends TestCase
         $row2 = TableRow::make()->cells([TableCell::make(), TableCell::make(), TableCell::make()]);
         $row3 = TableRow::make()->cells([TableCell::make(), TableCell::make(), TableCell::make()]);
 
-        $table = new Table([1, 1, 1], [$row1, $row2, $row3]);
+        $columns = [
+            TableColumnDefinition::make(1),
+            TableColumnDefinition::make(1),
+            TableColumnDefinition::make(1),
+        ];
+
+        $table = new Table($columns, [$row1, $row2, $row3]);
 
         $expected = [
             'type' => 'Table',
@@ -707,7 +714,7 @@ final class CardBuildTest extends TestCase
 
         self::assertSame($expected, $table->toArray());
 
-        $fromMake = Table::make([1, 1, 1], [$row1, $row2, $row3]);
+        $fromMake = Table::make($columns, [$row1, $row2, $row3]);
         self::assertSame($expected, $fromMake->toArray());
     }
 
@@ -1109,5 +1116,46 @@ final class CardBuildTest extends TestCase
 
         $fromMake = GroupedVerticalBarChart::make('New Chart.VerticalBar.Grouped', $data, true, 'Quarters', 'Revenue', 'categorical');
         self::assertSame($expected, $fromMake->toArray());
+    }
+
+    public function testStrictCollectionAdders(): void
+    {
+        // Media::addSource strictly accepting MediaSource
+        $source = MediaSource::make('https://example.com/audio.mp3', 'audio/mp3');
+        $media = Media::make()->addSource($source);
+        self::assertSame([
+            'type' => 'Media',
+            'sources' => [
+                [
+                    'url' => 'https://example.com/audio.mp3',
+                    'mimeType' => 'audio/mp3',
+                ],
+            ],
+        ], $media->toArray());
+
+        // ImageSet::addImage strictly accepting Image
+        $image = Image::make()->url('https://example.com/cat.jpg');
+        $imageSet = ImageSet::make()->addImage($image);
+        self::assertSame([
+            'type' => 'ImageSet',
+            'images' => [
+                [
+                    'type' => 'Image',
+                    'url' => 'https://example.com/cat.jpg',
+                ],
+            ],
+        ], $imageSet->toArray());
+
+        // Table::addColumn strictly accepting TableColumnDefinition
+        $column = TableColumnDefinition::make(1);
+        $table = Table::make()->addColumn($column);
+        self::assertSame([
+            'type' => 'Table',
+            'columns' => [
+                [
+                    'width' => 1,
+                ],
+            ],
+        ], $table->toArray());
     }
 }

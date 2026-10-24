@@ -18,6 +18,7 @@ final class GaugeChart extends AbstractChart
         ?iterable $segments = null,
     ) {
         $this->title($title);
+       
         if ($showTitle !== null) {
             $this->showTitle($showTitle);
         }

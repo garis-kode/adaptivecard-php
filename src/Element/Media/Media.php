@@ -16,9 +16,9 @@ final class Media extends AbstractElement
         return new self();
     }
 
-    public function addSource(MediaSource|string $source, ?string $mimeType = null): self
+    public function addSource(MediaSource $source): self
     {
-        return $this->push('sources', $source instanceof MediaSource ? $source : new MediaSource($source, $mimeType));
+        return $this->push('sources', $source);
     }
 
     public function addCaptionSource(CaptionSource $source): self
