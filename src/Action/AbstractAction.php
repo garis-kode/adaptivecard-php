@@ -24,6 +24,11 @@ abstract class AbstractAction extends Node
         return $this->set('iconUrl', $url);
     }
 
+    public function toggledIconUrl(string $url): static
+    {
+        return $this->set('iconUrl.toggled', $url);
+    }
+
     public function id(string $id): static
     {
         return $this->set('id', $id);
@@ -47,6 +52,21 @@ abstract class AbstractAction extends Node
     public function isEnabled(bool $enabled = true): static
     {
         return $this->set('isEnabled', $enabled);
+    }
+
+    public function conditionallyEnabled(bool $enabled = true): static
+    {
+        return $this->set('conditionallyEnabled', $enabled);
+    }
+
+    public function behavior(string $behavior): static
+    {
+        return $this->set('behavior', $behavior);
+    }
+
+    public function initialState(string $state): static
+    {
+        return $this->set('initialState', $state);
     }
 
     /**

@@ -5,12 +5,18 @@ declare(strict_types=1);
 namespace AdaptiveCards;
 
 use AdaptiveCards\Action\AbstractAction;
+use AdaptiveCards\Enum\ContainerStyle;
 use AdaptiveCards\Enum\VerticalAlignment;
 use AdaptiveCards\Exception\ValidationException;
+use AdaptiveCards\Layout\AbstractLayout;
+use AdaptiveCards\Shared\AdaptiveCardReference;
 use AdaptiveCards\Shared\Authentication;
 use AdaptiveCards\Shared\BackgroundImage;
+use AdaptiveCards\Shared\DocumentReference;
 use AdaptiveCards\Shared\Metadata;
 use AdaptiveCards\Shared\Refresh;
+use AdaptiveCards\Shared\Resources;
+use AdaptiveCards\Shared\TeamsCardProperties;
 use AdaptiveCards\Support\HasItems;
 use AdaptiveCards\Validation\SchemaValidator;
 
@@ -98,6 +104,11 @@ final class AdaptiveCard extends Node
         return $this->set('verticalContentAlignment', VerticalAlignment::value($alignment));
     }
 
+    public function style(string|ContainerStyle $style): self
+    {
+        return $this->set('style', ContainerStyle::value($style));
+    }
+
     public function rtl(bool $rtl = true): self
     {
         return $this->set('rtl', $rtl);
@@ -126,6 +137,56 @@ final class AdaptiveCard extends Node
     public function metadata(Metadata $metadata): self
     {
         return $this->set('metadata', $metadata);
+    }
+
+    /**
+     * @param TeamsCardProperties|array<string, mixed> $msteams
+     */
+    public function msteams(TeamsCardProperties|array $msteams): self
+    {
+        return $this->set('msteams', $msteams);
+    }
+
+    /**
+     * @param Resources|array<string, mixed> $resources
+     */
+    public function resources(Resources|array $resources): self
+    {
+        return $this->set('resources', $resources);
+    }
+
+    public function addReference(AdaptiveCardReference|DocumentReference $reference): self
+    {
+        return $this->push('references', $reference);
+    }
+
+    /**
+     * @param iterable<AdaptiveCardReference|DocumentReference> $references
+     */
+    public function references(iterable $references): self
+    {
+        foreach ($references as $reference) {
+            $this->addReference($reference);
+        }
+
+        return $this;
+    }
+
+    public function addLayout(AbstractLayout $layout): self
+    {
+        return $this->push('layouts', $layout);
+    }
+
+    /**
+     * @param iterable<AbstractLayout> $layouts
+     */
+    public function layouts(iterable $layouts): self
+    {
+        foreach ($layouts as $layout) {
+            $this->addLayout($layout);
+        }
+
+        return $this;
     }
 
     /**

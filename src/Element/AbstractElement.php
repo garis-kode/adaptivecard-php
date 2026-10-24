@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace AdaptiveCards\Element;
 
 use AdaptiveCards\Enum\Height;
+use AdaptiveCards\Enum\HorizontalAlignment;
 use AdaptiveCards\Enum\Spacing;
+use AdaptiveCards\Enum\TargetWidth;
 use AdaptiveCards\Node;
 
 /**
@@ -38,6 +40,36 @@ abstract class AbstractElement extends Node
     public function height(string|Height $height): static
     {
         return $this->set('height', Height::value($height));
+    }
+
+    public function horizontalAlignment(string|HorizontalAlignment $alignment): static
+    {
+        return $this->set('horizontalAlignment', HorizontalAlignment::value($alignment));
+    }
+
+    public function targetWidth(string|TargetWidth $targetWidth): static
+    {
+        return $this->set('targetWidth', TargetWidth::value($targetWidth));
+    }
+
+    public function gridArea(string $gridArea): static
+    {
+        return $this->set('grid.area', $gridArea);
+    }
+
+    public function isSortKey(bool $isSortKey = true): static
+    {
+        return $this->set('isSortKey', $isSortKey);
+    }
+
+    public function key(string $key): static
+    {
+        return $this->set('key', $key);
+    }
+
+    public function lang(string $lang): static
+    {
+        return $this->set('lang', $lang);
     }
 
     /**

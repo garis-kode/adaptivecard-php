@@ -5,7 +5,7 @@ declare(strict_types=1);
 require __DIR__ . '/../vendor/autoload.php';
 
 use AdaptiveCards\AdaptiveCard;
-use AdaptiveCards\Action\OpenUrlAction;
+use AdaptiveCards\Action\OpenUrl\OpenUrlAction;
 
 /*
  * The smallest useful card: a heading, a paragraph and a link action.

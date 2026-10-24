@@ -36,6 +36,14 @@ final class SubmitAction extends AbstractAction
         return $this->set('associatedInputs', AssociatedInputs::value($associatedInputs));
     }
 
+    /**
+     * @param array<string, mixed> $properties
+     */
+    public function msteams(array $properties): self
+    {
+        return $this->set('msteams', $properties);
+    }
+
     public function getType(): string
     {
         return 'Action.Submit';

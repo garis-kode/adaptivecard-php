@@ -7,6 +7,7 @@ namespace AdaptiveCards\Element;
 use AdaptiveCards\Action\AbstractAction;
 use AdaptiveCards\Enum\ContainerStyle;
 use AdaptiveCards\Enum\VerticalAlignment;
+use AdaptiveCards\Layout\AbstractLayout;
 use AdaptiveCards\Shared\BackgroundImage;
 use AdaptiveCards\Support\HasItems;
 
@@ -55,6 +56,23 @@ final class Container extends AbstractElement
     public function selectAction(AbstractAction $action): self
     {
         return $this->set('selectAction', $action);
+    }
+
+    public function addLayout(AbstractLayout $layout): self
+    {
+        return $this->push('layouts', $layout);
+    }
+
+    /**
+     * @param iterable<AbstractLayout> $layouts
+     */
+    public function layouts(iterable $layouts): self
+    {
+        foreach ($layouts as $layout) {
+            $this->addLayout($layout);
+        }
+
+        return $this;
     }
 
     public function getType(): string

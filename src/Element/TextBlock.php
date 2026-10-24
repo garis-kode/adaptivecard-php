@@ -51,10 +51,6 @@ final class TextBlock extends AbstractElement
         return $this->set('fontType', FontType::value($fontType));
     }
 
-    public function horizontalAlignment(string|HorizontalAlignment $alignment): self
-    {
-        return $this->set('horizontalAlignment', HorizontalAlignment::value($alignment));
-    }
 
     public function isSubtle(bool $subtle = true): self
     {
@@ -74,6 +70,11 @@ final class TextBlock extends AbstractElement
     public function style(string|TextBlockStyle $style): self
     {
         return $this->set('style', TextBlockStyle::value($style));
+    }
+
+    public function labelFor(string $inputId): self
+    {
+        return $this->set('labelFor', $inputId);
     }
 
     public function getType(): string

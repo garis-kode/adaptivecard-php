@@ -5,8 +5,8 @@ declare(strict_types=1);
 require __DIR__ . '/../vendor/autoload.php';
 
 use AdaptiveCards\AdaptiveCard;
-use AdaptiveCards\Action\OpenUrlAction;
-use AdaptiveCards\Element\Column;
+use AdaptiveCards\Action\OpenUrl\OpenUrlAction;
+use AdaptiveCards\Element\Column\Column;
 use AdaptiveCards\Enum\ImageStyle;
 
 /*

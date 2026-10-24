@@ -6,7 +6,7 @@ require __DIR__ . '/../vendor/autoload.php';
 
 use AdaptiveCards\AdaptiveCard;
 use AdaptiveCards\Action\SubmitAction;
-use AdaptiveCards\Input\ChoiceSetInput;
+use AdaptiveCards\Input\ChoiceSet\ChoiceSetInput;
 use AdaptiveCards\Input\TextInput;
 use AdaptiveCards\Input\ToggleInput;
 
