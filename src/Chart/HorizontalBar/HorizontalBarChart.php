@@ -8,6 +8,9 @@ use AdaptiveCards\Chart\AbstractChart;
 use AdaptiveCards\Chart\Data\DataPoint;
 use AdaptiveCards\Enum\ChartColorSet;
 
+/**
+ * A horizontal bar chart.
+ */
 final class HorizontalBarChart extends AbstractChart
 {
     /**
@@ -53,6 +56,8 @@ final class HorizontalBarChart extends AbstractChart
     }
 
     /**
+     * Add a data point to the chart.
+     *
      * @param DataPoint|array<string, mixed> $point
      */
     public function addDataPoint(DataPoint|array $point): self
@@ -61,6 +66,8 @@ final class HorizontalBarChart extends AbstractChart
     }
 
     /**
+     * The data points of the chart.
+     *
      * @param iterable<DataPoint|array<string, mixed>> $data
      */
     public function data(iterable $data): self
@@ -72,6 +79,9 @@ final class HorizontalBarChart extends AbstractChart
         return $this;
     }
 
+    /**
+     * Controls whether the chart is displayed in standard or parts-to-whole mode.
+     */
     public function displayMode(string $mode): self
     {
         return $this->set('displayMode', $mode);

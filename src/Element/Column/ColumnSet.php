@@ -9,7 +9,7 @@ use AdaptiveCards\Element\AbstractElement;
 use AdaptiveCards\Enum\ContainerStyle;
 
 /**
- * Divides a region into {@see Column}s, allowing side-by-side layout.
+ * Splits the available horizontal space into separate columns, so elements can be organized in a row.
  */
 final class ColumnSet extends AbstractElement
 {
@@ -18,6 +18,9 @@ final class ColumnSet extends AbstractElement
         return new self();
     }
 
+    /**
+     * Add a column to the column set.
+     */
     public function addColumn(Column $column): self
     {
         return $this->push('columns', $column);
@@ -41,36 +44,59 @@ final class ColumnSet extends AbstractElement
         return $this->addColumn($column);
     }
 
+    /**
+     * The style of the container. Container styles control the colors of the background,
+     * border and text inside the container, in such a way that contrast requirements are always met.
+     * Valid values: "default", "emphasis", "accent", "good", "attention", "warning".
+     */
     public function style(string|ContainerStyle $style): self
     {
         return $this->set('style', ContainerStyle::value($style));
     }
 
+    /**
+     * Determines whether the element should bleed through its parent's padding.
+     */
     public function bleed(bool $bleed = true): self
     {
         return $this->set('bleed', $bleed);
     }
 
+    /**
+     * The minimum height, in pixels, of the container, in the `<number>px` format.
+     */
     public function minHeight(string $minHeight): self
     {
         return $this->set('minHeight', $minHeight);
     }
 
+    /**
+     * The minimum width, in pixels, of the column set.
+     */
     public function minWidth(string $minWidth): self
     {
         return $this->set('minWidth', $minWidth);
     }
 
+    /**
+     * Controls whether corners should be rounded.
+     */
     public function roundedCorners(bool $value = true): self
     {
         return $this->set('roundedCorners', $value);
     }
 
+    /**
+     * Controls whether border should be displayed.
+     */
     public function showBorder(bool $value = true): self
     {
         return $this->set('showBorder', $value);
     }
 
+    /**
+     * An Action that will be invoked when the ColumnSet is tapped or clicked.
+     */
     public function selectAction(AbstractAction $action): self
     {
         return $this->set('selectAction', $action);

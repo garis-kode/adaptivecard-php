@@ -8,6 +8,9 @@ use AdaptiveCards\Chart\AbstractChart;
 use AdaptiveCards\Chart\Data\ChartSeries;
 use AdaptiveCards\Enum\ChartColorSet;
 
+/**
+ * A grouped vertical bar chart.
+ */
 final class GroupedVerticalBarChart extends AbstractChart
 {
     /**
@@ -54,12 +57,17 @@ final class GroupedVerticalBarChart extends AbstractChart
         return new self($title, $data, $showTitle, $xAxisTitle, $yAxisTitle, $colorSet);
     }
 
+    /**
+     * Controls whether bars are stacked instead of grouped.
+     */
     public function stacked(bool $stacked = true): self
     {
         return $this->set('stacked', $stacked);
     }
 
     /**
+     * Add a series of data points.
+     *
      * @param ChartSeries|array<string, mixed> $series
      */
     public function addSeries(ChartSeries|array $series): self
@@ -68,6 +76,8 @@ final class GroupedVerticalBarChart extends AbstractChart
     }
 
     /**
+     * The series of data points in the grouped vertical bar chart.
+     *
      * @param iterable<ChartSeries|array<string, mixed>> $data
      */
     public function data(iterable $data): self

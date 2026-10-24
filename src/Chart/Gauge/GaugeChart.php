@@ -6,6 +6,9 @@ namespace AdaptiveCards\Chart\Gauge;
 
 use AdaptiveCards\Chart\AbstractChart;
 
+/**
+ * A gauge chart.
+ */
 final class GaugeChart extends AbstractChart
 {
     /**
@@ -42,27 +45,41 @@ final class GaugeChart extends AbstractChart
         return new self($title, $showTitle, $value, $segments);
     }
 
+    /**
+     * The current value of the gauge.
+     */
     public function value(float|int $value): self
     {
         return $this->set('value', $value);
     }
 
+    /**
+     * The minimum value of the gauge.
+     */
     public function min(float|int $min): self
     {
         return $this->set('min', $min);
     }
 
+    /**
+     * The maximum value of the gauge.
+     */
     public function max(float|int $max): self
     {
         return $this->set('max', $max);
     }
 
+    /**
+     * The target value indicator on the gauge.
+     */
     public function target(float|int $target): self
     {
         return $this->set('target', $target);
     }
 
     /**
+     * Add a segment to the gauge chart.
+     *
      * @param GaugeSegment|array<string, mixed> $segment
      */
     public function addSegment(GaugeSegment|array $segment): self
@@ -71,6 +88,8 @@ final class GaugeChart extends AbstractChart
     }
 
     /**
+     * The collection of segments in the gauge chart.
+     *
      * @param iterable<GaugeSegment|array<string, mixed>> $segments
      */
     public function segments(iterable $segments): self
@@ -82,26 +101,41 @@ final class GaugeChart extends AbstractChart
         return $this;
     }
 
+    /**
+     * Controls whether min/max labels are displayed.
+     */
     public function showMinMax(bool $show = true): self
     {
         return $this->set('showMinMax', $show);
     }
 
+    /**
+     * Controls whether the needle is displayed.
+     */
     public function showNeedle(bool $show = true): self
     {
         return $this->set('showNeedle', $show);
     }
 
+    /**
+     * Controls whether segment outlines are displayed.
+     */
     public function showOutlines(bool $show = true): self
     {
         return $this->set('showOutlines', $show);
     }
 
+    /**
+     * Sub-label text displayed in the gauge.
+     */
     public function subLabel(string $subLabel): self
     {
         return $this->set('subLabel', $subLabel);
     }
 
+    /**
+     * Format string for the value.
+     */
     public function valueFormat(string $format): self
     {
         return $this->set('valueFormat', $format);

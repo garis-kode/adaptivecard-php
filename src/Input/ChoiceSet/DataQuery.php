@@ -8,7 +8,7 @@ use AdaptiveCards\Enum\AssociatedInputs;
 use AdaptiveCards\Node;
 
 /**
- * Dynamic data query specification for ChoiceSetInput.
+ * Defines a dynamic data query for choice sets (e.g. People Picker via Graph).
  */
 final class DataQuery extends Node
 {
@@ -46,26 +46,42 @@ final class DataQuery extends Node
         return new self($dataset, $value, $count, $skip, $associatedInputs);
     }
 
+    /**
+     * The dataset to query.
+     */
     public function dataset(string $dataset): self
     {
         return $this->set('dataset', $dataset);
     }
 
+    /**
+     * The search query string.
+     */
     public function value(string $value): self
     {
         return $this->set('value', $value);
     }
 
+    /**
+     * The maximum number of items to return.
+     */
     public function count(int $count): self
     {
         return $this->set('count', $count);
     }
 
+    /**
+     * The number of items to skip.
+     */
     public function skip(int $skip): self
     {
         return $this->set('skip', $skip);
     }
 
+    /**
+     * Controls which inputs are associated with the query.
+     * Valid values: "auto", "none".
+     */
     public function associatedInputs(string|AssociatedInputs $associatedInputs): self
     {
         return $this->set('associatedInputs', AssociatedInputs::value($associatedInputs));

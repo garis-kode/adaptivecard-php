@@ -8,6 +8,9 @@ use AdaptiveCards\Chart\AbstractChart;
 use AdaptiveCards\Chart\Data\DataPoint;
 use AdaptiveCards\Enum\ChartColorSet;
 
+/**
+ * A vertical bar chart.
+ */
 final class VerticalBarChart extends AbstractChart
 {
     /**
@@ -53,6 +56,8 @@ final class VerticalBarChart extends AbstractChart
     }
 
     /**
+     * Add a data point to the chart.
+     *
      * @param DataPoint|array<string, mixed> $point
      */
     public function addDataPoint(DataPoint|array $point): self
@@ -61,6 +66,8 @@ final class VerticalBarChart extends AbstractChart
     }
 
     /**
+     * The data points of the chart.
+     *
      * @param iterable<DataPoint|array<string, mixed>> $data
      */
     public function data(iterable $data): self

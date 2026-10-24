@@ -12,7 +12,7 @@ use AdaptiveCards\Enum\TextSize;
 use AdaptiveCards\Enum\TextWeight;
 
 /**
- * A styled run of text inside a {@see RichTextBlock}.
+ * A block of text inside a RichTextBlock element.
  */
 final class TextRun extends AbstractElement
 {
@@ -26,61 +26,102 @@ final class TextRun extends AbstractElement
         return new self($text);
     }
 
+    /**
+     * The text to display.
+     */
     public function text(string $text): self
     {
         return $this->set('text', $text);
     }
 
+    /**
+     * Defines an expression whose evaluated value will be used to update the
+     * `text` property of the element at runtime.
+     */
     public function textDynamic(string $expression): self
     {
         return $this->set('text.dynamic', $expression);
     }
 
+    /**
+     * Controls the color of TextRun elements.
+     * Valid values: "default", "dark", "light", "accent", "good", "warning", "attention".
+     */
     public function color(string|Colors $color): self
     {
         return $this->set('color', Colors::value($color));
     }
 
+    /**
+     * Type of font to use for rendering.
+     * Valid values: "default", "monospace".
+     */
     public function fontType(string|FontType $fontType): self
     {
         return $this->set('fontType', FontType::value($fontType));
     }
 
+    /**
+     * Controls size of text.
+     * Valid values: "small", "default", "medium", "large", "extraLarge".
+     */
     public function size(string|TextSize $size): self
     {
         return $this->set('size', TextSize::value($size));
     }
 
+    /**
+     * Controls the weight of TextRun elements.
+     * Valid values: "default", "lighter", "bolder".
+     */
     public function weight(string|TextWeight $weight): self
     {
         return $this->set('weight', TextWeight::value($weight));
     }
 
+    /**
+     * If true, displays text slightly toned down to appear less prominent.
+     */
     public function isSubtle(bool $subtle = true): self
     {
         return $this->set('isSubtle', $subtle);
     }
 
+    /**
+     * If true, displays the text in an italic font.
+     */
     public function italic(bool $italic = true): self
     {
         return $this->set('italic', $italic);
     }
 
+    /**
+     * If true, displays the text with a strikethrough.
+     */
     public function strikethrough(bool $strikethrough = true): self
     {
         return $this->set('strikethrough', $strikethrough);
     }
 
+    /**
+     * If true, displays the text highlighted.
+     */
     public function highlight(bool $highlight = true): self
     {
         return $this->set('highlight', $highlight);
     }
 
+    /**
+     * If true, displays the text with an underline.
+     */
     public function underline(bool $underline = true): self
     {
         return $this->set('underline', $underline);
     }
 
+    /**
+     * An Action that will be invoked when the TextRun is clicked or tapped.
+     */
     public function selectAction(AbstractAction $action): self
     {
         return $this->set('selectAction', $action);

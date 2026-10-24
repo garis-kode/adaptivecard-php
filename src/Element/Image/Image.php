@@ -12,7 +12,7 @@ use AdaptiveCards\Enum\ImageStyle;
 use AdaptiveCards\Enum\VerticalAlignment;
 
 /**
- * Displays an image.
+ * A standalone image element.
  */
 final class Image extends AbstractElement
 {
@@ -25,33 +25,51 @@ final class Image extends AbstractElement
         return new self();
     }
 
+    /**
+     * The URL to the image.
+     */
     public function url(string $url): self
     {
         return $this->set('url', $url);
     }
 
+    /**
+     * The alternative text that describes the image.
+     */
     public function altText(string $altText): self
     {
         return $this->set('altText', $altText);
     }
 
+    /**
+     * Controls the approximate size of the image.
+     * Valid values: "Auto", "Stretch", "Small", "Medium", "Large".
+     */
     public function size(string|ImageSize $size): self
     {
         return $this->set('size', ImageSize::value($size));
     }
 
+    /**
+     * Controls how this element is displayed.
+     * Valid values: "Default", "Person".
+     */
     public function style(string|ImageStyle $style): self
     {
         return $this->set('style', ImageStyle::value($style));
     }
 
+    /**
+     * Applies a background to a transparent image.
+     */
     public function backgroundColor(string $color): self
     {
         return $this->set('backgroundColor', $color);
     }
 
     /**
-     * Explicit width, e.g. "50px".
+     * The desired on-screen width of the image, ending in "px". E.g., 50px.
+     * This overrides the `size` property. Valid values: "<number>px".
      */
     public function width(string $width): self
     {
@@ -66,12 +84,17 @@ final class Image extends AbstractElement
         return $this->set('height', $height);
     }
 
+    /**
+     * Controls whether the image can be expanded by the user.
+     */
     public function allowExpand(bool $allow = true): self
     {
         return $this->set('allowExpand', $allow);
     }
 
     /**
+     * Controls how the image should fill its container.
+     *
      * @param "Cover"|"Contain"|"Fill"|string $fitMode
      */
     public function fitMode(string $fitMode): self
@@ -79,17 +102,27 @@ final class Image extends AbstractElement
         return $this->set('fitMode', $fitMode);
     }
 
+    /**
+     * Controls horizontal content alignment.
+     * Valid values: "Left", "Center", "Right".
+     */
     public function horizontalContentAlignment(string|HorizontalAlignment $alignment): self
     {
         return $this->set('horizontalContentAlignment', HorizontalAlignment::value($alignment));
     }
 
+    /**
+     * Controls vertical content alignment.
+     * Valid values: "Top", "Center", "Bottom".
+     */
     public function verticalContentAlignment(string|VerticalAlignment $alignment): self
     {
         return $this->set('verticalContentAlignment', VerticalAlignment::value($alignment));
     }
 
     /**
+     * Controls alternative image URLs based on the active theme.
+     *
      * @param list<array<string, mixed>> $themedUrls
      */
     public function themedUrls(array $themedUrls): self
@@ -98,6 +131,8 @@ final class Image extends AbstractElement
     }
 
     /**
+     * Represents a set of Teams-specific properties on an image.
+     *
      * @param TeamsImageProperties|array<string, mixed> $properties
      */
     public function msteams(TeamsImageProperties|array $properties, bool $useCamelCaseKey = false): self
@@ -109,6 +144,10 @@ final class Image extends AbstractElement
         return $this->set('msteams', $properties);
     }
 
+    /**
+     * An Action that will be invoked when the element is tapped or clicked.
+     * Action.ShowCard is not supported.
+     */
     public function selectAction(AbstractAction $action): self
     {
         return $this->set('selectAction', $action);

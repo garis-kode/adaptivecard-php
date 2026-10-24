@@ -9,8 +9,7 @@ use AdaptiveCards\Enum\VerticalAlignment;
 use AdaptiveCards\Node;
 
 /**
- * Defines the width and default cell alignment of a {@see Table} column.
- * Has no `type` field.
+ * Defines a column in a Table element.
  */
 final class TableColumnDefinition extends Node
 {
@@ -29,16 +28,28 @@ final class TableColumnDefinition extends Node
         return new self($width);
     }
 
+    /**
+     * Specifies the width of the column. When set to a number, the column is
+     * weighted relative to other columns. Pixel width can also be specified, e.g. "80px".
+     */
     public function width(string|int $width): self
     {
         return $this->set('width', $width);
     }
 
+    /**
+     * Controls how cells should be horizontally aligned in this column.
+     * Valid values: "Left", "Center", "Right".
+     */
     public function horizontalCellContentAlignment(string|HorizontalAlignment $alignment): self
     {
         return $this->set('horizontalCellContentAlignment', HorizontalAlignment::value($alignment));
     }
 
+    /**
+     * Controls how cells should be vertically aligned in this column.
+     * Valid values: "Top", "Center", "Bottom".
+     */
     public function verticalCellContentAlignment(string|VerticalAlignment $alignment): self
     {
         return $this->set('verticalCellContentAlignment', VerticalAlignment::value($alignment));

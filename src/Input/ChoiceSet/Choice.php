@@ -7,7 +7,7 @@ namespace AdaptiveCards\Input\ChoiceSet;
 use AdaptiveCards\Node;
 
 /**
- * A selectable option within a {@see ChoiceSetInput}. Has no `type` field.
+ * A choice as used by the Input.ChoiceSet input.
  */
 final class Choice extends Node
 {
@@ -22,11 +22,18 @@ final class Choice extends Node
         return new self($title, $value);
     }
 
+    /**
+     * Text to display.
+     */
     public function title(string $title): self
     {
         return $this->set('title', $title);
     }
 
+    /**
+     * The raw value for the choice.
+     * NOTE: do not use a ',' in the value, since a ChoiceSet input value when compact may contain ','.
+     */
     public function value(string $value): self
     {
         return $this->set('value', $value);

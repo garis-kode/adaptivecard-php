@@ -7,7 +7,7 @@ namespace AdaptiveCards\Shared;
 use AdaptiveCards\Node;
 
 /**
- * Non-rendered metadata about a card (schema 1.6+). Has no `type` field.
+ * Card-level metadata.
  */
 final class Metadata extends Node
 {
@@ -23,6 +23,9 @@ final class Metadata extends Node
         return new self($webUrl);
     }
 
+    /**
+     * The URL of the webpage that this card is associated with.
+     */
     public function webUrl(string $webUrl): self
     {
         return $this->set('webUrl', $webUrl);

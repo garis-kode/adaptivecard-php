@@ -4,14 +4,6 @@ declare(strict_types=1);
 
 namespace AdaptiveCards;
 
-/**
- * Base class for every node in the Adaptive Card object graph.
- *
- * Properties are stored in an ordered map and only emitted when set, so the
- * generated JSON stays compact (mirroring the `DefaultValueHandling.Ignore`
- * behaviour of the official .NET/JS SDKs). Subclasses expose fluent setters
- * that call {@see set()} and `return $this`.
- */
 abstract class Node implements \JsonSerializable
 {
     /** @var array<string, mixed> */
@@ -58,7 +50,9 @@ abstract class Node implements \JsonSerializable
     }
 
     /**
-     * Optional object key to help retain visual state.
+     * Defines an optional key for the object. Keys are seldom needed, but in
+     * some scenarios, specifying keys can help maintain visual state in the
+     * host application.
      */
     public function key(string $key): static
     {

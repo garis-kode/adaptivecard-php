@@ -7,7 +7,7 @@ namespace AdaptiveCards\Chart\Data;
 use AdaptiveCards\Node;
 
 /**
- * Data point for charts. Can represent (x, y) or (legend, value).
+ * A single data point in a chart or chart series.
  */
 final class DataPoint extends Node
 {
@@ -61,31 +61,49 @@ final class DataPoint extends Node
         return $dp;
     }
 
+    /**
+     * The x-axis value (string, number, or date).
+     */
     public function x(string|int|float $x): self
     {
         return $this->set('x', $x);
     }
 
+    /**
+     * The y-axis value.
+     */
     public function y(string|int|float $y): self
     {
         return $this->set('y', $y);
     }
 
+    /**
+     * Label for this data point.
+     */
     public function legend(string $legend): self
     {
         return $this->set('legend', $legend);
     }
 
+    /**
+     * Value of this data point.
+     */
     public function value(float|int $value): self
     {
         return $this->set('value', $value);
     }
 
+    /**
+     * Color identifier or hex color for this data point.
+     */
     public function color(string $color): self
     {
         return $this->set('color', $color);
     }
 
+    /**
+     * Tooltip text to display on hover.
+     */
     public function tooltip(string $tooltip): self
     {
         return $this->set('tooltip', $tooltip);

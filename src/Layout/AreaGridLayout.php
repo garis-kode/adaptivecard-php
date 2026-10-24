@@ -15,6 +15,8 @@ final class AreaGridLayout extends AbstractLayout
     }
 
     /**
+     * Column definitions for the area grid layout.
+     *
      * @param list<string|array{width: string}> $columns
      */
     public function columns(array $columns): self
@@ -23,6 +25,8 @@ final class AreaGridLayout extends AbstractLayout
     }
 
     /**
+     * Grid area definitions mapping named areas to rows and columns.
+     *
      * @param list<array{name: string, row?: int, column?: int, rowSpan?: int, columnSpan?: int}> $areas
      */
     public function areas(array $areas): self

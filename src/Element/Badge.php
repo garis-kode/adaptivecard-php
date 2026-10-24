@@ -37,46 +37,80 @@ final class Badge extends AbstractElement
         return new self($title, $size, $style);
     }
 
+    /**
+     * The text to display.
+     */
     public function title(string $title): self
     {
         return $this->text($title);
     }
 
+    /**
+     * The text to display.
+     */
     public function text(string $text): self
     {
         return $this->set('text', $text);
     }
 
+    /**
+     * The size of the badge.
+     * Valid values: "Medium", "Large", "ExtraLarge".
+     */
     public function size(string|BadgeSize $size): self
     {
         return $this->set('size', BadgeSize::value($size));
     }
 
+    /**
+     * Controls the shape of the badge.
+     * Valid values: "Square", "Rounded", "Circular".
+     */
     public function shape(string|BadgeShape $shape): self
     {
         return $this->set('shape', BadgeShape::value($shape));
     }
 
+    /**
+     * The style of the badge.
+     * Valid values: "Default", "Subtle", "Informative", "Accent", "Good", "Attention", "Warning".
+     */
     public function style(string|BadgeStyle $style): self
     {
         return $this->set('style', BadgeStyle::value($style));
     }
 
+    /**
+     * Controls the strength of the background color.
+     * Valid values: "Filled", "Tint".
+     */
     public function appearance(string|BadgeAppearance $appearance): self
     {
         return $this->set('appearance', BadgeAppearance::value($appearance));
     }
 
+    /**
+     * The name of an icon from the Adaptive Card icon catalog to display,
+     * in the `<icon-name>[,regular|filled]` format. If the style is not specified,
+     * the regular style is used.
+     */
     public function icon(string $icon): self
     {
         return $this->set('icon', $icon);
     }
 
+    /**
+     * Controls the position of the icon.
+     * Valid values: "Before", "After".
+     */
     public function iconPosition(string|IconPosition $iconPosition): self
     {
         return $this->set('iconPosition', IconPosition::value($iconPosition));
     }
 
+    /**
+     * Controls the tooltip text to display when the badge is hovered over.
+     */
     public function tooltip(string $tooltip): self
     {
         return $this->set('tooltip', $tooltip);

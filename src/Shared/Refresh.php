@@ -8,7 +8,7 @@ use AdaptiveCards\Action\ExecuteAction;
 use AdaptiveCards\Node;
 
 /**
- * Defines how a card refreshes itself (schema 1.4+). Has no `type` field.
+ * Defines how a card can be refreshed by making a request to the target Bot.
  */
 final class Refresh extends Node
 {
@@ -17,17 +17,26 @@ final class Refresh extends Node
         return new self();
     }
 
+    /**
+     * The action to be executed to refresh the card. Clients will execute this
+     * action when the card is refreshed. Valid values: Action.Execute.
+     */
     public function action(ExecuteAction $action): self
     {
         return $this->set('action', $action);
     }
 
+    /**
+     * A timestamp indicating when the card expires.
+     */
     public function expires(string $expires): self
     {
         return $this->set('expires', $expires);
     }
 
     /**
+     * A list of user MRIs for whom the card is refreshed automatically on display.
+     *
      * @param list<string> $userIds
      */
     public function userIds(array $userIds): self

@@ -7,7 +7,7 @@ namespace AdaptiveCards\Shared;
 use AdaptiveCards\Node;
 
 /**
- * Teams-specific metadata associated with the card.
+ * Represents a set of Teams-specific properties on a card.
  */
 final class TeamsCardProperties extends Node
 {
@@ -16,12 +16,17 @@ final class TeamsCardProperties extends Node
         return new self();
     }
 
+    /**
+     * Add an entity mention.
+     */
     public function addEntity(Mention $mention): self
     {
         return $this->push('entities', $mention);
     }
 
     /**
+     * A list of entities mentioned in the card.
+     *
      * @param iterable<Mention> $entities
      */
     public function entities(iterable $entities): self
@@ -34,6 +39,9 @@ final class TeamsCardProperties extends Node
     }
 
     /**
+     * Controls the width of the card when rendered in Teams.
+     * Valid values: "full".
+     *
      * @param "full"|string $width
      */
     public function width(string $width): self

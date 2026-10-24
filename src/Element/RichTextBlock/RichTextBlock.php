@@ -7,8 +7,7 @@ namespace AdaptiveCards\Element\RichTextBlock;
 use AdaptiveCards\Element\AbstractElement;
 
 /**
- * Displays rich inline content composed of styled {@see TextRun}s, {@see IconRun}s,
- * {@see ImageRun}s and/or plain strings.
+ * A rich text block that displays formatted text.
  */
 final class RichTextBlock extends AbstractElement
 {
@@ -31,6 +30,8 @@ final class RichTextBlock extends AbstractElement
     }
 
     /**
+     * The list of inlines to display.
+     *
      * @param iterable<TextRun|IconRun|ImageRun|string> $inlines
      */
     public function inlines(iterable $inlines): self
@@ -51,6 +52,9 @@ final class RichTextBlock extends AbstractElement
         return $this->push('inlines', $inline);
     }
 
+    /**
+     * Add a TextRun to the RichTextBlock.
+     */
     public function addTextRun(string $text, ?callable $configure = null): self
     {
         $run = new TextRun($text);
@@ -61,6 +65,9 @@ final class RichTextBlock extends AbstractElement
         return $this->addInline($run);
     }
 
+    /**
+     * Add an IconRun to the RichTextBlock.
+     */
     public function addIconRun(string $name, ?callable $configure = null): self
     {
         $run = new IconRun($name);
@@ -71,6 +78,9 @@ final class RichTextBlock extends AbstractElement
         return $this->addInline($run);
     }
 
+    /**
+     * Add an ImageRun to the RichTextBlock.
+     */
     public function addImageRun(string $url, ?callable $configure = null): self
     {
         $run = new ImageRun($url);
@@ -81,6 +91,9 @@ final class RichTextBlock extends AbstractElement
         return $this->addInline($run);
     }
 
+    /**
+     * A string identifier representing the input element that this text block provides a label for.
+     */
     public function labelFor(string $inputId): self
     {
         return $this->set('labelFor', $inputId);

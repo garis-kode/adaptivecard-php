@@ -7,7 +7,7 @@ namespace AdaptiveCards\Element\Fact;
 use AdaptiveCards\Node;
 
 /**
- * A single title/value pair inside a {@see FactSet}. Has no `type` field.
+ * A fact in a FactSet element.
  */
 final class Fact extends Node
 {
@@ -22,11 +22,17 @@ final class Fact extends Node
         return new self($title, $value);
     }
 
+    /**
+     * The title of the fact.
+     */
     public function title(string $title): self
     {
         return $this->set('title', $title);
     }
 
+    /**
+     * The value of the fact.
+     */
     public function value(string $value): self
     {
         return $this->set('value', $value);

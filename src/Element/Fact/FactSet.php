@@ -7,7 +7,7 @@ namespace AdaptiveCards\Element\Fact;
 use AdaptiveCards\Element\AbstractElement;
 
 /**
- * Displays a series of title/value {@see Fact} pairs.
+ * A set of facts, displayed as a table or a vertical list when horizontal space is constrained.
  */
 final class FactSet extends AbstractElement
 {
@@ -21,6 +21,8 @@ final class FactSet extends AbstractElement
     }
 
     /**
+     * The array of Fact's.
+     *
      * @param array<string, string>|list<Fact> $facts Either an associative
      *        title => value map or a list of Fact objects.
      */
@@ -37,11 +39,17 @@ final class FactSet extends AbstractElement
         return $this;
     }
 
+    /**
+     * Add a Fact to the set.
+     */
     public function addFact(Fact $fact): self
     {
         return $this->push('facts', $fact);
     }
 
+    /**
+     * Add a Fact from a title and value.
+     */
     public function fact(string $title, string $value): self
     {
         return $this->addFact(new Fact($title, $value));

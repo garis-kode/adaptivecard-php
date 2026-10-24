@@ -6,6 +6,9 @@ namespace AdaptiveCards\Chart;
 
 use AdaptiveCards\Chart\Data\DataPoint;
 
+/**
+ * A donut chart.
+ */
 final class DonutChart extends AbstractChart
 {
     /**
@@ -37,26 +40,41 @@ final class DonutChart extends AbstractChart
         return new self($title, $showTitle, $data);
     }
 
+    /**
+     * Inner radius of the donut chart.
+     */
     public function innerRadius(float|int $innerRadius): self
     {
         return $this->set('innerRadius', $innerRadius);
     }
 
+    /**
+     * Controls whether slice outlines are displayed.
+     */
     public function showOutlines(bool $show = true): self
     {
         return $this->set('showOutlines', $show);
     }
 
+    /**
+     * Thickness of the donut ring.
+     */
     public function thickness(string|int|float $thickness): self
     {
         return $this->set('thickness', $thickness);
     }
 
+    /**
+     * The central value displayed inside the donut chart.
+     */
     public function value(string|int|float $value): self
     {
         return $this->set('value', $value);
     }
 
+    /**
+     * Color of the central value text.
+     */
     public function valueColor(string $color): self
     {
         return $this->set('valueColor', $color);

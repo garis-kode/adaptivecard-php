@@ -10,7 +10,7 @@ use AdaptiveCards\Enum\HorizontalAlignment;
 use AdaptiveCards\Enum\VerticalAlignment;
 
 /**
- * Displays tabular data in rows and columns (schema 1.5+).
+ * Use tables to display data in a tabular way, with rows, columns and cells.
  */
 final class Table extends AbstractElement
 {
@@ -42,6 +42,8 @@ final class Table extends AbstractElement
     }
 
     /**
+     * Defines the table's columns (their widths and default content alignment).
+     *
      * @param iterable<TableColumnDefinition> $columns
      */
     public function columns(iterable $columns): self
@@ -53,12 +55,17 @@ final class Table extends AbstractElement
         return $this;
     }
 
+    /**
+     * Add a column to the table.
+     */
     public function addColumn(TableColumnDefinition $column): self
     {
         return $this->push('columns', $column);
     }
 
     /**
+     * Defines the table's rows.
+     *
      * @param iterable<TableRow|iterable<TableCell>> $rows
      */
     public function rows(iterable $rows): self
@@ -76,6 +83,9 @@ final class Table extends AbstractElement
         return $this;
     }
 
+    /**
+     * Add a row to the table.
+     */
     public function addRow(TableRow $row): self
     {
         return $this->push('rows', $row);
@@ -96,46 +106,78 @@ final class Table extends AbstractElement
         return $this->addRow($row);
     }
 
+    /**
+     * Controls whether grid lines should be displayed between cells in the table.
+     */
     public function showGridLines(bool $value = true): self
     {
         return $this->set('showGridLines', $value);
     }
 
+    /**
+     * Defines whether the first row of the table should be treated as a header row,
+     * and be repeated on every page of a printout.
+     */
     public function firstRowAsHeaders(bool $value = true): self
     {
         return $this->set('firstRowAsHeaders', $value);
     }
 
+    /**
+     * Controls whether the table's corners should be rounded.
+     */
     public function roundedCorners(bool $value = true): self
     {
         return $this->set('roundedCorners', $value);
     }
 
+    /**
+     * Controls whether the table's border should be displayed.
+     */
     public function showBorder(bool $value = true): self
     {
         return $this->set('showBorder', $value);
     }
 
+    /**
+     * The minimum width, in pixels, of the table.
+     */
     public function minWidth(string $width): self
     {
         return $this->set('minWidth', $width);
     }
 
+    /**
+     * The style of the table.
+     * Valid values: "default", "emphasis", "accent", "good", "attention", "warning".
+     */
     public function style(string|ContainerStyle $style): self
     {
         return $this->set('style', ContainerStyle::value($style));
     }
 
+    /**
+     * Controls the style of grid lines displayed between cells in the table.
+     * Valid values: "default", "emphasis", "accent", "good", "attention", "warning".
+     */
     public function gridStyle(string|ContainerStyle $style): self
     {
         return $this->set('gridStyle', ContainerStyle::value($style));
     }
 
+    /**
+     * Controls how cells should be horizontally aligned by default across the entire table.
+     * Valid values: "Left", "Center", "Right".
+     */
     public function horizontalCellContentAlignment(string|HorizontalAlignment $alignment): self
     {
         return $this->set('horizontalCellContentAlignment', HorizontalAlignment::value($alignment));
     }
 
+    /**
+     * Controls how cells should be vertically aligned by default across the entire table.
+     * Valid values: "Top", "Center", "Bottom".
+     */
     public function verticalCellContentAlignment(string|VerticalAlignment $alignment): self
     {
         return $this->set('verticalCellContentAlignment', VerticalAlignment::value($alignment));

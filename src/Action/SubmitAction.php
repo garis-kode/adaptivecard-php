@@ -7,7 +7,9 @@ namespace AdaptiveCards\Action;
 use AdaptiveCards\Enum\AssociatedInputs;
 
 /**
- * Gathers the card's input values and sends them back to the host.
+ * Gathers input values, merges them with the `data` property if specified,
+ * and sends them to the Bot via an Invoke activity. The Bot can only acknowledge
+ * it has received the request.
  */
 final class SubmitAction extends AbstractAction
 {
@@ -24,7 +26,7 @@ final class SubmitAction extends AbstractAction
     }
 
     /**
-     * Initial/hidden data merged with the gathered inputs on submit.
+     * Initial data that input fields will be combined with. These are essentially 'hidden' fields.
      *
      * @param array<string, mixed>|string $data
      */
@@ -33,12 +35,18 @@ final class SubmitAction extends AbstractAction
         return $this->set('data', $data);
     }
 
+    /**
+     * Controls which inputs are associated with the action.
+     * Valid values: "auto", "none".
+     */
     public function associatedInputs(string|AssociatedInputs $associatedInputs): self
     {
         return $this->set('associatedInputs', AssociatedInputs::value($associatedInputs));
     }
 
     /**
+     * Teams-specific properties associated with the action.
+     *
      * @param array<string, mixed> $properties
      */
     public function msteams(array $properties, bool $useCamelCaseKey = false): self

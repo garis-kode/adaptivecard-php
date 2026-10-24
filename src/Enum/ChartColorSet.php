@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Enum;
 
+/**
+ * Reference for individual chart color identifiers and the hex values of the supported color sets.
+ */
 enum ChartColorSet: string
 {
     use EnumValue;

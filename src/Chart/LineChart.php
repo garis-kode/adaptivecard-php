@@ -7,6 +7,9 @@ namespace AdaptiveCards\Chart;
 use AdaptiveCards\Chart\Data\ChartSeries;
 use AdaptiveCards\Enum\ChartColorSet;
 
+/**
+ * A line chart.
+ */
 final class LineChart extends AbstractChart
 {
     /**
@@ -53,6 +56,9 @@ final class LineChart extends AbstractChart
         return new self($title, $showTitle, $xAxisTitle, $yAxisTitle, $colorSet, $data);
     }
 
+    /**
+     * Minimum y-axis value.
+     */
     public function yMin(float|int $yMin): self
     {
         return $this->set('yMin', $yMin);

@@ -7,7 +7,7 @@ namespace AdaptiveCards\Chart\Gauge;
 use AdaptiveCards\Node;
 
 /**
- * Segment definition for a GaugeChart.
+ * The legend of the chart.
  */
 final class GaugeSegment extends Node
 {
@@ -26,16 +26,25 @@ final class GaugeSegment extends Node
         return new self($legend, $size, $color);
     }
 
+    /**
+     * Label for the segment.
+     */
     public function legend(string $legend): self
     {
         return $this->set('legend', $legend);
     }
 
+    /**
+     * The size/range of the segment.
+     */
     public function size(float|int $size): self
     {
         return $this->set('size', $size);
     }
 
+    /**
+     * The color of the segment.
+     */
     public function color(string $color): self
     {
         return $this->set('color', $color);

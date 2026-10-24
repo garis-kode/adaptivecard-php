@@ -7,7 +7,8 @@ namespace AdaptiveCards\Shared;
 use AdaptiveCards\Node;
 
 /**
- * A button displayed in an Authentication prompt. Has no `type` discriminator in Adaptive Card schema.
+ * Defines a button as displayed when prompting a user to authenticate.
+ * For more information, refer to the Bot Framework CardAction type.
  */
 final class AuthCardButton extends Node
 {
@@ -38,21 +39,33 @@ final class AuthCardButton extends Node
         return new self($type, $title, $value, $image);
     }
 
+    /**
+     * The type of button. Valid values: "signin".
+     */
     public function type(string $type): self
     {
         return $this->set('type', $type);
     }
 
+    /**
+     * The title of the button.
+     */
     public function title(string $title): self
     {
         return $this->set('title', $title);
     }
 
+    /**
+     * The value associated with the button.
+     */
     public function value(string $value): self
     {
         return $this->set('value', $value);
     }
 
+    /**
+     * The URL to the icon to be displayed with the button.
+     */
     public function image(string $image): self
     {
         return $this->set('image', $image);

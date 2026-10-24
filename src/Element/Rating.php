@@ -9,7 +9,7 @@ use AdaptiveCards\Enum\RatingSize;
 use AdaptiveCards\Enum\RatingStyle;
 
 /**
- * A rating element displaying a number of stars and optional rating count.
+ * A read-only star rating element, to display the rating of something.
  */
 final class Rating extends AbstractElement
 {
@@ -22,31 +22,52 @@ final class Rating extends AbstractElement
         return new self();
     }
 
+    /**
+     * The rating value.
+     */
     public function value(float|int $value): self
     {
         return $this->set('value', $value);
     }
 
+    /**
+     * The maximum rating value.
+     */
     public function max(float|int $max): self
     {
         return $this->set('max', $max);
     }
 
+    /**
+     * The number of ratings submitted.
+     */
     public function count(int $count): self
     {
         return $this->set('count', $count);
     }
 
+    /**
+     * Controls the size of the rating stars.
+     * Valid values: "small", "medium", "large".
+     */
     public function size(string|RatingSize $size): self
     {
         return $this->set('size', RatingSize::value($size));
     }
 
+    /**
+     * Controls the color of the rating stars.
+     * Valid values: "neutral", "marigold".
+     */
     public function color(string|RatingColor $color): self
     {
         return $this->set('color', RatingColor::value($color));
     }
 
+    /**
+     * Controls the style of the rating stars.
+     * Valid values: "default", "compact".
+     */
     public function style(string|RatingStyle $style): self
     {
         return $this->set('style', RatingStyle::value($style));

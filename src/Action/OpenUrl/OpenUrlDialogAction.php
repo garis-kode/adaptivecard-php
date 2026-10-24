@@ -6,6 +6,9 @@ namespace AdaptiveCards\Action\OpenUrl;
 
 use AdaptiveCards\Action\AbstractAction;
 
+/**
+ * Opens a task module in a modal dialog hosting the content at a provided URL.
+ */
 final class OpenUrlDialogAction extends AbstractAction
 {
     public function __construct(
@@ -32,17 +35,26 @@ final class OpenUrlDialogAction extends AbstractAction
         return new self($dialogTitle, $dialogHeight, $url, $title);
     }
 
+    /**
+     * The URL of the webpage to load in the modal dialog.
+     */
     public function url(string $url): self
     {
         return $this->set('url', $url);
     }
 
+    /**
+     * The title of the modal dialog.
+     */
     public function dialogTitle(string $dialogTitle): self
     {
         return $this->set('dialogTitle', $dialogTitle);
     }
 
     /**
+     * The size of the modal dialog.
+     * Valid values: "small", "medium", "large".
+     *
      * @param "small"|"medium"|"large"|string $dialogSize
      */
     public function dialogSize(string $dialogSize): self
@@ -50,11 +62,17 @@ final class OpenUrlDialogAction extends AbstractAction
         return $this->set('dialogSize', $dialogSize);
     }
 
+    /**
+     * The width of the modal dialog in pixels.
+     */
     public function dialogWidth(string $dialogWidth): self
     {
         return $this->set('dialogWidth', $dialogWidth);
     }
 
+    /**
+     * The height of the modal dialog in pixels.
+     */
     public function dialogHeight(string $dialogHeight): self
     {
         return $this->set('dialogHeight', $dialogHeight);

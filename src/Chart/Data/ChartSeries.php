@@ -7,7 +7,7 @@ namespace AdaptiveCards\Chart\Data;
 use AdaptiveCards\Node;
 
 /**
- * Series data for multi-series charts (Line, StackedBar, GroupedBar).
+ * Represents a collection of data points series in a line chart or stacked/grouped chart.
  */
 final class ChartSeries extends Node
 {
@@ -38,22 +38,33 @@ final class ChartSeries extends Node
         return new self($legendOrTitle, $data, $color);
     }
 
+    /**
+     * The legend/label for this series.
+     */
     public function legend(string $legend): self
     {
         return $this->set('legend', $legend);
     }
 
+    /**
+     * The title of this series.
+     */
     public function title(string $title): self
     {
         return $this->set('title', $title);
     }
 
+    /**
+     * The color of this series.
+     */
     public function color(string $color): self
     {
         return $this->set('color', $color);
     }
 
     /**
+     * Add a data point to the series.
+     *
      * @param DataPoint|array<string, mixed> $point
      */
     public function addPoint(DataPoint|array $point): self
@@ -62,6 +73,8 @@ final class ChartSeries extends Node
     }
 
     /**
+     * The collection of data points in this series.
+     *
      * @param iterable<DataPoint|array<string, mixed>> $points
      */
     public function data(iterable $points): self
@@ -74,6 +87,8 @@ final class ChartSeries extends Node
     }
 
     /**
+     * Add a value data point to the series.
+     *
      * @param DataPoint|array<string, mixed> $point
      */
     public function addValue(DataPoint|array $point): self
@@ -82,6 +97,8 @@ final class ChartSeries extends Node
     }
 
     /**
+     * The collection of values in this series.
+     *
      * @param iterable<DataPoint|array<string, mixed>> $points
      */
     public function values(iterable $points): self

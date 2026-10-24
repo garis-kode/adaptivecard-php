@@ -7,7 +7,7 @@ namespace AdaptiveCards\Action\ToggleVisibility;
 use AdaptiveCards\Action\AbstractAction;
 
 /**
- * Shows, hides or toggles the visibility of one or more target elements.
+ * Toggles the visibility of a set of elements.
  */
 final class ToggleVisibilityAction extends AbstractAction
 {
@@ -24,7 +24,7 @@ final class ToggleVisibilityAction extends AbstractAction
     }
 
     /**
-     * Toggle a target by id. Pass $isVisible to force a specific state;
+     * Toggle a target element by ID. Pass $isVisible to force a specific state;
      * omit it to flip the current state.
      */
     public function target(string $elementId, ?bool $isVisible = null): self
@@ -36,12 +36,17 @@ final class ToggleVisibilityAction extends AbstractAction
         );
     }
 
+    /**
+     * Add a target element.
+     */
     public function addTarget(TargetElement $target): self
     {
         return $this->push('targetElements', $target);
     }
 
     /**
+     * The array of elements to toggle the visibility of.
+     *
      * @param iterable<string|TargetElement> $targets
      */
     public function targetElements(iterable $targets): self
@@ -57,6 +62,9 @@ final class ToggleVisibilityAction extends AbstractAction
         return $this;
     }
 
+    /**
+     * Controls whether the aria-controls attribute should be suppressed.
+     */
     public function suppressAriaControls(bool $suppress = true): self
     {
         return $this->set('suppressAriaControls', $suppress);

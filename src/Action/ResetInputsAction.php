@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Action;
 
+/**
+ * Resets the values of the inputs in the card.
+ */
 final class ResetInputsAction extends AbstractAction
 {
     public function __construct(?string $title = null)
@@ -19,6 +22,8 @@ final class ResetInputsAction extends AbstractAction
     }
 
     /**
+     * An array of IDs of the inputs that should be reset. If omitted, all inputs in the card are reset.
+     *
      * @param list<string> $targetInputIds
      */
     public function targetInputIds(array $targetInputIds): self
@@ -26,6 +31,9 @@ final class ResetInputsAction extends AbstractAction
         return $this->set('targetInputIds', $targetInputIds);
     }
 
+    /**
+     * Add an input ID to the list of inputs that should be reset.
+     */
     public function addTargetInputId(string $id): self
     {
         return $this->push('targetInputIds', $id);

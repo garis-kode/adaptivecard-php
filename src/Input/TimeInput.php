@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace AdaptiveCards\Input;
 
 /**
- * Lets the user pick a time ("HH:MM").
+ * An input to allow the user to select a time.
  */
 final class TimeInput extends AbstractInput
 {
@@ -23,16 +23,25 @@ final class TimeInput extends AbstractInput
         return new self($id, $label);
     }
 
+    /**
+     * Description of the input desired. Displayed when no time has been input.
+     */
     public function placeholder(string $placeholder): self
     {
         return $this->set('placeholder', $placeholder);
     }
 
+    /**
+     * The earliest time that may be selected, expressed as HH:MM.
+     */
     public function min(string $min): self
     {
         return $this->set('min', $min);
     }
 
+    /**
+     * The latest time that may be selected, expressed as HH:MM.
+     */
     public function max(string $max): self
     {
         return $this->set('max', $max);

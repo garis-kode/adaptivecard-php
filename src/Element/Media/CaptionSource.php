@@ -7,7 +7,7 @@ namespace AdaptiveCards\Element\Media;
 use AdaptiveCards\Node;
 
 /**
- * A closed-caption track for a {@see Media} element (schema 1.6+). No `type`.
+ * Defines a source URL for a video captions.
  */
 final class CaptionSource extends Node
 {
@@ -23,16 +23,25 @@ final class CaptionSource extends Node
         return new self($url, $mimeType, $label);
     }
 
+    /**
+     * URL to the captions file. Currently only VTT format is supported.
+     */
     public function url(string $url): self
     {
         return $this->set('url', $url);
     }
 
+    /**
+     * MIME type of captions file. Currently only 'text/vtt' is supported.
+     */
     public function mimeType(string $mimeType): self
     {
         return $this->set('mimeType', $mimeType);
     }
 
+    /**
+     * Label for the caption track, shown to user as option in closed caption selection.
+     */
     public function label(string $label): self
     {
         return $this->set('label', $label);

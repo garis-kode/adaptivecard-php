@@ -22,12 +22,17 @@ final class ImageRun extends AbstractElement
         return new self($url);
     }
 
+    /**
+     * The URL to the image.
+     */
     public function url(string $url): self
     {
         return $this->set('url', $url);
     }
 
     /**
+     * Controls the size of the image.
+     *
      * @param "Small"|"Default"|"Medium"|"Large"|"ExtraLarge"|string $size
      */
     public function size(string $size): self
@@ -36,6 +41,8 @@ final class ImageRun extends AbstractElement
     }
 
     /**
+     * Controls how this element is displayed.
+     *
      * @param "Default"|"Person"|"RoundedCorners"|string $style
      */
     public function style(string $style): self
@@ -44,6 +51,8 @@ final class ImageRun extends AbstractElement
     }
 
     /**
+     * Controls alternative image URLs based on the active theme.
+     *
      * @param list<array{imageBaseUrl: string, mimeType: string}> $themedUrls
      */
     public function themedUrls(array $themedUrls): self
@@ -51,6 +60,9 @@ final class ImageRun extends AbstractElement
         return $this->set('themedUrls', $themedUrls);
     }
 
+    /**
+     * An Action that will be invoked when the image is tapped or clicked.
+     */
     public function selectAction(AbstractAction $action): self
     {
         return $this->set('selectAction', $action);

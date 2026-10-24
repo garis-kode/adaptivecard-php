@@ -7,8 +7,8 @@ namespace AdaptiveCards\Action;
 use AdaptiveCards\Enum\AssociatedInputs;
 
 /**
- * Gathers inputs and sends a Universal Action Model event to a bot
- * (schema 1.4+).
+ * Gathers input values, merges them with the `data` property if specified,
+ * and sends them to the Bot via an Invoke activity.
  */
 final class ExecuteAction extends AbstractAction
 {
@@ -24,12 +24,17 @@ final class ExecuteAction extends AbstractAction
         return new self($title);
     }
 
+    /**
+     * The card author-defined verb associated with this action.
+     */
     public function verb(string $verb): self
     {
         return $this->set('verb', $verb);
     }
 
     /**
+     * Initial data that input fields will be combined with. These are essentially 'hidden' fields.
+     *
      * @param array<string, mixed>|string $data
      */
     public function data(array|string $data): self
@@ -37,6 +42,10 @@ final class ExecuteAction extends AbstractAction
         return $this->set('data', $data);
     }
 
+    /**
+     * Controls which inputs are associated with the action.
+     * Valid values: "auto", "none".
+     */
     public function associatedInputs(string|AssociatedInputs $associatedInputs): self
     {
         return $this->set('associatedInputs', AssociatedInputs::value($associatedInputs));

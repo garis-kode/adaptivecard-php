@@ -7,6 +7,9 @@ namespace AdaptiveCards\Chart\HorizontalBar;
 use AdaptiveCards\Chart\AbstractChart;
 use AdaptiveCards\Chart\Data\ChartSeries;
 
+/**
+ * A stacked horizontal bar chart.
+ */
 final class StackedHorizontalBarChart extends AbstractChart
 {
     /**
@@ -37,6 +40,8 @@ final class StackedHorizontalBarChart extends AbstractChart
     }
 
     /**
+     * Add a series of data points.
+     *
      * @param ChartSeries|array<string, mixed> $series
      */
     public function addSeries(ChartSeries|array $series): self
@@ -45,6 +50,8 @@ final class StackedHorizontalBarChart extends AbstractChart
     }
 
     /**
+     * The series of data points in the stacked horizontal bar chart.
+     *
      * @param iterable<ChartSeries|array<string, mixed>> $data
      */
     public function data(iterable $data): self

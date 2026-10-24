@@ -7,7 +7,7 @@ namespace AdaptiveCards\Action;
 use AdaptiveCards\AdaptiveCard;
 
 /**
- * Reveals an inline sub-card when invoked.
+ * Expands or collapses an embedded card within the main card.
  */
 final class ShowCardAction extends AbstractAction
 {
@@ -25,6 +25,9 @@ final class ShowCardAction extends AbstractAction
         return new self($card, $title);
     }
 
+    /**
+     * The Adaptive Card to show.
+     */
     public function card(AdaptiveCard $card): self
     {
         return $this->set('card', $card);

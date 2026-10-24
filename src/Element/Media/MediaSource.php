@@ -7,7 +7,7 @@ namespace AdaptiveCards\Element\Media;
 use AdaptiveCards\Node;
 
 /**
- * A single playable source for a {@see Media} element. Has no `type` field.
+ * Defines the source URL of a media stream. YouTube, Dailymotion, Vimeo, and Microsoft Stream URLs are supported.
  */
 final class MediaSource extends Node
 {
@@ -26,11 +26,17 @@ final class MediaSource extends Node
         return new self($url, $mimeType);
     }
 
+    /**
+     * URL to media.
+     */
     public function url(string $url): self
     {
         return $this->set('url', $url);
     }
 
+    /**
+     * Mime type of associated media (e.g. 'video/mp4').
+     */
     public function mimeType(string $mimeType): self
     {
         return $this->set('mimeType', $mimeType);

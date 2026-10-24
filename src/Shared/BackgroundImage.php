@@ -10,7 +10,7 @@ use AdaptiveCards\Enum\VerticalAlignment;
 use AdaptiveCards\Node;
 
 /**
- * A background image for a card or container. Has no `type` field.
+ * Defines the container's background image.
  */
 final class BackgroundImage extends Node
 {
@@ -24,21 +24,36 @@ final class BackgroundImage extends Node
         return new self($url);
     }
 
+    /**
+     * The URL (or data url) of the image.
+     */
     public function url(string $url): self
     {
         return $this->set('url', $url);
     }
 
+    /**
+     * Describes how the image should fill the area.
+     * Valid values: "cover", "repeatHorizontally", "repeatVertically", "repeat".
+     */
     public function fillMode(string|ImageFillMode $fillMode): self
     {
         return $this->set('fillMode', ImageFillMode::value($fillMode));
     }
 
+    /**
+     * Describes how the image should be aligned if it must be cropped or if using repeat streams.
+     * Valid values: "left", "center", "right".
+     */
     public function horizontalAlignment(string|HorizontalAlignment $alignment): self
     {
         return $this->set('horizontalAlignment', HorizontalAlignment::value($alignment));
     }
 
+    /**
+     * Describes how the image should be aligned if it must be cropped or if using repeat streams.
+     * Valid values: "top", "center", "bottom".
+     */
     public function verticalAlignment(string|VerticalAlignment $alignment): self
     {
         return $this->set('verticalAlignment', VerticalAlignment::value($alignment));

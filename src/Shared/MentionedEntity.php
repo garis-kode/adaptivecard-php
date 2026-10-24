@@ -23,17 +23,25 @@ final class MentionedEntity extends Node
         return new self($id, $name, $mentionType);
     }
 
+    /**
+     * The user ID (MRI) or tag ID.
+     */
     public function id(string $id): self
     {
         return $this->set('id', $id);
     }
 
+    /**
+     * The name of the user or tag.
+     */
     public function name(string $name): self
     {
         return $this->set('name', $name);
     }
 
     /**
+     * The type of entity mentioned (e.g. Person, Tag).
+     *
      * @param "Person"|"Tag"|string $mentionType
      */
     public function mentionType(string $mentionType): self

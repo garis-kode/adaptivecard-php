@@ -8,7 +8,7 @@ use AdaptiveCards\Element\AbstractElement;
 use AdaptiveCards\Enum\ImageSize;
 
 /**
- * Displays a collection of {@see Image}s as a gallery.
+ * A set of images, displayed side-by-side and wrapped across multiple rows as needed.
  */
 final class ImageSet extends AbstractElement
 {
@@ -17,11 +17,18 @@ final class ImageSet extends AbstractElement
         return new self();
     }
 
+    /**
+     * Add an image to the image set.
+     */
     public function addImage(Image $image): self
     {
         return $this->push('images', $image);
     }
 
+    /**
+     * Controls the approximate size of each image in the set.
+     * Valid values: "Auto", "Stretch", "Small", "Medium", "Large".
+     */
     public function imageSize(string|ImageSize $size): self
     {
         return $this->set('imageSize', ImageSize::value($size));

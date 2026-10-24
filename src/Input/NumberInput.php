@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace AdaptiveCards\Input;
 
 /**
- * Lets the user enter a number.
+ * An input to allow the user to enter a number.
  */
 final class NumberInput extends AbstractInput
 {
@@ -32,16 +32,25 @@ final class NumberInput extends AbstractInput
         return new self($id, $label, $placeholder);
     }
 
+    /**
+     * Description of the input desired. Displayed when no input has been made.
+     */
     public function placeholder(string $placeholder): self
     {
         return $this->set('placeholder', $placeholder);
     }
 
+    /**
+     * Minimum value.
+     */
     public function min(int|float $min): self
     {
         return $this->set('min', $min);
     }
 
+    /**
+     * Maximum value.
+     */
     public function max(int|float $max): self
     {
         return $this->set('max', $max);

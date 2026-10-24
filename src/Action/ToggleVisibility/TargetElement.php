@@ -7,11 +7,7 @@ namespace AdaptiveCards\Action\ToggleVisibility;
 use AdaptiveCards\Node;
 
 /**
- * Names an element whose visibility a {@see ToggleVisibilityAction} affects,
- * optionally forcing it visible or hidden. Has no `type` field.
- *
- * When only an id is needed the schema also permits a bare string; see
- * {@see ToggleVisibilityAction::target()} which emits that compact form.
+ * Defines a target element in an Action.ToggleVisibility.
  */
 final class TargetElement extends Node
 {
@@ -29,11 +25,17 @@ final class TargetElement extends Node
         return new self($elementId, $isVisible);
     }
 
+    /**
+     * Element ID of the element to toggle.
+     */
     public function elementId(string $elementId): self
     {
         return $this->set('elementId', $elementId);
     }
 
+    /**
+     * If null, toggle current visibility of element. If true, show element. If false, hide element.
+     */
     public function isVisible(bool $isVisible = true): self
     {
         return $this->set('isVisible', $isVisible);

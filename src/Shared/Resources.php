@@ -7,7 +7,7 @@ namespace AdaptiveCards\Shared;
 use AdaptiveCards\Node;
 
 /**
- * Resources card elements can reference.
+ * The resources that can be used in the body of the card.
  */
 final class Resources extends Node
 {
@@ -16,6 +16,9 @@ final class Resources extends Node
         return new self();
     }
 
+    /**
+     * Add a replacement string value.
+     */
     public function addString(string $id, StringResource $stringResource): self
     {
         /** @var array<string, StringResource> $strings */
@@ -27,6 +30,8 @@ final class Resources extends Node
     }
 
     /**
+     * The replacement string values.
+     *
      * @param array<string, StringResource> $strings
      */
     public function strings(array $strings): self

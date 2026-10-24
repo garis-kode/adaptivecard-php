@@ -6,6 +6,9 @@ namespace AdaptiveCards\Chart;
 
 use AdaptiveCards\Chart\Data\DataPoint;
 
+/**
+ * A pie chart.
+ */
 final class PieChart extends AbstractChart
 {
     /**
@@ -38,6 +41,8 @@ final class PieChart extends AbstractChart
     }
 
     /**
+     * Add a data point to the pie chart.
+     *
      * @param DataPoint|array<string, mixed> $point
      */
     public function addDataPoint(DataPoint|array $point): self
@@ -46,6 +51,8 @@ final class PieChart extends AbstractChart
     }
 
     /**
+     * The data points of the pie chart.
+     *
      * @param iterable<DataPoint|array<string, mixed>> $data
      */
     public function data(iterable $data): self
@@ -57,6 +64,9 @@ final class PieChart extends AbstractChart
         return $this;
     }
 
+    /**
+     * Controls whether slice outlines are displayed.
+     */
     public function showOutlines(bool $show = true): self
     {
         return $this->set('showOutlines', $show);

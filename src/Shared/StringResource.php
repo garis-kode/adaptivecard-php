@@ -7,7 +7,7 @@ namespace AdaptiveCards\Shared;
 use AdaptiveCards\Node;
 
 /**
- * Defines replacement localized string values.
+ * Defines the replacement string values.
  */
 final class StringResource extends Node
 {
@@ -30,12 +30,17 @@ final class StringResource extends Node
         return new self($defaultValue, $localizedValues);
     }
 
+    /**
+     * The default string to display if a localized string is not available for the host application's language.
+     */
     public function defaultValue(string $defaultValue): self
     {
         return $this->set('defaultValue', $defaultValue);
     }
 
     /**
+     * A map of locale to localized string values.
+     *
      * @param array<string, string> $localizedValues
      */
     public function localizedValues(array $localizedValues): self
@@ -43,6 +48,9 @@ final class StringResource extends Node
         return $this->set('localizedValues', $localizedValues);
     }
 
+    /**
+     * Add a localized value for a specific locale.
+     */
     public function addLocalizedValue(string $locale, string $value): self
     {
         /** @var array<string, string> $existing */

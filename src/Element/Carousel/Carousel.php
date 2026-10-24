@@ -16,12 +16,17 @@ final class Carousel extends AbstractElement
         return new self();
     }
 
+    /**
+     * Add a page to the carousel.
+     */
     public function addPage(CarouselPage $page): self
     {
         return $this->push('pages', $page);
     }
 
     /**
+     * The pages of the carousel.
+     *
      * @param iterable<CarouselPage> $pages
      */
     public function pages(iterable $pages): self
@@ -34,7 +39,8 @@ final class Carousel extends AbstractElement
     }
 
     /**
-     * Preview: milliseconds between automatic advances; minimum 1000.
+     * Controls the duration of an auto loop interval in milliseconds.
+     * When auto-loop is enabled, pages automatically advance after this interval.
      */
     public function autoLoopInterval(int $milliseconds): self
     {
@@ -42,6 +48,9 @@ final class Carousel extends AbstractElement
     }
 
     /**
+     * Controls the animation style between carousel pages.
+     * Valid values: "Slide", "CrossFade", "None".
+     *
      * @param "Slide"|"CrossFade"|"None"|string $animation
      */
     public function pageAnimation(string $animation): self
@@ -49,11 +58,17 @@ final class Carousel extends AbstractElement
         return $this->set('pageAnimation', $animation);
     }
 
+    /**
+     * Determines whether the element should bleed through its parent's padding.
+     */
     public function bleed(bool $bleed = true): self
     {
         return $this->set('bleed', $bleed);
     }
 
+    /**
+     * The minimum height, in pixels, of the carousel, in the `<number>px` format.
+     */
     public function minHeight(string $minHeight): self
     {
         return $this->set('minHeight', $minHeight);

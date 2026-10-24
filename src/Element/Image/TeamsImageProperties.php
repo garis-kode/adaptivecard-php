@@ -7,7 +7,7 @@ namespace AdaptiveCards\Element\Image;
 use AdaptiveCards\Node;
 
 /**
- * Teams-specific properties on an image. Has no `type` field.
+ * Represents a set of Teams-specific properties on an image.
  */
 final class TeamsImageProperties extends Node
 {
@@ -23,6 +23,9 @@ final class TeamsImageProperties extends Node
         return new self($allowExpand);
     }
 
+    /**
+     * Controls whether the image can be expanded by the user in Teams.
+     */
     public function allowExpand(bool $allow = true): self
     {
         return $this->set('allowExpand', $allow);

@@ -8,7 +8,7 @@ use AdaptiveCards\Element\AbstractElement;
 use AdaptiveCards\Enum\ProgressRingSize;
 
 /**
- * An indeterminate rotating circular indicator that a background process is running.
+ * A spinning ring element, to indicate progress.
  */
 final class ProgressRing extends AbstractElement
 {
@@ -24,12 +24,18 @@ final class ProgressRing extends AbstractElement
         return new self($label);
     }
 
+    /**
+     * The label to display alongside the progress ring.
+     */
     public function label(string $label): self
     {
         return $this->set('label', $label);
     }
 
     /**
+     * Specifies the position of the label relative to the progress ring.
+     * Valid values: "Before", "After", "Above", "Below".
+     *
      * @param "Before"|"After"|"Above"|"Below"|string $labelPosition
      */
     public function labelPosition(string $labelPosition): self
@@ -37,6 +43,10 @@ final class ProgressRing extends AbstractElement
         return $this->set('labelPosition', $labelPosition);
     }
 
+    /**
+     * Controls the size of the progress ring.
+     * Valid values: "Small", "Medium", "Large", "ExtraLarge".
+     */
     public function size(string|ProgressRingSize $size): self
     {
         return $this->set('size', ProgressRingSize::value($size));

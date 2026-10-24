@@ -7,7 +7,8 @@ namespace AdaptiveCards\Shared;
 use AdaptiveCards\Node;
 
 /**
- * Details of the resource that can be used to acquire an auth token for the user.
+ * Defines information required to enable on-behalf-of single sign-on user authentication.
+ * For more information, refer to the Bot Framework TokenExchangeResource type.
  */
 final class TokenExchangeResource extends Node
 {
@@ -35,16 +36,25 @@ final class TokenExchangeResource extends Node
         return new self($id, $providerId, $uri);
     }
 
+    /**
+     * A unique identifier for this token exchange resource.
+     */
     public function id(string $id): self
     {
         return $this->set('id', $id);
     }
 
+    /**
+     * An application ID of the resource provider.
+     */
     public function providerId(string $providerId): self
     {
         return $this->set('providerId', $providerId);
     }
 
+    /**
+     * The URI of the resource provider.
+     */
     public function uri(string $uri): self
     {
         return $this->set('uri', $uri);

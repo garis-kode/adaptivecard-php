@@ -7,7 +7,7 @@ namespace AdaptiveCards\Shared;
 use AdaptiveCards\Node;
 
 /**
- * Represents a mention of a person or tag within a Teams card.
+ * Represents a mention to a person.
  */
 final class Mention extends Node
 {
@@ -22,11 +22,17 @@ final class Mention extends Node
         return new self($text, $mentioned);
     }
 
+    /**
+     * The text formatted as `<at>Name</at>`.
+     */
     public function text(string $text): self
     {
         return $this->set('text', $text);
     }
 
+    /**
+     * The person or tag mentioned.
+     */
     public function mentioned(MentionedEntity $mentioned): self
     {
         return $this->set('mentioned', $mentioned);

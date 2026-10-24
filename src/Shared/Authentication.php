@@ -7,7 +7,8 @@ namespace AdaptiveCards\Shared;
 use AdaptiveCards\Node;
 
 /**
- * OAuth/SSO sign-in details for a card (schema 1.4+). Has no `type` field.
+ * Defines authentication information associated with a card. For more
+ * information, refer to the Bot Framework OAuthCard type.
  */
 final class Authentication extends Node
 {
@@ -16,17 +17,25 @@ final class Authentication extends Node
         return new self();
     }
 
+    /**
+     * The text to display when prompting a user to authenticate.
+     */
     public function text(string $text): self
     {
         return $this->set('text', $text);
     }
 
+    /**
+     * The name of the OAuth connection to use.
+     */
     public function connectionName(string $connectionName): self
     {
         return $this->set('connectionName', $connectionName);
     }
 
     /**
+     * Defines information required to enable on-behalf-of single sign-on user authentication.
+     *
      * @param TokenExchangeResource|array<string, mixed> $resource
      */
     public function tokenExchangeResource(TokenExchangeResource|array $resource): self
@@ -35,6 +44,8 @@ final class Authentication extends Node
     }
 
     /**
+     * Add a button that should be displayed to the user to authenticate.
+     *
      * @param AuthCardButton|array<string, mixed> $button
      */
     public function addButton(AuthCardButton|array $button): self
@@ -43,6 +54,8 @@ final class Authentication extends Node
     }
 
     /**
+     * Buttons that should be displayed to the user to authenticate.
+     *
      * @param iterable<AuthCardButton|array<string, mixed>> $buttons
      */
     public function buttons(iterable $buttons): self

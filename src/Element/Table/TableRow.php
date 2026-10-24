@@ -10,7 +10,7 @@ use AdaptiveCards\Enum\HorizontalAlignment;
 use AdaptiveCards\Enum\VerticalAlignment;
 
 /**
- * A row of {@see TableCell}s within a {@see Table}.
+ * Represents a row of cells in a table.
  */
 final class TableRow extends AbstractElement
 {
@@ -19,12 +19,17 @@ final class TableRow extends AbstractElement
         return new self();
     }
 
+    /**
+     * Add a cell to the row.
+     */
     public function addCell(TableCell $cell): self
     {
         return $this->push('cells', $cell);
     }
 
     /**
+     * The cells in this row.
+     *
      * @param iterable<TableCell> $cells
      */
     public function cells(iterable $cells): self
@@ -47,26 +52,44 @@ final class TableRow extends AbstractElement
         return $this->addCell($cell);
     }
 
+    /**
+     * The style of the table row.
+     * Valid values: "default", "emphasis", "accent", "good", "attention", "warning".
+     */
     public function style(string|ContainerStyle $style): self
     {
         return $this->set('style', ContainerStyle::value($style));
     }
 
+    /**
+     * Controls whether the row's corners should be rounded.
+     */
     public function roundedCorners(bool $value = true): self
     {
         return $this->set('roundedCorners', $value);
     }
 
+    /**
+     * Controls whether the row's border should be displayed.
+     */
     public function showBorder(bool $value = true): self
     {
         return $this->set('showBorder', $value);
     }
 
+    /**
+     * Controls how cells should be horizontally aligned in this row.
+     * Valid values: "Left", "Center", "Right".
+     */
     public function horizontalCellContentAlignment(string|HorizontalAlignment $alignment): self
     {
         return $this->set('horizontalCellContentAlignment', HorizontalAlignment::value($alignment));
     }
 
+    /**
+     * Controls how cells should be vertically aligned in this row.
+     * Valid values: "Top", "Center", "Bottom".
+     */
     public function verticalCellContentAlignment(string|VerticalAlignment $alignment): self
     {
         return $this->set('verticalCellContentAlignment', VerticalAlignment::value($alignment));

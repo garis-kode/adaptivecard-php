@@ -7,7 +7,7 @@ namespace AdaptiveCards\Element;
 use AdaptiveCards\Action\AbstractAction;
 
 /**
- * Displays a set of actions inline within the card body.
+ * Displays a set of action, which can be placed anywhere in the card.
  */
 final class ActionSet extends AbstractElement
 {
@@ -16,12 +16,17 @@ final class ActionSet extends AbstractElement
         return new self();
     }
 
+    /**
+     * Add an action to the set.
+     */
     public function addAction(AbstractAction $action): self
     {
         return $this->push('actions', $action);
     }
 
     /**
+     * The list of actions to display.
+     *
      * @param iterable<AbstractAction> $actions
      */
     public function addActions(iterable $actions): self
