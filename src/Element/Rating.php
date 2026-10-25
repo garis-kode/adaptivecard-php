@@ -13,10 +13,6 @@ use AdaptiveCards\Enum\RatingStyle;
  */
 final class Rating extends AbstractElement
 {
-    public function __construct()
-    {
-    }
-
     public static function make(): self
     {
         return new self();

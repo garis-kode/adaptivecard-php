@@ -12,10 +12,6 @@ use AdaptiveCards\Enum\ProgressBarColor;
  */
 final class ProgressBar extends AbstractElement
 {
-    public function __construct()
-    {
-    }
-
     public static function make(): self
     {
         return new self();

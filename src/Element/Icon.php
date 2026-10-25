@@ -14,10 +14,6 @@ use AdaptiveCards\Enum\IconStyle;
  */
 final class Icon extends AbstractElement
 {
-    public function __construct()
-    {
-    }
-
     public static function make(): self
     {
         return new self();

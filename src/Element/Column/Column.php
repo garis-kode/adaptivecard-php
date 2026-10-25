@@ -19,10 +19,6 @@ final class Column extends AbstractElement
 {
     use HasItems;
 
-    public function __construct()
-    {
-    }
-
     public static function make(): self
     {
         return new self();
