@@ -43,14 +43,6 @@ final class DonutChart extends AbstractChart
     }
 
     /**
-     * Inner radius of the donut chart.
-     */
-    public function innerRadius(float|int $innerRadius): self
-    {
-        return $this->set('innerRadius', $innerRadius);
-    }
-
-    /**
      * Controls whether slice outlines are displayed.
      */
     public function showOutlines(bool $show = true): self

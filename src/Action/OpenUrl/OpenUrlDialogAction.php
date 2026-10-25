@@ -14,7 +14,7 @@ final class OpenUrlDialogAction extends AbstractAction
 {
     public function __construct(
         string $dialogTitle,
-        string $dialogHeight,
+        string|DialogSize $dialogHeight,
         string $url,
         ?string $title = null,
     ) {
@@ -29,7 +29,7 @@ final class OpenUrlDialogAction extends AbstractAction
 
     public static function make(
         string $dialogTitle,
-        string $dialogHeight,
+        string|DialogSize $dialogHeight,
         string $url,
         ?string $title = null,
     ): self {
@@ -53,28 +53,21 @@ final class OpenUrlDialogAction extends AbstractAction
     }
 
     /**
-     * The size of the modal dialog.
-     * Valid values: "small", "medium", "large".
+     * The width of the dialog.
+     * Valid values: "small", "medium", "large", "<number>px".
      */
-    public function dialogSize(DialogSize $dialogSize): self
+    public function dialogWidth(string|DialogSize $dialogWidth): self
     {
-        return $this->set('dialogSize', $dialogSize->value);
+        return $this->set('dialogWidth', $dialogWidth instanceof DialogSize ? $dialogWidth->value : $dialogWidth);
     }
 
     /**
-     * The width of the modal dialog in pixels.
+     * The height of the dialog.
+     * Valid values: "small", "medium", "large", "<number>px".
      */
-    public function dialogWidth(string $dialogWidth): self
+    public function dialogHeight(string|DialogSize $dialogHeight): self
     {
-        return $this->set('dialogWidth', $dialogWidth);
-    }
-
-    /**
-     * The height of the modal dialog in pixels.
-     */
-    public function dialogHeight(string $dialogHeight): self
-    {
-        return $this->set('dialogHeight', $dialogHeight);
+        return $this->set('dialogHeight', $dialogHeight instanceof DialogSize ? $dialogHeight->value : $dialogHeight);
     }
 
     public function getType(): string

@@ -27,14 +27,6 @@ final class Refresh extends Node
     }
 
     /**
-     * A timestamp indicating when the card expires.
-     */
-    public function expires(string $expires): self
-    {
-        return $this->set('expires', $expires);
-    }
-
-    /**
      * A list of user MRIs for whom the card is refreshed automatically on display.
      *
      * @param list<string> $userIds

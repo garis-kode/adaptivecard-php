@@ -71,14 +71,6 @@ final class GaugeChart extends AbstractChart
     }
 
     /**
-     * The target value indicator on the gauge.
-     */
-    public function target(float|int $target): self
-    {
-        return $this->set('target', $target);
-    }
-
-    /**
      * Add a segment to the gauge chart.
      */
     public function addSegment(GaugeSegment $segment): self

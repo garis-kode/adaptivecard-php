@@ -147,7 +147,7 @@ trait HasItems
         return $this->addItem($this->configure(new ActionSet(), $configure));
     }
 
-    public function addBadge(string $text, ?callable $configure = null): static
+    public function addBadge(?string $text = null, ?callable $configure = null): static
     {
         return $this->addItem($this->configure(new Badge($text), $configure));
     }

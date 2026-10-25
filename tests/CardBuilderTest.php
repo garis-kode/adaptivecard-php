@@ -1006,7 +1006,7 @@ final class CardBuilderTest extends TestCase
                     $c->verticalContentAlignment(VerticalAlignment::Center)
                         ->addImage('https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Card-Samples/main/samples/author-highlight-video/assets/avatar.png', function (Image $img): void {
                             $img->width('24px')
-                                ->pixelHeight('24px')
+                                ->height('24px')
                                 ->style(ImageStyle::Person)
                                 ->altText('Avatar of Kayo Miwa');
                         });
@@ -1917,7 +1917,7 @@ final class CardBuilderTest extends TestCase
                             ->verticalContentAlignment(VerticalAlignment::Center)
                             ->addImage('https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Card-Samples/main/samples/course-video/assets/logo_image.png', function (Image $img): void {
                                 $img->width('16px')
-                                    ->pixelHeight('16px')
+                                    ->height('16px')
                                     ->altText('Logo');
                             });
                     })

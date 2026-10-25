@@ -6,6 +6,7 @@ namespace AdaptiveCards\Element\Image;
 
 use AdaptiveCards\Action\AbstractAction;
 use AdaptiveCards\Element\AbstractElement;
+use AdaptiveCards\Enum\Height;
 use AdaptiveCards\Enum\HorizontalAlignment;
 use AdaptiveCards\Enum\ImageFitMode;
 use AdaptiveCards\Enum\ImageSize;
@@ -81,11 +82,12 @@ final class Image extends AbstractElement
     }
 
     /**
-     * Explicit height, e.g. "50px" (overrides the element height enum).
+     * The height of the image.
+     * Valid values: "auto", "stretch", "<number>px".
      */
-    public function pixelHeight(string $height): self
+    public function height(Height|string $height): static
     {
-        return $this->set('height', $height);
+        return $this->set('height', $height instanceof Height ? $height->value : $height);
     }
 
     /**
