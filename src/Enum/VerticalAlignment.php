@@ -9,7 +9,7 @@ namespace AdaptiveCards\Enum;
  */
 enum VerticalAlignment: string
 {
-    case Top = 'top';
-    case Center = 'center';
-    case Bottom = 'bottom';
+    case Top = 'Top';
+    case Center = 'Center';
+    case Bottom = 'Bottom';
 }

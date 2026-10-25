@@ -6,6 +6,6 @@ namespace AdaptiveCards\Enum;
 
 enum FontType: string
 {
-    case Default = 'default';
-    case Monospace = 'monospace';
+    case Default = 'Default';
+    case Monospace = 'Monospace';
 }

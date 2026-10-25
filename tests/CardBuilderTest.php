@@ -401,34 +401,34 @@ final class CardBuilderTest extends TestCase
                                 [
                                     'type' => 'TextBlock',
                                     'text' => 'Fourth Coffee Distillery Equipment ',
-                                    'size' => 'large',
-                                    'weight' => 'bolder',
+                                    'size' => 'Large',
+                                    'weight' => 'Bolder',
                                     'wrap' => true,
                                 ],
                             ],
-                            'verticalContentAlignment' => 'center',
+                            'verticalContentAlignment' => 'Center',
                         ],
                         [
                             'type' => 'Column',
                             'width' => 'auto',
                             'targetWidth' => 'atLeast:Standard',
-                            'spacing' => 'small',
+                            'spacing' => 'Small',
                             'items' => [
                                 [
                                     'type' => 'TextBlock',
                                     'text' => 'Status',
                                     'wrap' => true,
-                                    'size' => 'small',
-                                    'weight' => 'default',
+                                    'size' => 'Small',
+                                    'weight' => 'Default',
                                     'isSubtle' => true,
                                 ],
                                 [
                                     'type' => 'TextBlock',
                                     'text' => 'In Progress',
-                                    'color' => 'good',
-                                    'spacing' => 'none',
-                                    'size' => 'small',
-                                    'weight' => 'bolder',
+                                    'color' => 'Good',
+                                    'spacing' => 'None',
+                                    'size' => 'Small',
+                                    'weight' => 'Bolder',
                                     'wrap' => true,
                                 ],
                             ],
@@ -442,8 +442,8 @@ final class CardBuilderTest extends TestCase
                                 [
                                     'type' => 'TextBlock',
                                     'text' => 'Opportunity Score',
-                                    'size' => 'small',
-                                    'weight' => 'default',
+                                    'size' => 'Small',
+                                    'weight' => 'Default',
                                     'isSubtle' => true,
                                     'wrap' => true,
                                 ],
@@ -451,10 +451,10 @@ final class CardBuilderTest extends TestCase
                                     'type' => 'TextBlock',
                                     'text' => '91 - Grade A',
                                     'wrap' => true,
-                                    'weight' => 'bolder',
-                                    'spacing' => 'none',
-                                    'size' => 'small',
-                                    'color' => 'default',
+                                    'weight' => 'Bolder',
+                                    'spacing' => 'None',
+                                    'size' => 'Small',
+                                    'color' => 'Default',
                                 ],
                             ],
                         ],
@@ -465,14 +465,14 @@ final class CardBuilderTest extends TestCase
                     'text' => 'Opportunity',
                     'wrap' => true,
                     'isSubtle' => true,
-                    'spacing' => 'none',
+                    'spacing' => 'None',
                 ],
                 [
                     'type' => 'TextBlock',
                     'targetWidth' => 'atMost:Narrow',
                     'text' => 'In Progress',
-                    'color' => 'good',
-                    'weight' => 'bolder',
+                    'color' => 'Good',
+                    'weight' => 'Bolder',
                     'wrap' => true,
                 ],
                 [
@@ -480,9 +480,9 @@ final class CardBuilderTest extends TestCase
                     'targetWidth' => 'atMost:Narrow',
                     'text' => '91 - Grade A',
                     'wrap' => true,
-                    'weight' => 'bolder',
-                    'spacing' => 'none',
-                    'color' => 'default',
+                    'weight' => 'Bolder',
+                    'spacing' => 'None',
+                    'color' => 'Default',
                 ],
                 [
                     'type' => 'Table',
@@ -517,7 +517,7 @@ final class CardBuilderTest extends TestCase
                                     ],
                                 ],
                             ],
-                            'verticalCellContentAlignment' => 'center',
+                            'verticalCellContentAlignment' => 'Center',
                         ],
                         [
                             'type' => 'TableRow',
@@ -544,7 +544,7 @@ final class CardBuilderTest extends TestCase
                                     ],
                                 ],
                             ],
-                            'verticalCellContentAlignment' => 'center',
+                            'verticalCellContentAlignment' => 'Center',
                         ],
                         [
                             'type' => 'TableRow',
@@ -576,7 +576,7 @@ final class CardBuilderTest extends TestCase
                                                             'width' => '20px',
                                                         ],
                                                     ],
-                                                    'verticalContentAlignment' => 'center',
+                                                    'verticalContentAlignment' => 'Center',
                                                 ],
                                                 [
                                                     'type' => 'Column',
@@ -588,20 +588,20 @@ final class CardBuilderTest extends TestCase
                                                             'wrap' => true,
                                                         ],
                                                     ],
-                                                    'spacing' => 'small',
-                                                    'verticalContentAlignment' => 'center',
+                                                    'spacing' => 'Small',
+                                                    'verticalContentAlignment' => 'Center',
                                                 ],
                                             ],
                                         ],
                                     ],
                                 ],
                             ],
-                            'verticalCellContentAlignment' => 'center',
+                            'verticalCellContentAlignment' => 'Center',
                         ],
                     ],
                     'firstRowAsHeaders' => false,
                     'showGridLines' => false,
-                    'spacing' => 'large',
+                    'spacing' => 'Large',
                     'separator' => true,
                 ],
                 [
@@ -619,7 +619,7 @@ final class CardBuilderTest extends TestCase
                             'type' => 'TextBlock',
                             'text' => 'Fourth Coffee',
                             'wrap' => true,
-                            'spacing' => 'none',
+                            'spacing' => 'None',
                         ],
                         [
                             'type' => 'TextBlock',
@@ -631,7 +631,7 @@ final class CardBuilderTest extends TestCase
                             'type' => 'TextBlock',
                             'text' => '$3,000,000.00',
                             'wrap' => true,
-                            'spacing' => 'none',
+                            'spacing' => 'None',
                         ],
                         [
                             'type' => 'TextBlock',
@@ -641,7 +641,7 @@ final class CardBuilderTest extends TestCase
                         ],
                         [
                             'type' => 'ColumnSet',
-                            'spacing' => 'none',
+                            'spacing' => 'None',
                             'columns' => [
                                 [
                                     'type' => 'Column',
@@ -653,7 +653,7 @@ final class CardBuilderTest extends TestCase
                                             'width' => '20px',
                                         ],
                                     ],
-                                    'verticalContentAlignment' => 'center',
+                                    'verticalContentAlignment' => 'Center',
                                 ],
                                 [
                                     'type' => 'Column',
@@ -665,8 +665,8 @@ final class CardBuilderTest extends TestCase
                                             'wrap' => true,
                                         ],
                                     ],
-                                    'spacing' => 'small',
-                                    'verticalContentAlignment' => 'center',
+                                    'spacing' => 'Small',
+                                    'verticalContentAlignment' => 'Center',
                                 ],
                             ],
                         ],
@@ -675,7 +675,7 @@ final class CardBuilderTest extends TestCase
                 [
                     'type' => 'ColumnSet',
                     'targetWidth' => 'atLeast:Standard',
-                    'spacing' => 'medium',
+                    'spacing' => 'Medium',
                     'columns' => [
                         [
                             'type' => 'Column',
@@ -691,7 +691,7 @@ final class CardBuilderTest extends TestCase
                                     'type' => 'TextBlock',
                                     'text' => 'Fabrikam',
                                     'wrap' => true,
-                                    'spacing' => 'none',
+                                    'spacing' => 'None',
                                 ],
                             ],
                         ],
@@ -709,7 +709,7 @@ final class CardBuilderTest extends TestCase
                                     'type' => 'TextBlock',
                                     'text' => '$3,000,000.00',
                                     'wrap' => true,
-                                    'spacing' => 'none',
+                                    'spacing' => 'None',
                                 ],
                             ],
                         ],
@@ -725,7 +725,7 @@ final class CardBuilderTest extends TestCase
                                 ],
                                 [
                                     'type' => 'ColumnSet',
-                                    'spacing' => 'none',
+                                    'spacing' => 'None',
                                     'columns' => [
                                         [
                                             'type' => 'Column',
@@ -737,7 +737,7 @@ final class CardBuilderTest extends TestCase
                                                     'width' => '20px',
                                                 ],
                                             ],
-                                            'verticalContentAlignment' => 'center',
+                                            'verticalContentAlignment' => 'Center',
                                         ],
                                         [
                                             'type' => 'Column',
@@ -749,8 +749,8 @@ final class CardBuilderTest extends TestCase
                                                     'wrap' => true,
                                                 ],
                                             ],
-                                            'spacing' => 'small',
-                                            'verticalContentAlignment' => 'center',
+                                            'spacing' => 'Small',
+                                            'verticalContentAlignment' => 'Center',
                                         ],
                                     ],
                                 ],
@@ -765,17 +765,17 @@ final class CardBuilderTest extends TestCase
                 [
                     'type' => 'ColumnSet',
                     'separator' => true,
-                    'spacing' => 'extraLarge',
+                    'spacing' => 'ExtraLarge',
                     'columns' => [
                         [
                             'type' => 'Column',
                             'width' => 'auto',
-                            'verticalContentAlignment' => 'center',
+                            'verticalContentAlignment' => 'Center',
                             'items' => [
                                 [
                                     'type' => 'Image',
                                     'url' => 'https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Card-Samples/main/samples/account/assets/avatar_large.png',
-                                    'style' => 'person',
+                                    'style' => 'Person',
                                     'width' => '35px',
                                 ],
                             ],
@@ -793,13 +793,13 @@ final class CardBuilderTest extends TestCase
                                     'type' => 'TextBlock',
                                     'text' => 'Contact',
                                     'wrap' => true,
-                                    'spacing' => 'none',
-                                    'size' => 'small',
+                                    'spacing' => 'None',
+                                    'size' => 'Small',
                                     'isSubtle' => true,
                                 ],
                             ],
-                            'verticalContentAlignment' => 'center',
-                            'spacing' => 'small',
+                            'verticalContentAlignment' => 'Center',
+                            'spacing' => 'Small',
                         ],
                         [
                             'type' => 'Column',
@@ -843,7 +843,7 @@ final class CardBuilderTest extends TestCase
                                                     ],
                                                 ],
                                             ],
-                                            'verticalContentAlignment' => 'center',
+                                            'verticalContentAlignment' => 'Center',
                                             'rtl' => false,
                                         ],
                                         [
@@ -856,7 +856,7 @@ final class CardBuilderTest extends TestCase
                                                     'id' => 'chevronDown1',
                                                     'name' => 'ChevronDown',
                                                     'size' => 'xxSmall',
-                                                    'color' => 'accent',
+                                                    'color' => 'Accent',
                                                     'selectAction' => [
                                                         'type' => 'Action.ToggleVisibility',
                                                         'targetElements' => $toggleTargets,
@@ -868,28 +868,28 @@ final class CardBuilderTest extends TestCase
                                                     'isVisible' => false,
                                                     'name' => 'ChevronUp',
                                                     'size' => 'xxSmall',
-                                                    'color' => 'accent',
+                                                    'color' => 'Accent',
                                                     'selectAction' => [
                                                         'type' => 'Action.ToggleVisibility',
                                                         'targetElements' => $toggleTargets,
                                                     ],
                                                 ],
                                             ],
-                                            'verticalContentAlignment' => 'bottom',
-                                            'horizontalAlignment' => 'center',
-                                            'spacing' => 'none',
+                                            'verticalContentAlignment' => 'Bottom',
+                                            'horizontalAlignment' => 'Center',
+                                            'spacing' => 'None',
                                         ],
                                     ],
                                 ],
                             ],
-                            'verticalContentAlignment' => 'center',
+                            'verticalContentAlignment' => 'Center',
                         ],
                     ],
                 ],
                 [
                     'type' => 'ColumnSet',
                     'targetWidth' => 'VeryNarrow',
-                    'spacing' => 'small',
+                    'spacing' => 'Small',
                     'columns' => [
                         [
                             'type' => 'Column',
@@ -925,7 +925,7 @@ final class CardBuilderTest extends TestCase
                                     ],
                                 ],
                             ],
-                            'verticalContentAlignment' => 'center',
+                            'verticalContentAlignment' => 'Center',
                         ],
                         [
                             'type' => 'Column',
@@ -936,7 +936,7 @@ final class CardBuilderTest extends TestCase
                                     'id' => 'chevronDown2',
                                     'name' => 'ChevronDown',
                                     'size' => 'xxSmall',
-                                    'color' => 'accent',
+                                    'color' => 'Accent',
                                     'selectAction' => [
                                         'type' => 'Action.ToggleVisibility',
                                         'targetElements' => $toggleTargets,
@@ -948,16 +948,16 @@ final class CardBuilderTest extends TestCase
                                     'isVisible' => false,
                                     'name' => 'ChevronUp',
                                     'size' => 'xxSmall',
-                                    'color' => 'accent',
+                                    'color' => 'Accent',
                                     'selectAction' => [
                                         'type' => 'Action.ToggleVisibility',
                                         'targetElements' => $toggleTargets,
                                     ],
                                 ],
                             ],
-                            'verticalContentAlignment' => 'bottom',
-                            'horizontalAlignment' => 'center',
-                            'spacing' => 'none',
+                            'verticalContentAlignment' => 'Bottom',
+                            'horizontalAlignment' => 'Center',
+                            'spacing' => 'None',
                         ],
                     ],
                 ],
@@ -970,7 +970,7 @@ final class CardBuilderTest extends TestCase
                 [
                     'type' => 'ActionSet',
                     'separator' => true,
-                    'spacing' => 'extraLarge',
+                    'spacing' => 'ExtraLarge',
                     'actions' => [
                         [
                             'type' => 'Action.OpenUrl',
@@ -1049,8 +1049,8 @@ final class CardBuilderTest extends TestCase
                     'type' => 'TextBlock',
                     'text' => '3 Minute Energy Flow with Kayo',
                     'wrap' => true,
-                    'size' => 'large',
-                    'weight' => 'bolder',
+                    'size' => 'Large',
+                    'weight' => 'Bolder',
                 ],
                 [
                     'type' => 'ColumnSet',
@@ -1058,14 +1058,14 @@ final class CardBuilderTest extends TestCase
                         [
                             'type' => 'Column',
                             'width' => 'auto',
-                            'verticalContentAlignment' => 'center',
+                            'verticalContentAlignment' => 'Center',
                             'items' => [
                                 [
                                     'type' => 'Image',
                                     'url' => 'https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Card-Samples/main/samples/author-highlight-video/assets/avatar.png',
                                     'width' => '24px',
                                     'height' => '24px',
-                                    'style' => 'person',
+                                    'style' => 'Person',
                                     'altText' => 'Avatar of Kayo Miwa',
                                 ],
                             ],
@@ -1073,8 +1073,8 @@ final class CardBuilderTest extends TestCase
                         [
                             'type' => 'Column',
                             'width' => 'stretch',
-                            'spacing' => 'small',
-                            'verticalContentAlignment' => 'center',
+                            'spacing' => 'Small',
+                            'verticalContentAlignment' => 'Center',
                             'items' => [
                                 [
                                     'type' => 'TextBlock',
@@ -1426,20 +1426,20 @@ final class CardBuilderTest extends TestCase
                                     'name' => 'Megaphone',
                                     'style' => 'Filled',
                                     'size' => 'xxSmall',
-                                    'color' => 'accent',
+                                    'color' => 'Accent',
                                 ],
                             ],
                         ],
                         [
                             'type' => 'Column',
                             'width' => 'stretch',
-                            'spacing' => 'small',
+                            'spacing' => 'Small',
                             'items' => [
                                 [
                                     'type' => 'TextBlock',
                                     'text' => 'Posted in Employee Deals',
                                     'isSubtle' => true,
-                                    'size' => 'small',
+                                    'size' => 'Small',
                                     'wrap' => true,
                                 ],
                             ],
@@ -1469,16 +1469,16 @@ final class CardBuilderTest extends TestCase
                                 [
                                     'type' => 'TextBlock',
                                     'text' => 'Laurence Gibertson',
-                                    'weight' => 'bolder',
+                                    'weight' => 'Bolder',
                                     'wrap' => true,
                                 ],
                                 [
                                     'type' => 'TextBlock',
                                     'text' => 'Oct 22',
                                     'isSubtle' => true,
-                                    'size' => 'small',
+                                    'size' => 'Small',
                                     'wrap' => true,
-                                    'spacing' => 'none',
+                                    'spacing' => 'None',
                                 ],
                             ],
                         ],
@@ -1505,20 +1505,20 @@ final class CardBuilderTest extends TestCase
                                                     'name' => 'Megaphone',
                                                     'style' => 'Filled',
                                                     'size' => 'xxSmall',
-                                                    'color' => 'accent',
+                                                    'color' => 'Accent',
                                                 ],
                                             ],
                                         ],
                                         [
                                             'type' => 'Column',
                                             'width' => 'stretch',
-                                            'spacing' => 'small',
+                                            'spacing' => 'Small',
                                             'items' => [
                                                 [
                                                     'type' => 'TextBlock',
                                                     'text' => 'Posted in Employee Deals',
                                                     'isSubtle' => true,
-                                                    'size' => 'small',
+                                                    'size' => 'Small',
                                                     'wrap' => true,
                                                 ],
                                             ],
@@ -1548,16 +1548,16 @@ final class CardBuilderTest extends TestCase
                                                 [
                                                     'type' => 'TextBlock',
                                                     'text' => 'Laurence Gibertson',
-                                                    'weight' => 'bolder',
+                                                    'weight' => 'Bolder',
                                                     'wrap' => true,
                                                 ],
                                                 [
                                                     'type' => 'TextBlock',
                                                     'text' => 'Oct 22',
                                                     'isSubtle' => true,
-                                                    'size' => 'small',
+                                                    'size' => 'Small',
                                                     'wrap' => true,
-                                                    'spacing' => 'none',
+                                                    'spacing' => 'None',
                                                 ],
                                             ],
                                         ],
@@ -1566,40 +1566,40 @@ final class CardBuilderTest extends TestCase
                                 [
                                     'type' => 'TextBlock',
                                     'text' => 'Hawaii holiday escape deals start tonight!',
-                                    'size' => 'large',
-                                    'weight' => 'bolder',
+                                    'size' => 'Large',
+                                    'weight' => 'Bolder',
                                     'wrap' => true,
-                                    'spacing' => 'small',
+                                    'spacing' => 'Small',
                                 ],
                                 [
                                     'type' => 'TextBlock',
                                     'text' => 'For a limited time, you can book a four night stay at luxury resort on the island of Maui for only $999 per person.',
                                     'maxLines' => 3,
                                     'wrap' => true,
-                                    'spacing' => 'small',
+                                    'spacing' => 'Small',
                                 ],
                                 [
                                     'type' => 'ColumnSet',
                                     'height' => 'stretch',
-                                    'spacing' => 'extraLarge',
+                                    'spacing' => 'ExtraLarge',
                                     'columns' => [
                                         [
                                             'type' => 'Column',
                                             'width' => 'auto',
-                                            'verticalContentAlignment' => 'bottom',
-                                            'spacing' => 'none',
+                                            'verticalContentAlignment' => 'Bottom',
+                                            'spacing' => 'None',
                                             'items' => [
                                                 [
                                                     'type' => 'Icon',
                                                     'name' => 'ThumbLike',
-                                                    'horizontalAlignment' => 'right',
+                                                    'horizontalAlignment' => 'Right',
                                                     'id' => 'likeOutline',
                                                     'size' => 'xxSmall',
                                                 ],
                                                 [
                                                     'type' => 'Icon',
                                                     'name' => 'ThumbLike',
-                                                    'horizontalAlignment' => 'right',
+                                                    'horizontalAlignment' => 'Right',
                                                     'id' => 'likeFilled',
                                                     'style' => 'Filled',
                                                     'size' => 'xxSmall',
@@ -1610,20 +1610,20 @@ final class CardBuilderTest extends TestCase
                                         [
                                             'type' => 'Column',
                                             'width' => 'stretch',
-                                            'verticalContentAlignment' => 'bottom',
-                                            'spacing' => 'small',
+                                            'verticalContentAlignment' => 'Bottom',
+                                            'spacing' => 'Small',
                                             'items' => [
                                                 [
                                                     'type' => 'TextBlock',
                                                     'text' => '26 people like this',
-                                                    'size' => 'small',
+                                                    'size' => 'Small',
                                                     'wrap' => true,
                                                     'id' => 'commentLike',
                                                 ],
                                                 [
                                                     'type' => 'TextBlock',
                                                     'text' => '27 people like this',
-                                                    'size' => 'small',
+                                                    'size' => 'Small',
                                                     'wrap' => true,
                                                     'id' => 'commentUnlike',
                                                     'isVisible' => false,
@@ -1659,7 +1659,7 @@ final class CardBuilderTest extends TestCase
                                 [
                                     'type' => 'ActionSet',
                                     'targetWidth' => 'atLeast:Standard',
-                                    'spacing' => 'medium',
+                                    'spacing' => 'Medium',
                                     'actions' => [
                                         [
                                             'type' => 'Action.ToggleVisibility',
@@ -1701,20 +1701,20 @@ final class CardBuilderTest extends TestCase
                                             'name' => 'Megaphone',
                                             'style' => 'Filled',
                                             'size' => 'xxSmall',
-                                            'color' => 'accent',
+                                            'color' => 'Accent',
                                         ],
                                     ],
                                 ],
                                 [
                                     'type' => 'Column',
                                     'width' => 'stretch',
-                                    'spacing' => 'small',
+                                    'spacing' => 'Small',
                                     'items' => [
                                         [
                                             'type' => 'TextBlock',
                                             'text' => 'Posted in Employee Deals',
                                             'isSubtle' => true,
-                                            'size' => 'small',
+                                            'size' => 'Small',
                                             'wrap' => true,
                                         ],
                                     ],
@@ -1743,16 +1743,16 @@ final class CardBuilderTest extends TestCase
                                         [
                                             'type' => 'TextBlock',
                                             'text' => 'Laurence Gibertson',
-                                            'weight' => 'bolder',
+                                            'weight' => 'Bolder',
                                             'wrap' => true,
                                         ],
                                         [
                                             'type' => 'TextBlock',
                                             'text' => 'Oct 22',
                                             'isSubtle' => true,
-                                            'size' => 'small',
+                                            'size' => 'Small',
                                             'wrap' => true,
-                                            'spacing' => 'none',
+                                            'spacing' => 'None',
                                         ],
                                     ],
                                 ],
@@ -1761,10 +1761,10 @@ final class CardBuilderTest extends TestCase
                         [
                             'type' => 'TextBlock',
                             'text' => 'Hawaii holiday escape deals start tonight!',
-                            'size' => 'large',
-                            'weight' => 'bolder',
+                            'size' => 'Large',
+                            'weight' => 'Bolder',
                             'wrap' => true,
-                            'spacing' => 'small',
+                            'spacing' => 'Small',
                         ],
                         [
                             'type' => 'ColumnSet',
@@ -1778,7 +1778,7 @@ final class CardBuilderTest extends TestCase
                                             'text' => 'For a limited time, you can book a four night stay at luxury resort on the island of Maui for only $999 per person.',
                                             'maxLines' => 4,
                                             'wrap' => true,
-                                            'spacing' => 'small',
+                                            'spacing' => 'Small',
                                         ],
                                     ],
                                 ],
@@ -1798,25 +1798,25 @@ final class CardBuilderTest extends TestCase
                         ],
                         [
                             'type' => 'ColumnSet',
-                            'spacing' => 'extraLarge',
+                            'spacing' => 'ExtraLarge',
                             'columns' => [
                                 [
                                     'type' => 'Column',
                                     'width' => 'auto',
-                                    'verticalContentAlignment' => 'center',
-                                    'spacing' => 'none',
+                                    'verticalContentAlignment' => 'Center',
+                                    'spacing' => 'None',
                                     'items' => [
                                         [
                                             'type' => 'Icon',
                                             'name' => 'ThumbLike',
-                                            'horizontalAlignment' => 'right',
+                                            'horizontalAlignment' => 'Right',
                                             'id' => 'likeOutline2',
                                             'size' => 'xxSmall',
                                         ],
                                         [
                                             'type' => 'Icon',
                                             'name' => 'ThumbLike',
-                                            'horizontalAlignment' => 'right',
+                                            'horizontalAlignment' => 'Right',
                                             'id' => 'likeFilled2',
                                             'style' => 'Filled',
                                             'size' => 'xxSmall',
@@ -1827,20 +1827,20 @@ final class CardBuilderTest extends TestCase
                                 [
                                     'type' => 'Column',
                                     'width' => 'stretch',
-                                    'verticalContentAlignment' => 'center',
-                                    'spacing' => 'small',
+                                    'verticalContentAlignment' => 'Center',
+                                    'spacing' => 'Small',
                                     'items' => [
                                         [
                                             'type' => 'TextBlock',
                                             'text' => '26 people like this',
-                                            'size' => 'small',
+                                            'size' => 'Small',
                                             'wrap' => true,
                                             'id' => 'commentLike2',
                                         ],
                                         [
                                             'type' => 'TextBlock',
                                             'text' => '27 people like this',
-                                            'size' => 'small',
+                                            'size' => 'Small',
                                             'wrap' => true,
                                             'id' => 'commentUnlike2',
                                             'isVisible' => false,
@@ -1854,7 +1854,7 @@ final class CardBuilderTest extends TestCase
                 [
                     'type' => 'ActionSet',
                     'targetWidth' => 'atMost:Narrow',
-                    'spacing' => 'medium',
+                    'spacing' => 'Medium',
                     'actions' => [
                         [
                             'type' => 'Action.ToggleVisibility',
@@ -2029,8 +2029,8 @@ final class CardBuilderTest extends TestCase
                     'type' => 'TextBlock',
                     'text' => 'Intro to Graphic Design: Concepts',
                     'wrap' => true,
-                    'size' => 'large',
-                    'weight' => 'bolder',
+                    'size' => 'Large',
+                    'weight' => 'Bolder',
                 ],
                 [
                     'type' => 'Rating',
@@ -2041,26 +2041,26 @@ final class CardBuilderTest extends TestCase
                     'fallback' => [
                         'type' => 'TextBlock',
                         'text' => '4 Stars · 1,160',
-                        'spacing' => 'none',
+                        'spacing' => 'None',
                     ],
-                    'spacing' => 'none',
+                    'spacing' => 'None',
                 ],
                 [
                     'type' => 'TextBlock',
                     'text' => 'Course · 52m · Beginner',
                     'wrap' => true,
                     'isSubtle' => true,
-                    'spacing' => 'small',
+                    'spacing' => 'Small',
                 ],
                 [
                     'type' => 'ColumnSet',
-                    'spacing' => 'none',
+                    'spacing' => 'None',
                     'columns' => [
                         [
                             'type' => 'Column',
                             'width' => 'auto',
-                            'horizontalAlignment' => 'center',
-                            'verticalContentAlignment' => 'center',
+                            'horizontalAlignment' => 'Center',
+                            'verticalContentAlignment' => 'Center',
                             'items' => [
                                 [
                                     'type' => 'Image',
@@ -2074,14 +2074,14 @@ final class CardBuilderTest extends TestCase
                         [
                             'type' => 'Column',
                             'width' => 'auto',
-                            'spacing' => 'small',
-                            'verticalContentAlignment' => 'center',
+                            'spacing' => 'Small',
+                            'verticalContentAlignment' => 'Center',
                             'items' => [
                                 [
                                     'type' => 'TextBlock',
                                     'text' => 'Sketchpad Scholars',
                                     'wrap' => true,
-                                    'weight' => 'bolder',
+                                    'weight' => 'Bolder',
                                 ],
                             ],
                         ],
@@ -2089,8 +2089,8 @@ final class CardBuilderTest extends TestCase
                             'type' => 'Column',
                             'width' => 'auto',
                             'targetWidth' => 'atLeast:Standard',
-                            'spacing' => 'small',
-                            'verticalContentAlignment' => 'center',
+                            'spacing' => 'Small',
+                            'verticalContentAlignment' => 'Center',
                             'items' => [
                                 [
                                     'type' => 'TextBlock',
@@ -2102,8 +2102,8 @@ final class CardBuilderTest extends TestCase
                             'type' => 'Column',
                             'width' => 'auto',
                             'targetWidth' => 'atLeast:Standard',
-                            'spacing' => 'small',
-                            'verticalContentAlignment' => 'center',
+                            'spacing' => 'Small',
+                            'verticalContentAlignment' => 'Center',
                             'items' => [
                                 [
                                     'type' => 'TextBlock',
@@ -2133,7 +2133,7 @@ final class CardBuilderTest extends TestCase
                     'type' => 'RichTextBlock',
                     'id' => 'showMore',
                     'targetWidth' => 'atLeast:Narrow',
-                    'spacing' => 'none',
+                    'spacing' => 'None',
                     'inlines' => [
                         [
                             'type' => 'TextRun',
@@ -2154,7 +2154,7 @@ final class CardBuilderTest extends TestCase
                     'type' => 'RichTextBlock',
                     'id' => 'showLess',
                     'targetWidth' => 'atLeast:Narrow',
-                    'spacing' => 'none',
+                    'spacing' => 'None',
                     'isVisible' => false,
                     'inlines' => [
                         [
@@ -2174,7 +2174,7 @@ final class CardBuilderTest extends TestCase
                 ],
                 [
                     'type' => 'ActionSet',
-                    'spacing' => 'large',
+                    'spacing' => 'Large',
                     'targetWidth' => 'atLeast:Narrow',
                     'actions' => [
                         [
@@ -2191,7 +2191,7 @@ final class CardBuilderTest extends TestCase
                 ],
                 [
                     'type' => 'ActionSet',
-                    'spacing' => 'large',
+                    'spacing' => 'Large',
                     'targetWidth' => 'VeryNarrow',
                     'actions' => [
                         [

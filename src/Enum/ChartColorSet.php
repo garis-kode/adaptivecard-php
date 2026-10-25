@@ -12,7 +12,7 @@ enum ChartColorSet: string
     case Categorical = 'categorical';
     case Diverging = 'diverging';
     case Sequential = 'sequential';
-    case SequentialRed = 'sequentialRed';
-    case SequentialGreen = 'sequentialGreen';
-    case SequentialYellow = 'sequentialYellow';
+    case SequentialRed = 'sequentialred';
+    case SequentialGreen = 'sequentialgreen';
+    case SequentialYellow = 'sequentialyellow';
 }

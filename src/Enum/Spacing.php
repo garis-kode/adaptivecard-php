@@ -6,12 +6,12 @@ namespace AdaptiveCards\Enum;
 
 enum Spacing: string
 {
-    case Default = 'default';
-    case None = 'none';
-    case ExtraSmall = 'extraSmall';
-    case Small = 'small';
-    case Medium = 'medium';
-    case Large = 'large';
-    case ExtraLarge = 'extraLarge';
-    case Padding = 'padding';
+    case Default = 'Default';
+    case None = 'None';
+    case ExtraSmall = 'ExtraSmall';
+    case Small = 'Small';
+    case Medium = 'Medium';
+    case Large = 'Large';
+    case ExtraLarge = 'ExtraLarge';
+    case Padding = 'Padding';
 }

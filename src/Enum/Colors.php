@@ -6,11 +6,11 @@ namespace AdaptiveCards\Enum;
 
 enum Colors: string
 {
-    case Default = 'default';
-    case Dark = 'dark';
-    case Light = 'light';
-    case Accent = 'accent';
-    case Good = 'good';
-    case Warning = 'warning';
-    case Attention = 'attention';
+    case Default = 'Default';
+    case Dark = 'Dark';
+    case Light = 'Light';
+    case Accent = 'Accent';
+    case Good = 'Good';
+    case Warning = 'Warning';
+    case Attention = 'Attention';
 }

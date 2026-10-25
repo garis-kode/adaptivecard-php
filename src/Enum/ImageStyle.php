@@ -6,7 +6,7 @@ namespace AdaptiveCards\Enum;
 
 enum ImageStyle: string
 {
-    case Default = 'default';
-    case Person = 'person';
+    case Default = 'Default';
+    case Person = 'Person';
     case RoundedCorners = 'RoundedCorners';
 }

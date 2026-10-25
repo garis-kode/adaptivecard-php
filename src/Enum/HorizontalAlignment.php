@@ -6,7 +6,7 @@ namespace AdaptiveCards\Enum;
 
 enum HorizontalAlignment: string
 {
-    case Left = 'left';
-    case Center = 'center';
-    case Right = 'right';
+    case Left = 'Left';
+    case Center = 'Center';
+    case Right = 'Right';
 }
