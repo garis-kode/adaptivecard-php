@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace AdaptiveCards\Chart;
 
 use AdaptiveCards\Chart\Data\DataPoint;
+use AdaptiveCards\Enum\ChartColor;
+use AdaptiveCards\Enum\ChartThickness;
 
 /**
  * A pie chart.
@@ -12,7 +14,7 @@ use AdaptiveCards\Chart\Data\DataPoint;
 final class PieChart extends AbstractChart
 {
     /**
-     * @param iterable<DataPoint|array<string, mixed>>|null $data
+     * @param iterable<DataPoint>|null $data
      */
     public function __construct(
         string $title,
@@ -30,7 +32,7 @@ final class PieChart extends AbstractChart
     }
 
     /**
-     * @param iterable<DataPoint|array<string, mixed>>|null $data
+     * @param iterable<DataPoint>|null $data
      */
     public static function make(
         string $title,
@@ -42,26 +44,34 @@ final class PieChart extends AbstractChart
 
     /**
      * Add a data point to the pie chart.
-     *
-     * @param DataPoint|array<string, mixed> $point
      */
-    public function addDataPoint(DataPoint|array $point): self
+    public function addDataPoint(DataPoint $point): self
     {
         return $this->push('data', $point);
     }
 
     /**
-     * The data points of the pie chart.
+     * Add multiple data points to the pie chart.
      *
-     * @param iterable<DataPoint|array<string, mixed>> $data
+     * @param iterable<DataPoint> $data
      */
-    public function data(iterable $data): self
+    public function addDataPoints(iterable $data): self
     {
         foreach ($data as $point) {
             $this->addDataPoint($point);
         }
 
         return $this;
+    }
+
+    /**
+     * The data points of the pie chart.
+     *
+     * @param iterable<DataPoint> $data
+     */
+    public function data(iterable $data): self
+    {
+        return $this->addDataPoints($data);
     }
 
     /**
@@ -72,9 +82,13 @@ final class PieChart extends AbstractChart
         return $this->set('showOutlines', $show);
     }
 
-    public function thickness(string|int|float $thickness): self
+    /**
+     * Thickness of the pie chart.
+     * Valid values: "Thin", "Thick".
+     */
+    public function thickness(ChartThickness $thickness): self
     {
-        return $this->set('thickness', $thickness);
+        return $this->set('thickness', $thickness->value);
     }
 
     public function value(string|int|float $value): self
@@ -82,9 +96,12 @@ final class PieChart extends AbstractChart
         return $this->set('value', $value);
     }
 
-    public function valueColor(string $color): self
+    /**
+     * Color of the value text.
+     */
+    public function valueColor(ChartColor $color): self
     {
-        return $this->set('valueColor', $color);
+        return $this->set('valueColor', $color->value);
     }
 
     public function getType(): string

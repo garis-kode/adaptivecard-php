@@ -21,25 +21,6 @@ final class FactSet extends AbstractElement
     }
 
     /**
-     * The array of Fact's.
-     *
-     * @param array<string, string>|list<Fact> $facts Either an associative
-     *        title => value map or a list of Fact objects.
-     */
-    public function facts(array $facts): self
-    {
-        foreach ($facts as $key => $value) {
-            if ($value instanceof Fact) {
-                $this->addFact($value);
-            } else {
-                $this->fact((string) $key, $value);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
      * Add a Fact to the set.
      */
     public function addFact(Fact $fact): self
@@ -53,6 +34,30 @@ final class FactSet extends AbstractElement
     public function fact(string $title, string $value): self
     {
         return $this->addFact(new Fact($title, $value));
+    }
+
+    /**
+     * Add multiple facts to the set.
+     *
+     * @param iterable<Fact> $facts
+     */
+    public function addFacts(iterable $facts): self
+    {
+        foreach ($facts as $fact) {
+            $this->addFact($fact);
+        }
+
+        return $this;
+    }
+
+    /**
+     * The array of Fact's.
+     *
+     * @param iterable<Fact> $facts
+     */
+    public function facts(iterable $facts): self
+    {
+        return $this->addFacts($facts);
     }
 
     public function getType(): string

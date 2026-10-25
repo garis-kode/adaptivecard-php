@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace AdaptiveCards\Chart\Gauge;
 
 use AdaptiveCards\Chart\AbstractChart;
+use AdaptiveCards\Enum\GaugeValueFormat;
 
 /**
  * A gauge chart.
@@ -12,7 +13,7 @@ use AdaptiveCards\Chart\AbstractChart;
 final class GaugeChart extends AbstractChart
 {
     /**
-     * @param iterable<GaugeSegment|array<string, mixed>>|null $segments
+     * @param iterable<GaugeSegment>|null $segments
      */
     public function __construct(
         string $title,
@@ -34,7 +35,7 @@ final class GaugeChart extends AbstractChart
     }
 
     /**
-     * @param iterable<GaugeSegment|array<string, mixed>>|null $segments
+     * @param iterable<GaugeSegment>|null $segments
      */
     public static function make(
         string $title,
@@ -79,26 +80,34 @@ final class GaugeChart extends AbstractChart
 
     /**
      * Add a segment to the gauge chart.
-     *
-     * @param GaugeSegment|array<string, mixed> $segment
      */
-    public function addSegment(GaugeSegment|array $segment): self
+    public function addSegment(GaugeSegment $segment): self
     {
         return $this->push('segments', $segment);
     }
 
     /**
-     * The collection of segments in the gauge chart.
+     * Add multiple segments to the gauge chart.
      *
-     * @param iterable<GaugeSegment|array<string, mixed>> $segments
+     * @param iterable<GaugeSegment> $segments
      */
-    public function segments(iterable $segments): self
+    public function addSegments(iterable $segments): self
     {
         foreach ($segments as $segment) {
             $this->addSegment($segment);
         }
 
         return $this;
+    }
+
+    /**
+     * The collection of segments in the gauge chart.
+     *
+     * @param iterable<GaugeSegment> $segments
+     */
+    public function segments(iterable $segments): self
+    {
+        return $this->addSegments($segments);
     }
 
     /**
@@ -134,11 +143,12 @@ final class GaugeChart extends AbstractChart
     }
 
     /**
-     * Format string for the value.
+     * Controls the format of the value.
+     * Valid values: "Percentage", "Fraction".
      */
-    public function valueFormat(string $format): self
+    public function valueFormat(GaugeValueFormat $format): self
     {
-        return $this->set('valueFormat', $format);
+        return $this->set('valueFormat', $format->value);
     }
 
     public function getType(): string

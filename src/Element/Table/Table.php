@@ -16,7 +16,7 @@ final class Table extends AbstractElement
 {
     /**
      * @param iterable<TableColumnDefinition>|null $columns
-     * @param iterable<TableRow|iterable<TableCell>>|null $rows
+     * @param iterable<TableRow>|null $rows
      */
     public function __construct(
         ?iterable $columns = null,
@@ -32,27 +32,13 @@ final class Table extends AbstractElement
 
     /**
      * @param iterable<TableColumnDefinition>|null $columns
-     * @param iterable<TableRow|iterable<TableCell>>|null $rows
+     * @param iterable<TableRow>|null $rows
      */
     public static function make(
         ?iterable $columns = null,
         ?iterable $rows = null,
     ): self {
         return new self($columns, $rows);
-    }
-
-    /**
-     * Defines the table's columns (their widths and default content alignment).
-     *
-     * @param iterable<TableColumnDefinition> $columns
-     */
-    public function columns(iterable $columns): self
-    {
-        foreach ($columns as $column) {
-            $this->addColumn($column);
-        }
-
-        return $this;
     }
 
     /**
@@ -64,23 +50,27 @@ final class Table extends AbstractElement
     }
 
     /**
-     * Defines the table's rows.
+     * Add multiple columns to the table.
      *
-     * @param iterable<TableRow|iterable<TableCell>> $rows
+     * @param iterable<TableColumnDefinition> $columns
      */
-    public function rows(iterable $rows): self
+    public function addColumns(iterable $columns): self
     {
-        foreach ($rows as $row) {
-            if ($row instanceof TableRow) {
-                $this->addRow($row);
-            } elseif (is_iterable($row)) {
-                $tableRow = new TableRow();
-                $tableRow->cells($row);
-                $this->addRow($tableRow);
-            }
+        foreach ($columns as $column) {
+            $this->addColumn($column);
         }
 
         return $this;
+    }
+
+    /**
+     * Defines the table's columns (their widths and default content alignment).
+     *
+     * @param iterable<TableColumnDefinition> $columns
+     */
+    public function columns(iterable $columns): self
+    {
+        return $this->addColumns($columns);
     }
 
     /**
@@ -89,6 +79,30 @@ final class Table extends AbstractElement
     public function addRow(TableRow $row): self
     {
         return $this->push('rows', $row);
+    }
+
+    /**
+     * Add multiple rows to the table.
+     *
+     * @param iterable<TableRow> $rows
+     */
+    public function addRows(iterable $rows): self
+    {
+        foreach ($rows as $row) {
+            $this->addRow($row);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Defines the table's rows.
+     *
+     * @param iterable<TableRow> $rows
+     */
+    public function rows(iterable $rows): self
+    {
+        return $this->addRows($rows);
     }
 
     /**

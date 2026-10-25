@@ -94,7 +94,7 @@ final class Container extends AbstractElement
     /**
      * Defines the container's background image.
      */
-    public function backgroundImage(string|BackgroundImage $backgroundImage): self
+    public function backgroundImage(BackgroundImage $backgroundImage): self
     {
         return $this->set('backgroundImage', $backgroundImage);
     }
@@ -117,6 +117,20 @@ final class Container extends AbstractElement
     }
 
     /**
+     * Add multiple layouts associated with the container.
+     *
+     * @param iterable<AbstractLayout> $layouts
+     */
+    public function addLayouts(iterable $layouts): self
+    {
+        foreach ($layouts as $layout) {
+            $this->addLayout($layout);
+        }
+
+        return $this;
+    }
+
+    /**
      * The layouts associated with the container. The container can dynamically switch
      * from one layout to another as the card's width changes.
      * Valid values: Layout.Stack, Layout.Flow, Layout.AreaGrid.
@@ -125,11 +139,7 @@ final class Container extends AbstractElement
      */
     public function layouts(iterable $layouts): self
     {
-        foreach ($layouts as $layout) {
-            $this->addLayout($layout);
-        }
-
-        return $this;
+        return $this->addLayouts($layouts);
     }
 
     public function getType(): string

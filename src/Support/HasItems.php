@@ -36,6 +36,7 @@ use AdaptiveCards\Element\RichTextBlock\RichTextBlock;
 use AdaptiveCards\Element\Table\Table;
 use AdaptiveCards\Element\TextBlock;
 use AdaptiveCards\Enum\ChartColorSet;
+use AdaptiveCards\Enum\CodeBlockLanguage;
 use AdaptiveCards\Input\ChoiceSet\ChoiceSetInput;
 use AdaptiveCards\Input\DateInput;
 use AdaptiveCards\Input\NumberInput;
@@ -78,6 +79,16 @@ trait HasItems
         return $this;
     }
 
+    /**
+     * The items in the container.
+     *
+     * @param iterable<AbstractElement> $elements
+     */
+    public function items(iterable $elements): static
+    {
+        return $this->addItems($elements);
+    }
+
     public function addTextBlock(string $text, ?callable $configure = null): static
     {
         return $this->addItem($this->configure(new TextBlock($text), $configure));
@@ -106,14 +117,12 @@ trait HasItems
     }
 
     /**
-     * @param array<string, string>|list<Fact> $facts
+     * @param iterable<Fact> $facts
      */
-    public function addFactSet(array $facts = [], ?callable $configure = null): static
+    public function addFactSet(iterable $facts = [], ?callable $configure = null): static
     {
         $factSet = new FactSet();
-        if ($facts !== []) {
-            $factSet->facts($facts);
-        }
+        $factSet->facts($facts);
 
         return $this->addItem($this->configure($factSet, $configure));
     }
@@ -148,8 +157,11 @@ trait HasItems
         return $this->addItem($this->configure(new Carousel(), $configure));
     }
 
-    public function addCodeBlock(string $code, string $language = 'PlainText', ?callable $configure = null): static
-    {
+    public function addCodeBlock(
+        string $code,
+        CodeBlockLanguage $language = CodeBlockLanguage::PlainText,
+        ?callable $configure = null,
+    ): static {
         $codeBlock = (new CodeBlock())->codeSnippet($code)->language($language);
 
         return $this->addItem($this->configure($codeBlock, $configure));
@@ -275,7 +287,7 @@ trait HasItems
     }
 
     /**
-     * @param iterable<DataPoint|array<string, mixed>>|null $data
+     * @param iterable<DataPoint>|null $data
      * @param (callable(DonutChart): mixed)|null $configure
      */
     public function addDonutChart(
@@ -288,7 +300,7 @@ trait HasItems
     }
 
     /**
-     * @param iterable<GaugeSegment|array<string, mixed>>|null $segments
+     * @param iterable<GaugeSegment>|null $segments
      * @param (callable(GaugeChart): mixed)|null $configure
      */
     public function addGaugeChart(
@@ -302,7 +314,7 @@ trait HasItems
     }
 
     /**
-     * @param iterable<DataPoint|array<string, mixed>> $data
+     * @param iterable<DataPoint> $data
      * @param (callable(HorizontalBarChart): mixed)|null $configure
      */
     public function addHorizontalBarChart(
@@ -318,7 +330,7 @@ trait HasItems
     }
 
     /**
-     * @param iterable<ChartSeries|array<string, mixed>> $data
+     * @param iterable<ChartSeries> $data
      * @param (callable(StackedHorizontalBarChart): mixed)|null $configure
      */
     public function addStackedHorizontalBarChart(
@@ -331,7 +343,7 @@ trait HasItems
     }
 
     /**
-     * @param iterable<ChartSeries|array<string, mixed>>|null $data
+     * @param iterable<ChartSeries>|null $data
      * @param (callable(LineChart): mixed)|null $configure
      */
     public function addLineChart(
@@ -347,7 +359,7 @@ trait HasItems
     }
 
     /**
-     * @param iterable<DataPoint|array<string, mixed>>|null $data
+     * @param iterable<DataPoint>|null $data
      * @param (callable(PieChart): mixed)|null $configure
      */
     public function addPieChart(
@@ -360,7 +372,7 @@ trait HasItems
     }
 
     /**
-     * @param iterable<DataPoint|array<string, mixed>> $data
+     * @param iterable<DataPoint> $data
      * @param (callable(VerticalBarChart): mixed)|null $configure
      */
     public function addVerticalBarChart(
@@ -376,7 +388,7 @@ trait HasItems
     }
 
     /**
-     * @param iterable<ChartSeries|array<string, mixed>>|null $data
+     * @param iterable<ChartSeries>|null $data
      * @param (callable(GroupedVerticalBarChart): mixed)|null $configure
      */
     public function addGroupedVerticalBarChart(

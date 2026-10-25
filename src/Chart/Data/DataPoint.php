@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Chart\Data;
 
+use AdaptiveCards\Enum\ChartColor;
 use AdaptiveCards\Node;
 
 /**
@@ -17,7 +18,7 @@ final class DataPoint extends Node
     public function __construct(
         string|int|float|null $xOrLegend = null,
         string|int|float|null $yOrValue = null,
-        ?string $color = null,
+        ?ChartColor $color = null,
         array $extra = [],
     ) {
         if ($xOrLegend !== null) {
@@ -27,32 +28,32 @@ final class DataPoint extends Node
             $this->properties['y'] = $yOrValue;
         }
         if ($color !== null) {
-            $this->properties['color'] = $color;
+            $this->properties['color'] = $color->value;
         }
         foreach ($extra as $key => $val) {
             $this->set($key, $val);
         }
     }
 
-    public static function point(string|int|float $x, string|int|float $y, ?string $color = null): self
+    public static function point(string|int|float $x, string|int|float $y, ?ChartColor $color = null): self
     {
         $dp = new self();
         $dp->set('x', $x);
         $dp->set('y', $y);
         if ($color !== null) {
-            $dp->set('color', $color);
+            $dp->set('color', $color->value);
         }
 
         return $dp;
     }
 
-    public static function slice(string $legend, float|int $value, ?string $color = null, ?string $tooltip = null): self
+    public static function slice(string $legend, float|int $value, ?ChartColor $color = null, ?string $tooltip = null): self
     {
         $dp = new self();
         $dp->set('legend', $legend);
         $dp->set('value', $value);
         if ($color !== null) {
-            $dp->set('color', $color);
+            $dp->set('color', $color->value);
         }
         if ($tooltip !== null) {
             $dp->set('tooltip', $tooltip);
@@ -96,9 +97,9 @@ final class DataPoint extends Node
     /**
      * Color identifier or hex color for this data point.
      */
-    public function color(string $color): self
+    public function color(ChartColor $color): self
     {
-        return $this->set('color', $color);
+        return $this->set('color', $color->value);
     }
 
     /**

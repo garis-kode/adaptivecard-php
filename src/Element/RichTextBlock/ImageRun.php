@@ -6,6 +6,8 @@ namespace AdaptiveCards\Element\RichTextBlock;
 
 use AdaptiveCards\Action\AbstractAction;
 use AdaptiveCards\Element\AbstractElement;
+use AdaptiveCards\Enum\ImageStyle;
+use AdaptiveCards\Enum\TextSize;
 
 /**
  * An inline image inside a RichTextBlock element.
@@ -32,22 +34,20 @@ final class ImageRun extends AbstractElement
 
     /**
      * Controls the size of the image.
-     *
-     * @param "Small"|"Default"|"Medium"|"Large"|"ExtraLarge"|string $size
+     * Valid values: "Small", "Default", "Medium", "Large", "ExtraLarge".
      */
-    public function size(string $size): self
+    public function size(TextSize $size): self
     {
-        return $this->set('size', $size);
+        return $this->set('size', $size->value);
     }
 
     /**
      * Controls how this element is displayed.
-     *
-     * @param "Default"|"Person"|"RoundedCorners"|string $style
+     * Valid values: "Default", "Person", "RoundedCorners".
      */
-    public function style(string $style): self
+    public function style(ImageStyle $style): self
     {
-        return $this->set('style', $style);
+        return $this->set('style', $style->value);
     }
 
     /**

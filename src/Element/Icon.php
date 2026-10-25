@@ -34,7 +34,7 @@ final class Icon extends AbstractElement
 
     /**
      * Controls the color of Icon elements.
-     * Valid values: "default", "dark", "light", "accent", "good", "warning", "attention".
+     * Valid values: "Default", "Dark", "Light", "Accent", "Good", "Warning", "Attention".
      */
     public function color(Colors $color): self
     {
@@ -43,7 +43,7 @@ final class Icon extends AbstractElement
 
     /**
      * Controls the size of the icon.
-     * Valid values: "xxSmall", "xSmall", "small", "standard", "medium", "large", "xLarge", "xxLarge".
+     * Valid values: "xxSmall", "xSmall", "Small", "Standard", "Medium", "Large", "xLarge", "xxLarge".
      */
     public function size(IconSize $size): self
     {
@@ -52,7 +52,7 @@ final class Icon extends AbstractElement
 
     /**
      * Controls the style of the icon.
-     * Valid values: "regular", "filled".
+     * Valid values: "Regular", "Filled".
      */
     public function style(IconStyle $style): self
     {

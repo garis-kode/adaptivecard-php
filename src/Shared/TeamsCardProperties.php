@@ -25,17 +25,27 @@ final class TeamsCardProperties extends Node
     }
 
     /**
-     * A list of entities mentioned in the card.
+     * Add multiple entity mentions.
      *
      * @param iterable<Mention> $entities
      */
-    public function entities(iterable $entities): self
+    public function addEntities(iterable $entities): self
     {
         foreach ($entities as $mention) {
             $this->addEntity($mention);
         }
 
         return $this;
+    }
+
+    /**
+     * A list of entities mentioned in the card.
+     *
+     * @param iterable<Mention> $entities
+     */
+    public function entities(iterable $entities): self
+    {
+        return $this->addEntities($entities);
     }
 
     /**

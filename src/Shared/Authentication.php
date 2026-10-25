@@ -35,36 +35,42 @@ final class Authentication extends Node
 
     /**
      * Defines information required to enable on-behalf-of single sign-on user authentication.
-     *
-     * @param TokenExchangeResource|array<string, mixed> $resource
      */
-    public function tokenExchangeResource(TokenExchangeResource|array $resource): self
+    public function tokenExchangeResource(TokenExchangeResource $resource): self
     {
         return $this->set('tokenExchangeResource', $resource);
     }
 
     /**
      * Add a button that should be displayed to the user to authenticate.
-     *
-     * @param AuthCardButton|array<string, mixed> $button
      */
-    public function addButton(AuthCardButton|array $button): self
+    public function addButton(AuthCardButton $button): self
     {
         return $this->push('buttons', $button);
     }
 
     /**
-     * Buttons that should be displayed to the user to authenticate.
+     * Add multiple buttons that should be displayed to the user to authenticate.
      *
-     * @param iterable<AuthCardButton|array<string, mixed>> $buttons
+     * @param iterable<AuthCardButton> $buttons
      */
-    public function buttons(iterable $buttons): self
+    public function addButtons(iterable $buttons): self
     {
         foreach ($buttons as $button) {
             $this->addButton($button);
         }
 
         return $this;
+    }
+
+    /**
+     * Buttons that should be displayed to the user to authenticate.
+     *
+     * @param iterable<AuthCardButton> $buttons
+     */
+    public function buttons(iterable $buttons): self
+    {
+        return $this->addButtons($buttons);
     }
 
     public function getType(): ?string

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace AdaptiveCards\Element\Progress;
 
 use AdaptiveCards\Element\AbstractElement;
+use AdaptiveCards\Enum\ProgressRingLabelPosition;
 use AdaptiveCards\Enum\ProgressRingSize;
 
 /**
@@ -35,17 +36,15 @@ final class ProgressRing extends AbstractElement
     /**
      * Specifies the position of the label relative to the progress ring.
      * Valid values: "Before", "After", "Above", "Below".
-     *
-     * @param "Before"|"After"|"Above"|"Below"|string $labelPosition
      */
-    public function labelPosition(string $labelPosition): self
+    public function labelPosition(ProgressRingLabelPosition $position): self
     {
-        return $this->set('labelPosition', $labelPosition);
+        return $this->set('labelPosition', $position->value);
     }
 
     /**
      * Controls the size of the progress ring.
-     * Valid values: "Small", "Medium", "Large", "ExtraLarge".
+     * Valid values: "Tiny", "Small", "Medium", "Large".
      */
     public function size(ProgressRingSize $size): self
     {

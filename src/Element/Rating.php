@@ -48,7 +48,7 @@ final class Rating extends AbstractElement
 
     /**
      * Controls the size of the rating stars.
-     * Valid values: "small", "medium", "large".
+     * Valid values: "Medium", "Large".
      */
     public function size(RatingSize $size): self
     {
@@ -57,7 +57,7 @@ final class Rating extends AbstractElement
 
     /**
      * Controls the color of the rating stars.
-     * Valid values: "neutral", "marigold".
+     * Valid values: "Neutral", "Marigold".
      */
     public function color(RatingColor $color): self
     {
@@ -66,7 +66,7 @@ final class Rating extends AbstractElement
 
     /**
      * Controls the style of the rating stars.
-     * Valid values: "default", "compact".
+     * Valid values: "Default", "Compact".
      */
     public function style(RatingStyle $style): self
     {

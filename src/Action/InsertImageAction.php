@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Action;
 
+use AdaptiveCards\Enum\InsertPosition;
+
 /**
  * Inserts an image into the host application's canvas.
  */
@@ -43,12 +45,10 @@ final class InsertImageAction extends AbstractAction
     /**
      * Controls the position where the image should be inserted.
      * Valid values: "Selection", "Top", "Bottom".
-     *
-     * @param "Selection"|"Top"|"Bottom"|string $insertPosition
      */
-    public function insertPosition(string $insertPosition): self
+    public function insertPosition(InsertPosition $insertPosition): self
     {
-        return $this->set('insertPosition', $insertPosition);
+        return $this->set('insertPosition', $insertPosition->value);
     }
 
     public function getType(): string

@@ -7,6 +7,7 @@ namespace AdaptiveCards\Element\Image;
 use AdaptiveCards\Action\AbstractAction;
 use AdaptiveCards\Element\AbstractElement;
 use AdaptiveCards\Enum\HorizontalAlignment;
+use AdaptiveCards\Enum\ImageFitMode;
 use AdaptiveCards\Enum\ImageSize;
 use AdaptiveCards\Enum\ImageStyle;
 use AdaptiveCards\Enum\VerticalAlignment;
@@ -55,7 +56,7 @@ final class Image extends AbstractElement
 
     /**
      * Controls how this element is displayed.
-     * Valid values: "Default", "Person".
+     * Valid values: "Default", "Person", "RoundedCorners".
      */
     public function style(ImageStyle $style): self
     {
@@ -97,12 +98,11 @@ final class Image extends AbstractElement
 
     /**
      * Controls how the image should fill its container.
-     *
-     * @param "Cover"|"Contain"|"Fill"|string $fitMode
+     * Valid values: "Cover", "Contain", "Fill".
      */
-    public function fitMode(string $fitMode): self
+    public function fitMode(ImageFitMode $fitMode): self
     {
-        return $this->set('fitMode', $fitMode);
+        return $this->set('fitMode', $fitMode->value);
     }
 
     /**
@@ -135,10 +135,8 @@ final class Image extends AbstractElement
 
     /**
      * Represents a set of Teams-specific properties on an image.
-     *
-     * @param TeamsImageProperties|array<string, mixed> $properties
      */
-    public function msteams(TeamsImageProperties|array $properties, bool $useCamelCaseKey = false): self
+    public function msteams(TeamsImageProperties $properties, bool $useCamelCaseKey = false): self
     {
         if ($useCamelCaseKey) {
             return $this->set('msTeams', $properties);

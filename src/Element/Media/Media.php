@@ -25,11 +25,59 @@ final class Media extends AbstractElement
     }
 
     /**
+     * Add multiple media sources.
+     *
+     * @param iterable<MediaSource> $sources
+     */
+    public function addSources(iterable $sources): self
+    {
+        foreach ($sources as $source) {
+            $this->addSource($source);
+        }
+
+        return $this;
+    }
+
+    /**
+     * The media sources.
+     *
+     * @param iterable<MediaSource> $sources
+     */
+    public function sources(iterable $sources): self
+    {
+        return $this->addSources($sources);
+    }
+
+    /**
      * Add a caption source URL.
      */
     public function addCaptionSource(CaptionSource $source): self
     {
         return $this->push('captionSources', $source);
+    }
+
+    /**
+     * Add multiple caption sources.
+     *
+     * @param iterable<CaptionSource> $captionSources
+     */
+    public function addCaptionSources(iterable $captionSources): self
+    {
+        foreach ($captionSources as $source) {
+            $this->addCaptionSource($source);
+        }
+
+        return $this;
+    }
+
+    /**
+     * The caption sources.
+     *
+     * @param iterable<CaptionSource> $captionSources
+     */
+    public function captionSources(iterable $captionSources): self
+    {
+        return $this->addCaptionSources($captionSources);
     }
 
     /**

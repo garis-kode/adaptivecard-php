@@ -14,7 +14,7 @@ use AdaptiveCards\Enum\ChartColorSet;
 final class VerticalBarChart extends AbstractChart
 {
     /**
-     * @param iterable<DataPoint|array<string, mixed>> $data
+     * @param iterable<DataPoint> $data
      */
     public function __construct(
         string $title,
@@ -42,7 +42,7 @@ final class VerticalBarChart extends AbstractChart
     }
 
     /**
-     * @param iterable<DataPoint|array<string, mixed>> $data
+     * @param iterable<DataPoint> $data
      */
     public static function make(
         string $title,
@@ -57,26 +57,34 @@ final class VerticalBarChart extends AbstractChart
 
     /**
      * Add a data point to the chart.
-     *
-     * @param DataPoint|array<string, mixed> $point
      */
-    public function addDataPoint(DataPoint|array $point): self
+    public function addDataPoint(DataPoint $point): self
     {
         return $this->push('data', $point);
     }
 
     /**
-     * The data points of the chart.
+     * Add multiple data points to the chart.
      *
-     * @param iterable<DataPoint|array<string, mixed>> $data
+     * @param iterable<DataPoint> $data
      */
-    public function data(iterable $data): self
+    public function addDataPoints(iterable $data): self
     {
         foreach ($data as $point) {
             $this->addDataPoint($point);
         }
 
         return $this;
+    }
+
+    /**
+     * The data points of the chart.
+     *
+     * @param iterable<DataPoint> $data
+     */
+    public function data(iterable $data): self
+    {
+        return $this->addDataPoints($data);
     }
 
     public function showBarValues(bool $show = true): self

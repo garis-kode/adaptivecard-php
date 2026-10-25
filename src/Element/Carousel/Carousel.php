@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace AdaptiveCards\Element\Carousel;
 
 use AdaptiveCards\Element\AbstractElement;
+use AdaptiveCards\Enum\PageAnimation;
 
 /**
  * A carousel with sliding pages.
@@ -25,17 +26,27 @@ final class Carousel extends AbstractElement
     }
 
     /**
-     * The pages of the carousel.
+     * Add multiple pages to the carousel.
      *
      * @param iterable<CarouselPage> $pages
      */
-    public function pages(iterable $pages): self
+    public function addPages(iterable $pages): self
     {
         foreach ($pages as $page) {
             $this->addPage($page);
         }
 
         return $this;
+    }
+
+    /**
+     * The pages of the carousel.
+     *
+     * @param iterable<CarouselPage> $pages
+     */
+    public function pages(iterable $pages): self
+    {
+        return $this->addPages($pages);
     }
 
     /**
@@ -50,12 +61,10 @@ final class Carousel extends AbstractElement
     /**
      * Controls the animation style between carousel pages.
      * Valid values: "Slide", "CrossFade", "None".
-     *
-     * @param "Slide"|"CrossFade"|"None"|string $animation
      */
-    public function pageAnimation(string $animation): self
+    public function pageAnimation(PageAnimation $animation): self
     {
-        return $this->set('pageAnimation', $animation);
+        return $this->set('pageAnimation', $animation->value);
     }
 
     /**

@@ -28,17 +28,27 @@ final class TableRow extends AbstractElement
     }
 
     /**
-     * The cells in this row.
+     * Add multiple cells to the row.
      *
      * @param iterable<TableCell> $cells
      */
-    public function cells(iterable $cells): self
+    public function addCells(iterable $cells): self
     {
         foreach ($cells as $cell) {
             $this->addCell($cell);
         }
 
         return $this;
+    }
+
+    /**
+     * The cells in this row.
+     *
+     * @param iterable<TableCell> $cells
+     */
+    public function cells(iterable $cells): self
+    {
+        return $this->addCells($cells);
     }
 
     /**

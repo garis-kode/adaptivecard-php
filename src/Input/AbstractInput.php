@@ -45,7 +45,7 @@ abstract class AbstractInput extends AbstractElement
 
     /**
      * Specifies the position of the label relative to the input control.
-     * Valid values: "Above", "Before", "Inline".
+     * Valid values: "inline", "above", "before".
      */
     public function labelPosition(InputLabelPosition $position): static
     {

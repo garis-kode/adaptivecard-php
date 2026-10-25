@@ -35,7 +35,7 @@ final class RatingInput extends AbstractInput
 
     /**
      * Controls the size of the rating stars.
-     * Valid values: "small", "medium", "large".
+     * Valid values: "Medium", "Large".
      */
     public function size(RatingSize $size): self
     {
@@ -44,7 +44,7 @@ final class RatingInput extends AbstractInput
 
     /**
      * Controls the color of the rating stars.
-     * Valid values: "neutral", "marigold".
+     * Valid values: "Neutral", "Marigold".
      */
     public function color(RatingColor $color): self
     {

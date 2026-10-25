@@ -60,7 +60,7 @@ final class TextInput extends AbstractInput
 
     /**
      * Style hint for text input.
-     * Valid values: "text", "tel", "url", "email", "password".
+     * Valid values: "Text", "Tel", "Url", "Email", "Password".
      */
     public function style(TextInputStyle $style): self
     {

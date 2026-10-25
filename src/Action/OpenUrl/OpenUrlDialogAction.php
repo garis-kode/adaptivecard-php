@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace AdaptiveCards\Action\OpenUrl;
 
 use AdaptiveCards\Action\AbstractAction;
+use AdaptiveCards\Enum\DialogSize;
 
 /**
  * Opens a task module in a modal dialog hosting the content at a provided URL.
@@ -54,12 +55,10 @@ final class OpenUrlDialogAction extends AbstractAction
     /**
      * The size of the modal dialog.
      * Valid values: "small", "medium", "large".
-     *
-     * @param "small"|"medium"|"large"|string $dialogSize
      */
-    public function dialogSize(string $dialogSize): self
+    public function dialogSize(DialogSize $dialogSize): self
     {
-        return $this->set('dialogSize', $dialogSize);
+        return $this->set('dialogSize', $dialogSize->value);
     }
 
     /**

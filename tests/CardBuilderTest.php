@@ -7,6 +7,7 @@ namespace AdaptiveCards\Tests;
 use AdaptiveCards\Action\ExecuteAction;
 use AdaptiveCards\Action\OpenUrl\OpenUrlAction;
 use AdaptiveCards\Action\SubmitAction;
+use AdaptiveCards\Action\ToggleVisibility\TargetElement;
 use AdaptiveCards\Action\ToggleVisibility\ToggleVisibilityAction;
 use AdaptiveCards\AdaptiveCard;
 use AdaptiveCards\Element\ActionSet;
@@ -43,16 +44,17 @@ final class CardBuilderTest extends TestCase
     public function testBuildOpportunityCard(): void
     {
         $toggleTargets = [
-            'showMore1',
-            'showLess1',
-            'showMore2',
-            'showLess2',
-            'chevronDown1',
-            'chevronUp1',
-            'chevronDown2',
-            'chevronUp2',
-            'moreText',
+            TargetElement::make('showMore1'),
+            TargetElement::make('showLess1'),
+            TargetElement::make('showMore2'),
+            TargetElement::make('showLess2'),
+            TargetElement::make('chevronDown1'),
+            TargetElement::make('chevronUp1'),
+            TargetElement::make('chevronDown2'),
+            TargetElement::make('chevronUp2'),
+            TargetElement::make('moreText'),
         ];
+        $toggleTargetsExpected = array_map(static fn (TargetElement $t): array => $t->toArray(), $toggleTargets);
 
         $createToggleAction = static fn (): ToggleVisibilityAction =>
             ToggleVisibilityAction::make()->targetElements($toggleTargets);
@@ -822,7 +824,7 @@ final class CardBuilderTest extends TestCase
                                                             'text' => 'See more',
                                                             'selectAction' => [
                                                                 'type' => 'Action.ToggleVisibility',
-                                                                'targetElements' => $toggleTargets,
+                                                                'targetElements' => $toggleTargetsExpected,
                                                             ],
                                                         ],
                                                     ],
@@ -837,7 +839,7 @@ final class CardBuilderTest extends TestCase
                                                             'text' => 'See less',
                                                             'selectAction' => [
                                                                 'type' => 'Action.ToggleVisibility',
-                                                                'targetElements' => $toggleTargets,
+                                                                'targetElements' => $toggleTargetsExpected,
                                                             ],
                                                         ],
                                                     ],
@@ -859,7 +861,7 @@ final class CardBuilderTest extends TestCase
                                                     'color' => 'Accent',
                                                     'selectAction' => [
                                                         'type' => 'Action.ToggleVisibility',
-                                                        'targetElements' => $toggleTargets,
+                                                        'targetElements' => $toggleTargetsExpected,
                                                     ],
                                                 ],
                                                 [
@@ -871,7 +873,7 @@ final class CardBuilderTest extends TestCase
                                                     'color' => 'Accent',
                                                     'selectAction' => [
                                                         'type' => 'Action.ToggleVisibility',
-                                                        'targetElements' => $toggleTargets,
+                                                        'targetElements' => $toggleTargetsExpected,
                                                     ],
                                                 ],
                                             ],
@@ -904,7 +906,7 @@ final class CardBuilderTest extends TestCase
                                             'text' => 'See more',
                                             'selectAction' => [
                                                 'type' => 'Action.ToggleVisibility',
-                                                'targetElements' => $toggleTargets,
+                                                'targetElements' => $toggleTargetsExpected,
                                             ],
                                         ],
                                     ],
@@ -919,7 +921,7 @@ final class CardBuilderTest extends TestCase
                                             'text' => 'See less',
                                             'selectAction' => [
                                                 'type' => 'Action.ToggleVisibility',
-                                                'targetElements' => $toggleTargets,
+                                                'targetElements' => $toggleTargetsExpected,
                                             ],
                                         ],
                                     ],
@@ -939,7 +941,7 @@ final class CardBuilderTest extends TestCase
                                     'color' => 'Accent',
                                     'selectAction' => [
                                         'type' => 'Action.ToggleVisibility',
-                                        'targetElements' => $toggleTargets,
+                                        'targetElements' => $toggleTargetsExpected,
                                     ],
                                 ],
                                 [
@@ -951,7 +953,7 @@ final class CardBuilderTest extends TestCase
                                     'color' => 'Accent',
                                     'selectAction' => [
                                         'type' => 'Action.ToggleVisibility',
-                                        'targetElements' => $toggleTargets,
+                                        'targetElements' => $toggleTargetsExpected,
                                     ],
                                 ],
                             ],
@@ -1122,15 +1124,16 @@ final class CardBuilderTest extends TestCase
     public function testBuildCommunicationHolidayDealsCard(): void
     {
         $toggleTargets = [
-            'likeFilled',
-            'likeOutline',
-            'commentLike',
-            'commentUnlike',
-            'likeFilled2',
-            'likeOutline2',
-            'commentLike2',
-            'commentUnlike2',
+            TargetElement::make('likeFilled'),
+            TargetElement::make('likeOutline'),
+            TargetElement::make('commentLike'),
+            TargetElement::make('commentUnlike'),
+            TargetElement::make('likeFilled2'),
+            TargetElement::make('likeOutline2'),
+            TargetElement::make('commentLike2'),
+            TargetElement::make('commentUnlike2'),
         ];
+        $toggleTargetsExpected = array_map(static fn (TargetElement $t): array => $t->toArray(), $toggleTargets);
 
         $avatarUrl = 'https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Card-Samples/main/samples/communication/assets/avatar.png';
         $heroImageUrl = 'https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Card-Samples/main/samples/communication/assets/hero_image.png';
@@ -1664,16 +1667,7 @@ final class CardBuilderTest extends TestCase
                                         [
                                             'type' => 'Action.ToggleVisibility',
                                             'title' => 'Like',
-                                            'targetElements' => [
-                                                'likeFilled',
-                                                'likeOutline',
-                                                'commentLike',
-                                                'commentUnlike',
-                                                'likeFilled2',
-                                                'likeOutline2',
-                                                'commentLike2',
-                                                'commentUnlike2',
-                                            ],
+                                            'targetElements' => $toggleTargetsExpected,
                                         ],
                                         [
                                             'type' => 'Action.Submit',
@@ -1859,16 +1853,7 @@ final class CardBuilderTest extends TestCase
                         [
                             'type' => 'Action.ToggleVisibility',
                             'title' => 'Like',
-                            'targetElements' => [
-                                'likeFilled',
-                                'likeOutline',
-                                'commentLike',
-                                'commentUnlike',
-                                'likeFilled2',
-                                'likeOutline2',
-                                'commentLike2',
-                                'commentUnlike2',
-                            ],
+                            'targetElements' => $toggleTargetsExpected,
                         ],
                         [
                             'type' => 'Action.Submit',
@@ -1885,11 +1870,12 @@ final class CardBuilderTest extends TestCase
     public function testBuildCourseVideoCard(): void
     {
         $toggleTargets = [
-            'truncatedText',
-            'fullText',
-            'showMore',
-            'showLess',
+            TargetElement::make('truncatedText'),
+            TargetElement::make('fullText'),
+            TargetElement::make('showMore'),
+            TargetElement::make('showLess'),
         ];
+        $toggleTargetsExpected = array_map(static fn (TargetElement $t): array => $t->toArray(), $toggleTargets);
 
         $card = AdaptiveCard::make('1.6')
             ->schema('https://adaptivecards.io/schemas/adaptive-card.json')
@@ -2140,12 +2126,7 @@ final class CardBuilderTest extends TestCase
                             'text' => 'Show more',
                             'selectAction' => [
                                 'type' => 'Action.ToggleVisibility',
-                                'targetElements' => [
-                                    'truncatedText',
-                                    'fullText',
-                                    'showMore',
-                                    'showLess',
-                                ],
+                                'targetElements' => $toggleTargetsExpected,
                             ],
                         ],
                     ],
@@ -2162,12 +2143,7 @@ final class CardBuilderTest extends TestCase
                             'text' => 'Show less',
                             'selectAction' => [
                                 'type' => 'Action.ToggleVisibility',
-                                'targetElements' => [
-                                    'truncatedText',
-                                    'fullText',
-                                    'showMore',
-                                    'showLess',
-                                ],
+                                'targetElements' => $toggleTargetsExpected,
                             ],
                         ],
                     ],

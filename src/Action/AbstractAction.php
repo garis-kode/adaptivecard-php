@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Action;
 
+use AdaptiveCards\Enum\ActionBehavior;
+use AdaptiveCards\Enum\ActionInitialState;
 use AdaptiveCards\Enum\ActionMode;
 use AdaptiveCards\Enum\ActionStyle;
 use AdaptiveCards\Node;
@@ -139,11 +141,19 @@ abstract class AbstractAction extends Node
     }
 
     /**
-     * A list of actions that should be displayed in a flyout menu when the user clicks this action.
+     * Add an action to the flyout menu.
+     */
+    public function addMenuAction(AbstractAction $action): static
+    {
+        return $this->push('menuActions', $action);
+    }
+
+    /**
+     * Add multiple actions to the flyout menu.
      *
      * @param iterable<AbstractAction> $actions
      */
-    public function menuActions(iterable $actions): static
+    public function addMenuActions(iterable $actions): static
     {
         foreach ($actions as $action) {
             $this->addMenuAction($action);
@@ -153,11 +163,13 @@ abstract class AbstractAction extends Node
     }
 
     /**
-     * Add an action to the flyout menu.
+     * A list of actions that should be displayed in a flyout menu when the user clicks this action.
+     *
+     * @param iterable<AbstractAction> $actions
      */
-    public function addMenuAction(AbstractAction $action): static
+    public function menuActions(iterable $actions): static
     {
-        return $this->push('menuActions', $action);
+        return $this->addMenuActions($actions);
     }
 
     /**
@@ -189,20 +201,21 @@ abstract class AbstractAction extends Node
     }
 
     /**
-     * Controls the behavior of the action (e.g. "toggle").
+     * Controls the behavior of the action (e.g. "Toggle").
+     * Valid values: "Default", "Toggle".
      */
-    public function behavior(string $behavior): static
+    public function behavior(ActionBehavior $behavior): static
     {
-        return $this->set('behavior', $behavior);
+        return $this->set('behavior', $behavior->value);
     }
 
     /**
-     * Controls the initial state of the action when behavior is "toggle".
-     * Valid values: "untoggled", "toggled".
+     * Controls the initial state of the action when behavior is "Toggle".
+     * Valid values: "Normal", "Toggled".
      */
-    public function initialState(string $state): static
+    public function initialState(ActionInitialState $state): static
     {
-        return $this->set('initialState', $state);
+        return $this->set('initialState', $state->value);
     }
 
     /**

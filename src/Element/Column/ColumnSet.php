@@ -27,6 +27,30 @@ final class ColumnSet extends AbstractElement
     }
 
     /**
+     * Add multiple columns to the column set.
+     *
+     * @param iterable<Column> $columns
+     */
+    public function addColumns(iterable $columns): self
+    {
+        foreach ($columns as $column) {
+            $this->addColumn($column);
+        }
+
+        return $this;
+    }
+
+    /**
+     * The columns in this column set.
+     *
+     * @param iterable<Column> $columns
+     */
+    public function columns(iterable $columns): self
+    {
+        return $this->addColumns($columns);
+    }
+
+    /**
      * Create, configure and append a column in one call.
      *
      * @param string|int|null $width "auto", "stretch", a weight or pixels.

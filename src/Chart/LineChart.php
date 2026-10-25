@@ -13,7 +13,7 @@ use AdaptiveCards\Enum\ChartColorSet;
 final class LineChart extends AbstractChart
 {
     /**
-     * @param iterable<ChartSeries|array<string, mixed>>|null $data
+     * @param iterable<ChartSeries>|null $data
      */
     public function __construct(
         string $title,
@@ -43,7 +43,7 @@ final class LineChart extends AbstractChart
     }
 
     /**
-     * @param iterable<ChartSeries|array<string, mixed>>|null $data
+     * @param iterable<ChartSeries>|null $data
      */
     public static function make(
         string $title,
@@ -74,24 +74,29 @@ final class LineChart extends AbstractChart
         return $this->set('xAxisLabelMinWidth', $width);
     }
 
-    /**
-     * @param ChartSeries|array<string, mixed> $series
-     */
-    public function addSeries(ChartSeries|array $series): self
+    public function addSeries(ChartSeries $series): self
     {
         return $this->push('data', $series);
     }
 
     /**
-     * @param iterable<ChartSeries|array<string, mixed>> $data
+     * @param iterable<ChartSeries> $data
      */
-    public function data(iterable $data): self
+    public function addSeriesList(iterable $data): self
     {
         foreach ($data as $series) {
             $this->addSeries($series);
         }
 
         return $this;
+    }
+
+    /**
+     * @param iterable<ChartSeries> $data
+     */
+    public function data(iterable $data): self
+    {
+        return $this->addSeriesList($data);
     }
 
     public function getType(): string

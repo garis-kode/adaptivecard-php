@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Shared;
 
+use AdaptiveCards\Enum\DocumentReferenceIcon;
 use AdaptiveCards\Node;
 
 /**
@@ -34,10 +35,14 @@ final class DocumentReference extends Node
 
     /**
      * An icon representing the document.
+     * Valid values: "msWord", "msExcel", "msPowerPoint", "msOneNote", "msSharePoint",
+     * "msVisio", "msLoop", "msWhiteboard", "code", "sketch", "adobeIllustrator",
+     * "adobePhotoshop", "adobeInDesign", "adobeFlash", "image", "gif", "video",
+     * "sound", "zip", "text", "pdf".
      */
-    public function icon(string $icon): self
+    public function icon(DocumentReferenceIcon $icon): self
     {
-        return $this->set('icon', $icon);
+        return $this->set('icon', $icon->value);
     }
 
     /**

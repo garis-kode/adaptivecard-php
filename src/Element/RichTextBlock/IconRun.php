@@ -8,6 +8,7 @@ use AdaptiveCards\Action\AbstractAction;
 use AdaptiveCards\Element\AbstractElement;
 use AdaptiveCards\Enum\Colors;
 use AdaptiveCards\Enum\IconStyle;
+use AdaptiveCards\Enum\TextSize;
 
 /**
  * An inline icon inside a RichTextBlock element.
@@ -43,12 +44,11 @@ final class IconRun extends AbstractElement
 
     /**
      * Controls the size of the icon.
-     *
-     * @param "Small"|"Default"|"Medium"|"Large"|"ExtraLarge"|string $size
+     * Valid values: "Small", "Default", "Medium", "Large", "ExtraLarge".
      */
-    public function size(string $size): self
+    public function size(TextSize $size): self
     {
-        return $this->set('size', $size);
+        return $this->set('size', $size->value);
     }
 
     /**

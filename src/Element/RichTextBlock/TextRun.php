@@ -45,7 +45,7 @@ final class TextRun extends AbstractElement
 
     /**
      * Controls the color of TextRun elements.
-     * Valid values: "default", "dark", "light", "accent", "good", "warning", "attention".
+     * Valid values: "Default", "Dark", "Light", "Accent", "Good", "Warning", "Attention".
      */
     public function color(Colors $color): self
     {
@@ -54,7 +54,7 @@ final class TextRun extends AbstractElement
 
     /**
      * Type of font to use for rendering.
-     * Valid values: "default", "monospace".
+     * Valid values: "Default", "Monospace".
      */
     public function fontType(FontType $fontType): self
     {
@@ -63,7 +63,7 @@ final class TextRun extends AbstractElement
 
     /**
      * Controls size of text.
-     * Valid values: "small", "default", "medium", "large", "extraLarge".
+     * Valid values: "Default", "Small", "Medium", "Large", "ExtraLarge".
      */
     public function size(TextSize $size): self
     {
@@ -72,7 +72,7 @@ final class TextRun extends AbstractElement
 
     /**
      * Controls the weight of TextRun elements.
-     * Valid values: "default", "lighter", "bolder".
+     * Valid values: "Default", "Lighter", "Bolder".
      */
     public function weight(TextWeight $weight): self
     {

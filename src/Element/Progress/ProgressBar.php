@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace AdaptiveCards\Element\Progress;
 
 use AdaptiveCards\Element\AbstractElement;
+use AdaptiveCards\Enum\ProgressBarColor;
 
 /**
  * A progress bar element, to represent a value within a range.
@@ -39,12 +40,10 @@ final class ProgressBar extends AbstractElement
     /**
      * Controls the color of the progress bar.
      * Valid values: "Accent", "Good", "Warning", "Attention".
-     *
-     * @param "Accent"|"Good"|"Warning"|"Attention"|string $color
      */
-    public function color(string $color): self
+    public function color(ProgressBarColor $color): self
     {
-        return $this->set('color', $color);
+        return $this->set('color', $color->value);
     }
 
     public function getType(): string

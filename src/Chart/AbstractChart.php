@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace AdaptiveCards\Chart;
 
 use AdaptiveCards\Element\AbstractElement;
+use AdaptiveCards\Enum\ChartColor;
 use AdaptiveCards\Enum\ChartColorSet;
 
 /**
@@ -22,7 +23,7 @@ abstract class AbstractChart extends AbstractElement
 
     /**
      * Controls the color set used to style the chart.
-     * Valid values: "categorical", "sequential", "diverging", "sequentialRed", "sequentialGreen", "sequentialYellow".
+     * Valid values: "categorical", "diverging", "sequential", "sequentialred", "sequentialgreen", "sequentialyellow".
      */
     public function colorSet(ChartColorSet $colorSet): static
     {
@@ -32,9 +33,9 @@ abstract class AbstractChart extends AbstractElement
     /**
      * Controls the color of the chart when a single color is used.
      */
-    public function color(string $color): static
+    public function color(ChartColor $color): static
     {
-        return $this->set('color', $color);
+        return $this->set('color', $color->value);
     }
 
     /**

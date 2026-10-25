@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Chart\Data;
 
+use AdaptiveCards\Enum\ChartColor;
 use AdaptiveCards\Node;
 
 /**
@@ -12,12 +13,12 @@ use AdaptiveCards\Node;
 final class ChartSeries extends Node
 {
     /**
-     * @param iterable<DataPoint|array<string, mixed>> $data
+     * @param iterable<DataPoint> $data
      */
     public function __construct(
         ?string $legendOrTitle = null,
         iterable $data = [],
-        ?string $color = null,
+        ?ChartColor $color = null,
     ) {
         if ($legendOrTitle !== null) {
             $this->legend($legendOrTitle);
@@ -31,9 +32,9 @@ final class ChartSeries extends Node
     }
 
     /**
-     * @param iterable<DataPoint|array<string, mixed>> $data
+     * @param iterable<DataPoint> $data
      */
-    public static function make(?string $legendOrTitle = null, iterable $data = [], ?string $color = null): self
+    public static function make(?string $legendOrTitle = null, iterable $data = [], ?ChartColor $color = null): self
     {
         return new self($legendOrTitle, $data, $color);
     }
@@ -57,27 +58,25 @@ final class ChartSeries extends Node
     /**
      * The color of this series.
      */
-    public function color(string $color): self
+    public function color(ChartColor $color): self
     {
-        return $this->set('color', $color);
+        return $this->set('color', $color->value);
     }
 
     /**
      * Add a data point to the series.
-     *
-     * @param DataPoint|array<string, mixed> $point
      */
-    public function addPoint(DataPoint|array $point): self
+    public function addPoint(DataPoint $point): self
     {
         return $this->push('data', $point);
     }
 
     /**
-     * The collection of data points in this series.
+     * Add multiple data points to the series.
      *
-     * @param iterable<DataPoint|array<string, mixed>> $points
+     * @param iterable<DataPoint> $points
      */
-    public function data(iterable $points): self
+    public function addPoints(iterable $points): self
     {
         foreach ($points as $point) {
             $this->addPoint($point);
@@ -87,27 +86,45 @@ final class ChartSeries extends Node
     }
 
     /**
-     * Add a value data point to the series.
+     * The collection of data points in this series.
      *
-     * @param DataPoint|array<string, mixed> $point
+     * @param iterable<DataPoint> $points
      */
-    public function addValue(DataPoint|array $point): self
+    public function data(iterable $points): self
+    {
+        return $this->addPoints($points);
+    }
+
+    /**
+     * Add a value data point to the series.
+     */
+    public function addValue(DataPoint $point): self
     {
         return $this->push('values', $point);
     }
 
     /**
-     * The collection of values in this series.
+     * Add multiple value data points to the series.
      *
-     * @param iterable<DataPoint|array<string, mixed>> $points
+     * @param iterable<DataPoint> $points
      */
-    public function values(iterable $points): self
+    public function addValues(iterable $points): self
     {
         foreach ($points as $point) {
             $this->addValue($point);
         }
 
         return $this;
+    }
+
+    /**
+     * The collection of values in this series.
+     *
+     * @param iterable<DataPoint> $points
+     */
+    public function values(iterable $points): self
+    {
+        return $this->addValues($points);
     }
 
     public function getType(): ?string

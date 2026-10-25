@@ -38,6 +38,16 @@ final class ActionSet extends AbstractElement
         return $this;
     }
 
+    /**
+     * The list of actions to display.
+     *
+     * @param iterable<AbstractAction> $actions
+     */
+    public function actions(iterable $actions): self
+    {
+        return $this->addActions($actions);
+    }
+
     public function getType(): string
     {
         return 'ActionSet';

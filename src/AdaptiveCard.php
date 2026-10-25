@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace AdaptiveCards;
 
 use AdaptiveCards\Action\AbstractAction;
+use AdaptiveCards\Element\AbstractElement;
 use AdaptiveCards\Enum\ContainerStyle;
 use AdaptiveCards\Enum\VerticalAlignment;
 use AdaptiveCards\Exception\ValidationException;
@@ -57,6 +58,16 @@ final class AdaptiveCard extends Node
     public function version(string $version): self
     {
         return $this->set('version', $version);
+    }
+
+    /**
+     * The card elements (body).
+     *
+     * @param iterable<AbstractElement> $elements
+     */
+    public function body(iterable $elements): self
+    {
+        return $this->addItems($elements);
     }
 
     /**
@@ -119,7 +130,7 @@ final class AdaptiveCard extends Node
     /**
      * Defines the container's background image.
      */
-    public function backgroundImage(string|BackgroundImage $backgroundImage): self
+    public function backgroundImage(BackgroundImage $backgroundImage): self
     {
         return $this->set('backgroundImage', $backgroundImage);
     }
@@ -247,10 +258,8 @@ final class AdaptiveCard extends Node
 
     /**
      * Teams-specific metadata associated with the card.
-     *
-     * @param TeamsCardProperties|array<string, mixed> $msteams
      */
-    public function msteams(TeamsCardProperties|array $msteams, bool $useCamelCaseKey = false): self
+    public function msteams(TeamsCardProperties $msteams, bool $useCamelCaseKey = false): self
     {
         if ($useCamelCaseKey) {
             return $this->set('msTeams', $msteams);
@@ -261,10 +270,8 @@ final class AdaptiveCard extends Node
 
     /**
      * Resources card elements can reference.
-     *
-     * @param Resources|array<string, mixed> $resources
      */
-    public function resources(Resources|array $resources): self
+    public function resources(Resources $resources): self
     {
         return $this->set('resources', $resources);
     }
@@ -278,17 +285,27 @@ final class AdaptiveCard extends Node
     }
 
     /**
-     * References that can be cited in TextBlock and RichTextBlock elements.
+     * Add multiple references.
      *
      * @param iterable<AdaptiveCardReference|DocumentReference> $references
      */
-    public function references(iterable $references): self
+    public function addReferences(iterable $references): self
     {
         foreach ($references as $reference) {
             $this->addReference($reference);
         }
 
         return $this;
+    }
+
+    /**
+     * References that can be cited in TextBlock and RichTextBlock elements.
+     *
+     * @param iterable<AdaptiveCardReference|DocumentReference> $references
+     */
+    public function references(iterable $references): self
+    {
+        return $this->addReferences($references);
     }
 
     /**
@@ -300,6 +317,20 @@ final class AdaptiveCard extends Node
     }
 
     /**
+     * Add multiple layouts associated with the container.
+     *
+     * @param iterable<AbstractLayout> $layouts
+     */
+    public function addLayouts(iterable $layouts): self
+    {
+        foreach ($layouts as $layout) {
+            $this->addLayout($layout);
+        }
+
+        return $this;
+    }
+
+    /**
      * The layouts associated with the container. The container can dynamically switch
      * from one layout to another as the card's width changes.
      * Valid values: Layout.Stack, Layout.Flow, Layout.AreaGrid.
@@ -308,11 +339,7 @@ final class AdaptiveCard extends Node
      */
     public function layouts(iterable $layouts): self
     {
-        foreach ($layouts as $layout) {
-            $this->addLayout($layout);
-        }
-
-        return $this;
+        return $this->addLayouts($layouts);
     }
 
     /**

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace AdaptiveCards\Element\Image;
 
 use AdaptiveCards\Element\AbstractElement;
-use AdaptiveCards\Enum\ImageSize;
+use AdaptiveCards\Enum\ImageSetSize;
 
 /**
  * A set of images, displayed side-by-side and wrapped across multiple rows as needed.
@@ -26,10 +26,34 @@ final class ImageSet extends AbstractElement
     }
 
     /**
-     * Controls the approximate size of each image in the set.
-     * Valid values: "Auto", "Stretch", "Small", "Medium", "Large".
+     * Add multiple images to the image set.
+     *
+     * @param iterable<Image> $images
      */
-    public function imageSize(ImageSize $size): self
+    public function addImages(iterable $images): self
+    {
+        foreach ($images as $image) {
+            $this->addImage($image);
+        }
+
+        return $this;
+    }
+
+    /**
+     * The images in the set.
+     *
+     * @param iterable<Image> $images
+     */
+    public function images(iterable $images): self
+    {
+        return $this->addImages($images);
+    }
+
+    /**
+     * Controls the approximate size of each image in the set.
+     * Valid values: "Small", "Medium", "Large".
+     */
+    public function imageSize(ImageSetSize $size): self
     {
         return $this->set('imageSize', $size->value);
     }
