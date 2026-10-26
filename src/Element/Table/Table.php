@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace AdaptiveCards\Element\Table;
 
 use AdaptiveCards\Element\AbstractElement;
+use AdaptiveCards\Element\TextBlock;
 use AdaptiveCards\Enum\ContainerStyle;
 use AdaptiveCards\Enum\HorizontalAlignment;
 use AdaptiveCards\Enum\VerticalAlignment;
@@ -114,7 +115,7 @@ final class Table extends AbstractElement
     {
         $row = new TableRow();
         foreach ($cells as $text) {
-            $row->addTextCell($text, static fn ($tb) => $tb->wrap(true));
+            $row->addTextCell($text, static fn (TextBlock $tb) => $tb->wrap(true));
         }
 
         return $this->addRow($row);

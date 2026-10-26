@@ -40,7 +40,12 @@ final class SchemaValidator
             throw new AdaptiveCardException(sprintf('Unable to read Adaptive Card schema at "%s".', $path));
         }
 
-        return json_decode($contents, false, 512, JSON_THROW_ON_ERROR);
+        $schema = json_decode($contents, false, 512, JSON_THROW_ON_ERROR);
+        if (!is_object($schema)) {
+            throw new AdaptiveCardException(sprintf('Adaptive Card schema at "%s" does not contain a valid JSON object.', $path));
+        }
+
+        return $schema;
     }
 
     /**
@@ -64,10 +69,15 @@ final class SchemaValidator
         $validator->validate($data, $this->schema);
 
         $errors = [];
-        foreach ($validator->getErrors() as $error) {
+        /** @var list<array<string, mixed>> $rawErrors */
+        $rawErrors = $validator->getErrors();
+        foreach ($rawErrors as $error) {
+            $property = isset($error['property']) && is_scalar($error['property']) ? (string) $error['property'] : '';
+            $message = isset($error['message']) && is_scalar($error['message']) ? (string) $error['message'] : 'Unknown validation error';
+
             $errors[] = [
-                'property' => (string) ($error['property'] ?? ''),
-                'message' => (string) ($error['message'] ?? 'Unknown validation error'),
+                'property' => $property,
+                'message' => $message,
             ];
         }
 
