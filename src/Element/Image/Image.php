@@ -73,12 +73,12 @@ final class Image extends AbstractElement
     }
 
     /**
-     * The desired on-screen width of the image, ending in "px". E.g., 50px.
-     * This overrides the `size` property. Valid values: "<number>px".
+     * The width of the image.
+     * Valid values: "auto", "stretch", "<number>px".
      */
-    public function width(string $width): self
+    public function width(Height|string $width): self
     {
-        return $this->set('width', $width);
+        return $this->set('width', $width instanceof Height ? $width->value : $width);
     }
 
     /**
