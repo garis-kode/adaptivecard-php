@@ -64,16 +64,26 @@ final class LineChart extends AbstractChart
         return $this->set('yMin', $yMin);
     }
 
+    /**
+     * The maximum value to be displayed on the y axis.
+     */
     public function yMax(float|int $yMax): self
     {
         return $this->set('yMax', $yMax);
     }
 
+    /**
+     * Controls the minimum width allocated to x axis labels.
+     * Valid values: "<number>px" or an integer for pixel count.
+     */
     public function xAxisLabelMinWidth(string|int $width): self
     {
         return $this->set('xAxisLabelMinWidth', $width);
     }
 
+    /**
+     * Add a data series to the chart.
+     */
     public function addSeries(ChartSeries $series): self
     {
         return $this->push('data', $series);

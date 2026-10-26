@@ -87,16 +87,25 @@ final class VerticalBarChart extends AbstractChart
         return $this->addDataPoints($data);
     }
 
+    /**
+     * Controls whether the values of the bars should be displayed above each bar.
+     */
     public function showBarValues(bool $show = true): self
     {
         return $this->set('showBarValues', $show);
     }
 
+    /**
+     * The minimum value to be displayed on the y axis.
+     */
     public function yMin(float|int $min): self
     {
         return $this->set('yMin', $min);
     }
 
+    /**
+     * The maximum value to be displayed on the y axis.
+     */
     public function yMax(float|int $max): self
     {
         return $this->set('yMax', $max);

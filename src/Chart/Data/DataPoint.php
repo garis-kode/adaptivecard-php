@@ -35,6 +35,9 @@ final class DataPoint extends Node
         }
     }
 
+    /**
+     * Create a cartesian data point with x and y coordinates.
+     */
     public static function point(string|int|float $x, string|int|float $y, ?ChartColor $color = null): self
     {
         $dp = new self();
@@ -47,6 +50,9 @@ final class DataPoint extends Node
         return $dp;
     }
 
+    /**
+     * Create a slice/legend data point for pie, donut, or bar charts.
+     */
     public static function slice(string $legend, float|int $value, ?ChartColor $color = null, ?string $tooltip = null): self
     {
         $dp = new self();

@@ -91,6 +91,10 @@ final class PieChart extends AbstractChart
         return $this->set('thickness', $thickness->value);
     }
 
+    /**
+     * The value that should be displayed in the center of a Donut chart.
+     * Note: `value` is ignored for Pie charts by host renderers.
+     */
     public function value(string|int|float $value): self
     {
         return $this->set('value', $value);
