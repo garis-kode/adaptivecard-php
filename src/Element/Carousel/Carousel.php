@@ -76,11 +76,11 @@ final class Carousel extends AbstractElement
     }
 
     /**
-     * The minimum height, in pixels, of the carousel, in the `<number>px` format.
+     * The minimum height, in pixels, of the carousel.
      */
-    public function minHeight(string $minHeight): self
+    public function minHeight(int $minHeight): self
     {
-        return $this->set('minHeight', $minHeight);
+        return $this->set('minHeight', "{$minHeight}px");
     }
 
     public function getType(): string

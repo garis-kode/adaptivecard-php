@@ -55,11 +55,11 @@ abstract class AbstractChart extends AbstractElement
     }
 
     /**
-     * Controls the maximum width of the chart.
+     * Controls the maximum width, in pixels, of the chart.
      */
-    public function maxWidth(string $maxWidth): static
+    public function maxWidth(int $maxWidth): static
     {
-        return $this->set('maxWidth', $maxWidth);
+        return $this->set('maxWidth', "{$maxWidth}px");
     }
 
     /**

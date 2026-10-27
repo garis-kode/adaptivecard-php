@@ -51,19 +51,19 @@ final class CarouselPage extends AbstractElement
     }
 
     /**
-     * The minimum height, in pixels, of the container, in the `<number>px` format.
+     * The minimum height, in pixels, of the container.
      */
-    public function minHeight(string $minHeight): self
+    public function minHeight(int $minHeight): self
     {
-        return $this->set('minHeight', $minHeight);
+        return $this->set('minHeight', "{$minHeight}px");
     }
 
     /**
      * The maximum height, in pixels, of the container.
      */
-    public function maxHeight(string $maxHeight): self
+    public function maxHeight(int $maxHeight): self
     {
-        return $this->set('maxHeight', $maxHeight);
+        return $this->set('maxHeight', "{$maxHeight}px");
     }
 
     /**

@@ -12,6 +12,7 @@ use AdaptiveCards\Enum\ImageFitMode;
 use AdaptiveCards\Enum\ImageSize;
 use AdaptiveCards\Enum\ImageStyle;
 use AdaptiveCards\Enum\VerticalAlignment;
+use AdaptiveCards\Enum\Width;
 
 /**
  * A standalone image element.
@@ -74,20 +75,24 @@ final class Image extends AbstractElement
 
     /**
      * The width of the image.
-     * Valid values: "auto", "stretch", "<number>px".
+     * Valid values: "auto", "stretch", pixel count.
      */
-    public function width(Height|string $width): self
+    public function width(Width|int $width): self
     {
-        return $this->set('width', $width instanceof Height ? $width->value : $width);
+        $value = $width instanceof Width ? $width->value : "{$width}px";
+
+        return $this->set('width', $value);
     }
 
     /**
      * The height of the image.
-     * Valid values: "auto", "stretch", "<number>px".
+     * Valid values: "auto", "stretch", pixel count.
      */
-    public function height(Height|string $height): static
+    public function height(Height|int $height): static
     {
-        return $this->set('height', $height instanceof Height ? $height->value : $height);
+        $value = $height instanceof Height ? $height->value : "{$height}px";
+
+        return $this->set('height', $value);
     }
 
     /**

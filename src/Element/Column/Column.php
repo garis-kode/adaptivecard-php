@@ -8,6 +8,7 @@ use AdaptiveCards\Action\AbstractAction;
 use AdaptiveCards\Element\AbstractElement;
 use AdaptiveCards\Enum\ContainerStyle;
 use AdaptiveCards\Enum\VerticalAlignment;
+use AdaptiveCards\Enum\Width;
 use AdaptiveCards\Layout\AbstractLayout;
 use AdaptiveCards\Shared\BackgroundImage;
 use AdaptiveCards\Support\HasItems;
@@ -25,11 +26,20 @@ final class Column extends AbstractElement
     }
 
     /**
-     * Controls the width of the column. "auto", "stretch", a number (weight), or pixels ending in "px".
      */
-    public function width(string|int $width): self
+    public function width(Width|int $width): self
     {
-        return $this->set('width', $width);
+        $value = $width instanceof Width ? $width->value : $width;
+
+        return $this->set('width', $value);
+    }
+
+    /**
+     * Explicit pixel width for the column, in pixels.
+     */
+    public function pixelWidth(int $pixels): self
+    {
+        return $this->set('width', "{$pixels}px");
     }
 
     /**
@@ -58,19 +68,19 @@ final class Column extends AbstractElement
     }
 
     /**
-     * The minimum height, in pixels, of the container, in the `<number>px` format.
+     * The minimum height, in pixels, of the container.
      */
-    public function minHeight(string $minHeight): self
+    public function minHeight(int $minHeight): self
     {
-        return $this->set('minHeight', $minHeight);
+        return $this->set('minHeight', "{$minHeight}px");
     }
 
     /**
      * The maximum height, in pixels, of the container.
      */
-    public function maxHeight(string $maxHeight): self
+    public function maxHeight(int $maxHeight): self
     {
-        return $this->set('maxHeight', $maxHeight);
+        return $this->set('maxHeight', "{$maxHeight}px");
     }
 
     /**

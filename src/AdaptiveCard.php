@@ -134,11 +134,11 @@ final class AdaptiveCard extends Node
     }
 
     /**
-     * The minimum height, in pixels, of the container, in the `<number>px` format.
+     * The minimum height, in pixels, of the container.
      */
-    public function minHeight(string $minHeight): self
+    public function minHeight(int $minHeight): self
     {
-        return $this->set('minHeight', $minHeight);
+        return $this->set('minHeight', "{$minHeight}px");
     }
 
     /**

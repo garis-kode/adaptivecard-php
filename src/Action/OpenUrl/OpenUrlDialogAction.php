@@ -14,7 +14,7 @@ final class OpenUrlDialogAction extends AbstractAction
 {
     public function __construct(
         string $dialogTitle,
-        string|DialogSize $dialogHeight,
+        DialogSize|int $dialogHeight,
         string $url,
         ?string $title = null,
     ) {
@@ -29,7 +29,7 @@ final class OpenUrlDialogAction extends AbstractAction
 
     public static function make(
         string $dialogTitle,
-        string|DialogSize $dialogHeight,
+        DialogSize|int $dialogHeight,
         string $url,
         ?string $title = null,
     ): self {
@@ -54,20 +54,24 @@ final class OpenUrlDialogAction extends AbstractAction
 
     /**
      * The width of the dialog.
-     * Valid values: "small", "medium", "large", "<number>px".
+     * Valid values: DialogSize, integer pixel count.
      */
-    public function dialogWidth(string|DialogSize $dialogWidth): self
+    public function dialogWidth(DialogSize|int $dialogWidth): self
     {
-        return $this->set('dialogWidth', $dialogWidth instanceof DialogSize ? $dialogWidth->value : $dialogWidth);
+        $value = $dialogWidth instanceof DialogSize ? $dialogWidth->value : "{$dialogWidth}px";
+
+        return $this->set('dialogWidth', $value);
     }
 
     /**
      * The height of the dialog.
-     * Valid values: "small", "medium", "large", "<number>px".
+     * Valid values: DialogSize, integer pixel count.
      */
-    public function dialogHeight(string|DialogSize $dialogHeight): self
+    public function dialogHeight(DialogSize|int $dialogHeight): self
     {
-        return $this->set('dialogHeight', $dialogHeight instanceof DialogSize ? $dialogHeight->value : $dialogHeight);
+        $value = $dialogHeight instanceof DialogSize ? $dialogHeight->value : "{$dialogHeight}px";
+
+        return $this->set('dialogHeight', $value);
     }
 
     public function getType(): string

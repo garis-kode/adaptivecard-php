@@ -9,6 +9,7 @@ use AdaptiveCards\Element\TextBlock;
 use AdaptiveCards\Enum\ContainerStyle;
 use AdaptiveCards\Enum\HorizontalAlignment;
 use AdaptiveCards\Enum\VerticalAlignment;
+use AdaptiveCards\Enum\Width;
 
 /**
  * Use tables to display data in a tabular way, with rows, columns and cells.
@@ -155,11 +156,13 @@ final class Table extends AbstractElement
     }
 
     /**
-     * The minimum width, in pixels, of the table.
+     * The minimum width, in pixels, of the table, or Width::Auto.
      */
-    public function minWidth(string $width): self
+    public function minWidth(Width|int $width): self
     {
-        return $this->set('minWidth', $width);
+        $value = $width instanceof Width ? $width->value : "{$width}px";
+
+        return $this->set('minWidth', $value);
     }
 
     /**

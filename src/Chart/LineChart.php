@@ -6,6 +6,7 @@ namespace AdaptiveCards\Chart;
 
 use AdaptiveCards\Chart\Data\ChartSeries;
 use AdaptiveCards\Enum\ChartColorSet;
+use AdaptiveCards\Enum\Width;
 
 /**
  * A line chart.
@@ -75,16 +76,14 @@ final class LineChart extends AbstractChart
     /**
      * The minimum width reserved for the x axis labels. When the available space is
      * insufficient, the chart selectively renders fewer labels instead of truncating them.
-     * `auto` will automatically adjust the labels' minimum width according to its content,
-     * and using the `<number>px` format will give the labels an explicit minimum width in pixels.
+     * Width::Auto will automatically adjust the labels' minimum width according to its content,
+     * and integer will give the labels an explicit minimum width in pixels.
      *
-     * Valid values: "auto", "<number>px".
-     *
-     * @param string|int $width Width string ("auto", "<number>px") or integer pixel count (automatically converted to "<number>px").
+     * Valid values: Width::Auto, integer (pixels).
      */
-    public function xAxisLabelMinWidth(string|int $width): self
+    public function xAxisLabelMinWidth(Width|int $width): self
     {
-        $value = is_int($width) ? "{$width}px" : $width;
+        $value = $width instanceof Width ? $width->value : "{$width}px";
 
         return $this->set('xAxisLabelMinWidth', $value);
     }

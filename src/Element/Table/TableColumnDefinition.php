@@ -6,6 +6,7 @@ namespace AdaptiveCards\Element\Table;
 
 use AdaptiveCards\Enum\HorizontalAlignment;
 use AdaptiveCards\Enum\VerticalAlignment;
+use AdaptiveCards\Enum\Width;
 use AdaptiveCards\Node;
 
 /**
@@ -13,28 +14,34 @@ use AdaptiveCards\Node;
  */
 final class TableColumnDefinition extends Node
 {
-    /**
-     * @param string|int|null $width A relative weight (e.g. 1) or pixels ("80px").
-     */
-    public function __construct(string|int|null $width = null)
+    public function __construct(Width|int|null $width = null)
     {
         if ($width !== null) {
             $this->width($width);
         }
     }
 
-    public static function make(string|int|null $width = null): self
+    public static function make(Width|int|null $width = null): self
     {
         return new self($width);
     }
 
     /**
-     * Specifies the width of the column. When set to a number, the column is
-     * weighted relative to other columns. Pixel width can also be specified, e.g. "80px".
+     * Specifies the width of the column. Width::Auto or relative weight (e.g. 1).
      */
-    public function width(string|int $width): self
+    public function width(Width|int $width): self
     {
-        return $this->set('width', $width);
+        $value = $width instanceof Width ? $width->value : $width;
+
+        return $this->set('width', $value);
+    }
+
+    /**
+     * Explicit pixel width for the column, in pixels.
+     */
+    public function pixelWidth(int $pixels): self
+    {
+        return $this->set('width', "{$pixels}px");
     }
 
     /**

@@ -7,6 +7,7 @@ namespace AdaptiveCards\Element\Column;
 use AdaptiveCards\Action\AbstractAction;
 use AdaptiveCards\Element\AbstractElement;
 use AdaptiveCards\Enum\ContainerStyle;
+use AdaptiveCards\Enum\Width;
 
 /**
  * Splits the available horizontal space into separate columns, so elements can be organized in a row.
@@ -53,9 +54,9 @@ final class ColumnSet extends AbstractElement
     /**
      * Create, configure and append a column in one call.
      *
-     * @param string|int|null $width "auto", "stretch", a weight or pixels.
+     * @param Width|int|null $width Width::Auto, Width::Stretch, or a weight number.
      */
-    public function column(string|int|null $width = null, ?callable $configure = null): self
+    public function column(Width|int|null $width = null, ?callable $configure = null): self
     {
         $column = new Column();
         if ($width !== null) {
@@ -87,19 +88,21 @@ final class ColumnSet extends AbstractElement
     }
 
     /**
-     * The minimum height, in pixels, of the container, in the `<number>px` format.
+     * The minimum height, in pixels, of the container.
      */
-    public function minHeight(string $minHeight): self
+    public function minHeight(int $minHeight): self
     {
-        return $this->set('minHeight', $minHeight);
+        return $this->set('minHeight', "{$minHeight}px");
     }
 
     /**
-     * The minimum width, in pixels, of the column set.
+     * The minimum width, in pixels, of the column set, or Width::Auto.
      */
-    public function minWidth(string $minWidth): self
+    public function minWidth(Width|int $minWidth): self
     {
-        return $this->set('minWidth', $minWidth);
+        $value = $minWidth instanceof Width ? $minWidth->value : "{$minWidth}px";
+
+        return $this->set('minWidth', $value);
     }
 
     /**

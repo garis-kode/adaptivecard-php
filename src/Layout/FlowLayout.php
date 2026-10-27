@@ -17,9 +17,9 @@ final class FlowLayout extends AbstractLayout
     /**
      * The fixed width for all items in the flow layout.
      */
-    public function itemWidth(string $itemWidth): self
+    public function itemWidth(int $itemWidth): self
     {
-        return $this->set('itemWidth', $itemWidth);
+        return $this->set('itemWidth', "{$itemWidth}px");
     }
 
     /**
@@ -33,19 +33,19 @@ final class FlowLayout extends AbstractLayout
     }
 
     /**
-     * The minimum width of items in the flow layout.
+     * The minimum width of items in the flow layout, in pixels.
      */
-    public function minItemWidth(string $minItemWidth): self
+    public function minItemWidth(int $minItemWidth): self
     {
-        return $this->set('minItemWidth', $minItemWidth);
+        return $this->set('minItemWidth', "{$minItemWidth}px");
     }
 
     /**
-     * The maximum width of items in the flow layout.
+     * The maximum width of items in the flow layout, in pixels.
      */
-    public function maxItemWidth(string $maxItemWidth): self
+    public function maxItemWidth(int $maxItemWidth): self
     {
-        return $this->set('maxItemWidth', $maxItemWidth);
+        return $this->set('maxItemWidth', "{$maxItemWidth}px");
     }
 
     /**

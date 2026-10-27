@@ -93,9 +93,9 @@ final class ChoiceSetInput extends AbstractInput
     /**
      * The minimum width, in pixels, of a column when multiple columns are used.
      */
-    public function minColumnWidth(string $width): self
+    public function minColumnWidth(int $width): self
     {
-        return $this->set('minColumnWidth', $width);
+        return $this->set('minColumnWidth', "{$width}px");
     }
 
     /**
