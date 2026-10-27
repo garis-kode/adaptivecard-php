@@ -10,6 +10,9 @@ RUN userdel -r ubuntu 2>/dev/null || true
 RUN groupadd --force -g $WWWGROUP laravel
 RUN useradd -ms /bin/bash --no-user-group -g $WWWGROUP -u 1337 laravel
 
+ENV NPM_CONFIG_PREFIX=/home/laravel/.npm-global \
+    PATH="/home/laravel/.npm-global/bin:${PATH}"
+
 USER laravel
 
 RUN git config --global --add safe.directory /var/www/html
