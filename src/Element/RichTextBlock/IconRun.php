@@ -8,6 +8,7 @@ use AdaptiveCards\Action\AbstractAction;
 use AdaptiveCards\Element\AbstractElement;
 use AdaptiveCards\Enum\Colors;
 use AdaptiveCards\Enum\IconStyle;
+use AdaptiveCards\Enum\TextSize;
 
 /**
  * An inline icon inside a RichTextBlock element.
@@ -25,8 +26,7 @@ final class IconRun extends AbstractElement
     }
 
     /**
-     * The name of an icon from the Adaptive Card icon catalog to display,
-     * in the `<icon-name>[,regular|filled]` format.
+     * The name of the inline icon to display.
      */
     public function name(string $name): self
     {
@@ -34,7 +34,8 @@ final class IconRun extends AbstractElement
     }
 
     /**
-     * Controls the color of IconRun elements.
+     * The color of the inline icon.
+     * Valid values: "Default", "Dark", "Light", "Accent", "Good", "Warning", "Attention".
      */
     public function color(Colors $color): self
     {
@@ -42,17 +43,17 @@ final class IconRun extends AbstractElement
     }
 
     /**
-     * Controls the size of the icon.
-     *
-     * @param "Small"|"Default"|"Medium"|"Large"|"ExtraLarge"|string $size
+     * The size of the inline icon.
+     * Valid values: "Small", "Default", "Medium", "Large", "ExtraLarge".
      */
-    public function size(string $size): self
+    public function size(TextSize $size): self
     {
-        return $this->set('size', $size);
+        return $this->set('size', $size->value);
     }
 
     /**
-     * Controls the style of the icon.
+     * The style of the inline icon.
+     * Valid values: "Regular", "Filled".
      */
     public function style(IconStyle $style): self
     {
@@ -60,7 +61,10 @@ final class IconRun extends AbstractElement
     }
 
     /**
-     * An Action that will be invoked when the icon is tapped or clicked.
+     * An Action that will be invoked when the inline icon is tapped or clicked.
+     * Action.ShowCard is not supported.
+     * Valid values: "Action.Execute", "Action.InsertImage", "Action.OpenUrl", "Action.OpenUrlDialog",
+     * "Action.Popover", "Action.ResetInputs", "Action.RunCommands", "Action.Submit", "Action.ToggleVisibility".
      */
     public function selectAction(AbstractAction $action): self
     {

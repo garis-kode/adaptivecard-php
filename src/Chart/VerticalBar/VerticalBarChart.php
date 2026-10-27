@@ -14,7 +14,7 @@ use AdaptiveCards\Enum\ChartColorSet;
 final class VerticalBarChart extends AbstractChart
 {
     /**
-     * @param iterable<DataPoint|array<string, mixed>> $data
+     * @param iterable<DataPoint> $data
      */
     public function __construct(
         string $title,
@@ -42,7 +42,7 @@ final class VerticalBarChart extends AbstractChart
     }
 
     /**
-     * @param iterable<DataPoint|array<string, mixed>> $data
+     * @param iterable<DataPoint> $data
      */
     public static function make(
         string $title,
@@ -56,21 +56,19 @@ final class VerticalBarChart extends AbstractChart
     }
 
     /**
-     * Add a data point to the chart.
-     *
-     * @param DataPoint|array<string, mixed> $point
+     * Add a data point to the vertical bar chart.
      */
-    public function addDataPoint(DataPoint|array $point): self
+    public function addDataPoint(DataPoint $point): self
     {
         return $this->push('data', $point);
     }
 
     /**
-     * The data points of the chart.
+     * Add multiple data points to the vertical bar chart.
      *
-     * @param iterable<DataPoint|array<string, mixed>> $data
+     * @param iterable<DataPoint> $data
      */
-    public function data(iterable $data): self
+    public function addDataPoints(iterable $data): self
     {
         foreach ($data as $point) {
             $this->addDataPoint($point);
@@ -79,16 +77,36 @@ final class VerticalBarChart extends AbstractChart
         return $this;
     }
 
+    /**
+     * The data to display in the chart.
+     * Valid values: "VerticalBarChartDataValue".
+     *
+     * @param iterable<DataPoint> $data
+     */
+    public function data(iterable $data): self
+    {
+        return $this->addDataPoints($data);
+    }
+
+    /**
+     * Controls if the bar values should be displayed.
+     */
     public function showBarValues(bool $show = true): self
     {
         return $this->set('showBarValues', $show);
     }
 
+    /**
+     * The requested minimum for the Y axis range. The value used at runtime may be different to optimize visual presentation.
+     */
     public function yMin(float|int $min): self
     {
         return $this->set('yMin', $min);
     }
 
+    /**
+     * The requested maximum for the Y axis range. The value used at runtime may be different to optimize visual presentation.
+     */
     public function yMax(float|int $max): self
     {
         return $this->set('yMax', $max);

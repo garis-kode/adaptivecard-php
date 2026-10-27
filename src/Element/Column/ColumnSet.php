@@ -7,6 +7,7 @@ namespace AdaptiveCards\Element\Column;
 use AdaptiveCards\Action\AbstractAction;
 use AdaptiveCards\Element\AbstractElement;
 use AdaptiveCards\Enum\ContainerStyle;
+use AdaptiveCards\Enum\Width;
 
 /**
  * Splits the available horizontal space into separate columns, so elements can be organized in a row.
@@ -27,11 +28,36 @@ final class ColumnSet extends AbstractElement
     }
 
     /**
+     * Add multiple columns to the column set.
+     *
+     * @param iterable<Column> $columns
+     */
+    public function addColumns(iterable $columns): self
+    {
+        foreach ($columns as $column) {
+            $this->addColumn($column);
+        }
+
+        return $this;
+    }
+
+    /**
+     * The columns in the set.
+     * Valid values: "Column".
+     *
+     * @param iterable<Column> $columns
+     */
+    public function columns(iterable $columns): self
+    {
+        return $this->addColumns($columns);
+    }
+
+    /**
      * Create, configure and append a column in one call.
      *
-     * @param string|int|null $width "auto", "stretch", a weight or pixels.
+     * @param Width|string|int|null $width Width::Auto, Width::Stretch, explicit pixel width (e.g. '25px'), or a weight number.
      */
-    public function column(string|int|null $width = null, ?callable $configure = null): self
+    public function column(Width|string|int|null $width = null, ?callable $configure = null): self
     {
         $column = new Column();
         if ($width !== null) {
@@ -55,7 +81,8 @@ final class ColumnSet extends AbstractElement
     }
 
     /**
-     * Determines whether the element should bleed through its parent's padding.
+     * Controls if the container should bleed into its parent. A bleeding container extends into its parent's padding.
+     * See **Edge-to-edge content** for more information.
      */
     public function bleed(bool $bleed = true): self
     {
@@ -64,6 +91,7 @@ final class ColumnSet extends AbstractElement
 
     /**
      * The minimum height, in pixels, of the container, in the `<number>px` format.
+     * Valid values: "<number>px".
      */
     public function minHeight(string $minHeight): self
     {
@@ -71,15 +99,21 @@ final class ColumnSet extends AbstractElement
     }
 
     /**
-     * The minimum width, in pixels, of the column set.
+     * The minimum width of the column set. `auto` will automatically adjust the column set's
+     * minimum width according to its content and using the `<number>px` format will give the
+     * column set an explicit minimum width in pixels. A scrollbar will be displayed if the
+     * available width is less than the specified minimum width.
+     * Valid values: "auto", "<number>px".
      */
-    public function minWidth(string $minWidth): self
+    public function minWidth(Width|string $minWidth): self
     {
-        return $this->set('minWidth', $minWidth);
+        $value = $minWidth instanceof Width ? $minWidth->value : $minWidth;
+
+        return $this->set('minWidth', $value);
     }
 
     /**
-     * Controls whether corners should be rounded.
+     * Controls if the container should have rounded corners.
      */
     public function roundedCorners(bool $value = true): self
     {
@@ -87,7 +121,7 @@ final class ColumnSet extends AbstractElement
     }
 
     /**
-     * Controls whether border should be displayed.
+     * Controls if a border should be displayed around the container.
      */
     public function showBorder(bool $value = true): self
     {
@@ -95,7 +129,10 @@ final class ColumnSet extends AbstractElement
     }
 
     /**
-     * An Action that will be invoked when the ColumnSet is tapped or clicked.
+     * An Action that will be invoked when the element is tapped or clicked.
+     * Action.ShowCard is not supported.
+     * Valid values: "Action.Execute", "Action.InsertImage", "Action.OpenUrl", "Action.OpenUrlDialog",
+     * "Action.Popover", "Action.ResetInputs", "Action.RunCommands", "Action.Submit", "Action.ToggleVisibility".
      */
     public function selectAction(AbstractAction $action): self
     {

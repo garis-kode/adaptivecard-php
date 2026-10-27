@@ -23,7 +23,7 @@ final class Fact extends Node
     }
 
     /**
-     * The title of the fact.
+     * The fact's title.
      */
     public function title(string $title): self
     {
@@ -31,7 +31,7 @@ final class Fact extends Node
     }
 
     /**
-     * The value of the fact.
+     * The fact's value.
      */
     public function value(string $value): self
     {

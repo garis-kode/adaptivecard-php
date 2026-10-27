@@ -5,23 +5,20 @@ declare(strict_types=1);
 namespace AdaptiveCards\Element\Progress;
 
 use AdaptiveCards\Element\AbstractElement;
+use AdaptiveCards\Enum\ProgressBarColor;
 
 /**
  * A progress bar element, to represent a value within a range.
  */
 final class ProgressBar extends AbstractElement
 {
-    public function __construct()
-    {
-    }
-
     public static function make(): self
     {
         return new self();
     }
 
     /**
-     * The current value of the progress bar.
+     * The value of the progress bar. Must be between 0 and `max`.
      */
     public function value(float|int|null $value): self
     {
@@ -37,14 +34,13 @@ final class ProgressBar extends AbstractElement
     }
 
     /**
-     * Controls the color of the progress bar.
+     * The color of the progress bar. `color` has no effect when the `ProgressBar` is in
+     * indeterminate mode, in which case the "accent" color is always used.
      * Valid values: "Accent", "Good", "Warning", "Attention".
-     *
-     * @param "Accent"|"Good"|"Warning"|"Attention"|string $color
      */
-    public function color(string $color): self
+    public function color(ProgressBarColor $color): self
     {
-        return $this->set('color', $color);
+        return $this->set('color', $color->value);
     }
 
     public function getType(): string

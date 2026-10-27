@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace AdaptiveCards\Element\Carousel;
 
 use AdaptiveCards\Element\AbstractElement;
+use AdaptiveCards\Enum\PageAnimation;
 
 /**
  * A carousel with sliding pages.
@@ -25,11 +26,11 @@ final class Carousel extends AbstractElement
     }
 
     /**
-     * The pages of the carousel.
+     * Add multiple pages to the carousel.
      *
      * @param iterable<CarouselPage> $pages
      */
-    public function pages(iterable $pages): self
+    public function addPages(iterable $pages): self
     {
         foreach ($pages as $page) {
             $this->addPage($page);
@@ -39,8 +40,19 @@ final class Carousel extends AbstractElement
     }
 
     /**
-     * Controls the duration of an auto loop interval in milliseconds.
-     * When auto-loop is enabled, pages automatically advance after this interval.
+     * The pages in the carousel.
+     * Valid values: "CarouselPage".
+     *
+     * @param iterable<CarouselPage> $pages
+     */
+    public function pages(iterable $pages): self
+    {
+        return $this->addPages($pages);
+    }
+
+    /**
+     * The interval, in milliseconds, between automatic page advances. Leave undefined to disable
+     * auto-rotation; the minimum accepted value is 1000.
      */
     public function autoLoopInterval(int $milliseconds): self
     {
@@ -48,18 +60,17 @@ final class Carousel extends AbstractElement
     }
 
     /**
-     * Controls the animation style between carousel pages.
+     * Controls the type of animation to use to navigate between pages.
      * Valid values: "Slide", "CrossFade", "None".
-     *
-     * @param "Slide"|"CrossFade"|"None"|string $animation
      */
-    public function pageAnimation(string $animation): self
+    public function pageAnimation(PageAnimation $animation): self
     {
-        return $this->set('pageAnimation', $animation);
+        return $this->set('pageAnimation', $animation->value);
     }
 
     /**
-     * Determines whether the element should bleed through its parent's padding.
+     * Controls if the container should bleed into its parent. A bleeding container extends into its parent's padding.
+     * See **Edge-to-edge content** for more information.
      */
     public function bleed(bool $bleed = true): self
     {
@@ -67,7 +78,8 @@ final class Carousel extends AbstractElement
     }
 
     /**
-     * The minimum height, in pixels, of the carousel, in the `<number>px` format.
+     * The minimum height, in pixels, of the container, in the `<number>px` format.
+     * Valid values: "<number>px".
      */
     public function minHeight(string $minHeight): self
     {

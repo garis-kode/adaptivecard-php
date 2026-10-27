@@ -14,18 +14,13 @@ use AdaptiveCards\Enum\IconStyle;
  */
 final class Icon extends AbstractElement
 {
-    public function __construct()
-    {
-    }
-
     public static function make(): self
     {
         return new self();
     }
 
     /**
-     * The name of an icon from the Adaptive Card icon catalog to display,
-     * in the `<icon-name>[,regular|filled]` format.
+     * The name of the icon to display.
      */
     public function name(string $name): self
     {
@@ -33,8 +28,8 @@ final class Icon extends AbstractElement
     }
 
     /**
-     * Controls the color of Icon elements.
-     * Valid values: "default", "dark", "light", "accent", "good", "warning", "attention".
+     * The color of the icon.
+     * Valid values: "Default", "Dark", "Light", "Accent", "Good", "Warning", "Attention".
      */
     public function color(Colors $color): self
     {
@@ -42,8 +37,8 @@ final class Icon extends AbstractElement
     }
 
     /**
-     * Controls the size of the icon.
-     * Valid values: "xxSmall", "xSmall", "small", "standard", "medium", "large", "xLarge", "xxLarge".
+     * The size of the icon.
+     * Valid values: "xxSmall", "xSmall", "Small", "Standard", "Medium", "Large", "xLarge", "xxLarge".
      */
     public function size(IconSize $size): self
     {
@@ -51,8 +46,8 @@ final class Icon extends AbstractElement
     }
 
     /**
-     * Controls the style of the icon.
-     * Valid values: "regular", "filled".
+     * The style of the icon.
+     * Valid values: "Regular", "Filled".
      */
     public function style(IconStyle $style): self
     {
@@ -61,6 +56,9 @@ final class Icon extends AbstractElement
 
     /**
      * An Action that will be invoked when the icon is tapped or clicked.
+     * Action.ShowCard is not supported.
+     * Valid values: "Action.Execute", "Action.InsertImage", "Action.OpenUrl", "Action.OpenUrlDialog",
+     * "Action.Popover", "Action.ResetInputs", "Action.RunCommands", "Action.Submit", "Action.ToggleVisibility".
      */
     public function selectAction(AbstractAction $action): self
     {

@@ -12,7 +12,7 @@ use AdaptiveCards\Element\AbstractElement;
 final class RichTextBlock extends AbstractElement
 {
     /**
-     * @param iterable<TextRun|IconRun|ImageRun|string>|null $inlines
+     * @param iterable<TextRun|IconRun|ImageRun>|null $inlines
      */
     public function __construct(?iterable $inlines = null)
     {
@@ -22,7 +22,7 @@ final class RichTextBlock extends AbstractElement
     }
 
     /**
-     * @param iterable<TextRun|IconRun|ImageRun|string>|null $inlines
+     * @param iterable<TextRun|IconRun|ImageRun>|null $inlines
      */
     public static function make(?iterable $inlines = null): self
     {
@@ -30,11 +30,19 @@ final class RichTextBlock extends AbstractElement
     }
 
     /**
-     * The list of inlines to display.
-     *
-     * @param iterable<TextRun|IconRun|ImageRun|string> $inlines
+     * Append an inline run.
      */
-    public function inlines(iterable $inlines): self
+    public function addInline(TextRun|IconRun|ImageRun $inline): self
+    {
+        return $this->push('inlines', $inline);
+    }
+
+    /**
+     * Append multiple inlines.
+     *
+     * @param iterable<TextRun|IconRun|ImageRun> $inlines
+     */
+    public function addInlines(iterable $inlines): self
     {
         foreach ($inlines as $inline) {
             $this->addInline($inline);
@@ -44,12 +52,14 @@ final class RichTextBlock extends AbstractElement
     }
 
     /**
-     * Append an inline. Strings are added verbatim (unstyled runs); Run
-     * objects carry their own styling.
+     * The inlines making up the rich text block.
+     * Valid values: "TextRun", "IconRun", "ImageRun", "CitationRun".
+     *
+     * @param iterable<TextRun|IconRun|ImageRun> $inlines
      */
-    public function addInline(TextRun|IconRun|ImageRun|string $inline): self
+    public function inlines(iterable $inlines): self
     {
-        return $this->push('inlines', $inline);
+        return $this->addInlines($inlines);
     }
 
     /**
@@ -92,7 +102,7 @@ final class RichTextBlock extends AbstractElement
     }
 
     /**
-     * A string identifier representing the input element that this text block provides a label for.
+     * The Id of the input the RichTextBlock should act as the label of.
      */
     public function labelFor(string $inputId): self
     {

@@ -8,20 +8,17 @@ use AdaptiveCards\Action\AbstractAction;
 use AdaptiveCards\Element\AbstractElement;
 use AdaptiveCards\Enum\ContainerStyle;
 use AdaptiveCards\Enum\VerticalAlignment;
+use AdaptiveCards\Enum\Width;
 use AdaptiveCards\Layout\AbstractLayout;
 use AdaptiveCards\Shared\BackgroundImage;
 use AdaptiveCards\Support\HasItems;
 
 /**
- * Defines a container that is part of a ColumnSet.
+ * A column in a `ColumnSet` element.
  */
 final class Column extends AbstractElement
 {
     use HasItems;
-
-    public function __construct()
-    {
-    }
 
     public static function make(): self
     {
@@ -29,15 +26,24 @@ final class Column extends AbstractElement
     }
 
     /**
-     * Controls the width of the column. "auto", "stretch", a number (weight), or pixels ending in "px".
+     * The width of the column. If expressed as a number, represents the relative weight
+     * of the column in the set. If expressed as a string, `auto` will automatically adjust
+     * the column's width according to its content, `stretch` will make the column use the
+     * remaining horizontal space (shared with other columns with width set to `stretch`)
+     * and using the `<number>px` format will give the column an explicit width in pixels.
+     * Valid values: "auto", "stretch", "<number>px".
      */
-    public function width(string|int $width): self
+    public function width(Width|string|int $width): self
     {
-        return $this->set('width', $width);
+        $value = $width instanceof Width ? $width->value : $width;
+
+        return $this->set('width', $value);
     }
 
     /**
-     * The style of the container. Valid values: "default", "emphasis", "accent", "good", "attention", "warning".
+     * The style of the container. Container styles control the colors of the background,
+     * border and text inside the container, in such a way that contrast requirements are always met.
+     * Valid values: "default", "emphasis", "accent", "good", "attention", "warning".
      */
     public function style(ContainerStyle $style): self
     {
@@ -54,7 +60,8 @@ final class Column extends AbstractElement
     }
 
     /**
-     * Determines whether the element should bleed through its parent's padding.
+     * Controls if the container should bleed into its parent. A bleeding container extends into its parent's padding.
+     * See **Edge-to-edge content** for more information.
      */
     public function bleed(bool $bleed = true): self
     {
@@ -63,6 +70,7 @@ final class Column extends AbstractElement
 
     /**
      * The minimum height, in pixels, of the container, in the `<number>px` format.
+     * Valid values: "<number>px".
      */
     public function minHeight(string $minHeight): self
     {
@@ -70,7 +78,9 @@ final class Column extends AbstractElement
     }
 
     /**
-     * The maximum height, in pixels, of the container.
+     * The maximum height, in pixels, of the container, in the `<number>px` format. When the content of a container
+     * exceeds the container's maximum height, a vertical scrollbar is displayed.
+     * Valid values: "<number>px".
      */
     public function maxHeight(string $maxHeight): self
     {
@@ -78,7 +88,7 @@ final class Column extends AbstractElement
     }
 
     /**
-     * Controls whether the column's corners should be rounded.
+     * Controls if the container should have rounded corners.
      */
     public function roundedCorners(bool $value = true): self
     {
@@ -86,7 +96,7 @@ final class Column extends AbstractElement
     }
 
     /**
-     * Controls whether the column's border should be displayed.
+     * Controls if a border should be displayed around the container.
      */
     public function showBorder(bool $value = true): self
     {
@@ -102,11 +112,11 @@ final class Column extends AbstractElement
     }
 
     /**
-     * The layouts associated with the column.
+     * Add multiple layouts associated with the column.
      *
      * @param iterable<AbstractLayout> $layouts
      */
-    public function layouts(iterable $layouts): self
+    public function addLayouts(iterable $layouts): self
     {
         foreach ($layouts as $layout) {
             $this->addLayout($layout);
@@ -116,7 +126,19 @@ final class Column extends AbstractElement
     }
 
     /**
-     * Controls if the content of the column is to be rendered left-to-right or right-to-left.
+     * The layouts associated with the container. The container can dynamically switch
+     * from one layout to another as the card's width changes.
+     * Valid values: "Layout.Stack", "Layout.Flow", "Layout.AreaGrid".
+     *
+     * @param iterable<AbstractLayout> $layouts
+     */
+    public function layouts(iterable $layouts): self
+    {
+        return $this->addLayouts($layouts);
+    }
+
+    /**
+     * Controls if the content of the card is to be rendered left-to-right or right-to-left.
      */
     public function rtl(bool $rtl = true): self
     {
@@ -125,14 +147,18 @@ final class Column extends AbstractElement
 
     /**
      * Defines the container's background image.
+     * Valid values: "BackgroundImage".
      */
-    public function backgroundImage(string|BackgroundImage $backgroundImage): self
+    public function backgroundImage(BackgroundImage $backgroundImage): self
     {
         return $this->set('backgroundImage', $backgroundImage);
     }
 
     /**
-     * An Action that will be invoked when the column is tapped or clicked.
+     * An Action that will be invoked when the element is tapped or clicked.
+     * Action.ShowCard is not supported.
+     * Valid values: "Action.Execute", "Action.InsertImage", "Action.OpenUrl", "Action.OpenUrlDialog",
+     * "Action.Popover", "Action.ResetInputs", "Action.RunCommands", "Action.Submit", "Action.ToggleVisibility".
      */
     public function selectAction(AbstractAction $action): self
     {

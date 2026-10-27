@@ -6,10 +6,13 @@ namespace AdaptiveCards\Element\Image;
 
 use AdaptiveCards\Action\AbstractAction;
 use AdaptiveCards\Element\AbstractElement;
+use AdaptiveCards\Enum\Height;
 use AdaptiveCards\Enum\HorizontalAlignment;
+use AdaptiveCards\Enum\ImageFitMode;
 use AdaptiveCards\Enum\ImageSize;
 use AdaptiveCards\Enum\ImageStyle;
 use AdaptiveCards\Enum\VerticalAlignment;
+use AdaptiveCards\Enum\Width;
 
 /**
  * A standalone image element.
@@ -29,7 +32,7 @@ final class Image extends AbstractElement
     }
 
     /**
-     * The URL to the image.
+     * The URL (or Base64-encoded Data URI) of the image. Acceptable formats are PNG, JPEG, GIF and SVG.
      */
     public function url(string $url): self
     {
@@ -37,7 +40,7 @@ final class Image extends AbstractElement
     }
 
     /**
-     * The alternative text that describes the image.
+     * The alternate text for the image, used for accessibility purposes.
      */
     public function altText(string $altText): self
     {
@@ -45,7 +48,7 @@ final class Image extends AbstractElement
     }
 
     /**
-     * Controls the approximate size of the image.
+     * The size of the image.
      * Valid values: "Auto", "Stretch", "Small", "Medium", "Large".
      */
     public function size(ImageSize $size): self
@@ -54,8 +57,8 @@ final class Image extends AbstractElement
     }
 
     /**
-     * Controls how this element is displayed.
-     * Valid values: "Default", "Person".
+     * The style of the image.
+     * Valid values: "Default", "Person", "RoundedCorners".
      */
     public function style(ImageStyle $style): self
     {
@@ -63,7 +66,7 @@ final class Image extends AbstractElement
     }
 
     /**
-     * Applies a background to a transparent image.
+     * The background color of the image in the `#RRGGBB` or `#AARRGGBB` format.
      */
     public function backgroundColor(string $color): self
     {
@@ -71,24 +74,29 @@ final class Image extends AbstractElement
     }
 
     /**
-     * The desired on-screen width of the image, ending in "px". E.g., 50px.
-     * This overrides the `size` property. Valid values: "<number>px".
+     * The width of the image.
+     * Valid values: "auto", "stretch", "<number>px".
      */
-    public function width(string $width): self
+    public function width(Width|string $width): self
     {
-        return $this->set('width', $width);
+        $value = $width instanceof Width ? $width->value : $width;
+
+        return $this->set('width', $value);
     }
 
     /**
-     * Explicit height, e.g. "50px" (overrides the element height enum).
+     * The height of the image.
+     * Valid values: "auto", "stretch", "<number>px".
      */
-    public function pixelHeight(string $height): self
+    public function height(Height|string $height): static
     {
-        return $this->set('height', $height);
+        $value = $height instanceof Height ? $height->value : $height;
+
+        return $this->set('height', $value);
     }
 
     /**
-     * Controls whether the image can be expanded by the user.
+     * Controls if the image can be expanded to full screen.
      */
     public function allowExpand(bool $allow = true): self
     {
@@ -96,17 +104,20 @@ final class Image extends AbstractElement
     }
 
     /**
-     * Controls how the image should fill its container.
-     *
-     * @param "Cover"|"Contain"|"Fill"|string $fitMode
+     * Controls how the image should be fitted inside its bounding box. `imageFit` is
+     * only meaningful when both the width and height properties are set. When `fitMode`
+     * is set to `contain`, the default style is always used.
+     * Valid values: "Cover", "Contain", "Fill".
      */
-    public function fitMode(string $fitMode): self
+    public function fitMode(ImageFitMode $fitMode): self
     {
-        return $this->set('fitMode', $fitMode);
+        return $this->set('fitMode', $fitMode->value);
     }
 
     /**
-     * Controls horizontal content alignment.
+     * Controls the horizontal position of the image within its bounding box.
+     * `horizontalContentAlignment` is only meaningful when both the width and height
+     * properties are set and `fitMode` is set to either `cover` or `contain`.
      * Valid values: "Left", "Center", "Right".
      */
     public function horizontalContentAlignment(HorizontalAlignment $alignment): self
@@ -115,7 +126,9 @@ final class Image extends AbstractElement
     }
 
     /**
-     * Controls vertical content alignment.
+     * Controls the vertical position of the image within its bounding box.
+     * `verticalContentAlignment` is only meaningful when both the width and height
+     * properties are set and `fitMode` is set to either `cover` or `contain`.
      * Valid values: "Top", "Center", "Bottom".
      */
     public function verticalContentAlignment(VerticalAlignment $alignment): self
@@ -124,7 +137,8 @@ final class Image extends AbstractElement
     }
 
     /**
-     * Controls alternative image URLs based on the active theme.
+     * A set of theme-specific image URLs.
+     * Valid values: "ThemedUrl".
      *
      * @param list<array<string, mixed>> $themedUrls
      */
@@ -134,11 +148,10 @@ final class Image extends AbstractElement
     }
 
     /**
-     * Represents a set of Teams-specific properties on an image.
-     *
-     * @param TeamsImageProperties|array<string, mixed> $properties
+     * Teams-specific metadata associated with the image.
+     * Valid values: "TeamsImageProperties".
      */
-    public function msteams(TeamsImageProperties|array $properties, bool $useCamelCaseKey = false): self
+    public function msteams(TeamsImageProperties $properties, bool $useCamelCaseKey = false): self
     {
         if ($useCamelCaseKey) {
             return $this->set('msTeams', $properties);
@@ -148,8 +161,10 @@ final class Image extends AbstractElement
     }
 
     /**
-     * An Action that will be invoked when the element is tapped or clicked.
+     * An Action that will be invoked when the image is tapped or clicked.
      * Action.ShowCard is not supported.
+     * Valid values: "Action.Execute", "Action.InsertImage", "Action.OpenUrl", "Action.OpenUrlDialog",
+     * "Action.Popover", "Action.ResetInputs", "Action.RunCommands", "Action.Submit", "Action.ToggleVisibility".
      */
     public function selectAction(AbstractAction $action): self
     {

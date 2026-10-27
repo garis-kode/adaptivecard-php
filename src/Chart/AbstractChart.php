@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace AdaptiveCards\Chart;
 
 use AdaptiveCards\Element\AbstractElement;
+use AdaptiveCards\Enum\ChartColor;
 use AdaptiveCards\Enum\ChartColorSet;
 
 /**
@@ -21,8 +22,8 @@ abstract class AbstractChart extends AbstractElement
     }
 
     /**
-     * Controls the color set used to style the chart.
-     * Valid values: "categorical", "sequential", "diverging", "sequentialRed", "sequentialGreen", "sequentialYellow".
+     * The name of the set of colors to use to render the chart. See Chart colors reference.
+     * Valid values: "categorical", "sequential", "sequentialred", "sequentialgreen", "sequentialyellow", "diverging".
      */
     public function colorSet(ChartColorSet $colorSet): static
     {
@@ -30,15 +31,15 @@ abstract class AbstractChart extends AbstractElement
     }
 
     /**
-     * Controls the color of the chart when a single color is used.
+     * The color to use for all data points. See Chart colors reference.
      */
-    public function color(string $color): static
+    public function color(ChartColor $color): static
     {
-        return $this->set('color', $color);
+        return $this->set('color', $color->value);
     }
 
     /**
-     * The title of the x-axis.
+     * The title of the x axis.
      */
     public function xAxisTitle(string $xAxisTitle): static
     {
@@ -46,7 +47,7 @@ abstract class AbstractChart extends AbstractElement
     }
 
     /**
-     * The title of the y-axis.
+     * The title of the y axis.
      */
     public function yAxisTitle(string $yAxisTitle): static
     {
@@ -54,7 +55,8 @@ abstract class AbstractChart extends AbstractElement
     }
 
     /**
-     * Controls the maximum width of the chart.
+     * The maximum width, in pixels, of the chart, in the <number>px format.
+     * Valid values: "<number>px".
      */
     public function maxWidth(string $maxWidth): static
     {
@@ -62,7 +64,7 @@ abstract class AbstractChart extends AbstractElement
     }
 
     /**
-     * Controls whether the chart legend is visible.
+     * Controls whether the chart's legend should be displayed.
      */
     public function showLegend(bool $show = true): static
     {
@@ -70,7 +72,7 @@ abstract class AbstractChart extends AbstractElement
     }
 
     /**
-     * Controls whether the chart title is visible.
+     * Controls whether the chart's title should be displayed. Defaults to false.
      */
     public function showTitle(bool $show = true): static
     {

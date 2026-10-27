@@ -18,8 +18,8 @@ final class Refresh extends Node
     }
 
     /**
-     * The action to be executed to refresh the card. Clients will execute this
-     * action when the card is refreshed. Valid values: Action.Execute.
+     * The `Action.Execute` action to invoke to refresh the card.
+     * Valid values: "Action.Execute".
      */
     public function action(ExecuteAction $action): self
     {
@@ -27,15 +27,11 @@ final class Refresh extends Node
     }
 
     /**
-     * A timestamp indicating when the card expires.
-     */
-    public function expires(string $expires): self
-    {
-        return $this->set('expires', $expires);
-    }
-
-    /**
-     * A list of user MRIs for whom the card is refreshed automatically on display.
+     * The list of user Ids for which the card will be automatically refreshed. In Teams,
+     * in chats or channels with more than 60 users, the card will automatically refresh
+     * only for users specified in the `userIds` list. Other users will have to manually
+     * click on a "refresh" button. In contexts with fewer than 60 users, the card will
+     * automatically refresh for all users.
      *
      * @param list<string> $userIds
      */

@@ -33,7 +33,7 @@ final class NumberInput extends AbstractInput
     }
 
     /**
-     * Description of the input desired. Displayed when no input has been made.
+     * The text to display as a placeholder when the user hasn't entered a value.
      */
     public function placeholder(string $placeholder): self
     {
@@ -41,7 +41,7 @@ final class NumberInput extends AbstractInput
     }
 
     /**
-     * Minimum value.
+     * The minimum value that can be entered.
      */
     public function min(int|float $min): self
     {
@@ -49,7 +49,7 @@ final class NumberInput extends AbstractInput
     }
 
     /**
-     * Maximum value.
+     * The maximum value that can be entered.
      */
     public function max(int|float $max): self
     {

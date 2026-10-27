@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace AdaptiveCards\Chart\Gauge;
 
 use AdaptiveCards\Chart\AbstractChart;
+use AdaptiveCards\Enum\GaugeValueFormat;
 
 /**
  * A gauge chart.
@@ -12,7 +13,7 @@ use AdaptiveCards\Chart\AbstractChart;
 final class GaugeChart extends AbstractChart
 {
     /**
-     * @param iterable<GaugeSegment|array<string, mixed>>|null $segments
+     * @param iterable<GaugeSegment>|null $segments
      */
     public function __construct(
         string $title,
@@ -34,7 +35,7 @@ final class GaugeChart extends AbstractChart
     }
 
     /**
-     * @param iterable<GaugeSegment|array<string, mixed>>|null $segments
+     * @param iterable<GaugeSegment>|null $segments
      */
     public static function make(
         string $title,
@@ -46,7 +47,7 @@ final class GaugeChart extends AbstractChart
     }
 
     /**
-     * The current value of the gauge.
+     * The value of the gauge.
      */
     public function value(float|int $value): self
     {
@@ -70,29 +71,19 @@ final class GaugeChart extends AbstractChart
     }
 
     /**
-     * The target value indicator on the gauge.
-     */
-    public function target(float|int $target): self
-    {
-        return $this->set('target', $target);
-    }
-
-    /**
      * Add a segment to the gauge chart.
-     *
-     * @param GaugeSegment|array<string, mixed> $segment
      */
-    public function addSegment(GaugeSegment|array $segment): self
+    public function addSegment(GaugeSegment $segment): self
     {
         return $this->push('segments', $segment);
     }
 
     /**
-     * The collection of segments in the gauge chart.
+     * Add multiple segments to the gauge chart.
      *
-     * @param iterable<GaugeSegment|array<string, mixed>> $segments
+     * @param iterable<GaugeSegment> $segments
      */
-    public function segments(iterable $segments): self
+    public function addSegments(iterable $segments): self
     {
         foreach ($segments as $segment) {
             $this->addSegment($segment);
@@ -102,7 +93,18 @@ final class GaugeChart extends AbstractChart
     }
 
     /**
-     * Controls whether min/max labels are displayed.
+     * The segments to display in the gauge.
+     * Valid values: "GaugeChartLegend".
+     *
+     * @param iterable<GaugeSegment> $segments
+     */
+    public function segments(iterable $segments): self
+    {
+        return $this->addSegments($segments);
+    }
+
+    /**
+     * Controls whether the min/max values should be displayed.
      */
     public function showMinMax(bool $show = true): self
     {
@@ -110,7 +112,7 @@ final class GaugeChart extends AbstractChart
     }
 
     /**
-     * Controls whether the needle is displayed.
+     * Controls whether the gauge's needle is displayed. Default is true.
      */
     public function showNeedle(bool $show = true): self
     {
@@ -118,7 +120,7 @@ final class GaugeChart extends AbstractChart
     }
 
     /**
-     * Controls whether segment outlines are displayed.
+     * Controls whether the outlines of the gauge segments are displayed.
      */
     public function showOutlines(bool $show = true): self
     {
@@ -126,7 +128,7 @@ final class GaugeChart extends AbstractChart
     }
 
     /**
-     * Sub-label text displayed in the gauge.
+     * The sub-label of the gauge.
      */
     public function subLabel(string $subLabel): self
     {
@@ -134,11 +136,12 @@ final class GaugeChart extends AbstractChart
     }
 
     /**
-     * Format string for the value.
+     * The format used to display the gauge's value.
+     * Valid values: "Percentage", "Fraction".
      */
-    public function valueFormat(string $format): self
+    public function valueFormat(GaugeValueFormat $format): self
     {
-        return $this->set('valueFormat', $format);
+        return $this->set('valueFormat', $format->value);
     }
 
     public function getType(): string

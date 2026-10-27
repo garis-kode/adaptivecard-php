@@ -14,7 +14,7 @@ use AdaptiveCards\Enum\ChartColorSet;
 final class GroupedVerticalBarChart extends AbstractChart
 {
     /**
-     * @param iterable<ChartSeries|array<string, mixed>>|null $data
+     * @param iterable<ChartSeries>|null $data
      */
     public function __construct(
         string $title,
@@ -44,7 +44,7 @@ final class GroupedVerticalBarChart extends AbstractChart
     }
 
     /**
-     * @param iterable<ChartSeries|array<string, mixed>>|null $data
+     * @param iterable<ChartSeries>|null $data
      */
     public static function make(
         string $title,
@@ -58,7 +58,7 @@ final class GroupedVerticalBarChart extends AbstractChart
     }
 
     /**
-     * Controls whether bars are stacked instead of grouped.
+     * Controls if bars in the chart should be displayed as stacks instead of groups. Note: stacked vertical bar charts do not support custom Y ranges nor negative Y values.
      */
     public function stacked(bool $stacked = true): self
     {
@@ -67,20 +67,18 @@ final class GroupedVerticalBarChart extends AbstractChart
 
     /**
      * Add a series of data points.
-     *
-     * @param ChartSeries|array<string, mixed> $series
      */
-    public function addSeries(ChartSeries|array $series): self
+    public function addSeries(ChartSeries $series): self
     {
         return $this->push('data', $series);
     }
 
     /**
-     * The series of data points in the grouped vertical bar chart.
+     * Add multiple series of data points.
      *
-     * @param iterable<ChartSeries|array<string, mixed>> $data
+     * @param iterable<ChartSeries> $data
      */
-    public function data(iterable $data): self
+    public function addSeriesList(iterable $data): self
     {
         foreach ($data as $series) {
             $this->addSeries($series);
@@ -89,16 +87,36 @@ final class GroupedVerticalBarChart extends AbstractChart
         return $this;
     }
 
+    /**
+     * The data points in a series.
+     * Valid values: "GroupedVerticalBarChartData".
+     *
+     * @param iterable<ChartSeries> $data
+     */
+    public function data(iterable $data): self
+    {
+        return $this->addSeriesList($data);
+    }
+
+    /**
+     * Controls if values should be displayed on each bar.
+     */
     public function showBarValues(bool $show = true): self
     {
         return $this->set('showBarValues', $show);
     }
 
+    /**
+     * The requested minimum for the Y axis range. The value used at runtime may be different to optimize visual presentation. `yMin` is ignored if `stacked` is set to true.
+     */
     public function yMin(float|int $min): self
     {
         return $this->set('yMin', $min);
     }
 
+    /**
+     * The requested maximum for the Y axis range. The value used at runtime may be different to optimize visual presentation. `yMax` is ignored if `stacked` is set to true.
+     */
     public function yMax(float|int $max): self
     {
         return $this->set('yMax', $max);

@@ -24,7 +24,7 @@ final class DateInput extends AbstractInput
     }
 
     /**
-     * Description of the input desired. Displayed when no selection has been made.
+     * The text to display as a placeholder when the user has not selected a date.
      */
     public function placeholder(string $placeholder): self
     {
@@ -32,7 +32,7 @@ final class DateInput extends AbstractInput
     }
 
     /**
-     * The earliest date that may be selected, expressed as YYYY-MM-DD.
+     * The minimum date that can be selected.
      */
     public function min(string $min): self
     {
@@ -40,7 +40,7 @@ final class DateInput extends AbstractInput
     }
 
     /**
-     * The latest date that may be selected, expressed as YYYY-MM-DD.
+     * The maximum date that can be selected.
      */
     public function max(string $max): self
     {

@@ -30,7 +30,10 @@ final class Resources extends Node
     }
 
     /**
-     * The replacement string values.
+     * String resources that can provide translations in multiple languages. String resources
+     * make it possible to craft cards that are automatically localized according to the
+     * language settings of the application that displays the card.
+     * Valid values: "StringResource".
      *
      * @param array<string, StringResource> $strings
      */

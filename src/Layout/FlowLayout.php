@@ -16,6 +16,7 @@ final class FlowLayout extends AbstractLayout
 
     /**
      * The fixed width for all items in the flow layout.
+     * Valid values: "<number>px".
      */
     public function itemWidth(string $itemWidth): self
     {
@@ -33,7 +34,8 @@ final class FlowLayout extends AbstractLayout
     }
 
     /**
-     * The minimum width of items in the flow layout.
+     * The minimum width of items in the flow layout, in pixels.
+     * Valid values: "<number>px".
      */
     public function minItemWidth(string $minItemWidth): self
     {
@@ -41,7 +43,8 @@ final class FlowLayout extends AbstractLayout
     }
 
     /**
-     * The maximum width of items in the flow layout.
+     * The maximum width of items in the flow layout, in pixels.
+     * Valid values: "<number>px".
      */
     public function maxItemWidth(string $maxItemWidth): self
     {

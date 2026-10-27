@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace AdaptiveCards\Element\Table;
 
 use AdaptiveCards\Element\AbstractElement;
+use AdaptiveCards\Element\TextBlock;
 use AdaptiveCards\Enum\ContainerStyle;
 use AdaptiveCards\Enum\HorizontalAlignment;
 use AdaptiveCards\Enum\VerticalAlignment;
+use AdaptiveCards\Enum\Width;
 
 /**
  * Use tables to display data in a tabular way, with rows, columns and cells.
@@ -16,7 +18,7 @@ final class Table extends AbstractElement
 {
     /**
      * @param iterable<TableColumnDefinition>|null $columns
-     * @param iterable<TableRow|iterable<TableCell>>|null $rows
+     * @param iterable<TableRow>|null $rows
      */
     public function __construct(
         ?iterable $columns = null,
@@ -32,27 +34,13 @@ final class Table extends AbstractElement
 
     /**
      * @param iterable<TableColumnDefinition>|null $columns
-     * @param iterable<TableRow|iterable<TableCell>>|null $rows
+     * @param iterable<TableRow>|null $rows
      */
     public static function make(
         ?iterable $columns = null,
         ?iterable $rows = null,
     ): self {
         return new self($columns, $rows);
-    }
-
-    /**
-     * Defines the table's columns (their widths and default content alignment).
-     *
-     * @param iterable<TableColumnDefinition> $columns
-     */
-    public function columns(iterable $columns): self
-    {
-        foreach ($columns as $column) {
-            $this->addColumn($column);
-        }
-
-        return $this;
     }
 
     /**
@@ -64,23 +52,28 @@ final class Table extends AbstractElement
     }
 
     /**
-     * Defines the table's rows.
+     * Add multiple columns to the table.
      *
-     * @param iterable<TableRow|iterable<TableCell>> $rows
+     * @param iterable<TableColumnDefinition> $columns
      */
-    public function rows(iterable $rows): self
+    public function addColumns(iterable $columns): self
     {
-        foreach ($rows as $row) {
-            if ($row instanceof TableRow) {
-                $this->addRow($row);
-            } elseif (is_iterable($row)) {
-                $tableRow = new TableRow();
-                $tableRow->cells($row);
-                $this->addRow($tableRow);
-            }
+        foreach ($columns as $column) {
+            $this->addColumn($column);
         }
 
         return $this;
+    }
+
+    /**
+     * The columns in the table.
+     * Valid values: "ColumnDefinition".
+     *
+     * @param iterable<TableColumnDefinition> $columns
+     */
+    public function columns(iterable $columns): self
+    {
+        return $this->addColumns($columns);
     }
 
     /**
@@ -92,6 +85,31 @@ final class Table extends AbstractElement
     }
 
     /**
+     * Add multiple rows to the table.
+     *
+     * @param iterable<TableRow> $rows
+     */
+    public function addRows(iterable $rows): self
+    {
+        foreach ($rows as $row) {
+            $this->addRow($row);
+        }
+
+        return $this;
+    }
+
+    /**
+     * The rows of the table.
+     * Valid values: "TableRow".
+     *
+     * @param iterable<TableRow> $rows
+     */
+    public function rows(iterable $rows): self
+    {
+        return $this->addRows($rows);
+    }
+
+    /**
      * Convenience: add a row of plain-text cells.
      *
      * @param list<string> $cells
@@ -100,14 +118,14 @@ final class Table extends AbstractElement
     {
         $row = new TableRow();
         foreach ($cells as $text) {
-            $row->addTextCell($text, static fn ($tb) => $tb->wrap(true));
+            $row->addTextCell($text, static fn (TextBlock $tb) => $tb->wrap(true));
         }
 
         return $this->addRow($row);
     }
 
     /**
-     * Controls whether grid lines should be displayed between cells in the table.
+     * Controls if grid lines should be displayed.
      */
     public function showGridLines(bool $value = true): self
     {
@@ -115,8 +133,7 @@ final class Table extends AbstractElement
     }
 
     /**
-     * Defines whether the first row of the table should be treated as a header row,
-     * and be repeated on every page of a printout.
+     * Controls whether the first row of the table should be treated as a header.
      */
     public function firstRowAsHeaders(bool $value = true): self
     {
@@ -124,7 +141,7 @@ final class Table extends AbstractElement
     }
 
     /**
-     * Controls whether the table's corners should be rounded.
+     * Controls if the container should have rounded corners.
      */
     public function roundedCorners(bool $value = true): self
     {
@@ -132,7 +149,7 @@ final class Table extends AbstractElement
     }
 
     /**
-     * Controls whether the table's border should be displayed.
+     * Controls if a border should be displayed around the container.
      */
     public function showBorder(bool $value = true): self
     {
@@ -140,15 +157,22 @@ final class Table extends AbstractElement
     }
 
     /**
-     * The minimum width, in pixels, of the table.
+     * The minimum width of the table in pixels. `auto` will automatically adjust the
+     * table's minimum width according to its content and using the `<number>px` format will
+     * give the table an explicit minimum width in pixels. A scrollbar will be displayed if
+     * the available width is less than the specified minimum width.
+     * Valid values: "auto", "<number>px".
      */
-    public function minWidth(string $width): self
+    public function minWidth(Width|string $width): self
     {
-        return $this->set('minWidth', $width);
+        $value = $width instanceof Width ? $width->value : $width;
+
+        return $this->set('minWidth', $value);
     }
 
     /**
-     * The style of the table.
+     * The style of the container. Container styles control the colors of the background,
+     * border and text inside the container, in such a way that contrast requirements are always met.
      * Valid values: "default", "emphasis", "accent", "good", "attention", "warning".
      */
     public function style(ContainerStyle $style): self
@@ -157,7 +181,7 @@ final class Table extends AbstractElement
     }
 
     /**
-     * Controls the style of grid lines displayed between cells in the table.
+     * The style of the grid lines between cells.
      * Valid values: "default", "emphasis", "accent", "good", "attention", "warning".
      */
     public function gridStyle(ContainerStyle $style): self
@@ -166,7 +190,7 @@ final class Table extends AbstractElement
     }
 
     /**
-     * Controls how cells should be horizontally aligned by default across the entire table.
+     * Controls how the content of every cell in the table should be horizontally aligned by default.
      * Valid values: "Left", "Center", "Right".
      */
     public function horizontalCellContentAlignment(HorizontalAlignment $alignment): self
@@ -175,7 +199,7 @@ final class Table extends AbstractElement
     }
 
     /**
-     * Controls how cells should be vertically aligned by default across the entire table.
+     * Controls how the content of every cell in the table should be vertically aligned by default.
      * Valid values: "Top", "Center", "Bottom".
      */
     public function verticalCellContentAlignment(VerticalAlignment $alignment): self

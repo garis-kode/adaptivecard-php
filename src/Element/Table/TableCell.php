@@ -25,7 +25,8 @@ final class TableCell extends AbstractElement
     }
 
     /**
-     * The style of the table cell.
+     * The style of the container. Container styles control the colors of the background,
+     * border and text inside the container, in such a way that contrast requirements are always met.
      * Valid values: "default", "emphasis", "accent", "good", "attention", "warning".
      */
     public function style(ContainerStyle $style): self
@@ -34,7 +35,7 @@ final class TableCell extends AbstractElement
     }
 
     /**
-     * Controls how the cell's content should be vertically aligned.
+     * Controls how the container's content should be vertically aligned.
      * Valid values: "Top", "Center", "Bottom".
      */
     public function verticalContentAlignment(VerticalAlignment $alignment): self
@@ -43,7 +44,8 @@ final class TableCell extends AbstractElement
     }
 
     /**
-     * Determines whether the cell should bleed through its parent's padding.
+     * Controls if the container should bleed into its parent. A bleeding container extends into its parent's padding.
+     * See **Edge-to-edge content** for more information.
      */
     public function bleed(bool $bleed = true): self
     {
@@ -51,7 +53,8 @@ final class TableCell extends AbstractElement
     }
 
     /**
-     * The minimum height, in pixels, of the cell, in the `<number>px` format.
+     * The minimum height, in pixels, of the container, in the `<number>px` format.
+     * Valid values: "<number>px".
      */
     public function minHeight(string $minHeight): self
     {
@@ -59,7 +62,9 @@ final class TableCell extends AbstractElement
     }
 
     /**
-     * The maximum height, in pixels, of the cell.
+     * The maximum height, in pixels, of the container, in the `<number>px` format. When the content of a container
+     * exceeds the container's maximum height, a vertical scrollbar is displayed.
+     * Valid values: "<number>px".
      */
     public function maxHeight(string $maxHeight): self
     {
@@ -75,11 +80,11 @@ final class TableCell extends AbstractElement
     }
 
     /**
-     * The layouts associated with the cell.
+     * Add multiple layouts associated with the cell.
      *
      * @param iterable<AbstractLayout> $layouts
      */
-    public function layouts(iterable $layouts): self
+    public function addLayouts(iterable $layouts): self
     {
         foreach ($layouts as $layout) {
             $this->addLayout($layout);
@@ -89,7 +94,19 @@ final class TableCell extends AbstractElement
     }
 
     /**
-     * Controls if the content of the cell is to be rendered left-to-right or right-to-left.
+     * The layouts associated with the container. The container can dynamically switch
+     * from one layout to another as the card's width changes.
+     * Valid values: "Layout.Stack", "Layout.Flow", "Layout.AreaGrid".
+     *
+     * @param iterable<AbstractLayout> $layouts
+     */
+    public function layouts(iterable $layouts): self
+    {
+        return $this->addLayouts($layouts);
+    }
+
+    /**
+     * Controls if the content of the card is to be rendered left-to-right or right-to-left.
      */
     public function rtl(bool $rtl = true): self
     {
@@ -97,15 +114,19 @@ final class TableCell extends AbstractElement
     }
 
     /**
-     * Defines the cell's background image.
+     * Defines the container's background image.
+     * Valid values: "BackgroundImage".
      */
-    public function backgroundImage(string|BackgroundImage $backgroundImage): self
+    public function backgroundImage(BackgroundImage $backgroundImage): self
     {
         return $this->set('backgroundImage', $backgroundImage);
     }
 
     /**
-     * An Action that will be invoked when the cell is tapped or clicked.
+     * An Action that will be invoked when the element is tapped or clicked.
+     * Action.ShowCard is not supported.
+     * Valid values: "Action.Execute", "Action.InsertImage", "Action.OpenUrl", "Action.OpenUrlDialog",
+     * "Action.Popover", "Action.ResetInputs", "Action.RunCommands", "Action.Submit", "Action.ToggleVisibility".
      */
     public function selectAction(AbstractAction $action): self
     {

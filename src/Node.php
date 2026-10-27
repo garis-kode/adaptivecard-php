@@ -35,7 +35,10 @@ abstract class Node implements \JsonSerializable
      */
     protected function push(string $key, mixed $value): static
     {
-        $this->properties[$key] ??= [];
+        if (!isset($this->properties[$key]) || !is_array($this->properties[$key])) {
+            $this->properties[$key] = [];
+        }
+
         $this->properties[$key][] = $value;
 
         return $this;

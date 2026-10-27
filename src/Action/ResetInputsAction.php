@@ -22,21 +22,35 @@ final class ResetInputsAction extends AbstractAction
     }
 
     /**
-     * An array of IDs of the inputs that should be reset. If omitted, all inputs in the card are reset.
-     *
-     * @param list<string> $targetInputIds
-     */
-    public function targetInputIds(array $targetInputIds): self
-    {
-        return $this->set('targetInputIds', $targetInputIds);
-    }
-
-    /**
      * Add an input ID to the list of inputs that should be reset.
      */
     public function addTargetInputId(string $id): self
     {
         return $this->push('targetInputIds', $id);
+    }
+
+    /**
+     * Add multiple input IDs to the list of inputs that should be reset.
+     *
+     * @param iterable<string> $targetInputIds
+     */
+    public function addTargetInputIds(iterable $targetInputIds): self
+    {
+        foreach ($targetInputIds as $id) {
+            $this->addTargetInputId($id);
+        }
+
+        return $this;
+    }
+
+    /**
+     * The Ids of the inputs that should be reset.
+     *
+     * @param iterable<string> $targetInputIds
+     */
+    public function targetInputIds(iterable $targetInputIds): self
+    {
+        return $this->addTargetInputIds($targetInputIds);
     }
 
     public function getType(): string

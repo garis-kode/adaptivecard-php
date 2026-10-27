@@ -27,7 +27,7 @@ final class TextRun extends AbstractElement
     }
 
     /**
-     * The text to display.
+     * The text to display. A subset of markdown is supported.
      */
     public function text(string $text): self
     {
@@ -44,8 +44,8 @@ final class TextRun extends AbstractElement
     }
 
     /**
-     * Controls the color of TextRun elements.
-     * Valid values: "default", "dark", "light", "accent", "good", "warning", "attention".
+     * The color of the text.
+     * Valid values: "Default", "Dark", "Light", "Accent", "Good", "Warning", "Attention".
      */
     public function color(Colors $color): self
     {
@@ -53,8 +53,8 @@ final class TextRun extends AbstractElement
     }
 
     /**
-     * Type of font to use for rendering.
-     * Valid values: "default", "monospace".
+     * The type of font to use for rendering.
+     * Valid values: "Default", "Monospace".
      */
     public function fontType(FontType $fontType): self
     {
@@ -62,8 +62,8 @@ final class TextRun extends AbstractElement
     }
 
     /**
-     * Controls size of text.
-     * Valid values: "small", "default", "medium", "large", "extraLarge".
+     * The size of the text.
+     * Valid values: "Small", "Default", "Medium", "Large", "ExtraLarge".
      */
     public function size(TextSize $size): self
     {
@@ -71,8 +71,8 @@ final class TextRun extends AbstractElement
     }
 
     /**
-     * Controls the weight of TextRun elements.
-     * Valid values: "default", "lighter", "bolder".
+     * The weight of the text.
+     * Valid values: "Lighter", "Default", "Bolder".
      */
     public function weight(TextWeight $weight): self
     {
@@ -80,7 +80,7 @@ final class TextRun extends AbstractElement
     }
 
     /**
-     * If true, displays text slightly toned down to appear less prominent.
+     * Controls whether the text should be rendered using a subtler variant of the select color.
      */
     public function isSubtle(bool $subtle = true): self
     {
@@ -88,7 +88,7 @@ final class TextRun extends AbstractElement
     }
 
     /**
-     * If true, displays the text in an italic font.
+     * Controls if the text should be italicized.
      */
     public function italic(bool $italic = true): self
     {
@@ -96,7 +96,7 @@ final class TextRun extends AbstractElement
     }
 
     /**
-     * If true, displays the text with a strikethrough.
+     * Controls if the text should be struck through.
      */
     public function strikethrough(bool $strikethrough = true): self
     {
@@ -104,7 +104,7 @@ final class TextRun extends AbstractElement
     }
 
     /**
-     * If true, displays the text highlighted.
+     * Controls if the text should be highlighted.
      */
     public function highlight(bool $highlight = true): self
     {
@@ -112,7 +112,7 @@ final class TextRun extends AbstractElement
     }
 
     /**
-     * If true, displays the text with an underline.
+     * Controls if the text should be underlined.
      */
     public function underline(bool $underline = true): self
     {
@@ -120,7 +120,10 @@ final class TextRun extends AbstractElement
     }
 
     /**
-     * An Action that will be invoked when the TextRun is clicked or tapped.
+     * An Action that will be invoked when the text is tapped or clicked.
+     * Action.ShowCard is not supported.
+     * Valid values: "Action.Execute", "Action.InsertImage", "Action.OpenUrl", "Action.OpenUrlDialog",
+     * "Action.Popover", "Action.ResetInputs", "Action.RunCommands", "Action.Submit", "Action.ToggleVisibility".
      */
     public function selectAction(AbstractAction $action): self
     {

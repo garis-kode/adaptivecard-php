@@ -24,7 +24,7 @@ final class ToggleInput extends AbstractInput
     }
 
     /**
-     * Title for the toggle.
+     * The title (caption) to display next to the toggle.
      */
     public function title(string $title): self
     {
@@ -32,7 +32,8 @@ final class ToggleInput extends AbstractInput
     }
 
     /**
-     * Controls whether the title is visible.
+     * Controls whether the title is visually displayed. When set to false, the title is
+     * hidden from view but remains accessible to screen readers for accessibility purposes.
      */
     public function showTitle(bool $show = true): self
     {
@@ -40,7 +41,7 @@ final class ToggleInput extends AbstractInput
     }
 
     /**
-     * The value when toggle is on.
+     * The value to send to the Bot when the toggle is on.
      */
     public function valueOn(string $valueOn): self
     {
@@ -48,7 +49,7 @@ final class ToggleInput extends AbstractInput
     }
 
     /**
-     * The value when toggle is off.
+     * The value to send to the Bot when the toggle is off.
      */
     public function valueOff(string $valueOff): self
     {
@@ -56,7 +57,7 @@ final class ToggleInput extends AbstractInput
     }
 
     /**
-     * If true, allow text to wrap. Otherwise, text is clipped.
+     * Controls if the title should wrap.
      */
     public function wrap(bool $wrap = true): self
     {

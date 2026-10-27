@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Chart\Gauge;
 
+use AdaptiveCards\Enum\ChartColor;
 use AdaptiveCards\Node;
 
 /**
@@ -11,7 +12,7 @@ use AdaptiveCards\Node;
  */
 final class GaugeSegment extends Node
 {
-    public function __construct(string $legend, float|int $size, ?string $color = null)
+    public function __construct(string $legend, float|int $size, ?ChartColor $color = null)
     {
         $this->legend($legend);
         $this->size($size);
@@ -21,13 +22,13 @@ final class GaugeSegment extends Node
         }
     }
 
-    public static function make(string $legend, float|int $size, ?string $color = null): self
+    public static function make(string $legend, float|int $size, ?ChartColor $color = null): self
     {
         return new self($legend, $size, $color);
     }
 
     /**
-     * Label for the segment.
+     * The legend text associated with the segment.
      */
     public function legend(string $legend): self
     {
@@ -35,7 +36,7 @@ final class GaugeSegment extends Node
     }
 
     /**
-     * The size/range of the segment.
+     * The size of the segment.
      */
     public function size(float|int $size): self
     {
@@ -43,11 +44,11 @@ final class GaugeSegment extends Node
     }
 
     /**
-     * The color of the segment.
+     * The color to use for the segment. See Chart colors reference.
      */
-    public function color(string $color): self
+    public function color(ChartColor $color): self
     {
-        return $this->set('color', $color);
+        return $this->set('color', $color->value);
     }
 
     public function getType(): ?string

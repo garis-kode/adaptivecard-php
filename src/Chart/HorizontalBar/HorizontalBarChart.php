@@ -7,6 +7,7 @@ namespace AdaptiveCards\Chart\HorizontalBar;
 use AdaptiveCards\Chart\AbstractChart;
 use AdaptiveCards\Chart\Data\DataPoint;
 use AdaptiveCards\Enum\ChartColorSet;
+use AdaptiveCards\Enum\ChartDisplayMode;
 
 /**
  * A horizontal bar chart.
@@ -14,7 +15,7 @@ use AdaptiveCards\Enum\ChartColorSet;
 final class HorizontalBarChart extends AbstractChart
 {
     /**
-     * @param iterable<DataPoint|array<string, mixed>> $data
+     * @param iterable<DataPoint> $data
      */
     public function __construct(
         string $title,
@@ -42,7 +43,7 @@ final class HorizontalBarChart extends AbstractChart
     }
 
     /**
-     * @param iterable<DataPoint|array<string, mixed>> $data
+     * @param iterable<DataPoint> $data
      */
     public static function make(
         string $title,
@@ -56,21 +57,19 @@ final class HorizontalBarChart extends AbstractChart
     }
 
     /**
-     * Add a data point to the chart.
-     *
-     * @param DataPoint|array<string, mixed> $point
+     * Add a data point to the horizontal bar chart.
      */
-    public function addDataPoint(DataPoint|array $point): self
+    public function addDataPoint(DataPoint $point): self
     {
         return $this->push('data', $point);
     }
 
     /**
-     * The data points of the chart.
+     * Add multiple data points to the horizontal bar chart.
      *
-     * @param iterable<DataPoint|array<string, mixed>> $data
+     * @param iterable<DataPoint> $data
      */
-    public function data(iterable $data): self
+    public function addDataPoints(iterable $data): self
     {
         foreach ($data as $point) {
             $this->addDataPoint($point);
@@ -80,11 +79,23 @@ final class HorizontalBarChart extends AbstractChart
     }
 
     /**
-     * Controls whether the chart is displayed in standard or parts-to-whole mode.
+     * The data points in the chart.
+     * Valid values: "HorizontalBarChartDataValue".
+     *
+     * @param iterable<DataPoint> $data
      */
-    public function displayMode(string $mode): self
+    public function data(iterable $data): self
     {
-        return $this->set('displayMode', $mode);
+        return $this->addDataPoints($data);
+    }
+
+    /**
+     * Controls how the chart should be visually laid out.
+     * Valid values: "AbsoluteWithAxis", "AbsoluteNoAxis", "PartToWhole".
+     */
+    public function displayMode(ChartDisplayMode $mode): self
+    {
+        return $this->set('displayMode', $mode->value);
     }
 
     public function getType(): string

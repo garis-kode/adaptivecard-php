@@ -29,11 +29,7 @@ final class ToggleVisibilityAction extends AbstractAction
      */
     public function target(string $elementId, ?bool $isVisible = null): self
     {
-        // The schema permits a bare id string when no explicit state is set.
-        return $this->push(
-            'targetElements',
-            $isVisible === null ? $elementId : new TargetElement($elementId, $isVisible)
-        );
+        return $this->addTarget(new TargetElement($elementId, $isVisible));
     }
 
     /**
@@ -45,21 +41,28 @@ final class ToggleVisibilityAction extends AbstractAction
     }
 
     /**
-     * The array of elements to toggle the visibility of.
+     * Add multiple target elements to toggle visibility.
      *
-     * @param iterable<string|TargetElement> $targets
+     * @param iterable<TargetElement> $targets
      */
-    public function targetElements(iterable $targets): self
+    public function addTargetElements(iterable $targets): self
     {
         foreach ($targets as $target) {
-            if ($target instanceof TargetElement) {
-                $this->addTarget($target);
-            } else {
-                $this->target($target);
-            }
+            $this->addTarget($target);
         }
 
         return $this;
+    }
+
+    /**
+     * The Ids of the elements to toggle the visibility of.
+     * Valid values: "TargetElement".
+     *
+     * @param iterable<TargetElement> $targets
+     */
+    public function targetElements(iterable $targets): self
+    {
+        return $this->addTargetElements($targets);
     }
 
     /**

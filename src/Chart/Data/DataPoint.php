@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Chart\Data;
 
+use AdaptiveCards\Enum\ChartColor;
 use AdaptiveCards\Node;
 
 /**
@@ -17,7 +18,7 @@ final class DataPoint extends Node
     public function __construct(
         string|int|float|null $xOrLegend = null,
         string|int|float|null $yOrValue = null,
-        ?string $color = null,
+        ?ChartColor $color = null,
         array $extra = [],
     ) {
         if ($xOrLegend !== null) {
@@ -27,32 +28,38 @@ final class DataPoint extends Node
             $this->properties['y'] = $yOrValue;
         }
         if ($color !== null) {
-            $this->properties['color'] = $color;
+            $this->properties['color'] = $color->value;
         }
         foreach ($extra as $key => $val) {
             $this->set($key, $val);
         }
     }
 
-    public static function point(string|int|float $x, string|int|float $y, ?string $color = null): self
+    /**
+     * Create a cartesian data point with x and y coordinates.
+     */
+    public static function point(string|int|float $x, string|int|float $y, ?ChartColor $color = null): self
     {
         $dp = new self();
         $dp->set('x', $x);
         $dp->set('y', $y);
         if ($color !== null) {
-            $dp->set('color', $color);
+            $dp->set('color', $color->value);
         }
 
         return $dp;
     }
 
-    public static function slice(string $legend, float|int $value, ?string $color = null, ?string $tooltip = null): self
+    /**
+     * Create a slice/legend data point for pie, donut, or bar charts.
+     */
+    public static function slice(string $legend, float|int $value, ?ChartColor $color = null, ?string $tooltip = null): self
     {
         $dp = new self();
         $dp->set('legend', $legend);
         $dp->set('value', $value);
         if ($color !== null) {
-            $dp->set('color', $color);
+            $dp->set('color', $color->value);
         }
         if ($tooltip !== null) {
             $dp->set('tooltip', $tooltip);
@@ -62,7 +69,7 @@ final class DataPoint extends Node
     }
 
     /**
-     * The x-axis value (string, number, or date).
+     * The x axis value of the data point.
      */
     public function x(string|int|float $x): self
     {
@@ -70,7 +77,7 @@ final class DataPoint extends Node
     }
 
     /**
-     * The y-axis value.
+     * The y axis value of the data point.
      */
     public function y(string|int|float $y): self
     {
@@ -78,7 +85,7 @@ final class DataPoint extends Node
     }
 
     /**
-     * Label for this data point.
+     * The legend of the chart.
      */
     public function legend(string $legend): self
     {
@@ -86,7 +93,7 @@ final class DataPoint extends Node
     }
 
     /**
-     * Value of this data point.
+     * The value associated with the data point.
      */
     public function value(float|int $value): self
     {
@@ -94,11 +101,11 @@ final class DataPoint extends Node
     }
 
     /**
-     * Color identifier or hex color for this data point.
+     * The color to use for the data point. See Chart colors reference.
      */
-    public function color(string $color): self
+    public function color(ChartColor $color): self
     {
-        return $this->set('color', $color);
+        return $this->set('color', $color->value);
     }
 
     /**

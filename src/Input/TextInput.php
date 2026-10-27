@@ -35,7 +35,7 @@ final class TextInput extends AbstractInput
     }
 
     /**
-     * Description of the input desired. Displayed when no text has been input.
+     * The text to display as a placeholder when the user hasn't entered a value.
      */
     public function placeholder(string $placeholder): self
     {
@@ -43,7 +43,7 @@ final class TextInput extends AbstractInput
     }
 
     /**
-     * If true, allow multiple lines of input.
+     * Controls if the input should allow multiple lines of text.
      */
     public function isMultiline(bool $multiline = true): self
     {
@@ -51,7 +51,7 @@ final class TextInput extends AbstractInput
     }
 
     /**
-     * Hint of maximum length characters to input.
+     * The maximum length of the text in the input.
      */
     public function maxLength(int $maxLength): self
     {
@@ -59,8 +59,8 @@ final class TextInput extends AbstractInput
     }
 
     /**
-     * Style hint for text input.
-     * Valid values: "text", "tel", "url", "email", "password".
+     * The style of the input.
+     * Valid values: "Text", "Tel", "Url", "Email", "Password".
      */
     public function style(TextInputStyle $style): self
     {
@@ -68,7 +68,7 @@ final class TextInput extends AbstractInput
     }
 
     /**
-     * Regular expression to validate the input against.
+     * The regular expression to validate the input.
      */
     public function regex(string $regex): self
     {
@@ -76,7 +76,11 @@ final class TextInput extends AbstractInput
     }
 
     /**
-     * The Inline Action for the input. Typically displayed after the text input.
+     * The action that should be displayed as a button alongside the input.
+     * Action.ShowCard is not supported.
+     * Valid values: "Action.Execute", "Action.InsertImage", "Action.OpenUrl",
+     * "Action.OpenUrlDialog", "Action.Popover", "Action.ResetInputs", "Action.RunCommands",
+     * "Action.Submit", "Action.ToggleVisibility".
      */
     public function inlineAction(AbstractAction $action): self
     {

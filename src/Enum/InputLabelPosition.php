@@ -8,4 +8,5 @@ enum InputLabelPosition: string
 {
     case Inline = 'inline';
     case Above = 'above';
+    case Before = 'before';
 }

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace AdaptiveCards\Action\OpenUrl;
 
 use AdaptiveCards\Action\AbstractAction;
+use AdaptiveCards\Enum\DialogSize;
 
 /**
  * Opens a task module in a modal dialog hosting the content at a provided URL.
@@ -13,7 +14,7 @@ final class OpenUrlDialogAction extends AbstractAction
 {
     public function __construct(
         string $dialogTitle,
-        string $dialogHeight,
+        DialogSize|string $dialogHeight,
         string $url,
         ?string $title = null,
     ) {
@@ -28,7 +29,7 @@ final class OpenUrlDialogAction extends AbstractAction
 
     public static function make(
         string $dialogTitle,
-        string $dialogHeight,
+        DialogSize|string $dialogHeight,
         string $url,
         ?string $title = null,
     ): self {
@@ -36,7 +37,7 @@ final class OpenUrlDialogAction extends AbstractAction
     }
 
     /**
-     * The URL of the webpage to load in the modal dialog.
+     * The URL to open.
      */
     public function url(string $url): self
     {
@@ -44,7 +45,7 @@ final class OpenUrlDialogAction extends AbstractAction
     }
 
     /**
-     * The title of the modal dialog.
+     * The title of the dialog to be displayed in the dialog header.
      */
     public function dialogTitle(string $dialogTitle): self
     {
@@ -52,30 +53,25 @@ final class OpenUrlDialogAction extends AbstractAction
     }
 
     /**
-     * The size of the modal dialog.
-     * Valid values: "small", "medium", "large".
-     *
-     * @param "small"|"medium"|"large"|string $dialogSize
+     * The width of the dialog. To define width as a number of pixels, use the `<number>px` format.
+     * Valid values: "small", "medium", "large", "<number>px".
      */
-    public function dialogSize(string $dialogSize): self
+    public function dialogWidth(DialogSize|string $dialogWidth): self
     {
-        return $this->set('dialogSize', $dialogSize);
+        $value = $dialogWidth instanceof DialogSize ? $dialogWidth->value : $dialogWidth;
+
+        return $this->set('dialogWidth', $value);
     }
 
     /**
-     * The width of the modal dialog in pixels.
+     * The height of the dialog. To define height as a number of pixels, use the `<number>px` format.
+     * Valid values: "small", "medium", "large", "<number>px".
      */
-    public function dialogWidth(string $dialogWidth): self
+    public function dialogHeight(DialogSize|string $dialogHeight): self
     {
-        return $this->set('dialogWidth', $dialogWidth);
-    }
+        $value = $dialogHeight instanceof DialogSize ? $dialogHeight->value : $dialogHeight;
 
-    /**
-     * The height of the modal dialog in pixels.
-     */
-    public function dialogHeight(string $dialogHeight): self
-    {
-        return $this->set('dialogHeight', $dialogHeight);
+        return $this->set('dialogHeight', $value);
     }
 
     public function getType(): string

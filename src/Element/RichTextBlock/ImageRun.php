@@ -6,6 +6,8 @@ namespace AdaptiveCards\Element\RichTextBlock;
 
 use AdaptiveCards\Action\AbstractAction;
 use AdaptiveCards\Element\AbstractElement;
+use AdaptiveCards\Enum\ImageStyle;
+use AdaptiveCards\Enum\TextSize;
 
 /**
  * An inline image inside a RichTextBlock element.
@@ -23,7 +25,7 @@ final class ImageRun extends AbstractElement
     }
 
     /**
-     * The URL to the image.
+     * The URL (or Base64-encoded Data URI) of the image. Acceptable formats are PNG, JPEG, GIF and SVG.
      */
     public function url(string $url): self
     {
@@ -31,27 +33,26 @@ final class ImageRun extends AbstractElement
     }
 
     /**
-     * Controls the size of the image.
-     *
-     * @param "Small"|"Default"|"Medium"|"Large"|"ExtraLarge"|string $size
+     * The size of the inline image.
+     * Valid values: "Small", "Default", "Medium", "Large", "ExtraLarge".
      */
-    public function size(string $size): self
+    public function size(TextSize $size): self
     {
-        return $this->set('size', $size);
+        return $this->set('size', $size->value);
     }
 
     /**
-     * Controls how this element is displayed.
-     *
-     * @param "Default"|"Person"|"RoundedCorners"|string $style
+     * The style of the inline image.
+     * Valid values: "Default", "Person", "RoundedCorners".
      */
-    public function style(string $style): self
+    public function style(ImageStyle $style): self
     {
-        return $this->set('style', $style);
+        return $this->set('style', $style->value);
     }
 
     /**
-     * Controls alternative image URLs based on the active theme.
+     * A set of theme-specific image URLs.
+     * Valid values: "ThemedUrl".
      *
      * @param list<array{imageBaseUrl: string, mimeType: string}> $themedUrls
      */
@@ -62,6 +63,9 @@ final class ImageRun extends AbstractElement
 
     /**
      * An Action that will be invoked when the image is tapped or clicked.
+     * Action.ShowCard is not supported.
+     * Valid values: "Action.Execute", "Action.InsertImage", "Action.OpenUrl", "Action.OpenUrlDialog",
+     * "Action.Popover", "Action.ResetInputs", "Action.RunCommands", "Action.Submit", "Action.ToggleVisibility".
      */
     public function selectAction(AbstractAction $action): self
     {

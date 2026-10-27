@@ -32,9 +32,7 @@ final class TextBlock extends AbstractElement
     }
 
     /**
-     * The text to display. A subset of Markdown is supported (bold, italics,
-     * bullet lists, ordered lists, inline hyperlinks). In addition, TextBlock
-     * supports in-string date/time formatting.
+     * The text to display. A subset of markdown is supported.
      */
     public function text(string $text): self
     {
@@ -43,7 +41,7 @@ final class TextBlock extends AbstractElement
 
     /**
      * Defines an expression whose evaluated value will be used to update the
-     * `text` property of the element at runtime.
+     * `text` property of the TextBlock at runtime.
      */
     public function textDynamic(string $expression): self
     {
@@ -51,8 +49,8 @@ final class TextBlock extends AbstractElement
     }
 
     /**
-     * Controls size of text.
-     * Valid values: "small", "default", "medium", "large", "extraLarge".
+     * The size of the text.
+     * Valid values: "Small", "Default", "Medium", "Large", "ExtraLarge".
      */
     public function size(TextSize $size): self
     {
@@ -60,8 +58,8 @@ final class TextBlock extends AbstractElement
     }
 
     /**
-     * Controls the weight of TextBlock elements.
-     * Valid values: "default", "lighter", "bolder".
+     * The weight of the text.
+     * Valid values: "Lighter", "Default", "Bolder".
      */
     public function weight(TextWeight $weight): self
     {
@@ -69,8 +67,8 @@ final class TextBlock extends AbstractElement
     }
 
     /**
-     * Controls the color of TextBlock elements.
-     * Valid values: "default", "dark", "light", "accent", "good", "warning", "attention".
+     * The color of the text.
+     * Valid values: "Default", "Dark", "Light", "Accent", "Good", "Warning", "Attention".
      */
     public function color(Colors $color): self
     {
@@ -78,8 +76,8 @@ final class TextBlock extends AbstractElement
     }
 
     /**
-     * Type of font to use for rendering.
-     * Valid values: "default", "monospace".
+     * The type of font to use for rendering.
+     * Valid values: "Default", "Monospace".
      */
     public function fontType(FontType $fontType): self
     {
@@ -87,7 +85,7 @@ final class TextBlock extends AbstractElement
     }
 
     /**
-     * If true, displays text slightly toned down to appear less prominent.
+     * Controls whether the text should be rendered using a subtler variant of the select color.
      */
     public function isSubtle(bool $subtle = true): self
     {
@@ -95,7 +93,7 @@ final class TextBlock extends AbstractElement
     }
 
     /**
-     * Specifies the maximum number of lines to display.
+     * The maximum number of lines to display.
      */
     public function maxLines(int $maxLines): self
     {
@@ -103,7 +101,7 @@ final class TextBlock extends AbstractElement
     }
 
     /**
-     * If true, allow text to wrap. Otherwise, text is clipped.
+     * Controls if the text should wrap.
      */
     public function wrap(bool $wrap = true): self
     {
@@ -111,8 +109,8 @@ final class TextBlock extends AbstractElement
     }
 
     /**
-     * The style of this TextBlock.
-     * Valid values: "default", "heading".
+     * The style of the text.
+     * Valid values: "default", "columnHeader", "heading".
      */
     public function style(TextBlockStyle $style): self
     {
@@ -120,9 +118,7 @@ final class TextBlock extends AbstractElement
     }
 
     /**
-     * A string identifier representing the input element that this text block provides
-     * a label for. When a screen reader focuses on the input element, it announces this
-     * text block as the input's label.
+     * The Id of the input the TextBlock should act as the label of.
      */
     public function labelFor(string $inputId): self
     {

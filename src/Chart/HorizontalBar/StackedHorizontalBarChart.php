@@ -13,7 +13,7 @@ use AdaptiveCards\Chart\Data\ChartSeries;
 final class StackedHorizontalBarChart extends AbstractChart
 {
     /**
-     * @param iterable<ChartSeries|array<string, mixed>> $data
+     * @param iterable<ChartSeries> $data
      */
     public function __construct(
         string $title,
@@ -29,7 +29,7 @@ final class StackedHorizontalBarChart extends AbstractChart
     }
 
     /**
-     * @param iterable<ChartSeries|array<string, mixed>> $data
+     * @param iterable<ChartSeries> $data
      */
     public static function make(
         string $title,
@@ -41,26 +41,35 @@ final class StackedHorizontalBarChart extends AbstractChart
 
     /**
      * Add a series of data points.
-     *
-     * @param ChartSeries|array<string, mixed> $series
      */
-    public function addSeries(ChartSeries|array $series): self
+    public function addSeries(ChartSeries $series): self
     {
         return $this->push('data', $series);
     }
 
     /**
-     * The series of data points in the stacked horizontal bar chart.
+     * Add multiple series of data points.
      *
-     * @param iterable<ChartSeries|array<string, mixed>> $data
+     * @param iterable<ChartSeries> $data
      */
-    public function data(iterable $data): self
+    public function addSeriesList(iterable $data): self
     {
         foreach ($data as $series) {
             $this->addSeries($series);
         }
 
         return $this;
+    }
+
+    /**
+     * The data to display in the chart.
+     * Valid values: "StackedHorizontalBarChartData".
+     *
+     * @param iterable<ChartSeries> $data
+     */
+    public function data(iterable $data): self
+    {
+        return $this->addSeriesList($data);
     }
 
     public function getType(): string

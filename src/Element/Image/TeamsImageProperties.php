@@ -24,7 +24,8 @@ final class TeamsImageProperties extends Node
     }
 
     /**
-     * Controls whether the image can be expanded by the user in Teams.
+     * Controls if the image is expandable in Teams. This property is equivalent to the
+     * `Image.allowExpand` property.
      */
     public function allowExpand(bool $allow = true): self
     {

@@ -7,8 +7,10 @@ namespace AdaptiveCards\Tests;
 use AdaptiveCards\Action\ExecuteAction;
 use AdaptiveCards\Action\OpenUrl\OpenUrlAction;
 use AdaptiveCards\Action\SubmitAction;
+use AdaptiveCards\Action\ToggleVisibility\TargetElement;
 use AdaptiveCards\Action\ToggleVisibility\ToggleVisibilityAction;
 use AdaptiveCards\AdaptiveCard;
+use AdaptiveCards\Chart\LineChart;
 use AdaptiveCards\Element\ActionSet;
 use AdaptiveCards\Element\Column\Column;
 use AdaptiveCards\Element\Column\ColumnSet;
@@ -36,6 +38,7 @@ use AdaptiveCards\Enum\TargetWidth;
 use AdaptiveCards\Enum\TextSize;
 use AdaptiveCards\Enum\TextWeight;
 use AdaptiveCards\Enum\VerticalAlignment;
+use AdaptiveCards\Enum\Width;
 use PHPUnit\Framework\TestCase;
 
 final class CardBuilderTest extends TestCase
@@ -43,25 +46,25 @@ final class CardBuilderTest extends TestCase
     public function testBuildOpportunityCard(): void
     {
         $toggleTargets = [
-            'showMore1',
-            'showLess1',
-            'showMore2',
-            'showLess2',
-            'chevronDown1',
-            'chevronUp1',
-            'chevronDown2',
-            'chevronUp2',
-            'moreText',
+            TargetElement::make('showMore1'),
+            TargetElement::make('showLess1'),
+            TargetElement::make('showMore2'),
+            TargetElement::make('showLess2'),
+            TargetElement::make('chevronDown1'),
+            TargetElement::make('chevronUp1'),
+            TargetElement::make('chevronDown2'),
+            TargetElement::make('chevronUp2'),
+            TargetElement::make('moreText'),
         ];
+        $toggleTargetsExpected = array_map(static fn (TargetElement $t): array => $t->toArray(), $toggleTargets);
 
         $createToggleAction = static fn (): ToggleVisibilityAction =>
             ToggleVisibilityAction::make()->targetElements($toggleTargets);
 
         $card = AdaptiveCard::make('1.6')
             ->schema('https://adaptivecards.io/schemas/adaptive-card.json')
-            // Element 1: Header ColumnSet
             ->addColumnSet(function (ColumnSet $cs): void {
-                $cs->column('stretch', function (Column $c): void {
+                $cs->column(Width::Stretch, function (Column $c): void {
                     $c->verticalContentAlignment(VerticalAlignment::Center)
                         ->addTextBlock('Fourth Coffee Distillery Equipment ', function (TextBlock $t): void {
                             $t->size(TextSize::Large)
@@ -69,7 +72,7 @@ final class CardBuilderTest extends TestCase
                                 ->wrap(true);
                         });
                 })
-                ->column('auto', function (Column $c): void {
+                ->column(Width::Auto, function (Column $c): void {
                     $c->targetWidth(TargetWidth::AtLeastStandard)
                         ->spacing(Spacing::Small)
                         ->addTextBlock('Status', function (TextBlock $t): void {
@@ -86,7 +89,7 @@ final class CardBuilderTest extends TestCase
                                 ->wrap(true);
                         });
                 })
-                ->column('auto', function (Column $c): void {
+                ->column(Width::Auto, function (Column $c): void {
                     $c->targetWidth(TargetWidth::AtLeastStandard)
                         ->separator(true)
                         ->addTextBlock('Opportunity Score', function (TextBlock $t): void {
@@ -104,20 +107,17 @@ final class CardBuilderTest extends TestCase
                         });
                 });
             })
-            // Element 2: Opportunity
             ->addTextBlock('Opportunity', function (TextBlock $t): void {
                 $t->wrap(true)
                     ->isSubtle(true)
                     ->spacing(Spacing::None);
             })
-            // Element 3: In Progress (AtMost:Narrow)
             ->addTextBlock('In Progress', function (TextBlock $t): void {
                 $t->targetWidth(TargetWidth::AtMostNarrow)
                     ->color(Colors::Good)
                     ->weight(TextWeight::Bolder)
                     ->wrap(true);
             })
-            // Element 4: 91 - Grade A (AtMost:Narrow)
             ->addTextBlock('91 - Grade A', function (TextBlock $t): void {
                 $t->targetWidth(TargetWidth::AtMostNarrow)
                     ->weight(TextWeight::Bolder)
@@ -125,7 +125,6 @@ final class CardBuilderTest extends TestCase
                     ->color(Colors::Default)
                     ->wrap(true);
             })
-            // Element 5: Table
             ->addTable(function (Table $table): void {
                 $table->targetWidth(TargetWidth::Narrow)
                     ->addColumn(TableColumnDefinition::make(2))
@@ -168,13 +167,13 @@ final class CardBuilderTest extends TestCase
                             )
                             ->addCell(
                                 TableCell::make()->addColumnSet(function (ColumnSet $cs): void {
-                                    $cs->column('auto', function (Column $c): void {
+                                    $cs->column(Width::Auto, function (Column $c): void {
                                         $c->verticalContentAlignment(VerticalAlignment::Center)
                                             ->addImage('https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Card-Samples/main/samples/account/assets/avatar_small.png', function (Image $img): void {
                                                 $img->width('20px');
                                             });
                                     })
-                                    ->column('stretch', function (Column $c): void {
+                                    ->column(Width::Stretch, function (Column $c): void {
                                         $c->spacing(Spacing::Small)
                                             ->verticalContentAlignment(VerticalAlignment::Center)
                                             ->addTextBlock('Reta Taylor', function (TextBlock $t): void {
@@ -189,7 +188,6 @@ final class CardBuilderTest extends TestCase
                     ->spacing(Spacing::Large)
                     ->separator(true);
             })
-            // Element 6: Container (VeryNarrow)
             ->addContainer(function (Container $cont): void {
                 $cont->separator(true)
                     ->targetWidth(TargetWidth::VeryNarrow)
@@ -210,13 +208,13 @@ final class CardBuilderTest extends TestCase
                     })
                     ->addColumnSet(function (ColumnSet $cs): void {
                         $cs->spacing(Spacing::None)
-                            ->column('auto', function (Column $c): void {
+                            ->column(Width::Auto, function (Column $c): void {
                                 $c->verticalContentAlignment(VerticalAlignment::Center)
                                     ->addImage('https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Card-Samples/main/samples/account/assets/avatar_small.png', function (Image $img): void {
                                         $img->width('20px');
                                     });
                             })
-                            ->column('stretch', function (Column $c): void {
+                            ->column(Width::Stretch, function (Column $c): void {
                                 $c->spacing(Spacing::Small)
                                     ->verticalContentAlignment(VerticalAlignment::Center)
                                     ->addTextBlock('Reta Taylor', function (TextBlock $t): void {
@@ -225,7 +223,6 @@ final class CardBuilderTest extends TestCase
                             });
                     });
             })
-            // Element 7: ColumnSet (AtLeast:Standard)
             ->addColumnSet(function (ColumnSet $cs): void {
                 $cs->targetWidth(TargetWidth::AtLeastStandard)
                     ->spacing(Spacing::Medium)
@@ -251,13 +248,13 @@ final class CardBuilderTest extends TestCase
                         })
                         ->addColumnSet(function (ColumnSet $innerCs): void {
                             $innerCs->spacing(Spacing::None)
-                                ->column('auto', function (Column $col): void {
+                                ->column(Width::Auto, function (Column $col): void {
                                     $col->verticalContentAlignment(VerticalAlignment::Center)
                                         ->addImage('https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Card-Samples/main/samples/account/assets/avatar_small.png', function (Image $img): void {
                                             $img->width('20px');
                                         });
                                 })
-                                ->column('stretch', function (Column $col): void {
+                                ->column(Width::Stretch, function (Column $col): void {
                                     $col->spacing(Spacing::Small)
                                         ->verticalContentAlignment(VerticalAlignment::Center)
                                         ->addTextBlock('Reta Taylor', function (TextBlock $t): void {
@@ -266,20 +263,19 @@ final class CardBuilderTest extends TestCase
                                 });
                         });
                     })
-                    ->column('stretch');
+                    ->column(Width::Stretch);
             })
-            // Element 8: Mona Kane contact ColumnSet
             ->addColumnSet(function (ColumnSet $cs) use ($createToggleAction): void {
                 $cs->separator(true)
                     ->spacing(Spacing::ExtraLarge)
-                    ->column('auto', function (Column $c): void {
+                    ->column(Width::Auto, function (Column $c): void {
                         $c->verticalContentAlignment(VerticalAlignment::Center)
                             ->addImage('https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Card-Samples/main/samples/account/assets/avatar_large.png', function (Image $img): void {
                                 $img->style(ImageStyle::Person)
                                     ->width('35px');
                             });
                     })
-                    ->column('stretch', function (Column $c): void {
+                    ->column(Width::Stretch, function (Column $c): void {
                         $c->verticalContentAlignment(VerticalAlignment::Center)
                             ->spacing(Spacing::Small)
                             ->addTextBlock('Mona Kane', function (TextBlock $t): void {
@@ -292,10 +288,10 @@ final class CardBuilderTest extends TestCase
                                     ->isSubtle(true);
                             });
                     })
-                    ->column('auto', function (Column $c) use ($createToggleAction): void {
+                    ->column(Width::Auto, function (Column $c) use ($createToggleAction): void {
                         $c->verticalContentAlignment(VerticalAlignment::Center)
                             ->addColumnSet(function (ColumnSet $subCs) use ($createToggleAction): void {
-                                $subCs->column('auto', function (Column $col) use ($createToggleAction): void {
+                                $subCs->column(Width::Auto, function (Column $col) use ($createToggleAction): void {
                                     $col->targetWidth(TargetWidth::AtLeastNarrow)
                                         ->verticalContentAlignment(VerticalAlignment::Center)
                                         ->rtl(false)
@@ -313,7 +309,7 @@ final class CardBuilderTest extends TestCase
                                                 });
                                         });
                                 })
-                                ->column('auto', function (Column $col) use ($createToggleAction): void {
+                                ->column(Width::Auto, function (Column $col) use ($createToggleAction): void {
                                     $col->targetWidth(TargetWidth::AtLeastNarrow)
                                         ->verticalContentAlignment(VerticalAlignment::Bottom)
                                         ->horizontalAlignment(HorizontalAlignment::Center)
@@ -335,17 +331,16 @@ final class CardBuilderTest extends TestCase
                             });
                     });
             })
-            // Element 9: ColumnSet (VeryNarrow)
             ->addColumnSet(function (ColumnSet $cs) use ($createToggleAction): void {
                 $cs->targetWidth(TargetWidth::VeryNarrow)
                     ->spacing(Spacing::Small)
-                    ->column('auto', function (Column $c) use ($createToggleAction): void {
+                    ->column(Width::Auto, function (Column $c) use ($createToggleAction): void {
                     $c->verticalContentAlignment(VerticalAlignment::Center)
                         ->addRichTextBlock(function (RichTextBlock $rtb) use ($createToggleAction): void {
                             $rtb->id('showMore2')
                                 ->addTextRun('See more', function (TextRun $tr) use ($createToggleAction): void {
                                     $tr->selectAction($createToggleAction());
-                                });
+                                  });
                         })
                         ->addRichTextBlock(function (RichTextBlock $rtb) use ($createToggleAction): void {
                             $rtb->id('showLess2')
@@ -355,7 +350,7 @@ final class CardBuilderTest extends TestCase
                                 });
                         });
                 })
-                ->column('auto', function (Column $c) use ($createToggleAction): void {
+                ->column(Width::Auto, function (Column $c) use ($createToggleAction): void {
                     $c->verticalContentAlignment(VerticalAlignment::Bottom)
                         ->horizontalAlignment(HorizontalAlignment::Center)
                         ->spacing(Spacing::None)
@@ -374,12 +369,10 @@ final class CardBuilderTest extends TestCase
                         });
                 });
             })
-            // Element 10: moreText TextBlock
             ->addTextBlock('More Info', function (TextBlock $t): void {
                 $t->id('moreText')
                     ->isVisible(false);
             })
-            // Element 11: ActionSet
             ->addActionSet(function (ActionSet $as): void {
                 $as->separator(true)
                     ->spacing(Spacing::ExtraLarge)
@@ -822,7 +815,7 @@ final class CardBuilderTest extends TestCase
                                                             'text' => 'See more',
                                                             'selectAction' => [
                                                                 'type' => 'Action.ToggleVisibility',
-                                                                'targetElements' => $toggleTargets,
+                                                                'targetElements' => $toggleTargetsExpected,
                                                             ],
                                                         ],
                                                     ],
@@ -837,7 +830,7 @@ final class CardBuilderTest extends TestCase
                                                             'text' => 'See less',
                                                             'selectAction' => [
                                                                 'type' => 'Action.ToggleVisibility',
-                                                                'targetElements' => $toggleTargets,
+                                                                'targetElements' => $toggleTargetsExpected,
                                                             ],
                                                         ],
                                                     ],
@@ -859,7 +852,7 @@ final class CardBuilderTest extends TestCase
                                                     'color' => 'Accent',
                                                     'selectAction' => [
                                                         'type' => 'Action.ToggleVisibility',
-                                                        'targetElements' => $toggleTargets,
+                                                        'targetElements' => $toggleTargetsExpected,
                                                     ],
                                                 ],
                                                 [
@@ -871,7 +864,7 @@ final class CardBuilderTest extends TestCase
                                                     'color' => 'Accent',
                                                     'selectAction' => [
                                                         'type' => 'Action.ToggleVisibility',
-                                                        'targetElements' => $toggleTargets,
+                                                        'targetElements' => $toggleTargetsExpected,
                                                     ],
                                                 ],
                                             ],
@@ -904,7 +897,7 @@ final class CardBuilderTest extends TestCase
                                             'text' => 'See more',
                                             'selectAction' => [
                                                 'type' => 'Action.ToggleVisibility',
-                                                'targetElements' => $toggleTargets,
+                                                'targetElements' => $toggleTargetsExpected,
                                             ],
                                         ],
                                     ],
@@ -919,7 +912,7 @@ final class CardBuilderTest extends TestCase
                                             'text' => 'See less',
                                             'selectAction' => [
                                                 'type' => 'Action.ToggleVisibility',
-                                                'targetElements' => $toggleTargets,
+                                                'targetElements' => $toggleTargetsExpected,
                                             ],
                                         ],
                                     ],
@@ -939,7 +932,7 @@ final class CardBuilderTest extends TestCase
                                     'color' => 'Accent',
                                     'selectAction' => [
                                         'type' => 'Action.ToggleVisibility',
-                                        'targetElements' => $toggleTargets,
+                                        'targetElements' => $toggleTargetsExpected,
                                     ],
                                 ],
                                 [
@@ -951,7 +944,7 @@ final class CardBuilderTest extends TestCase
                                     'color' => 'Accent',
                                     'selectAction' => [
                                         'type' => 'Action.ToggleVisibility',
-                                        'targetElements' => $toggleTargets,
+                                        'targetElements' => $toggleTargetsExpected,
                                     ],
                                 ],
                             ],
@@ -1000,16 +993,16 @@ final class CardBuilderTest extends TestCase
                     ->weight(TextWeight::Bolder);
             })
             ->addColumnSet(function (ColumnSet $cs): void {
-                $cs->column('auto', function (Column $c): void {
+                $cs->column(Width::Auto, function (Column $c): void {
                     $c->verticalContentAlignment(VerticalAlignment::Center)
                         ->addImage('https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Card-Samples/main/samples/author-highlight-video/assets/avatar.png', function (Image $img): void {
                             $img->width('24px')
-                                ->pixelHeight('24px')
+                                ->height('24px')
                                 ->style(ImageStyle::Person)
                                 ->altText('Avatar of Kayo Miwa');
                         });
                 })
-                ->column('stretch', function (Column $c): void {
+                ->column(Width::Stretch, function (Column $c): void {
                     $c->spacing(Spacing::Small)
                         ->verticalContentAlignment(VerticalAlignment::Center)
                         ->addTextBlock('Kayo Miwa', function (TextBlock $t): void {
@@ -1122,15 +1115,16 @@ final class CardBuilderTest extends TestCase
     public function testBuildCommunicationHolidayDealsCard(): void
     {
         $toggleTargets = [
-            'likeFilled',
-            'likeOutline',
-            'commentLike',
-            'commentUnlike',
-            'likeFilled2',
-            'likeOutline2',
-            'commentLike2',
-            'commentUnlike2',
+            TargetElement::make('likeFilled'),
+            TargetElement::make('likeOutline'),
+            TargetElement::make('commentLike'),
+            TargetElement::make('commentUnlike'),
+            TargetElement::make('likeFilled2'),
+            TargetElement::make('likeOutline2'),
+            TargetElement::make('commentLike2'),
+            TargetElement::make('commentUnlike2'),
         ];
+        $toggleTargetsExpected = array_map(static fn (TargetElement $t): array => $t->toArray(), $toggleTargets);
 
         $avatarUrl = 'https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Card-Samples/main/samples/communication/assets/avatar.png';
         $heroImageUrl = 'https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Card-Samples/main/samples/communication/assets/hero_image.png';
@@ -1138,17 +1132,16 @@ final class CardBuilderTest extends TestCase
         $card = AdaptiveCard::make('1.6')
             ->schema('https://adaptivecards.io/schemas/adaptive-card.json')
             ->speak('Hawaii holiday escape deals start tonight')
-            // 1. ColumnSet (Narrow)
             ->addColumnSet(function (ColumnSet $cs): void {
                 $cs->targetWidth(TargetWidth::Narrow)
-                    ->column('auto', function (Column $c): void {
+                    ->column(Width::Auto, function (Column $c): void {
                         $c->addIcon('Megaphone', function (Icon $i): void {
                             $i->style(IconStyle::Filled)
                                 ->size(IconSize::XxSmall)
                                 ->color(Colors::Accent);
                         });
                     })
-                    ->column('stretch', function (Column $c): void {
+                    ->column(Width::Stretch, function (Column $c): void {
                         $c->spacing(Spacing::Small)
                             ->addTextBlock('Posted in Employee Deals', function (TextBlock $t): void {
                                 $t->isSubtle(true)
@@ -1157,16 +1150,15 @@ final class CardBuilderTest extends TestCase
                             });
                     });
             })
-            // 2. ColumnSet (Narrow)
             ->addColumnSet(function (ColumnSet $cs) use ($avatarUrl): void {
                 $cs->targetWidth(TargetWidth::Narrow)
-                    ->column('auto', function (Column $c) use ($avatarUrl): void {
+                    ->column(Width::Auto, function (Column $c) use ($avatarUrl): void {
                         $c->addImage($avatarUrl, function (Image $img): void {
                             $img->height(Height::Auto)
                                 ->altText('Avatar of Laurence Gibertson');
                         });
                     })
-                    ->column('stretch', function (Column $c): void {
+                    ->column(Width::Stretch, function (Column $c): void {
                         $c->addTextBlock('Laurence Gibertson', function (TextBlock $t): void {
                             $t->weight(TextWeight::Bolder)
                                 ->wrap(true);
@@ -1179,21 +1171,19 @@ final class CardBuilderTest extends TestCase
                         });
                     });
             })
-            // 3. ColumnSet (AtLeast:Narrow)
             ->addColumnSet(function (ColumnSet $cs) use ($avatarUrl, $heroImageUrl, $toggleTargets): void {
                 $cs->targetWidth(TargetWidth::AtLeastNarrow)
-                    ->column('stretch', function (Column $c) use ($avatarUrl): void {
-                        // Nested ColumnSet: Posted in Employee Deals
+                    ->column(Width::Stretch, function (Column $c) use ($avatarUrl): void {
                         $c->addColumnSet(function (ColumnSet $innerCs): void {
                             $innerCs->targetWidth(TargetWidth::AtLeastStandard)
-                                ->column('auto', function (Column $col): void {
+                                ->column(Width::Auto, function (Column $col): void {
                                     $col->addIcon('Megaphone', function (Icon $i): void {
                                         $i->style(IconStyle::Filled)
                                             ->size(IconSize::XxSmall)
                                             ->color(Colors::Accent);
                                     });
                                 })
-                                ->column('stretch', function (Column $col): void {
+                                ->column(Width::Stretch, function (Column $col): void {
                                     $col->spacing(Spacing::Small)
                                         ->addTextBlock('Posted in Employee Deals', function (TextBlock $t): void {
                                             $t->isSubtle(true)
@@ -1202,16 +1192,15 @@ final class CardBuilderTest extends TestCase
                                         });
                                 });
                         })
-                        // Nested ColumnSet: Author & Date
                         ->addColumnSet(function (ColumnSet $innerCs) use ($avatarUrl): void {
                             $innerCs->targetWidth(TargetWidth::AtLeastStandard)
-                                ->column('auto', function (Column $col) use ($avatarUrl): void {
+                                ->column(Width::Auto, function (Column $col) use ($avatarUrl): void {
                                     $col->addImage($avatarUrl, function (Image $img): void {
                                         $img->height(Height::Auto)
                                             ->altText('Avatar of Laurence Gibertson');
                                     });
                                 })
-                                ->column('stretch', function (Column $col): void {
+                                ->column(Width::Stretch, function (Column $col): void {
                                     $col->addTextBlock('Laurence Gibertson', function (TextBlock $t): void {
                                         $t->weight(TextWeight::Bolder)
                                             ->wrap(true);
@@ -1235,11 +1224,10 @@ final class CardBuilderTest extends TestCase
                                 ->spacing(Spacing::Small)
                                 ->maxLines(3);
                         })
-                        // Nested ColumnSet: Likes
                         ->addColumnSet(function (ColumnSet $innerCs): void {
                             $innerCs->height(Height::Stretch)
                                 ->spacing(Spacing::ExtraLarge)
-                                ->column('auto', function (Column $col): void {
+                                ->column(Width::Auto, function (Column $col): void {
                                     $col->verticalContentAlignment(VerticalAlignment::Bottom)
                                         ->spacing(Spacing::None)
                                         ->addIcon('ThumbLike', function (Icon $i): void {
@@ -1255,7 +1243,7 @@ final class CardBuilderTest extends TestCase
                                                 ->isVisible(false);
                                         });
                                 })
-                                ->column('stretch', function (Column $col): void {
+                                ->column(Width::Stretch, function (Column $col): void {
                                     $col->verticalContentAlignment(VerticalAlignment::Bottom)
                                         ->spacing(Spacing::Small)
                                         ->addTextBlock('26 people like this', function (TextBlock $t): void {
@@ -1272,7 +1260,7 @@ final class CardBuilderTest extends TestCase
                                 });
                         });
                     })
-                    ->column('auto', function (Column $c) use ($heroImageUrl, $toggleTargets): void {
+                    ->column(Width::Auto, function (Column $c) use ($heroImageUrl, $toggleTargets): void {
                         $c->addImage($heroImageUrl, function (Image $img): void {
                             $img->targetWidth(TargetWidth::AtLeastStandard)
                                 ->width('150px')
@@ -1299,18 +1287,17 @@ final class CardBuilderTest extends TestCase
                         });
                     });
             })
-            // 4. Container (VeryNarrow)
             ->addContainer(function (Container $container) use ($avatarUrl, $heroImageUrl): void {
                 $container->targetWidth(TargetWidth::VeryNarrow)
                     ->addColumnSet(function (ColumnSet $cs): void {
-                        $cs->column('auto', function (Column $col): void {
+                        $cs->column(Width::Auto, function (Column $col): void {
                             $col->addIcon('Megaphone', function (Icon $i): void {
                                 $i->style(IconStyle::Filled)
                                     ->size(IconSize::XxSmall)
                                     ->color(Colors::Accent);
                             });
                         })
-                        ->column('stretch', function (Column $col): void {
+                        ->column(Width::Stretch, function (Column $col): void {
                             $col->spacing(Spacing::Small)
                                 ->addTextBlock('Posted in Employee Deals', function (TextBlock $t): void {
                                     $t->isSubtle(true)
@@ -1320,13 +1307,13 @@ final class CardBuilderTest extends TestCase
                         });
                     })
                     ->addColumnSet(function (ColumnSet $cs) use ($avatarUrl): void {
-                        $cs->column('auto', function (Column $col) use ($avatarUrl): void {
+                        $cs->column(Width::Auto, function (Column $col) use ($avatarUrl): void {
                             $col->addImage($avatarUrl, function (Image $img): void {
                                 $img->height(Height::Auto)
                                     ->altText('Avatar of Laurence Gibertson');
                             });
                         })
-                        ->column('stretch', function (Column $col): void {
+                        ->column(Width::Stretch, function (Column $col): void {
                             $col->addTextBlock('Laurence Gibertson', function (TextBlock $t): void {
                                 $t->weight(TextWeight::Bolder)
                                     ->wrap(true);
@@ -1346,14 +1333,14 @@ final class CardBuilderTest extends TestCase
                             ->spacing(Spacing::Small);
                     })
                     ->addColumnSet(function (ColumnSet $cs) use ($heroImageUrl): void {
-                        $cs->column('stretch', function (Column $col): void {
+                        $cs->column(Width::Stretch, function (Column $col): void {
                             $col->addTextBlock('For a limited time, you can book a four night stay at luxury resort on the island of Maui for only $999 per person.', function (TextBlock $t): void {
                                 $t->maxLines(4)
                                     ->wrap(true)
                                     ->spacing(Spacing::Small);
                             });
                         })
-                        ->column('auto', function (Column $col) use ($heroImageUrl): void {
+                        ->column(Width::Auto, function (Column $col) use ($heroImageUrl): void {
                             $col->addImage($heroImageUrl, function (Image $img): void {
                                 $img->width('60px')
                                     ->style(ImageStyle::RoundedCorners);
@@ -1362,7 +1349,7 @@ final class CardBuilderTest extends TestCase
                     })
                     ->addColumnSet(function (ColumnSet $cs): void {
                         $cs->spacing(Spacing::ExtraLarge)
-                            ->column('auto', function (Column $col): void {
+                            ->column(Width::Auto, function (Column $col): void {
                                 $col->verticalContentAlignment(VerticalAlignment::Center)
                                     ->spacing(Spacing::None)
                                     ->addIcon('ThumbLike', function (Icon $i): void {
@@ -1378,7 +1365,7 @@ final class CardBuilderTest extends TestCase
                                             ->isVisible(false);
                                     });
                             })
-                            ->column('stretch', function (Column $col): void {
+                            ->column(Width::Stretch, function (Column $col): void {
                                 $col->verticalContentAlignment(VerticalAlignment::Center)
                                     ->spacing(Spacing::Small)
                                     ->addTextBlock('26 people like this', function (TextBlock $t): void {
@@ -1395,7 +1382,6 @@ final class CardBuilderTest extends TestCase
                             });
                     });
             })
-            // 5. ActionSet (AtMost:Narrow)
             ->addActionSet(function (ActionSet $as) use ($toggleTargets): void {
                 $as->targetWidth(TargetWidth::AtMostNarrow)
                     ->spacing(Spacing::Medium)
@@ -1664,16 +1650,7 @@ final class CardBuilderTest extends TestCase
                                         [
                                             'type' => 'Action.ToggleVisibility',
                                             'title' => 'Like',
-                                            'targetElements' => [
-                                                'likeFilled',
-                                                'likeOutline',
-                                                'commentLike',
-                                                'commentUnlike',
-                                                'likeFilled2',
-                                                'likeOutline2',
-                                                'commentLike2',
-                                                'commentUnlike2',
-                                            ],
+                                            'targetElements' => $toggleTargetsExpected,
                                         ],
                                         [
                                             'type' => 'Action.Submit',
@@ -1859,16 +1836,7 @@ final class CardBuilderTest extends TestCase
                         [
                             'type' => 'Action.ToggleVisibility',
                             'title' => 'Like',
-                            'targetElements' => [
-                                'likeFilled',
-                                'likeOutline',
-                                'commentLike',
-                                'commentUnlike',
-                                'likeFilled2',
-                                'likeOutline2',
-                                'commentLike2',
-                                'commentUnlike2',
-                            ],
+                            'targetElements' => $toggleTargetsExpected,
                         ],
                         [
                             'type' => 'Action.Submit',
@@ -1885,29 +1853,27 @@ final class CardBuilderTest extends TestCase
     public function testBuildCourseVideoCard(): void
     {
         $toggleTargets = [
-            'truncatedText',
-            'fullText',
-            'showMore',
-            'showLess',
+            TargetElement::make('truncatedText'),
+            TargetElement::make('fullText'),
+            TargetElement::make('showMore'),
+            TargetElement::make('showLess'),
         ];
+        $toggleTargetsExpected = array_map(static fn (TargetElement $t): array => $t->toArray(), $toggleTargets);
 
         $card = AdaptiveCard::make('1.6')
             ->schema('https://adaptivecards.io/schemas/adaptive-card.json')
             ->speak('Intro to graphic design, concepts video')
-            // 1. Image with selectAction
             ->addImage('https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Card-Samples/main/samples/course-video/assets/video_image.png', function (Image $img): void {
                 $img->selectAction(
                     OpenUrlAction::make('https://adaptivecards.io/')
                         ->tooltip('Intro to Graphic Design: Concepts Video')
                 )->style(ImageStyle::RoundedCorners);
             })
-            // 2. TextBlock Header
             ->addTextBlock('Intro to Graphic Design: Concepts', function (TextBlock $t): void {
                 $t->wrap(true)
                     ->size(TextSize::Large)
                     ->weight(TextWeight::Bolder);
             })
-            // 3. Rating
             ->addRating(4, 5, function (Rating $r): void {
                 $r->count(1160)
                     ->color(RatingColor::Marigold)
@@ -1917,25 +1883,23 @@ final class CardBuilderTest extends TestCase
                     )
                     ->spacing(Spacing::None);
             })
-            // 4. TextBlock
             ->addTextBlock('Course · 52m · Beginner', function (TextBlock $t): void {
                 $t->wrap(true)
                     ->isSubtle(true)
                     ->spacing(Spacing::Small);
             })
-            // 5. ColumnSet (Logo + Authors)
             ->addColumnSet(function (ColumnSet $cs): void {
                 $cs->spacing(Spacing::None)
-                    ->column('auto', function (Column $c): void {
+                    ->column(Width::Auto, function (Column $c): void {
                         $c->horizontalAlignment(HorizontalAlignment::Center)
                             ->verticalContentAlignment(VerticalAlignment::Center)
                             ->addImage('https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Card-Samples/main/samples/course-video/assets/logo_image.png', function (Image $img): void {
                                 $img->width('16px')
-                                    ->pixelHeight('16px')
+                                    ->height('16px')
                                     ->altText('Logo');
                             });
                     })
-                    ->column('auto', function (Column $c): void {
+                    ->column(Width::Auto, function (Column $c): void {
                         $c->spacing(Spacing::Small)
                             ->verticalContentAlignment(VerticalAlignment::Center)
                             ->addTextBlock('Sketchpad Scholars', function (TextBlock $t): void {
@@ -1943,13 +1907,13 @@ final class CardBuilderTest extends TestCase
                                 ->weight(TextWeight::Bolder);
                         });
                     })
-                    ->column('auto', function (Column $c): void {
+                    ->column(Width::Auto, function (Column $c): void {
                         $c->targetWidth(TargetWidth::AtLeastStandard)
                             ->spacing(Spacing::Small)
                             ->verticalContentAlignment(VerticalAlignment::Center)
                             ->addTextBlock('·');
                     })
-                    ->column('auto', function (Column $c): void {
+                    ->column(Width::Auto, function (Column $c): void {
                         $c->targetWidth(TargetWidth::AtLeastStandard)
                             ->spacing(Spacing::Small)
                             ->verticalContentAlignment(VerticalAlignment::Center)
@@ -1958,20 +1922,17 @@ final class CardBuilderTest extends TestCase
                         });
                     });
             })
-            // 6. TextBlock (truncatedText)
             ->addTextBlock('This course is designed to equip you with an understanding of the key principles and tools necessary for creating compelling designs. You\'ll gain practical experience with creative software and learn...', function (TextBlock $t): void {
                 $t->targetWidth(TargetWidth::AtLeastNarrow)
                     ->wrap(true)
                     ->id('truncatedText');
             })
-            // 7. TextBlock (fullText)
             ->addTextBlock('This course is designed to equip you with an understanding of the key principles and tools necessary for creating compelling designs. You\'ll gain practical experience with creative software and learn about design principles through hands-on projects that will help build your portfolio. Enroll now and start your journey to mastering the art of graphic design.', function (TextBlock $t): void {
                 $t->targetWidth(TargetWidth::AtLeastNarrow)
                     ->wrap(true)
                     ->isVisible(false)
                     ->id('fullText');
             })
-            // 8. RichTextBlock (showMore)
             ->addRichTextBlock(function (RichTextBlock $rtb) use ($toggleTargets): void {
                 $rtb->id('showMore')
                     ->targetWidth(TargetWidth::AtLeastNarrow)
@@ -1982,7 +1943,6 @@ final class CardBuilderTest extends TestCase
                         );
                     });
             })
-            // 9. RichTextBlock (showLess)
             ->addRichTextBlock(function (RichTextBlock $rtb) use ($toggleTargets): void {
                 $rtb->id('showLess')
                     ->targetWidth(TargetWidth::AtLeastNarrow)
@@ -1994,14 +1954,12 @@ final class CardBuilderTest extends TestCase
                         );
                     });
             })
-            // 10. ActionSet (AtLeast:Narrow)
             ->addActionSet(function (ActionSet $as): void {
                 $as->spacing(Spacing::Large)
                     ->targetWidth(TargetWidth::AtLeastNarrow)
                     ->addAction(OpenUrlAction::make('https://adaptivecards.io/', 'Open'))
                     ->addAction(ExecuteAction::make('Bookmark')->iconUrl('icon:Bookmark'));
             })
-            // 11. ActionSet (VeryNarrow)
             ->addActionSet(function (ActionSet $as): void {
                 $as->spacing(Spacing::Large)
                     ->targetWidth(TargetWidth::VeryNarrow)
@@ -2140,12 +2098,7 @@ final class CardBuilderTest extends TestCase
                             'text' => 'Show more',
                             'selectAction' => [
                                 'type' => 'Action.ToggleVisibility',
-                                'targetElements' => [
-                                    'truncatedText',
-                                    'fullText',
-                                    'showMore',
-                                    'showLess',
-                                ],
+                                'targetElements' => $toggleTargetsExpected,
                             ],
                         ],
                     ],
@@ -2162,12 +2115,7 @@ final class CardBuilderTest extends TestCase
                             'text' => 'Show less',
                             'selectAction' => [
                                 'type' => 'Action.ToggleVisibility',
-                                'targetElements' => [
-                                    'truncatedText',
-                                    'fullText',
-                                    'showMore',
-                                    'showLess',
-                                ],
+                                'targetElements' => $toggleTargetsExpected,
                             ],
                         ],
                     ],
@@ -2202,6 +2150,595 @@ final class CardBuilderTest extends TestCase
                         [
                             'type' => 'Action.Execute',
                             'iconUrl' => 'icon:Bookmark',
+                        ],
+                    ],
+                ],
+            ],
+        ];
+
+        self::assertEquals($expected, $card->toArray());
+    }
+
+    public function testBuildIssueCard(): void
+    {
+        $card = AdaptiveCard::make('1.6')
+            ->schema('https://adaptivecards.io/schemas/adaptive-card.json')
+            ->speak('Version 2.2 performance optimization')
+            ->addRichTextBlock(function (RichTextBlock $rtb): void {
+                $rtb->addTextRun('Android Scrum Project / SSP-98', function (TextRun $tr): void {
+                    $tr->size(TextSize::Small)
+                        ->selectAction(OpenUrlAction::make('https://adaptivecards.io'));
+                });
+            })
+            ->addColumnSet(function (ColumnSet $cs): void {
+                $cs->spacing(Spacing::Small)
+                    ->column(Width::Auto, function (Column $c): void {
+                        $c->addIcon('Branch', function (Icon $icon): void {
+                            $icon->color(Colors::Accent);
+                        });
+                    })
+                    ->column(Width::Stretch, function (Column $c): void {
+                        $c->verticalContentAlignment(VerticalAlignment::Center)
+                            ->spacing(Spacing::Small)
+                            ->addTextBlock('Version 2.2 Performance Optimization', function (TextBlock $t): void {
+                                $t->size(TextSize::Large)
+                                    ->weight(TextWeight::Bolder)
+                                    ->wrap(true);
+                            });
+                    });
+            })
+            ->addTable(function (Table $table): void {
+                $table->targetWidth(TargetWidth::AtLeastNarrow)
+                    ->addColumn(TableColumnDefinition::make(1))
+                    ->addColumn(TableColumnDefinition::make(2))
+                    ->addRow(
+                        TableRow::make()
+                            ->addCell(
+                                TableCell::make()
+                                    ->verticalContentAlignment(VerticalAlignment::Center)
+                                    ->addTextBlock('Status', function (TextBlock $t): void {
+                                        $t->wrap(true)
+                                            ->weight(TextWeight::Bolder);
+                                    })
+                            )
+                            ->addCell(
+                                TableCell::make()
+                                    ->verticalContentAlignment(VerticalAlignment::Center)
+                                    ->addTextBlock('Waiting for Review', function (TextBlock $t): void {
+                                        $t->wrap(true);
+                                    })
+                            )
+                    )
+                    ->addRow(
+                        TableRow::make()
+                            ->addCell(
+                                TableCell::make()
+                                    ->addTextBlock('Due Date', function (TextBlock $t): void {
+                                        $t->wrap(true)
+                                            ->weight(TextWeight::Bolder);
+                                    })
+                            )
+                            ->addCell(
+                                TableCell::make()
+                                    ->addTextBlock('May 21, 2023', function (TextBlock $t): void {
+                                        $t->wrap(true);
+                                    })
+                            )
+                    )
+                    ->addRow(
+                        TableRow::make()
+                            ->addCell(
+                                TableCell::make()
+                                    ->verticalContentAlignment(VerticalAlignment::Center)
+                                    ->addTextBlock('Priority', function (TextBlock $t): void {
+                                        $t->wrap(true)
+                                            ->weight(TextWeight::Bolder);
+                                    })
+                            )
+                            ->addCell(
+                                TableCell::make()
+                                    ->verticalContentAlignment(VerticalAlignment::Center)
+                                    ->addColumnSet(function (ColumnSet $cs): void {
+                                        $cs->spacing(Spacing::Small)
+                                            ->column(Width::Auto, function (Column $c): void {
+                                                $c->addIcon('Flag', function (Icon $icon): void {
+                                                    $icon->color(Colors::Attention)
+                                                        ->size(IconSize::XSmall)
+                                                        ->horizontalAlignment(HorizontalAlignment::Center);
+                                                });
+                                            })
+                                            ->column(Width::Stretch, function (Column $c): void {
+                                                $c->spacing(Spacing::Small)
+                                                    ->addTextBlock('Critical', function (TextBlock $t): void {
+                                                        $t->color(Colors::Attention)
+                                                            ->wrap(true)
+                                                            ->spacing(Spacing::Small);
+                                                    });
+                                            });
+                                    })
+                            )
+                    )
+                    ->addRow(
+                        TableRow::make()
+                            ->addCell(
+                                TableCell::make()
+                                    ->verticalContentAlignment(VerticalAlignment::Center)
+                                    ->addTextBlock('Assigned To', function (TextBlock $t): void {
+                                        $t->wrap(true)
+                                            ->weight(TextWeight::Bolder);
+                                    })
+                            )
+                            ->addCell(
+                                TableCell::make()
+                                    ->addColumnSet(function (ColumnSet $cs): void {
+                                        $cs->column(Width::Auto, function (Column $c): void {
+                                            $c->verticalContentAlignment(VerticalAlignment::Center)
+                                                ->horizontalAlignment(HorizontalAlignment::Center)
+                                                ->addImage('https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Card-Samples/main/samples/issue/assets/avatar.png', function (Image $img): void {
+                                                    $img->width('16px');
+                                                });
+                                        })
+                                        ->column(Width::Stretch, function (Column $c): void {
+                                            $c->spacing(Spacing::Small)
+                                                ->addTextBlock('Charlotte Waltson', function (TextBlock $t): void {
+                                                    $t->wrap(true);
+                                                });
+                                        });
+                                    })
+                            )
+                    )
+                    ->firstRowAsHeaders(false)
+                    ->showGridLines(false);
+            })
+            ->addContainer(function (Container $cont): void {
+                $cont->targetWidth(TargetWidth::VeryNarrow)
+                    ->addTextBlock('Status', function (TextBlock $t): void {
+                        $t->weight(TextWeight::Bolder)
+                            ->wrap(true);
+                    })
+                    ->addTextBlock('Waiting for Review', function (TextBlock $t): void {
+                        $t->wrap(true)
+                            ->spacing(Spacing::None);
+                    })
+                    ->addTextBlock('Due Date', function (TextBlock $t): void {
+                        $t->weight(TextWeight::Bolder)
+                            ->wrap(true)
+                            ->spacing(Spacing::Small);
+                    })
+                    ->addTextBlock('May 21, 2023', function (TextBlock $t): void {
+                        $t->wrap(true)
+                            ->spacing(Spacing::None);
+                    })
+                    ->addTextBlock('Priority', function (TextBlock $t): void {
+                        $t->weight(TextWeight::Bolder)
+                            ->wrap(true)
+                            ->spacing(Spacing::Small);
+                    })
+                    ->addColumnSet(function (ColumnSet $cs): void {
+                        $cs->spacing(Spacing::None)
+                            ->column(Width::Auto, function (Column $c): void {
+                                $c->verticalContentAlignment(VerticalAlignment::Center)
+                                    ->addIcon('Flag', function (Icon $icon): void {
+                                        $icon->color(Colors::Attention)
+                                            ->size(IconSize::XSmall)
+                                            ->horizontalAlignment(HorizontalAlignment::Center);
+                                    });
+                            })
+                            ->column(Width::Stretch, function (Column $c): void {
+                                $c->spacing(Spacing::Small)
+                                    ->addTextBlock('Critical', function (TextBlock $t): void {
+                                        $t->color(Colors::Attention)
+                                            ->wrap(true)
+                                            ->spacing(Spacing::Small);
+                                    });
+                            });
+                    })
+                    ->addTextBlock('Assigned To', function (TextBlock $t): void {
+                        $t->weight(TextWeight::Bolder)
+                            ->wrap(true)
+                            ->spacing(Spacing::Small);
+                    })
+                    ->addColumnSet(function (ColumnSet $cs): void {
+                        $cs->spacing(Spacing::None)
+                            ->column(Width::Auto, function (Column $c): void {
+                                $c->verticalContentAlignment(VerticalAlignment::Center)
+                                    ->horizontalAlignment(HorizontalAlignment::Center)
+                                    ->addImage('https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Card-Samples/main/samples/issue/assets/avatar.png', function (Image $img): void {
+                                        $img->width('16px');
+                                    });
+                            })
+                            ->column(Width::Stretch, function (Column $c): void {
+                                $c->spacing(Spacing::Small)
+                                    ->addTextBlock('Charlotte Waltson', function (TextBlock $t): void {
+                                        $t->wrap(true);
+                                    });
+                            });
+                    });
+            })
+            ->addActionSet(function (ActionSet $as): void {
+                $as->spacing(Spacing::ExtraLarge)
+                    ->targetWidth(TargetWidth::AtLeastNarrow)
+                    ->addAction(OpenUrlAction::make('https://adaptivecards.io/', 'Comment'))
+                    ->addAction(OpenUrlAction::make('https://adaptivecards.io/', 'Edit Issue'));
+            })
+            ->addActionSet(function (ActionSet $as): void {
+                $as->spacing(Spacing::ExtraLarge)
+                    ->targetWidth(TargetWidth::VeryNarrow)
+                    ->addAction(OpenUrlAction::make('https://adaptivecards.io/', 'Comment'))
+                    ->addAction(OpenUrlAction::make('https://adaptivecards.io/')->iconUrl('icon:Edit'));
+            });
+
+        $expected = [
+            '$schema' => 'https://adaptivecards.io/schemas/adaptive-card.json',
+            'type' => 'AdaptiveCard',
+            'version' => '1.6',
+            'speak' => 'Version 2.2 performance optimization',
+            'body' => [
+                [
+                    'type' => 'RichTextBlock',
+                    'inlines' => [
+                        [
+                            'type' => 'TextRun',
+                            'text' => 'Android Scrum Project / SSP-98',
+                            'size' => 'Small',
+                            'selectAction' => [
+                                'type' => 'Action.OpenUrl',
+                                'url' => 'https://adaptivecards.io',
+                            ],
+                        ],
+                    ],
+                ],
+                [
+                    'type' => 'ColumnSet',
+                    'spacing' => 'Small',
+                    'columns' => [
+                        [
+                            'type' => 'Column',
+                            'width' => 'auto',
+                            'items' => [
+                                [
+                                    'type' => 'Icon',
+                                    'name' => 'Branch',
+                                    'color' => 'Accent',
+                                ],
+                            ],
+                        ],
+                        [
+                            'type' => 'Column',
+                            'width' => 'stretch',
+                            'verticalContentAlignment' => 'Center',
+                            'spacing' => 'Small',
+                            'items' => [
+                                [
+                                    'type' => 'TextBlock',
+                                    'text' => 'Version 2.2 Performance Optimization',
+                                    'size' => 'Large',
+                                    'weight' => 'Bolder',
+                                    'wrap' => true,
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+                [
+                    'type' => 'Table',
+                    'targetWidth' => 'atLeast:Narrow',
+                    'columns' => [
+                        [
+                            'width' => 1,
+                        ],
+                        [
+                            'width' => 2,
+                        ],
+                    ],
+                    'rows' => [
+                        [
+                            'type' => 'TableRow',
+                            'cells' => [
+                                [
+                                    'type' => 'TableCell',
+                                    'verticalContentAlignment' => 'Center',
+                                    'items' => [
+                                        [
+                                            'type' => 'TextBlock',
+                                            'text' => 'Status',
+                                            'wrap' => true,
+                                            'weight' => 'Bolder',
+                                        ],
+                                    ],
+                                ],
+                                [
+                                    'type' => 'TableCell',
+                                    'verticalContentAlignment' => 'Center',
+                                    'items' => [
+                                        [
+                                            'type' => 'TextBlock',
+                                            'text' => 'Waiting for Review',
+                                            'wrap' => true,
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                        [
+                            'type' => 'TableRow',
+                            'cells' => [
+                                [
+                                    'type' => 'TableCell',
+                                    'items' => [
+                                        [
+                                            'type' => 'TextBlock',
+                                            'text' => 'Due Date',
+                                            'wrap' => true,
+                                            'weight' => 'Bolder',
+                                        ],
+                                    ],
+                                ],
+                                [
+                                    'type' => 'TableCell',
+                                    'items' => [
+                                        [
+                                            'type' => 'TextBlock',
+                                            'text' => 'May 21, 2023',
+                                            'wrap' => true,
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                        [
+                            'type' => 'TableRow',
+                            'cells' => [
+                                [
+                                    'type' => 'TableCell',
+                                    'verticalContentAlignment' => 'Center',
+                                    'items' => [
+                                        [
+                                            'type' => 'TextBlock',
+                                            'text' => 'Priority',
+                                            'wrap' => true,
+                                            'weight' => 'Bolder',
+                                        ],
+                                    ],
+                                ],
+                                [
+                                    'type' => 'TableCell',
+                                    'verticalContentAlignment' => 'Center',
+                                    'items' => [
+                                        [
+                                            'type' => 'ColumnSet',
+                                            'spacing' => 'Small',
+                                            'columns' => [
+                                                [
+                                                    'type' => 'Column',
+                                                    'width' => 'auto',
+                                                    'items' => [
+                                                        [
+                                                            'type' => 'Icon',
+                                                            'name' => 'Flag',
+                                                            'color' => 'Attention',
+                                                            'size' => 'xSmall',
+                                                            'horizontalAlignment' => 'Center',
+                                                        ],
+                                                    ],
+                                                ],
+                                                [
+                                                    'type' => 'Column',
+                                                    'width' => 'stretch',
+                                                    'spacing' => 'Small',
+                                                    'items' => [
+                                                        [
+                                                            'type' => 'TextBlock',
+                                                            'text' => 'Critical',
+                                                            'color' => 'Attention',
+                                                            'wrap' => true,
+                                                            'spacing' => 'Small',
+                                                        ],
+                                                    ],
+                                                ],
+                                            ],
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                        [
+                            'type' => 'TableRow',
+                            'cells' => [
+                                [
+                                    'type' => 'TableCell',
+                                    'verticalContentAlignment' => 'Center',
+                                    'items' => [
+                                        [
+                                            'type' => 'TextBlock',
+                                            'text' => 'Assigned To',
+                                            'wrap' => true,
+                                            'weight' => 'Bolder',
+                                        ],
+                                    ],
+                                ],
+                                [
+                                    'type' => 'TableCell',
+                                    'items' => [
+                                        [
+                                            'type' => 'ColumnSet',
+                                            'columns' => [
+                                                [
+                                                    'type' => 'Column',
+                                                    'width' => 'auto',
+                                                    'verticalContentAlignment' => 'Center',
+                                                    'horizontalAlignment' => 'Center',
+                                                    'items' => [
+                                                        [
+                                                            'type' => 'Image',
+                                                            'url' => 'https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Card-Samples/main/samples/issue/assets/avatar.png',
+                                                            'width' => '16px',
+                                                        ],
+                                                    ],
+                                                ],
+                                                [
+                                                    'type' => 'Column',
+                                                    'width' => 'stretch',
+                                                    'spacing' => 'Small',
+                                                    'items' => [
+                                                        [
+                                                            'type' => 'TextBlock',
+                                                            'text' => 'Charlotte Waltson',
+                                                            'wrap' => true,
+                                                        ],
+                                                    ],
+                                                ],
+                                            ],
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                    'firstRowAsHeaders' => false,
+                    'showGridLines' => false,
+                ],
+                [
+                    'type' => 'Container',
+                    'targetWidth' => 'VeryNarrow',
+                    'items' => [
+                        [
+                            'type' => 'TextBlock',
+                            'text' => 'Status',
+                            'weight' => 'Bolder',
+                            'wrap' => true,
+                        ],
+                        [
+                            'type' => 'TextBlock',
+                            'text' => 'Waiting for Review',
+                            'wrap' => true,
+                            'spacing' => 'None',
+                        ],
+                        [
+                            'type' => 'TextBlock',
+                            'text' => 'Due Date',
+                            'weight' => 'Bolder',
+                            'wrap' => true,
+                            'spacing' => 'Small',
+                        ],
+                        [
+                            'type' => 'TextBlock',
+                            'text' => 'May 21, 2023',
+                            'wrap' => true,
+                            'spacing' => 'None',
+                        ],
+                        [
+                            'type' => 'TextBlock',
+                            'text' => 'Priority',
+                            'weight' => 'Bolder',
+                            'wrap' => true,
+                            'spacing' => 'Small',
+                        ],
+                        [
+                            'type' => 'ColumnSet',
+                            'spacing' => 'None',
+                            'columns' => [
+                                [
+                                    'type' => 'Column',
+                                    'width' => 'auto',
+                                    'verticalContentAlignment' => 'Center',
+                                    'items' => [
+                                        [
+                                            'type' => 'Icon',
+                                            'name' => 'Flag',
+                                            'color' => 'Attention',
+                                            'size' => 'xSmall',
+                                            'horizontalAlignment' => 'Center',
+                                        ],
+                                    ],
+                                ],
+                                [
+                                    'type' => 'Column',
+                                    'width' => 'stretch',
+                                    'spacing' => 'Small',
+                                    'items' => [
+                                        [
+                                            'type' => 'TextBlock',
+                                            'text' => 'Critical',
+                                            'color' => 'Attention',
+                                            'wrap' => true,
+                                            'spacing' => 'Small',
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                        [
+                            'type' => 'TextBlock',
+                            'text' => 'Assigned To',
+                            'weight' => 'Bolder',
+                            'wrap' => true,
+                            'spacing' => 'Small',
+                        ],
+                        [
+                            'type' => 'ColumnSet',
+                            'spacing' => 'None',
+                            'columns' => [
+                                [
+                                    'type' => 'Column',
+                                    'width' => 'auto',
+                                    'verticalContentAlignment' => 'Center',
+                                    'horizontalAlignment' => 'Center',
+                                    'items' => [
+                                        [
+                                            'type' => 'Image',
+                                            'url' => 'https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Card-Samples/main/samples/issue/assets/avatar.png',
+                                            'width' => '16px',
+                                        ],
+                                    ],
+                                ],
+                                [
+                                    'type' => 'Column',
+                                    'width' => 'stretch',
+                                    'spacing' => 'Small',
+                                    'items' => [
+                                        [
+                                            'type' => 'TextBlock',
+                                            'text' => 'Charlotte Waltson',
+                                            'wrap' => true,
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+                [
+                    'type' => 'ActionSet',
+                    'spacing' => 'ExtraLarge',
+                    'targetWidth' => 'atLeast:Narrow',
+                    'actions' => [
+                        [
+                            'type' => 'Action.OpenUrl',
+                            'url' => 'https://adaptivecards.io/',
+                            'title' => 'Comment',
+                        ],
+                        [
+                            'type' => 'Action.OpenUrl',
+                            'url' => 'https://adaptivecards.io/',
+                            'title' => 'Edit Issue',
+                        ],
+                    ],
+                ],
+                [
+                    'type' => 'ActionSet',
+                    'spacing' => 'ExtraLarge',
+                    'targetWidth' => 'VeryNarrow',
+                    'actions' => [
+                        [
+                            'type' => 'Action.OpenUrl',
+                            'url' => 'https://adaptivecards.io/',
+                            'title' => 'Comment',
+                        ],
+                        [
+                            'type' => 'Action.OpenUrl',
+                            'url' => 'https://adaptivecards.io/',
+                            'iconUrl' => 'icon:Edit',
                         ],
                     ],
                 ],

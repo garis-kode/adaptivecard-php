@@ -6,6 +6,7 @@ namespace AdaptiveCards\Element\Table;
 
 use AdaptiveCards\Enum\HorizontalAlignment;
 use AdaptiveCards\Enum\VerticalAlignment;
+use AdaptiveCards\Enum\Width;
 use AdaptiveCards\Node;
 
 /**
@@ -13,32 +14,35 @@ use AdaptiveCards\Node;
  */
 final class TableColumnDefinition extends Node
 {
-    /**
-     * @param string|int|null $width A relative weight (e.g. 1) or pixels ("80px").
-     */
-    public function __construct(string|int|null $width = null)
+    public function __construct(Width|string|int|null $width = null)
     {
         if ($width !== null) {
             $this->width($width);
         }
     }
 
-    public static function make(string|int|null $width = null): self
+    public static function make(Width|string|int|null $width = null): self
     {
         return new self($width);
     }
 
     /**
-     * Specifies the width of the column. When set to a number, the column is
-     * weighted relative to other columns. Pixel width can also be specified, e.g. "80px".
+     * The width of the column in the table. If expressed as a number, represents the relative
+     * weight of the column in the table. If expressed as a string, `auto` will automatically
+     * adjust the column's width according to its content and using the `<number>px` format will
+     * give the column an explicit width in pixels.
+     * Valid values: "auto", "<number>px".
      */
-    public function width(string|int $width): self
+    public function width(Width|string|int $width): self
     {
-        return $this->set('width', $width);
+        $value = $width instanceof Width ? $width->value : $width;
+
+        return $this->set('width', $value);
     }
 
     /**
-     * Controls how cells should be horizontally aligned in this column.
+     * Controls how the content of every cell in the table should be horizontally aligned by default.
+     * This property overrides the `horizontalCellContentAlignment` property of the table.
      * Valid values: "Left", "Center", "Right".
      */
     public function horizontalCellContentAlignment(HorizontalAlignment $alignment): self
@@ -47,7 +51,8 @@ final class TableColumnDefinition extends Node
     }
 
     /**
-     * Controls how cells should be vertically aligned in this column.
+     * Controls how the content of every cell in the column should be vertically aligned by default.
+     * This property overrides the `verticalCellContentAlignment` property of the table.
      * Valid values: "Top", "Center", "Bottom".
      */
     public function verticalCellContentAlignment(VerticalAlignment $alignment): self

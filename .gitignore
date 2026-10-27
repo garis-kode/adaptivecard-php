@@ -1,25 +1,20 @@
-# Dependencies
-/vendor/
-composer.lock
-/auth.json
-
-# Testing & Cache
-.phpunit.result.cache
-/.phpunit.cache/
-/phpstan.neon
-
-# Logs
-*.log
-
-# OS Files
+# macOS / Windows
 .DS_Store
 Thumbs.db
 
-# IDE & Editors
+# PHPUnit
+.phpunit.result.cache
+/.phpunit.cache
+/phpunit.xml
+/tests/*.coverage
+/tests/**/*.coverage
+
+# IDEs / editors
+/.fleet
 /.idea
 /.vscode
-/.cursor/
-/.zed
-/.nova
-/.codex
-.phpactor.json
+
+# Composer / dependencies
+/vendor
+composer.phar
+composer.lock

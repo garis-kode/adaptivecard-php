@@ -26,7 +26,7 @@ final class RatingInput extends AbstractInput
     }
 
     /**
-     * The maximum rating value.
+     * The number of stars to display.
      */
     public function max(float|int $max): self
     {
@@ -34,8 +34,8 @@ final class RatingInput extends AbstractInput
     }
 
     /**
-     * Controls the size of the rating stars.
-     * Valid values: "small", "medium", "large".
+     * The size of the stars.
+     * Valid values: "Medium", "Large".
      */
     public function size(RatingSize $size): self
     {
@@ -43,8 +43,8 @@ final class RatingInput extends AbstractInput
     }
 
     /**
-     * Controls the color of the rating stars.
-     * Valid values: "neutral", "marigold".
+     * The color of the stars.
+     * Valid values: "Neutral", "Marigold".
      */
     public function color(RatingColor $color): self
     {
@@ -52,7 +52,7 @@ final class RatingInput extends AbstractInput
     }
 
     /**
-     * Controls whether the user can rate in half steps.
+     * Controls if the user can select half stars.
      */
     public function allowHalfSteps(bool $allow = true): self
     {
@@ -60,7 +60,7 @@ final class RatingInput extends AbstractInput
     }
 
     /**
-     * The number of ratings submitted.
+     * The number of "votes" associated with the rating.
      */
     public function count(int $count): self
     {

@@ -8,7 +8,7 @@ use AdaptiveCards\Enum\AssociatedInputs;
 use AdaptiveCards\Node;
 
 /**
- * Defines a dynamic data query for choice sets (e.g. People Picker via Graph).
+ * Defines a query to dynamically fetch data from a Bot.
  */
 final class DataQuery extends Node
 {
@@ -47,7 +47,7 @@ final class DataQuery extends Node
     }
 
     /**
-     * The dataset to query.
+     * The dataset from which to fetch the data.
      */
     public function dataset(string $dataset): self
     {
@@ -63,7 +63,9 @@ final class DataQuery extends Node
     }
 
     /**
-     * The maximum number of items to return.
+     * The maximum number of data items that should be returned by the query.
+     * Card authors should not specify this property in their card payload.
+     * It is determined by the client and sent to the Bot to enable pagination.
      */
     public function count(int $count): self
     {
@@ -71,7 +73,9 @@ final class DataQuery extends Node
     }
 
     /**
-     * The number of items to skip.
+     * The number of data items to be skipped by the query.
+     * Card authors should not specify this property in their card payload.
+     * It is determined by the client and sent to the Bot to enable pagination.
      */
     public function skip(int $skip): self
     {
@@ -79,7 +83,9 @@ final class DataQuery extends Node
     }
 
     /**
-     * Controls which inputs are associated with the query.
+     * Controls which inputs are associated with the Data.Query. When a Data.Query
+     * is executed, the values of the associated inputs are sent to the Bot, allowing
+     * it to perform filtering operations based on the user's input.
      * Valid values: "auto", "none".
      */
     public function associatedInputs(AssociatedInputs $associatedInputs): self

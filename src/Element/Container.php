@@ -12,8 +12,8 @@ use AdaptiveCards\Shared\BackgroundImage;
 use AdaptiveCards\Support\HasItems;
 
 /**
- * A container for other elements. Use containers for styling purposes and/or
- * to logically group a set of elements.
+ * A container for other elements. Use containers for styling purposes and/or to logically
+ * group a set of elements together, which can be especially useful when used with `Action.ToggleVisibility`.
  */
 final class Container extends AbstractElement
 {
@@ -44,7 +44,8 @@ final class Container extends AbstractElement
     }
 
     /**
-     * Determines whether the element should bleed through its parent's padding.
+     * Controls if the container should bleed into its parent. A bleeding container extends into its parent's padding.
+     * See **Edge-to-edge content** for more information.
      */
     public function bleed(bool $bleed = true): self
     {
@@ -53,6 +54,7 @@ final class Container extends AbstractElement
 
     /**
      * The minimum height, in pixels, of the container, in the `<number>px` format.
+     * Valid values: "<number>px".
      */
     public function minHeight(string $minHeight): self
     {
@@ -60,7 +62,9 @@ final class Container extends AbstractElement
     }
 
     /**
-     * The maximum height, in pixels, of the container.
+     * The maximum height, in pixels, of the container, in the `<number>px` format. When the content of a container
+     * exceeds the container's maximum height, a vertical scrollbar is displayed.
+     * Valid values: "<number>px".
      */
     public function maxHeight(string $maxHeight): self
     {
@@ -68,7 +72,7 @@ final class Container extends AbstractElement
     }
 
     /**
-     * Controls whether the container's corners should be rounded.
+     * Controls if the container should have rounded corners.
      */
     public function roundedCorners(bool $value = true): self
     {
@@ -76,7 +80,7 @@ final class Container extends AbstractElement
     }
 
     /**
-     * Controls whether the container's border should be displayed.
+     * Controls if a border should be displayed around the container.
      */
     public function showBorder(bool $value = true): self
     {
@@ -84,7 +88,7 @@ final class Container extends AbstractElement
     }
 
     /**
-     * Controls if the content of the container is to be rendered left-to-right or right-to-left.
+     * Controls if the content of the card is to be rendered left-to-right or right-to-left.
      */
     public function rtl(bool $rtl = true): self
     {
@@ -93,8 +97,9 @@ final class Container extends AbstractElement
 
     /**
      * Defines the container's background image.
+     * Valid values: "BackgroundImage".
      */
-    public function backgroundImage(string|BackgroundImage $backgroundImage): self
+    public function backgroundImage(BackgroundImage $backgroundImage): self
     {
         return $this->set('backgroundImage', $backgroundImage);
     }
@@ -102,6 +107,8 @@ final class Container extends AbstractElement
     /**
      * An Action that will be invoked when the container is tapped or clicked.
      * Action.ShowCard is not supported.
+     * Valid values: "Action.Execute", "Action.InsertImage", "Action.OpenUrl", "Action.OpenUrlDialog",
+     * "Action.Popover", "Action.ResetInputs", "Action.RunCommands", "Action.Submit", "Action.ToggleVisibility".
      */
     public function selectAction(AbstractAction $action): self
     {
@@ -117,19 +124,29 @@ final class Container extends AbstractElement
     }
 
     /**
-     * The layouts associated with the container. The container can dynamically switch
-     * from one layout to another as the card's width changes.
-     * Valid values: Layout.Stack, Layout.Flow, Layout.AreaGrid.
+     * Add multiple layouts associated with the container.
      *
      * @param iterable<AbstractLayout> $layouts
      */
-    public function layouts(iterable $layouts): self
+    public function addLayouts(iterable $layouts): self
     {
         foreach ($layouts as $layout) {
             $this->addLayout($layout);
         }
 
         return $this;
+    }
+
+    /**
+     * The layouts associated with the container. The container can dynamically switch
+     * from one layout to another as the card's width changes.
+     * Valid values: "Layout.Stack", "Layout.Flow", "Layout.AreaGrid".
+     *
+     * @param iterable<AbstractLayout> $layouts
+     */
+    public function layouts(iterable $layouts): self
+    {
+        return $this->addLayouts($layouts);
     }
 
     public function getType(): string

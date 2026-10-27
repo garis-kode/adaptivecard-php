@@ -25,7 +25,7 @@ final class ActionSet extends AbstractElement
     }
 
     /**
-     * The list of actions to display.
+     * Add multiple actions to the set.
      *
      * @param iterable<AbstractAction> $actions
      */
@@ -36,6 +36,19 @@ final class ActionSet extends AbstractElement
         }
 
         return $this;
+    }
+
+    /**
+     * The actions in the set.
+     * Valid values: "Action.Execute", "Action.InsertImage", "Action.OpenUrl", "Action.OpenUrlDialog",
+     * "Action.Popover", "Action.ResetInputs", "Action.RunCommands", "Action.ShowCard", "Action.Submit",
+     * "Action.ToggleVisibility".
+     *
+     * @param iterable<AbstractAction> $actions
+     */
+    public function actions(iterable $actions): self
+    {
+        return $this->addActions($actions);
     }
 
     public function getType(): string

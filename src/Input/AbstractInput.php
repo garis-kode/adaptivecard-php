@@ -20,7 +20,8 @@ abstract class AbstractInput extends AbstractElement
     }
 
     /**
-     * Label for this input.
+     * The label of the input. A label should always be provided to ensure the best
+     * user experience especially for users of assistive technology.
      */
     public function label(string $label): static
     {
@@ -28,7 +29,7 @@ abstract class AbstractInput extends AbstractElement
     }
 
     /**
-     * Whether or not this input is required.
+     * Controls whether the input is required.
      */
     public function isRequired(bool $required = true): static
     {
@@ -36,7 +37,7 @@ abstract class AbstractInput extends AbstractElement
     }
 
     /**
-     * Error message to display when entered input is invalid.
+     * The error message to display when the input fails validation.
      */
     public function errorMessage(string $message): static
     {
@@ -45,7 +46,7 @@ abstract class AbstractInput extends AbstractElement
 
     /**
      * Specifies the position of the label relative to the input control.
-     * Valid values: "Above", "Before", "Inline".
+     * Valid values: "inline", "above", "before".
      */
     public function labelPosition(InputLabelPosition $position): static
     {
@@ -56,13 +57,13 @@ abstract class AbstractInput extends AbstractElement
      * Controls the width of the label when labelPosition is set to Before.
      * Supports pixel values, percentage values, or "auto".
      */
-    public function labelWidth(string|int $width): static
+    public function labelWidth(string $width): static
     {
         return $this->set('labelWidth', $width);
     }
 
     /**
-     * The initial value for this field.
+     * The default value of the input.
      */
     public function value(string|int|float|bool $value): static
     {
@@ -70,7 +71,9 @@ abstract class AbstractInput extends AbstractElement
     }
 
     /**
-     * Controls whether the label is visible.
+     * Controls whether the input's label is visually rendered. When set to false,
+     * the label is still applied as the input's accessible name to ensure the best
+     * user experience especially for users of assistive technology.
      */
     public function showLabel(bool $show = true): static
     {
@@ -78,7 +81,8 @@ abstract class AbstractInput extends AbstractElement
     }
 
     /**
-     * An Action that is invoked when the user changes the value of this input.
+     * An `Action.ResetInputs` action that will be executed when the value of the input changes.
+     * Valid values: "Action.OpenUrlDialog", "Action.Popover", "Action.ResetInputs", "Action.RunCommands".
      */
     public function valueChangedAction(AbstractAction $action): static
     {

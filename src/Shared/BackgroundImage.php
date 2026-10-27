@@ -43,7 +43,7 @@ final class BackgroundImage extends Node
 
     /**
      * Describes how the image should be aligned if it must be cropped or if using repeat streams.
-     * Valid values: "left", "center", "right".
+     * Valid values: "Left", "Center", "Right".
      */
     public function horizontalAlignment(HorizontalAlignment $alignment): self
     {
@@ -52,7 +52,7 @@ final class BackgroundImage extends Node
 
     /**
      * Describes how the image should be aligned if it must be cropped or if using repeat streams.
-     * Valid values: "top", "center", "bottom".
+     * Valid values: "Top", "Center", "Bottom".
      */
     public function verticalAlignment(VerticalAlignment $alignment): self
     {

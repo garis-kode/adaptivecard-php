@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace AdaptiveCards;
 
 use AdaptiveCards\Action\AbstractAction;
+use AdaptiveCards\Element\AbstractElement;
 use AdaptiveCards\Enum\ContainerStyle;
 use AdaptiveCards\Enum\VerticalAlignment;
-use AdaptiveCards\Exception\ValidationException;
 use AdaptiveCards\Layout\AbstractLayout;
 use AdaptiveCards\Shared\AdaptiveCardReference;
 use AdaptiveCards\Shared\Authentication;
@@ -18,7 +18,6 @@ use AdaptiveCards\Shared\Refresh;
 use AdaptiveCards\Shared\Resources;
 use AdaptiveCards\Shared\TeamsCardProperties;
 use AdaptiveCards\Support\HasItems;
-use AdaptiveCards\Validation\SchemaValidator;
 
 /**
  * An Adaptive Card, containing a free-form body of card elements, and an optional set of actions.
@@ -60,7 +59,26 @@ final class AdaptiveCard extends Node
     }
 
     /**
-     * The Adaptive Card schema URL.
+     * The body of the card, comprised of a list of elements displayed according to
+     * the `layouts` property. If the `layouts` property is not specified, a
+     * `Layout.Stack` is used.
+     * Valid values: "Accordion", "ActionSet", "Badge", "Carousel", "Chart.Donut", "Chart.Gauge",
+     * "Chart.HorizontalBar", "Chart.HorizontalBar.Stacked", "Chart.Line", "Chart.Pie",
+     * "Chart.VerticalBar", "Chart.VerticalBar.Grouped", "CodeBlock", "ColumnSet", "Calendar event",
+     * "File", "Graph resource", "Persona", "PersonaSet", "CompoundButton", "Container", "FactSet",
+     * "Icon", "Image", "ImageSet", "Input.ChoiceSet", "Input.Date", "Input.Number", "Input.Rating",
+     * "Input.Text", "Input.Time", "Input.Toggle", "LoopComponent", "Media", "ProgressBar",
+     * "ProgressRing", "Rating", "RichTextBlock", "Table", "TabSet", "TextBlock".
+     *
+     * @param iterable<AbstractElement> $elements
+     */
+    public function body(iterable $elements): self
+    {
+        return $this->addItems($elements);
+    }
+
+    /**
+     * A URL to the Adaptive Card schema the card is authored against.
      */
     public function schema(string $schema): self
     {
@@ -91,6 +109,9 @@ final class AdaptiveCard extends Node
 
     /**
      * The card level actions, which always appear at the bottom of the card.
+     * Valid values: "Action.Execute", "Action.InsertImage", "Action.OpenUrl", "Action.OpenUrlDialog",
+     * "Action.Popover", "Action.ResetInputs", "Action.RunCommands", "Action.ShowCard", "Action.Submit",
+     * "Action.ToggleVisibility".
      *
      * @param iterable<AbstractAction> $actions
      */
@@ -102,6 +123,8 @@ final class AdaptiveCard extends Node
     /**
      * An Action that will be invoked when the card is tapped or clicked.
      * Action.ShowCard is not supported.
+     * Valid values: "Action.Execute", "Action.InsertImage", "Action.OpenUrl", "Action.OpenUrlDialog",
+     * "Action.Popover", "Action.ResetInputs", "Action.RunCommands", "Action.Submit", "Action.ToggleVisibility".
      */
     public function selectAction(AbstractAction $action): self
     {
@@ -118,14 +141,16 @@ final class AdaptiveCard extends Node
 
     /**
      * Defines the container's background image.
+     * Valid values: "BackgroundImage".
      */
-    public function backgroundImage(string|BackgroundImage $backgroundImage): self
+    public function backgroundImage(BackgroundImage $backgroundImage): self
     {
         return $this->set('backgroundImage', $backgroundImage);
     }
 
     /**
      * The minimum height, in pixels, of the container, in the `<number>px` format.
+     * Valid values: "<number>px".
      */
     public function minHeight(string $minHeight): self
     {
@@ -133,7 +158,8 @@ final class AdaptiveCard extends Node
     }
 
     /**
-     * A unique identifier for the element or action.
+     * A unique identifier for the element or action. Input elements must have an `id`,
+     * otherwise they will not be validated and their values will not be sent to the Bot.
      */
     public function id(string $id): self
     {
@@ -144,6 +170,13 @@ final class AdaptiveCard extends Node
      * An alternate element to render if the type of this one is unsupported or
      * if the host application doesn't support all the capabilities specified in
      * the `requires` property.
+     * Valid values: "Container", "ActionSet", "ColumnSet", "Media", "RichTextBlock", "Table",
+     * "TextBlock", "FactSet", "ImageSet", "Image", "Input.Text", "Input.Date", "Input.Time",
+     * "Input.Number", "Input.Toggle", "Input.ChoiceSet", "Input.Rating", "Rating", "CompoundButton",
+     * "Icon", "Carousel", "TabSet", "Accordion", "Badge", "ProgressRing", "ProgressBar",
+     * "LoopComponent", "Chart.Donut", "Chart.Pie", "Chart.VerticalBar.Grouped", "Chart.VerticalBar",
+     * "Chart.HorizontalBar", "Chart.HorizontalBar.Stacked", "Chart.Line", "Chart.Gauge",
+     * "CodeBlock", "Persona", "PersonaSet", "Graph resource", "File", "Calendar event", "drop".
      */
     public function fallback(mixed $fallback): self
     {
@@ -152,6 +185,9 @@ final class AdaptiveCard extends Node
 
     /**
      * A list of capabilities the element requires the host application to support.
+     * If the host application doesn't support at least one of the listed capabilities,
+     * the element is not rendered (or its fallback is rendered if provided).
+     * Valid values: "HostCapabilities".
      *
      * @param array<string, string> $requires
      */
@@ -223,6 +259,7 @@ final class AdaptiveCard extends Node
 
     /**
      * Defines how the card can be refreshed by making a request to the target Bot.
+     * Valid values: "RefreshDefinition".
      */
     public function refresh(Refresh $refresh): self
     {
@@ -231,6 +268,8 @@ final class AdaptiveCard extends Node
 
     /**
      * Defines authentication information to enable on-behalf-of single-sign-on or just-in-time OAuth.
+     * This information is used in conjunction with the `refresh` property and `Action.Execute` in general.
+     * Valid values: "Authentication".
      */
     public function authentication(Authentication $authentication): self
     {
@@ -239,6 +278,7 @@ final class AdaptiveCard extends Node
 
     /**
      * Metadata associated with the card.
+     * Valid values: "CardMetadata".
      */
     public function metadata(Metadata $metadata): self
     {
@@ -247,10 +287,9 @@ final class AdaptiveCard extends Node
 
     /**
      * Teams-specific metadata associated with the card.
-     *
-     * @param TeamsCardProperties|array<string, mixed> $msteams
+     * Valid values: "TeamsCardProperties".
      */
-    public function msteams(TeamsCardProperties|array $msteams, bool $useCamelCaseKey = false): self
+    public function msteams(TeamsCardProperties $msteams, bool $useCamelCaseKey = false): self
     {
         if ($useCamelCaseKey) {
             return $this->set('msTeams', $msteams);
@@ -261,10 +300,9 @@ final class AdaptiveCard extends Node
 
     /**
      * Resources card elements can reference.
-     *
-     * @param Resources|array<string, mixed> $resources
+     * Valid values: "Resources".
      */
-    public function resources(Resources|array $resources): self
+    public function resources(Resources $resources): self
     {
         return $this->set('resources', $resources);
     }
@@ -278,17 +316,28 @@ final class AdaptiveCard extends Node
     }
 
     /**
-     * References that can be cited in TextBlock and RichTextBlock elements.
+     * Add multiple references.
      *
      * @param iterable<AdaptiveCardReference|DocumentReference> $references
      */
-    public function references(iterable $references): self
+    public function addReferences(iterable $references): self
     {
         foreach ($references as $reference) {
             $this->addReference($reference);
         }
 
         return $this;
+    }
+
+    /**
+     * References that can be cited in TextBlock and RichTextBlock elements.
+     * Valid values: "AdaptiveCardReference", "DocumentReference".
+     *
+     * @param iterable<AdaptiveCardReference|DocumentReference> $references
+     */
+    public function references(iterable $references): self
+    {
+        return $this->addReferences($references);
     }
 
     /**
@@ -300,19 +349,29 @@ final class AdaptiveCard extends Node
     }
 
     /**
-     * The layouts associated with the container. The container can dynamically switch
-     * from one layout to another as the card's width changes.
-     * Valid values: Layout.Stack, Layout.Flow, Layout.AreaGrid.
+     * Add multiple layouts associated with the container.
      *
      * @param iterable<AbstractLayout> $layouts
      */
-    public function layouts(iterable $layouts): self
+    public function addLayouts(iterable $layouts): self
     {
         foreach ($layouts as $layout) {
             $this->addLayout($layout);
         }
 
         return $this;
+    }
+
+    /**
+     * The layouts associated with the container. The container can dynamically switch
+     * from one layout to another as the card's width changes.
+     * Valid values: "Layout.Stack", "Layout.Flow", "Layout.AreaGrid".
+     *
+     * @param iterable<AbstractLayout> $layouts
+     */
+    public function layouts(iterable $layouts): self
+    {
+        return $this->addLayouts($layouts);
     }
 
     /**
@@ -352,35 +411,5 @@ final class AdaptiveCard extends Node
     public function __toString(): string
     {
         return $this->toJson();
-    }
-
-    /**
-     * Collect schema-validation errors without throwing.
-     *
-     * @return list<array{property: string, message: string}>
-     */
-    public function getValidationErrors(): array
-    {
-        return (new SchemaValidator())->validate($this->toArray());
-    }
-
-    public function isValid(): bool
-    {
-        return $this->getValidationErrors() === [];
-    }
-
-    /**
-     * Validate against the bundled 1.6 schema, throwing on any violation.
-     *
-     * @throws ValidationException
-     */
-    public function validate(): self
-    {
-        $errors = $this->getValidationErrors();
-        if ($errors !== []) {
-            throw new ValidationException($errors);
-        }
-
-        return $this;
     }
 }

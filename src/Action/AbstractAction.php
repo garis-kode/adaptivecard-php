@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Action;
 
+use AdaptiveCards\Enum\ActionBehavior;
+use AdaptiveCards\Enum\ActionInitialState;
 use AdaptiveCards\Enum\ActionMode;
 use AdaptiveCards\Enum\ActionStyle;
 use AdaptiveCards\Node;
@@ -11,7 +13,7 @@ use AdaptiveCards\Node;
 abstract class AbstractAction extends Node
 {
     /**
-     * Label for button or control.
+     * The title of the action, as it appears on buttons.
      */
     public function title(string $title): static
     {
@@ -19,8 +21,8 @@ abstract class AbstractAction extends Node
     }
 
     /**
-     * Optional icon to be shown on the action in conjunction with the title.
-     * Supports data: URI in version 1.2+.
+     * A URL (or Base64-encoded Data URI) to a PNG, GIF, JPEG or SVG image to be displayed
+     * on the left of the action's title.
      */
     public function iconUrl(string $url): static
     {
@@ -28,7 +30,8 @@ abstract class AbstractAction extends Node
     }
 
     /**
-     * Controls the icon to display on the action when toggled.
+     * The icon URL to use when the action is in the toggled state. Accepts the same formats
+     * as `iconUrl`. Only applies when `behavior` is set to `Toggle`.
      */
     public function toggledIconUrl(string $url): static
     {
@@ -36,7 +39,7 @@ abstract class AbstractAction extends Node
     }
 
     /**
-     * A unique identifier associated with this Action.
+     * A unique identifier for the element or action.
      */
     public function id(string $id): static
     {
@@ -44,8 +47,8 @@ abstract class AbstractAction extends Node
     }
 
     /**
-     * Controls the style of an Action, which influences how the action is
-     * displayed, spoken, etc. Valid values: "default", "positive", "destructive".
+     * Control the style of the action, affecting its visual and spoken representations.
+     * Valid values: "default", "positive", "destructive".
      */
     public function style(ActionStyle $style): static
     {
@@ -53,8 +56,7 @@ abstract class AbstractAction extends Node
     }
 
     /**
-     * Defines text that should be displayed to the end user as they hover
-     * the mouse over the action, and read when using narration software.
+     * The tooltip text to display when the action is hovered over.
      */
     public function tooltip(string $tooltip): static
     {
@@ -62,8 +64,8 @@ abstract class AbstractAction extends Node
     }
 
     /**
-     * Determines whether the action should be displayed as a button or in
-     * the overflow menu. Valid values: "primary", "secondary".
+     * Controls if the action is primary or secondary. Secondary actions appear in an overflow menu.
+     * Valid values: "primary", "secondary".
      */
     public function mode(ActionMode $mode): static
     {
@@ -71,7 +73,8 @@ abstract class AbstractAction extends Node
     }
 
     /**
-     * Determines whether the action should be enabled.
+     * Controls the enabled state of the action. A disabled action cannot be clicked.
+     * If the action is represented as a button, the button's style will reflect this state.
      */
     public function isEnabled(bool $enabled = true): static
     {
@@ -88,7 +91,7 @@ abstract class AbstractAction extends Node
     }
 
     /**
-     * Determines whether the action should be displayed.
+     * Controls the visibility of the action.
      */
     public function isVisible(bool $visible = true): static
     {
@@ -114,7 +117,8 @@ abstract class AbstractAction extends Node
     }
 
     /**
-     * Controls the title to display on the action when toggled.
+     * The title to display when the action is in the toggled state. Only applies
+     * when `behavior` is set to `Toggle`.
      */
     public function toggledTitle(string $title): static
     {
@@ -131,25 +135,12 @@ abstract class AbstractAction extends Node
     }
 
     /**
-     * Controls the tooltip to display on the action when toggled.
+     * The tooltip to display when the action is in the toggled state. Only applies
+     * when `behavior` is set to `Toggle`.
      */
     public function toggledTooltip(string $tooltip): static
     {
         return $this->set('tooltip.toggled', $tooltip);
-    }
-
-    /**
-     * A list of actions that should be displayed in a flyout menu when the user clicks this action.
-     *
-     * @param iterable<AbstractAction> $actions
-     */
-    public function menuActions(iterable $actions): static
-    {
-        foreach ($actions as $action) {
-            $this->addMenuAction($action);
-        }
-
-        return $this;
     }
 
     /**
@@ -161,7 +152,34 @@ abstract class AbstractAction extends Node
     }
 
     /**
-     * Controls the icons to display on the action based on the current theme.
+     * Add multiple actions to the flyout menu.
+     *
+     * @param iterable<AbstractAction> $actions
+     */
+    public function addMenuActions(iterable $actions): static
+    {
+        foreach ($actions as $action) {
+            $this->addMenuAction($action);
+        }
+
+        return $this;
+    }
+
+    /**
+     * The actions to display in the overflow menu of a Split action button.
+     * Valid values: "Action.Execute", "Action.InsertImage", "Action.OpenUrl", "Action.OpenUrlDialog",
+     * "Action.ResetInputs", "Action.RunCommands", "Action.Submit", "Action.ToggleVisibility".
+     *
+     * @param iterable<AbstractAction> $actions
+     */
+    public function menuActions(iterable $actions): static
+    {
+        return $this->addMenuActions($actions);
+    }
+
+    /**
+     * A set of theme-specific icon URLs.
+     * Valid values: "ThemedUrl".
      *
      * @param array<string, string> $themedUrls
      */
@@ -171,7 +189,9 @@ abstract class AbstractAction extends Node
     }
 
     /**
-     * Controls the icons to display on the action when toggled based on the current theme.
+     * A set of theme-specific icon URLs to use when the action is in the toggled state.
+     * Only applies when `behavior` is set to `Toggle`.
+     * Valid values: "ThemedUrl".
      *
      * @param array<string, string> $themedUrls
      */
@@ -181,7 +201,7 @@ abstract class AbstractAction extends Node
     }
 
     /**
-     * Controls whether the action should be conditionally enabled based on input validation.
+     * Controls if the action is enabled only if at least one required input has been filled by the user.
      */
     public function conditionallyEnabled(bool $enabled = true): static
     {
@@ -189,24 +209,29 @@ abstract class AbstractAction extends Node
     }
 
     /**
-     * Controls the behavior of the action (e.g. "toggle").
+     * Controls the behavior of the action. When set to Toggle, the action acts as a toggle
+     * that alternates between the normal and toggled states each time it's executed.
+     * Valid values: "Default", "Toggle".
      */
-    public function behavior(string $behavior): static
+    public function behavior(ActionBehavior $behavior): static
     {
-        return $this->set('behavior', $behavior);
+        return $this->set('behavior', $behavior->value);
     }
 
     /**
-     * Controls the initial state of the action when behavior is "toggle".
-     * Valid values: "untoggled", "toggled".
+     * Controls the initial toggle state of the action. Only applies when `behavior` is set to `Toggle`.
+     * Valid values: "Normal", "Toggled".
      */
-    public function initialState(string $state): static
+    public function initialState(ActionInitialState $state): static
     {
-        return $this->set('initialState', $state);
+        return $this->set('initialState', $state->value);
     }
 
     /**
-     * A list of capabilities the action requires the host application to support.
+     * A list of capabilities the element requires the host application to support.
+     * If the host application doesn't support at least one of the listed capabilities,
+     * the element is not rendered (or its fallback is rendered if provided).
+     * Valid values: "HostCapabilities".
      *
      * @param array<string, string> $requires feature name => minimum version
      */
@@ -219,6 +244,9 @@ abstract class AbstractAction extends Node
      * An alternate action to render if the type of this one is unsupported or
      * if the host application doesn't support all the capabilities specified in
      * the `requires` property. Either the literal "drop" or an action.
+     * Valid values: "Action.Submit", "Action.OpenUrl", "Action.Execute", "Action.ToggleVisibility",
+     * "Action.ShowCard", "Action.ResetInputs", "Action.Popover", "Action.OpenUrlDialog",
+     * "Action.InsertImage", "Action.RunCommands", "drop".
      */
     public function fallback(string|AbstractAction $fallback): static
     {

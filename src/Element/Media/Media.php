@@ -7,7 +7,7 @@ namespace AdaptiveCards\Element\Media;
 use AdaptiveCards\Element\AbstractElement;
 
 /**
- * A media element that makes it possible to embed videos inside cards.
+ * A media element that makes it possible to embed videos inside a card.
  */
 final class Media extends AbstractElement
 {
@@ -25,6 +25,31 @@ final class Media extends AbstractElement
     }
 
     /**
+     * Add multiple media sources.
+     *
+     * @param iterable<MediaSource> $sources
+     */
+    public function addSources(iterable $sources): self
+    {
+        foreach ($sources as $source) {
+            $this->addSource($source);
+        }
+
+        return $this;
+    }
+
+    /**
+     * The sources for the media. For YouTube, Dailymotion and Vimeo, only one source can be specified.
+     * Valid values: "MediaSource".
+     *
+     * @param iterable<MediaSource> $sources
+     */
+    public function sources(iterable $sources): self
+    {
+        return $this->addSources($sources);
+    }
+
+    /**
      * Add a caption source URL.
      */
     public function addCaptionSource(CaptionSource $source): self
@@ -33,7 +58,32 @@ final class Media extends AbstractElement
     }
 
     /**
-     * The URL of an image to display before the media plays.
+     * Add multiple caption sources.
+     *
+     * @param iterable<CaptionSource> $captionSources
+     */
+    public function addCaptionSources(iterable $captionSources): self
+    {
+        foreach ($captionSources as $source) {
+            $this->addCaptionSource($source);
+        }
+
+        return $this;
+    }
+
+    /**
+     * The caption sources for the media. Caption sources are not used for YouTube, Dailymotion or Vimeo sources.
+     * Valid values: "CaptionSource".
+     *
+     * @param iterable<CaptionSource> $captionSources
+     */
+    public function captionSources(iterable $captionSources): self
+    {
+        return $this->addCaptionSources($captionSources);
+    }
+
+    /**
+     * The URL of the poster image to display.
      */
     public function poster(string $url): self
     {
@@ -41,7 +91,7 @@ final class Media extends AbstractElement
     }
 
     /**
-     * Alternative text for this media element.
+     * The alternate text for the media, used for accessibility purposes.
      */
     public function altText(string $altText): self
     {

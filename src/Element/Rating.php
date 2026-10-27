@@ -13,17 +13,13 @@ use AdaptiveCards\Enum\RatingStyle;
  */
 final class Rating extends AbstractElement
 {
-    public function __construct()
-    {
-    }
-
     public static function make(): self
     {
         return new self();
     }
 
     /**
-     * The rating value.
+     * The value of the rating. Must be between 0 and `max`.
      */
     public function value(float|int $value): self
     {
@@ -31,7 +27,7 @@ final class Rating extends AbstractElement
     }
 
     /**
-     * The maximum rating value.
+     * The number of stars to display.
      */
     public function max(float|int $max): self
     {
@@ -39,7 +35,7 @@ final class Rating extends AbstractElement
     }
 
     /**
-     * The number of ratings submitted.
+     * The number of "votes" associated with the rating.
      */
     public function count(int $count): self
     {
@@ -47,8 +43,8 @@ final class Rating extends AbstractElement
     }
 
     /**
-     * Controls the size of the rating stars.
-     * Valid values: "small", "medium", "large".
+     * The size of the stars.
+     * Valid values: "Medium", "Large".
      */
     public function size(RatingSize $size): self
     {
@@ -56,8 +52,8 @@ final class Rating extends AbstractElement
     }
 
     /**
-     * Controls the color of the rating stars.
-     * Valid values: "neutral", "marigold".
+     * The color of the stars.
+     * Valid values: "Neutral", "Marigold".
      */
     public function color(RatingColor $color): self
     {
@@ -65,8 +61,8 @@ final class Rating extends AbstractElement
     }
 
     /**
-     * Controls the style of the rating stars.
-     * Valid values: "default", "compact".
+     * The style of the stars.
+     * Valid values: "Default", "Compact".
      */
     public function style(RatingStyle $style): self
     {
