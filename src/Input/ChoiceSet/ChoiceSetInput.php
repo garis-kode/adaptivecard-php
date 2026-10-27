@@ -48,7 +48,8 @@ final class ChoiceSetInput extends AbstractInput
     }
 
     /**
-     * Choice options.
+     * The choices associated with the input.
+     * Valid values: Choice.
      *
      * @param iterable<Choice> $choices
      */
@@ -58,7 +59,7 @@ final class ChoiceSetInput extends AbstractInput
     }
 
     /**
-     * Allow multiple choices to be selected.
+     * Controls whether multiple choices can be selected.
      */
     public function isMultiSelect(bool $multiSelect = true): self
     {
@@ -66,7 +67,8 @@ final class ChoiceSetInput extends AbstractInput
     }
 
     /**
-     * Controls the visual style of the choice set.
+     * Controls whether the input should be displayed as a dropdown (compact) or a list
+     * of radio buttons or checkboxes (expanded).
      * Valid values: "compact", "expanded", "filtered".
      */
     public function style(ChoiceInputStyle $style): self
@@ -75,7 +77,7 @@ final class ChoiceSetInput extends AbstractInput
     }
 
     /**
-     * Description of the input desired. Displayed when no selection has been made.
+     * The text to display as a placeholder when the user has not entered any value.
      */
     public function placeholder(string $placeholder): self
     {
@@ -83,7 +85,7 @@ final class ChoiceSetInput extends AbstractInput
     }
 
     /**
-     * If true, allow text to wrap. Otherwise, text is clipped.
+     * Controls if choice titles should wrap.
      */
     public function wrap(bool $wrap = true): self
     {
@@ -91,7 +93,9 @@ final class ChoiceSetInput extends AbstractInput
     }
 
     /**
-     * The minimum width, in pixels, of a column when multiple columns are used.
+     * The minimum width, in pixels, for each column when using a multi-column layout.
+     * This ensures that choice items remain readable even when horizontal space is limited.
+     * Valid values: "<number>px".
      */
     public function minColumnWidth(int $width): self
     {
@@ -99,7 +103,8 @@ final class ChoiceSetInput extends AbstractInput
     }
 
     /**
-     * Controls whether choices should be displayed across multiple columns.
+     * Controls whether choice items are arranged in multiple columns in expanded mode,
+     * or in a single column.
      */
     public function useMultipleColumns(bool $multiple = true): self
     {
@@ -107,7 +112,9 @@ final class ChoiceSetInput extends AbstractInput
     }
 
     /**
-     * Defines a dynamic data query for choice sets (e.g. People Picker via Graph).
+     * A Data.Query object that defines the dataset from which to dynamically fetch the choices
+     * for the input.
+     * Valid values: Data.Query.
      */
     public function dataQuery(DataQuery $dataQuery): self
     {

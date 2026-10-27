@@ -24,7 +24,7 @@ final class TimeInput extends AbstractInput
     }
 
     /**
-     * Description of the input desired. Displayed when no time has been input.
+     * The text to display as a placeholder when the user hasn't entered a value.
      */
     public function placeholder(string $placeholder): self
     {
@@ -32,7 +32,7 @@ final class TimeInput extends AbstractInput
     }
 
     /**
-     * The earliest time that may be selected, expressed as HH:MM.
+     * The minimum time that can be selected, in the `HH:MM` format.
      */
     public function min(string $min): self
     {
@@ -40,7 +40,7 @@ final class TimeInput extends AbstractInput
     }
 
     /**
-     * The latest time that may be selected, expressed as HH:MM.
+     * The maximum time that can be selected, in the `HH:MM` format.
      */
     public function max(string $max): self
     {

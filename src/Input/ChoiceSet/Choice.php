@@ -23,7 +23,7 @@ final class Choice extends Node
     }
 
     /**
-     * Text to display.
+     * The text to display for the choice.
      */
     public function title(string $title): self
     {
@@ -31,8 +31,8 @@ final class Choice extends Node
     }
 
     /**
-     * The raw value for the choice.
-     * NOTE: do not use a ',' in the value, since a ChoiceSet input value when compact may contain ','.
+     * The value associated with the choice, as sent to the Bot when an `Action.Submit`
+     * or `Action.Execute` is invoked.
      */
     public function value(string $value): self
     {
