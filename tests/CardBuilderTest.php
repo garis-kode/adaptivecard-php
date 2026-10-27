@@ -61,7 +61,6 @@ final class CardBuilderTest extends TestCase
 
         $card = AdaptiveCard::make('1.6')
             ->schema('https://adaptivecards.io/schemas/adaptive-card.json')
-            // Element 1: Header ColumnSet
             ->addColumnSet(function (ColumnSet $cs): void {
                 $cs->column('stretch', function (Column $c): void {
                     $c->verticalContentAlignment(VerticalAlignment::Center)
@@ -106,20 +105,17 @@ final class CardBuilderTest extends TestCase
                         });
                 });
             })
-            // Element 2: Opportunity
             ->addTextBlock('Opportunity', function (TextBlock $t): void {
                 $t->wrap(true)
                     ->isSubtle(true)
                     ->spacing(Spacing::None);
             })
-            // Element 3: In Progress (AtMost:Narrow)
             ->addTextBlock('In Progress', function (TextBlock $t): void {
                 $t->targetWidth(TargetWidth::AtMostNarrow)
                     ->color(Colors::Good)
                     ->weight(TextWeight::Bolder)
                     ->wrap(true);
             })
-            // Element 4: 91 - Grade A (AtMost:Narrow)
             ->addTextBlock('91 - Grade A', function (TextBlock $t): void {
                 $t->targetWidth(TargetWidth::AtMostNarrow)
                     ->weight(TextWeight::Bolder)
@@ -127,7 +123,6 @@ final class CardBuilderTest extends TestCase
                     ->color(Colors::Default)
                     ->wrap(true);
             })
-            // Element 5: Table
             ->addTable(function (Table $table): void {
                 $table->targetWidth(TargetWidth::Narrow)
                     ->addColumn(TableColumnDefinition::make(2))
@@ -191,7 +186,6 @@ final class CardBuilderTest extends TestCase
                     ->spacing(Spacing::Large)
                     ->separator(true);
             })
-            // Element 6: Container (VeryNarrow)
             ->addContainer(function (Container $cont): void {
                 $cont->separator(true)
                     ->targetWidth(TargetWidth::VeryNarrow)
@@ -227,7 +221,6 @@ final class CardBuilderTest extends TestCase
                             });
                     });
             })
-            // Element 7: ColumnSet (AtLeast:Standard)
             ->addColumnSet(function (ColumnSet $cs): void {
                 $cs->targetWidth(TargetWidth::AtLeastStandard)
                     ->spacing(Spacing::Medium)
@@ -270,7 +263,6 @@ final class CardBuilderTest extends TestCase
                     })
                     ->column('stretch');
             })
-            // Element 8: Mona Kane contact ColumnSet
             ->addColumnSet(function (ColumnSet $cs) use ($createToggleAction): void {
                 $cs->separator(true)
                     ->spacing(Spacing::ExtraLarge)
@@ -337,7 +329,6 @@ final class CardBuilderTest extends TestCase
                             });
                     });
             })
-            // Element 9: ColumnSet (VeryNarrow)
             ->addColumnSet(function (ColumnSet $cs) use ($createToggleAction): void {
                 $cs->targetWidth(TargetWidth::VeryNarrow)
                     ->spacing(Spacing::Small)
@@ -376,12 +367,10 @@ final class CardBuilderTest extends TestCase
                         });
                 });
             })
-            // Element 10: moreText TextBlock
             ->addTextBlock('More Info', function (TextBlock $t): void {
                 $t->id('moreText')
                     ->isVisible(false);
             })
-            // Element 11: ActionSet
             ->addActionSet(function (ActionSet $as): void {
                 $as->separator(true)
                     ->spacing(Spacing::ExtraLarge)
@@ -1141,7 +1130,6 @@ final class CardBuilderTest extends TestCase
         $card = AdaptiveCard::make('1.6')
             ->schema('https://adaptivecards.io/schemas/adaptive-card.json')
             ->speak('Hawaii holiday escape deals start tonight')
-            // 1. ColumnSet (Narrow)
             ->addColumnSet(function (ColumnSet $cs): void {
                 $cs->targetWidth(TargetWidth::Narrow)
                     ->column('auto', function (Column $c): void {
@@ -1160,7 +1148,6 @@ final class CardBuilderTest extends TestCase
                             });
                     });
             })
-            // 2. ColumnSet (Narrow)
             ->addColumnSet(function (ColumnSet $cs) use ($avatarUrl): void {
                 $cs->targetWidth(TargetWidth::Narrow)
                     ->column('auto', function (Column $c) use ($avatarUrl): void {
@@ -1182,11 +1169,9 @@ final class CardBuilderTest extends TestCase
                         });
                     });
             })
-            // 3. ColumnSet (AtLeast:Narrow)
             ->addColumnSet(function (ColumnSet $cs) use ($avatarUrl, $heroImageUrl, $toggleTargets): void {
                 $cs->targetWidth(TargetWidth::AtLeastNarrow)
                     ->column('stretch', function (Column $c) use ($avatarUrl): void {
-                        // Nested ColumnSet: Posted in Employee Deals
                         $c->addColumnSet(function (ColumnSet $innerCs): void {
                             $innerCs->targetWidth(TargetWidth::AtLeastStandard)
                                 ->column('auto', function (Column $col): void {
@@ -1205,7 +1190,6 @@ final class CardBuilderTest extends TestCase
                                         });
                                 });
                         })
-                        // Nested ColumnSet: Author & Date
                         ->addColumnSet(function (ColumnSet $innerCs) use ($avatarUrl): void {
                             $innerCs->targetWidth(TargetWidth::AtLeastStandard)
                                 ->column('auto', function (Column $col) use ($avatarUrl): void {
@@ -1238,7 +1222,6 @@ final class CardBuilderTest extends TestCase
                                 ->spacing(Spacing::Small)
                                 ->maxLines(3);
                         })
-                        // Nested ColumnSet: Likes
                         ->addColumnSet(function (ColumnSet $innerCs): void {
                             $innerCs->height(Height::Stretch)
                                 ->spacing(Spacing::ExtraLarge)
@@ -1302,7 +1285,6 @@ final class CardBuilderTest extends TestCase
                         });
                     });
             })
-            // 4. Container (VeryNarrow)
             ->addContainer(function (Container $container) use ($avatarUrl, $heroImageUrl): void {
                 $container->targetWidth(TargetWidth::VeryNarrow)
                     ->addColumnSet(function (ColumnSet $cs): void {
@@ -1398,7 +1380,6 @@ final class CardBuilderTest extends TestCase
                             });
                     });
             })
-            // 5. ActionSet (AtMost:Narrow)
             ->addActionSet(function (ActionSet $as) use ($toggleTargets): void {
                 $as->targetWidth(TargetWidth::AtMostNarrow)
                     ->spacing(Spacing::Medium)
@@ -1880,20 +1861,17 @@ final class CardBuilderTest extends TestCase
         $card = AdaptiveCard::make('1.6')
             ->schema('https://adaptivecards.io/schemas/adaptive-card.json')
             ->speak('Intro to graphic design, concepts video')
-            // 1. Image with selectAction
             ->addImage('https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Card-Samples/main/samples/course-video/assets/video_image.png', function (Image $img): void {
                 $img->selectAction(
                     OpenUrlAction::make('https://adaptivecards.io/')
                         ->tooltip('Intro to Graphic Design: Concepts Video')
                 )->style(ImageStyle::RoundedCorners);
             })
-            // 2. TextBlock Header
             ->addTextBlock('Intro to Graphic Design: Concepts', function (TextBlock $t): void {
                 $t->wrap(true)
                     ->size(TextSize::Large)
                     ->weight(TextWeight::Bolder);
             })
-            // 3. Rating
             ->addRating(4, 5, function (Rating $r): void {
                 $r->count(1160)
                     ->color(RatingColor::Marigold)
@@ -1903,13 +1881,11 @@ final class CardBuilderTest extends TestCase
                     )
                     ->spacing(Spacing::None);
             })
-            // 4. TextBlock
             ->addTextBlock('Course · 52m · Beginner', function (TextBlock $t): void {
                 $t->wrap(true)
                     ->isSubtle(true)
                     ->spacing(Spacing::Small);
             })
-            // 5. ColumnSet (Logo + Authors)
             ->addColumnSet(function (ColumnSet $cs): void {
                 $cs->spacing(Spacing::None)
                     ->column('auto', function (Column $c): void {
@@ -1944,20 +1920,17 @@ final class CardBuilderTest extends TestCase
                         });
                     });
             })
-            // 6. TextBlock (truncatedText)
             ->addTextBlock('This course is designed to equip you with an understanding of the key principles and tools necessary for creating compelling designs. You\'ll gain practical experience with creative software and learn...', function (TextBlock $t): void {
                 $t->targetWidth(TargetWidth::AtLeastNarrow)
                     ->wrap(true)
                     ->id('truncatedText');
             })
-            // 7. TextBlock (fullText)
             ->addTextBlock('This course is designed to equip you with an understanding of the key principles and tools necessary for creating compelling designs. You\'ll gain practical experience with creative software and learn about design principles through hands-on projects that will help build your portfolio. Enroll now and start your journey to mastering the art of graphic design.', function (TextBlock $t): void {
                 $t->targetWidth(TargetWidth::AtLeastNarrow)
                     ->wrap(true)
                     ->isVisible(false)
                     ->id('fullText');
             })
-            // 8. RichTextBlock (showMore)
             ->addRichTextBlock(function (RichTextBlock $rtb) use ($toggleTargets): void {
                 $rtb->id('showMore')
                     ->targetWidth(TargetWidth::AtLeastNarrow)
@@ -1968,7 +1941,6 @@ final class CardBuilderTest extends TestCase
                         );
                     });
             })
-            // 9. RichTextBlock (showLess)
             ->addRichTextBlock(function (RichTextBlock $rtb) use ($toggleTargets): void {
                 $rtb->id('showLess')
                     ->targetWidth(TargetWidth::AtLeastNarrow)
@@ -1980,14 +1952,12 @@ final class CardBuilderTest extends TestCase
                         );
                     });
             })
-            // 10. ActionSet (AtLeast:Narrow)
             ->addActionSet(function (ActionSet $as): void {
                 $as->spacing(Spacing::Large)
                     ->targetWidth(TargetWidth::AtLeastNarrow)
                     ->addAction(OpenUrlAction::make('https://adaptivecards.io/', 'Open'))
                     ->addAction(ExecuteAction::make('Bookmark')->iconUrl('icon:Bookmark'));
             })
-            // 11. ActionSet (VeryNarrow)
             ->addActionSet(function (ActionSet $as): void {
                 $as->spacing(Spacing::Large)
                     ->targetWidth(TargetWidth::VeryNarrow)
