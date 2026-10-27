@@ -18,7 +18,7 @@ final class Authentication extends Node
     }
 
     /**
-     * The text to display when prompting a user to authenticate.
+     * The text that can be displayed to the end user when prompting them to authenticate.
      */
     public function text(string $text): self
     {
@@ -26,7 +26,7 @@ final class Authentication extends Node
     }
 
     /**
-     * The name of the OAuth connection to use.
+     * The identifier for registered OAuth connection setting information.
      */
     public function connectionName(string $connectionName): self
     {
@@ -34,7 +34,8 @@ final class Authentication extends Node
     }
 
     /**
-     * Defines information required to enable on-behalf-of single sign-on user authentication.
+     * Provides information required to enable on-behalf-of single sign-on user authentication.
+     * Valid values: TokenExchangeResource.
      */
     public function tokenExchangeResource(TokenExchangeResource $resource): self
     {
@@ -64,7 +65,10 @@ final class Authentication extends Node
     }
 
     /**
-     * Buttons that should be displayed to the user to authenticate.
+     * The buttons that should be displayed to the user when prompting for authentication.
+     * The array MUST contain one button of type "signin". Other button types are not
+     * currently supported.
+     * Valid values: AuthCardButton.
      *
      * @param iterable<AuthCardButton> $buttons
      */

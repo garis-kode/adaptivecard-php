@@ -31,7 +31,7 @@ final class StringResource extends Node
     }
 
     /**
-     * The default string to display if a localized string is not available for the host application's language.
+     * The default value of the string, which is used when no matching localized value is found.
      */
     public function defaultValue(string $defaultValue): self
     {
@@ -39,7 +39,9 @@ final class StringResource extends Node
     }
 
     /**
-     * A map of locale to localized string values.
+     * Localized values of the string, where keys represent the locale (e.g. en-US) in the
+     * `<ISO 639-1>(-<ISO 3166-1 alpha-2>)` format. `<ISO 639-1>` is the 2-letter language
+     * code and `<ISO 3166-1 alpha-2>` is the optional 2-letter country code.
      *
      * @param array<string, string> $localizedValues
      */

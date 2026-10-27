@@ -24,7 +24,9 @@ final class Metadata extends Node
     }
 
     /**
-     * The URL of the webpage that this card is associated with.
+     * The URL the card originates from. When `webUrl` is set, the card is dubbed an
+     * Adaptive Card-based Loop Component and, when pasted in Teams or other Loop
+     * Component-capable host applications, the URL will unfurl to the same exact card.
      */
     public function webUrl(string $webUrl): self
     {

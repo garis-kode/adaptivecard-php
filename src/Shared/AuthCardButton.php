@@ -40,7 +40,7 @@ final class AuthCardButton extends Node
     }
 
     /**
-     * The type of button. Valid values: "signin".
+     *  Must be `signin`.
      */
     public function type(string $type): self
     {
@@ -48,7 +48,7 @@ final class AuthCardButton extends Node
     }
 
     /**
-     * The title of the button.
+     * The caption of the button.
      */
     public function title(string $title): self
     {
@@ -56,7 +56,8 @@ final class AuthCardButton extends Node
     }
 
     /**
-     * The value associated with the button.
+     * The value associated with the button. The meaning of `value` depends on the
+     * button's type.
      */
     public function value(string $value): self
     {
@@ -64,7 +65,7 @@ final class AuthCardButton extends Node
     }
 
     /**
-     * The URL to the icon to be displayed with the button.
+     * A URL to an image to display alongside the button's caption.
      */
     public function image(string $image): self
     {

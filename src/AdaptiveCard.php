@@ -59,7 +59,9 @@ final class AdaptiveCard extends Node
     }
 
     /**
-     * The card elements (body).
+     * The body of the card, comprised of a list of elements displayed according to
+     * the `layouts` property. If the `layouts` property is not specified, a
+     * `Layout.Stack` is used.
      *
      * @param iterable<AbstractElement> $elements
      */
@@ -69,7 +71,7 @@ final class AdaptiveCard extends Node
     }
 
     /**
-     * The Adaptive Card schema URL.
+     * A URL to the Adaptive Card schema the card is authored against.
      */
     public function schema(string $schema): self
     {
@@ -100,6 +102,9 @@ final class AdaptiveCard extends Node
 
     /**
      * The card level actions, which always appear at the bottom of the card.
+     * Valid values: Action.Execute, Action.InsertImage, Action.OpenUrl, Action.OpenUrlDialog,
+     * Action.Popover, Action.ResetInputs, Action.RunCommands, Action.ShowCard, Action.Submit,
+     * Action.ToggleVisibility.
      *
      * @param iterable<AbstractAction> $actions
      */
@@ -111,6 +116,8 @@ final class AdaptiveCard extends Node
     /**
      * An Action that will be invoked when the card is tapped or clicked.
      * Action.ShowCard is not supported.
+     * Valid values: Action.Execute, Action.InsertImage, Action.OpenUrl, Action.OpenUrlDialog,
+     * Action.Popover, Action.ResetInputs, Action.RunCommands, Action.Submit, Action.ToggleVisibility.
      */
     public function selectAction(AbstractAction $action): self
     {
@@ -127,6 +134,7 @@ final class AdaptiveCard extends Node
 
     /**
      * Defines the container's background image.
+     * Valid values: BackgroundImage.
      */
     public function backgroundImage(BackgroundImage $backgroundImage): self
     {
@@ -134,7 +142,8 @@ final class AdaptiveCard extends Node
     }
 
     /**
-     * The minimum height, in pixels, of the container.
+     * The minimum height, in pixels, of the container, in the `<number>px` format.
+     * Valid values: "<number>px".
      */
     public function minHeight(string $minHeight): self
     {
@@ -142,7 +151,8 @@ final class AdaptiveCard extends Node
     }
 
     /**
-     * A unique identifier for the element or action.
+     * A unique identifier for the element or action. Input elements must have an `id`,
+     * otherwise they will not be validated and their values will not be sent to the Bot.
      */
     public function id(string $id): self
     {
@@ -161,6 +171,9 @@ final class AdaptiveCard extends Node
 
     /**
      * A list of capabilities the element requires the host application to support.
+     * If the host application doesn't support at least one of the listed capabilities,
+     * the element is not rendered (or its fallback is rendered if provided).
+     * Valid values: HostCapabilities.
      *
      * @param array<string, string> $requires
      */
@@ -232,6 +245,7 @@ final class AdaptiveCard extends Node
 
     /**
      * Defines how the card can be refreshed by making a request to the target Bot.
+     * Valid values: RefreshDefinition.
      */
     public function refresh(Refresh $refresh): self
     {
@@ -240,6 +254,8 @@ final class AdaptiveCard extends Node
 
     /**
      * Defines authentication information to enable on-behalf-of single-sign-on or just-in-time OAuth.
+     * This information is used in conjunction with the `refresh` property and `Action.Execute` in general.
+     * Valid values: Authentication.
      */
     public function authentication(Authentication $authentication): self
     {
@@ -248,6 +264,7 @@ final class AdaptiveCard extends Node
 
     /**
      * Metadata associated with the card.
+     * Valid values: CardMetadata.
      */
     public function metadata(Metadata $metadata): self
     {
@@ -256,6 +273,7 @@ final class AdaptiveCard extends Node
 
     /**
      * Teams-specific metadata associated with the card.
+     * Valid values: TeamsCardProperties.
      */
     public function msteams(TeamsCardProperties $msteams, bool $useCamelCaseKey = false): self
     {
@@ -268,6 +286,7 @@ final class AdaptiveCard extends Node
 
     /**
      * Resources card elements can reference.
+     * Valid values: Resources.
      */
     public function resources(Resources $resources): self
     {
@@ -298,6 +317,7 @@ final class AdaptiveCard extends Node
 
     /**
      * References that can be cited in TextBlock and RichTextBlock elements.
+     * Valid values: AdaptiveCardReference, DocumentReference.
      *
      * @param iterable<AdaptiveCardReference|DocumentReference> $references
      */

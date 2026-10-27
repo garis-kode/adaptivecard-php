@@ -17,7 +17,7 @@ final class AdaptiveCardReference extends Node
     }
 
     /**
-     * The title of the reference.
+     * Title of the reference.
      */
     public function title(string $title): self
     {
@@ -25,7 +25,7 @@ final class AdaptiveCardReference extends Node
     }
 
     /**
-     * An abstract for the reference.
+     * The abstract of the reference, providing a short summary of the reference's content.
      */
     public function abstract(string $abstract): self
     {
@@ -33,7 +33,7 @@ final class AdaptiveCardReference extends Node
     }
 
     /**
-     * The Adaptive Card content of the reference.
+     * Must be an Adaptive Card payload.
      */
     public function content(mixed $content): self
     {
@@ -41,7 +41,11 @@ final class AdaptiveCardReference extends Node
     }
 
     /**
-     * An icon representing the reference.
+     * Icon to be displayed in the reference.
+     * Valid values: "msWord", "msExcel", "msPowerPoint", "msOneNote", "msSharePoint",
+     * "msVisio", "msLoop", "msWhiteboard", "code", "sketch", "adobeIllustrator",
+     * "adobePhotoshop", "adobeInDesign", "adobeFlash", "image", "gif", "video",
+     * "sound", "zip", "text", "pdf".
      */
     public function icon(string $icon): self
     {
@@ -49,7 +53,7 @@ final class AdaptiveCardReference extends Node
     }
 
     /**
-     * A list of up to three keywords associated with the reference.
+     * Keywords for the reference. Maximum allowed is 3.
      *
      * @param list<string> $keywords
      */
@@ -59,7 +63,7 @@ final class AdaptiveCardReference extends Node
     }
 
     /**
-     * The URL of the reference.
+     * Optional URL for the reference title.
      */
     public function url(string $url): self
     {

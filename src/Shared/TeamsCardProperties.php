@@ -39,7 +39,8 @@ final class TeamsCardProperties extends Node
     }
 
     /**
-     * A list of entities mentioned in the card.
+     * The Teams-specific entities associated with the card.
+     * Valid values: mention.
      *
      * @param iterable<Mention> $entities
      */
@@ -49,7 +50,9 @@ final class TeamsCardProperties extends Node
     }
 
     /**
-     * Controls the width of the card when rendered in Teams.
+     * Controls the width of the card in a Teams chat. Note that setting width to `"full"`
+     * will not actually stretch the card to the "full width" of the chat pane. It will only
+     * make the card wider than when the width property isn't set.
      * Valid values: "full".
      *
      * @param "full"|string $width

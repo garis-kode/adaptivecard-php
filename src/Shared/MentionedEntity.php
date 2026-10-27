@@ -25,7 +25,7 @@ final class MentionedEntity extends Node
     }
 
     /**
-     * The user ID (MRI) or tag ID.
+     * The Id of a person (typically a Microsoft Entra user Id) or tag.
      */
     public function id(string $id): self
     {
@@ -33,7 +33,7 @@ final class MentionedEntity extends Node
     }
 
     /**
-     * The name of the user or tag.
+     * The name of the mentioned entity.
      */
     public function name(string $name): self
     {
@@ -41,7 +41,7 @@ final class MentionedEntity extends Node
     }
 
     /**
-     * The type of entity mentioned (e.g. Person, Tag).
+     * The type of the mentioned entity.
      * Valid values: "Person", "Tag".
      */
     public function mentionType(MentionType $mentionType): self

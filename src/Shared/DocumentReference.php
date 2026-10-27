@@ -18,7 +18,7 @@ final class DocumentReference extends Node
     }
 
     /**
-     * The title of the document.
+     * Title of the reference.
      */
     public function title(string $title): self
     {
@@ -26,7 +26,7 @@ final class DocumentReference extends Node
     }
 
     /**
-     * An abstract for the document.
+     * The abstract of the reference, providing a short summary of the reference's content.
      */
     public function abstract(string $abstract): self
     {
@@ -34,7 +34,7 @@ final class DocumentReference extends Node
     }
 
     /**
-     * An icon representing the document.
+     * Icon to be displayed in the reference.
      * Valid values: "msWord", "msExcel", "msPowerPoint", "msOneNote", "msSharePoint",
      * "msVisio", "msLoop", "msWhiteboard", "code", "sketch", "adobeIllustrator",
      * "adobePhotoshop", "adobeInDesign", "adobeFlash", "image", "gif", "video",
@@ -46,7 +46,7 @@ final class DocumentReference extends Node
     }
 
     /**
-     * A list of up to three keywords associated with the document.
+     * Keywords for the reference. Maximum allowed is 3.
      *
      * @param list<string> $keywords
      */
@@ -56,7 +56,7 @@ final class DocumentReference extends Node
     }
 
     /**
-     * The URL of the document.
+     * Optional URL for the reference title.
      */
     public function url(string $url): self
     {

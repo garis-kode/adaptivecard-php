@@ -37,7 +37,7 @@ final class TokenExchangeResource extends Node
     }
 
     /**
-     * A unique identifier for this token exchange resource.
+     * The unique identifier of this token exchange instance.
      */
     public function id(string $id): self
     {
@@ -45,7 +45,7 @@ final class TokenExchangeResource extends Node
     }
 
     /**
-     * An application ID of the resource provider.
+     * An identifier for the identity provider with which to attempt a token exchange.
      */
     public function providerId(string $providerId): self
     {
@@ -53,7 +53,8 @@ final class TokenExchangeResource extends Node
     }
 
     /**
-     * The URI of the resource provider.
+     * An application ID or resource identifier with which to exchange a token on behalf
+     * of. This property is identity provider- and application-specific.
      */
     public function uri(string $uri): self
     {

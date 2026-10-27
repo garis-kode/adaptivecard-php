@@ -23,7 +23,7 @@ final class Mention extends Node
     }
 
     /**
-     * The text formatted as `<at>Name</at>`.
+     * The text that will be substituted with the mention.
      */
     public function text(string $text): self
     {
@@ -31,7 +31,8 @@ final class Mention extends Node
     }
 
     /**
-     * The person or tag mentioned.
+     * Defines the entity being mentioned.
+     * Valid values: MentionedEntity.
      */
     public function mentioned(MentionedEntity $mentioned): self
     {
