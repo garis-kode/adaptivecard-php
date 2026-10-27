@@ -33,7 +33,7 @@ final class ImageRun extends AbstractElement
     }
 
     /**
-     * Controls the size of the image.
+     * The size of the inline image.
      * Valid values: "Small", "Default", "Medium", "Large", "ExtraLarge".
      */
     public function size(TextSize $size): self
@@ -42,7 +42,7 @@ final class ImageRun extends AbstractElement
     }
 
     /**
-     * Controls how this element is displayed.
+     * The style of the inline image.
      * Valid values: "Default", "Person", "RoundedCorners".
      */
     public function style(ImageStyle $style): self
@@ -51,7 +51,8 @@ final class ImageRun extends AbstractElement
     }
 
     /**
-     * Controls alternative image URLs based on the active theme.
+     * A set of theme-specific image URLs.
+     * Valid values: ThemedUrl.
      *
      * @param list<array{imageBaseUrl: string, mimeType: string}> $themedUrls
      */
@@ -62,6 +63,7 @@ final class ImageRun extends AbstractElement
 
     /**
      * An Action that will be invoked when the image is tapped or clicked.
+     * Action.ShowCard is not supported.
      */
     public function selectAction(AbstractAction $action): self
     {

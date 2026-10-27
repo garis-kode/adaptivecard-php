@@ -35,7 +35,7 @@ final class CompoundButton extends AbstractElement
     }
 
     /**
-     * The description of the button.
+     * The description text of the button.
      */
     public function description(string $description): self
     {
@@ -43,7 +43,7 @@ final class CompoundButton extends AbstractElement
     }
 
     /**
-     * Optional badge text to display on the button.
+     * The badge to show on the button.
      */
     public function badge(string $badge): self
     {
@@ -51,7 +51,8 @@ final class CompoundButton extends AbstractElement
     }
 
     /**
-     * The icon to display on the button.
+     * The icon to show on the button.
+     * Valid values: IconInfo.
      *
      * @param string|array{name: string, style?: string} $icon
      */
@@ -66,6 +67,7 @@ final class CompoundButton extends AbstractElement
 
     /**
      * An Action that will be invoked when the button is tapped or clicked.
+     * Action.ShowCard is not supported.
      */
     public function selectAction(AbstractAction $action): self
     {

@@ -40,7 +40,7 @@ final class Image extends AbstractElement
     }
 
     /**
-     * The alternative text that describes the image.
+     * The alternate text for the image, used for accessibility purposes.
      */
     public function altText(string $altText): self
     {
@@ -48,7 +48,7 @@ final class Image extends AbstractElement
     }
 
     /**
-     * Controls the approximate size of the image.
+     * The size of the image.
      * Valid values: "Auto", "Stretch", "Small", "Medium", "Large".
      */
     public function size(ImageSize $size): self
@@ -57,7 +57,7 @@ final class Image extends AbstractElement
     }
 
     /**
-     * Controls how this element is displayed.
+     * The style of the image.
      * Valid values: "Default", "Person", "RoundedCorners".
      */
     public function style(ImageStyle $style): self
@@ -66,7 +66,7 @@ final class Image extends AbstractElement
     }
 
     /**
-     * Applies a background to a transparent image.
+     * The background color of the image in the `#RRGGBB` or `#AARRGGBB` format.
      */
     public function backgroundColor(string $color): self
     {
@@ -75,7 +75,7 @@ final class Image extends AbstractElement
 
     /**
      * The width of the image.
-     * Valid values: "auto", "stretch", pixel count.
+     * Valid values: "auto", "stretch", "<number>px".
      */
     public function width(Width|int $width): self
     {
@@ -86,7 +86,7 @@ final class Image extends AbstractElement
 
     /**
      * The height of the image.
-     * Valid values: "auto", "stretch", pixel count.
+     * Valid values: "auto", "stretch", "<number>px".
      */
     public function height(Height|int $height): static
     {
@@ -96,7 +96,7 @@ final class Image extends AbstractElement
     }
 
     /**
-     * Controls whether the image can be expanded by the user.
+     * Controls if the image can be expanded to full screen.
      */
     public function allowExpand(bool $allow = true): self
     {
@@ -104,7 +104,9 @@ final class Image extends AbstractElement
     }
 
     /**
-     * Controls how the image should fill its container.
+     * Controls how the image should be fitted inside its bounding box. `imageFit` is
+     * only meaningful when both the width and height properties are set. When `fitMode`
+     * is set to `contain`, the default style is always used.
      * Valid values: "Cover", "Contain", "Fill".
      */
     public function fitMode(ImageFitMode $fitMode): self
@@ -113,7 +115,9 @@ final class Image extends AbstractElement
     }
 
     /**
-     * Controls horizontal content alignment.
+     * Controls the horizontal position of the image within its bounding box.
+     * `horizontalContentAlignment` is only meaningful when both the width and height
+     * properties are set and `fitMode` is set to either `cover` or `contain`.
      * Valid values: "Left", "Center", "Right".
      */
     public function horizontalContentAlignment(HorizontalAlignment $alignment): self
@@ -122,7 +126,9 @@ final class Image extends AbstractElement
     }
 
     /**
-     * Controls vertical content alignment.
+     * Controls the vertical position of the image within its bounding box.
+     * `verticalContentAlignment` is only meaningful when both the width and height
+     * properties are set and `fitMode` is set to either `cover` or `contain`.
      * Valid values: "Top", "Center", "Bottom".
      */
     public function verticalContentAlignment(VerticalAlignment $alignment): self
@@ -131,7 +137,8 @@ final class Image extends AbstractElement
     }
 
     /**
-     * Controls alternative image URLs based on the active theme.
+     * A set of theme-specific image URLs.
+     * Valid values: ThemedUrl.
      *
      * @param list<array<string, mixed>> $themedUrls
      */
@@ -141,7 +148,8 @@ final class Image extends AbstractElement
     }
 
     /**
-     * Represents a set of Teams-specific properties on an image.
+     * Teams-specific metadata associated with the image.
+     * Valid values: TeamsImageProperties.
      */
     public function msteams(TeamsImageProperties $properties, bool $useCamelCaseKey = false): self
     {
@@ -153,7 +161,7 @@ final class Image extends AbstractElement
     }
 
     /**
-     * An Action that will be invoked when the element is tapped or clicked.
+     * An Action that will be invoked when the image is tapped or clicked.
      * Action.ShowCard is not supported.
      */
     public function selectAction(AbstractAction $action): self

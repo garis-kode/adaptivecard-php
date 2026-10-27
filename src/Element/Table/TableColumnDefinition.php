@@ -27,7 +27,11 @@ final class TableColumnDefinition extends Node
     }
 
     /**
-     * Specifies the width of the column. Width::Auto or relative weight (e.g. 1).
+     * The width of the column in the table. If expressed as a number, represents the relative
+     * weight of the column in the table. If expressed as a string, `auto` will automatically
+     * adjust the column's width according to its content and using the `<number>px` format will
+     * give the column an explicit width in pixels.
+     * Valid values: "auto", "<number>px".
      */
     public function width(Width|int $width): self
     {
@@ -45,7 +49,8 @@ final class TableColumnDefinition extends Node
     }
 
     /**
-     * Controls how cells should be horizontally aligned in this column.
+     * Controls how the content of every cell in the table should be horizontally aligned by default.
+     * This property overrides the `horizontalCellContentAlignment` property of the table.
      * Valid values: "Left", "Center", "Right".
      */
     public function horizontalCellContentAlignment(HorizontalAlignment $alignment): self
@@ -54,7 +59,8 @@ final class TableColumnDefinition extends Node
     }
 
     /**
-     * Controls how cells should be vertically aligned in this column.
+     * Controls how the content of every cell in the column should be vertically aligned by default.
+     * This property overrides the `verticalCellContentAlignment` property of the table.
      * Valid values: "Top", "Center", "Bottom".
      */
     public function verticalCellContentAlignment(VerticalAlignment $alignment): self

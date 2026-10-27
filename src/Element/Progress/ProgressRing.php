@@ -26,7 +26,7 @@ final class ProgressRing extends AbstractElement
     }
 
     /**
-     * The label to display alongside the progress ring.
+     * The label of the progress ring.
      */
     public function label(string $label): self
     {
@@ -34,7 +34,7 @@ final class ProgressRing extends AbstractElement
     }
 
     /**
-     * Specifies the position of the label relative to the progress ring.
+     * Controls the relative position of the label to the progress ring.
      * Valid values: "Before", "After", "Above", "Below".
      */
     public function labelPosition(ProgressRingLabelPosition $position): self
@@ -43,7 +43,7 @@ final class ProgressRing extends AbstractElement
     }
 
     /**
-     * Controls the size of the progress ring.
+     * The size of the progress ring.
      * Valid values: "Tiny", "Small", "Medium", "Large".
      */
     public function size(ProgressRingSize $size): self

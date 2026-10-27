@@ -42,7 +42,8 @@ final class TableRow extends AbstractElement
     }
 
     /**
-     * The cells in this row.
+     * The cells in the row.
+     * Valid values: TableCell.
      *
      * @param iterable<TableCell> $cells
      */
@@ -63,7 +64,8 @@ final class TableRow extends AbstractElement
     }
 
     /**
-     * The style of the table row.
+     * The style of the container. Container styles control the colors of the background,
+     * border and text inside the container, in such a way that contrast requirements are always met.
      * Valid values: "default", "emphasis", "accent", "good", "attention", "warning".
      */
     public function style(ContainerStyle $style): self
@@ -72,7 +74,7 @@ final class TableRow extends AbstractElement
     }
 
     /**
-     * Controls whether the row's corners should be rounded.
+     * Controls if the container should have rounded corners.
      */
     public function roundedCorners(bool $value = true): self
     {
@@ -80,7 +82,7 @@ final class TableRow extends AbstractElement
     }
 
     /**
-     * Controls whether the row's border should be displayed.
+     * Controls if a border should be displayed around the container.
      */
     public function showBorder(bool $value = true): self
     {
@@ -88,7 +90,8 @@ final class TableRow extends AbstractElement
     }
 
     /**
-     * Controls how cells should be horizontally aligned in this row.
+     * Controls how the content of every cell in the row should be horizontally aligned by default.
+     * This property overrides the `horizontalCellContentAlignment` property of the table and columns.
      * Valid values: "Left", "Center", "Right".
      */
     public function horizontalCellContentAlignment(HorizontalAlignment $alignment): self
@@ -97,7 +100,8 @@ final class TableRow extends AbstractElement
     }
 
     /**
-     * Controls how cells should be vertically aligned in this row.
+     * Controls how the content of every cell in the row should be vertically aligned by default.
+     * This property overrides the `verticalCellContentAlignment` property of the table and columns.
      * Valid values: "Top", "Center", "Bottom".
      */
     public function verticalCellContentAlignment(VerticalAlignment $alignment): self

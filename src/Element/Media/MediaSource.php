@@ -27,7 +27,7 @@ final class MediaSource extends Node
     }
 
     /**
-     * URL to media.
+     * The URL of the source.
      */
     public function url(string $url): self
     {
@@ -35,7 +35,7 @@ final class MediaSource extends Node
     }
 
     /**
-     * Mime type of associated media (e.g. 'video/mp4').
+     * The MIME type of the source.
      */
     public function mimeType(string $mimeType): self
     {

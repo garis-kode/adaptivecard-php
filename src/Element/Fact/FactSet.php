@@ -47,7 +47,8 @@ final class FactSet extends AbstractElement
     }
 
     /**
-     * The array of Fact's.
+     * The facts in the set.
+     * Valid values: Fact.
      *
      * @param iterable<Fact> $facts
      */

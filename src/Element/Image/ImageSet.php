@@ -41,6 +41,7 @@ final class ImageSet extends AbstractElement
 
     /**
      * The images in the set.
+     * Valid values: Image.
      *
      * @param iterable<Image> $images
      */
@@ -50,7 +51,7 @@ final class ImageSet extends AbstractElement
     }
 
     /**
-     * Controls the approximate size of each image in the set.
+     * The size to use to render all images in the set.
      * Valid values: "Small", "Medium", "Large".
      */
     public function imageSize(ImageSetSize $size): self

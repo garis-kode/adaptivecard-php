@@ -66,7 +66,8 @@ final class Table extends AbstractElement
     }
 
     /**
-     * Defines the table's columns (their widths and default content alignment).
+     * The columns in the table.
+     * Valid values: ColumnDefinition.
      *
      * @param iterable<TableColumnDefinition> $columns
      */
@@ -98,7 +99,8 @@ final class Table extends AbstractElement
     }
 
     /**
-     * Defines the table's rows.
+     * The rows of the table.
+     * Valid values: TableRow.
      *
      * @param iterable<TableRow> $rows
      */
@@ -123,7 +125,7 @@ final class Table extends AbstractElement
     }
 
     /**
-     * Controls whether grid lines should be displayed between cells in the table.
+     * Controls if grid lines should be displayed.
      */
     public function showGridLines(bool $value = true): self
     {
@@ -131,8 +133,7 @@ final class Table extends AbstractElement
     }
 
     /**
-     * Defines whether the first row of the table should be treated as a header row,
-     * and be repeated on every page of a printout.
+     * Controls whether the first row of the table should be treated as a header.
      */
     public function firstRowAsHeaders(bool $value = true): self
     {
@@ -140,7 +141,7 @@ final class Table extends AbstractElement
     }
 
     /**
-     * Controls whether the table's corners should be rounded.
+     * Controls if the container should have rounded corners.
      */
     public function roundedCorners(bool $value = true): self
     {
@@ -148,7 +149,7 @@ final class Table extends AbstractElement
     }
 
     /**
-     * Controls whether the table's border should be displayed.
+     * Controls if a border should be displayed around the container.
      */
     public function showBorder(bool $value = true): self
     {
@@ -156,7 +157,11 @@ final class Table extends AbstractElement
     }
 
     /**
-     * The minimum width, in pixels, of the table, or Width::Auto.
+     * The minimum width of the table in pixels. `auto` will automatically adjust the
+     * table's minimum width according to its content and using the `<number>px` format will
+     * give the table an explicit minimum width in pixels. A scrollbar will be displayed if
+     * the available width is less than the specified minimum width.
+     * Valid values: "auto", "<number>px".
      */
     public function minWidth(Width|int $width): self
     {
@@ -166,7 +171,8 @@ final class Table extends AbstractElement
     }
 
     /**
-     * The style of the table.
+     * The style of the container. Container styles control the colors of the background,
+     * border and text inside the container, in such a way that contrast requirements are always met.
      * Valid values: "default", "emphasis", "accent", "good", "attention", "warning".
      */
     public function style(ContainerStyle $style): self
@@ -175,7 +181,7 @@ final class Table extends AbstractElement
     }
 
     /**
-     * Controls the style of grid lines displayed between cells in the table.
+     * The style of the grid lines between cells.
      * Valid values: "default", "emphasis", "accent", "good", "attention", "warning".
      */
     public function gridStyle(ContainerStyle $style): self
@@ -184,7 +190,7 @@ final class Table extends AbstractElement
     }
 
     /**
-     * Controls how cells should be horizontally aligned by default across the entire table.
+     * Controls how the content of every cell in the table should be horizontally aligned by default.
      * Valid values: "Left", "Center", "Right".
      */
     public function horizontalCellContentAlignment(HorizontalAlignment $alignment): self
@@ -193,7 +199,7 @@ final class Table extends AbstractElement
     }
 
     /**
-     * Controls how cells should be vertically aligned by default across the entire table.
+     * Controls how the content of every cell in the table should be vertically aligned by default.
      * Valid values: "Top", "Center", "Bottom".
      */
     public function verticalCellContentAlignment(VerticalAlignment $alignment): self

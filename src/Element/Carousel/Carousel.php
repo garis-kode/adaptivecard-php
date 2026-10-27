@@ -40,7 +40,8 @@ final class Carousel extends AbstractElement
     }
 
     /**
-     * The pages of the carousel.
+     * The pages in the carousel.
+     * Valid values: CarouselPage.
      *
      * @param iterable<CarouselPage> $pages
      */
@@ -50,8 +51,8 @@ final class Carousel extends AbstractElement
     }
 
     /**
-     * Controls the duration of an auto loop interval in milliseconds.
-     * When auto-loop is enabled, pages automatically advance after this interval.
+     * The interval, in milliseconds, between automatic page advances. Leave undefined to disable
+     * auto-rotation; the minimum accepted value is 1000.
      */
     public function autoLoopInterval(int $milliseconds): self
     {
@@ -59,7 +60,7 @@ final class Carousel extends AbstractElement
     }
 
     /**
-     * Controls the animation style between carousel pages.
+     * Controls the type of animation to use to navigate between pages.
      * Valid values: "Slide", "CrossFade", "None".
      */
     public function pageAnimation(PageAnimation $animation): self
@@ -68,7 +69,7 @@ final class Carousel extends AbstractElement
     }
 
     /**
-     * Determines whether the element should bleed through its parent's padding.
+     * Controls if the container should bleed into its parent. A bleeding container extends into its parent's padding.
      */
     public function bleed(bool $bleed = true): self
     {
@@ -76,7 +77,7 @@ final class Carousel extends AbstractElement
     }
 
     /**
-     * The minimum height, in pixels, of the carousel.
+     * The minimum height, in pixels, of the container.
      */
     public function minHeight(int $minHeight): self
     {

@@ -26,7 +26,7 @@ final class CarouselPage extends AbstractElement
 
     /**
      * The style of the container. Container styles control the colors of the background,
-     * border and text inside the container.
+     * border and text inside the container, in such a way that contrast requirements are always met.
      * Valid values: "default", "emphasis", "accent", "good", "attention", "warning".
      */
     public function style(ContainerStyle $style): self
@@ -35,7 +35,7 @@ final class CarouselPage extends AbstractElement
     }
 
     /**
-     * Controls whether the container's border should be displayed.
+     * Controls if a border should be displayed around the container.
      */
     public function showBorder(bool $showBorder = true): self
     {
@@ -43,7 +43,7 @@ final class CarouselPage extends AbstractElement
     }
 
     /**
-     * Controls whether the container's corners should be rounded.
+     * Controls if the container should have rounded corners.
      */
     public function roundedCorners(bool $roundedCorners = true): self
     {
@@ -59,7 +59,8 @@ final class CarouselPage extends AbstractElement
     }
 
     /**
-     * The maximum height, in pixels, of the container.
+     * The maximum height, in pixels, of the container. When the content of a container
+     * exceeds the container's maximum height, a vertical scrollbar is displayed.
      */
     public function maxHeight(int $maxHeight): self
     {
@@ -89,7 +90,8 @@ final class CarouselPage extends AbstractElement
     }
 
     /**
-     * The layouts associated with the container.
+     * The layouts associated with the container. The container can dynamically switch
+     * from one layout to another as the card's width changes.
      * Valid values: Layout.Stack, Layout.Flow, Layout.AreaGrid.
      *
      * @param iterable<AbstractLayout> $layouts
@@ -109,7 +111,7 @@ final class CarouselPage extends AbstractElement
     }
 
     /**
-     * Controls if the content of the container is to be rendered left-to-right or right-to-left.
+     * Controls if the content of the card is to be rendered left-to-right or right-to-left.
      */
     public function rtl(bool $rtl = true): self
     {
@@ -118,6 +120,7 @@ final class CarouselPage extends AbstractElement
 
     /**
      * Defines the container's background image.
+     * Valid values: BackgroundImage.
      */
     public function backgroundImage(BackgroundImage $backgroundImage): self
     {
@@ -125,7 +128,8 @@ final class CarouselPage extends AbstractElement
     }
 
     /**
-     * An Action that will be invoked when the page is tapped or clicked.
+     * An Action that will be invoked when the element is tapped or clicked.
+     * Action.ShowCard is not supported.
      */
     public function selectAction(AbstractAction $action): self
     {

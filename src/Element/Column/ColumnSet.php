@@ -42,7 +42,8 @@ final class ColumnSet extends AbstractElement
     }
 
     /**
-     * The columns in this column set.
+     * The columns in the set.
+     * Valid values: Column.
      *
      * @param iterable<Column> $columns
      */
@@ -80,7 +81,7 @@ final class ColumnSet extends AbstractElement
     }
 
     /**
-     * Determines whether the element should bleed through its parent's padding.
+     * Controls if the container should bleed into its parent. A bleeding container extends into its parent's padding.
      */
     public function bleed(bool $bleed = true): self
     {
@@ -96,7 +97,11 @@ final class ColumnSet extends AbstractElement
     }
 
     /**
-     * The minimum width, in pixels, of the column set, or Width::Auto.
+     * The minimum width of the column set. `auto` will automatically adjust the column set's
+     * minimum width according to its content and using the `<number>px` format will give the
+     * column set an explicit minimum width in pixels. A scrollbar will be displayed if the
+     * available width is less than the specified minimum width.
+     * Valid values: "auto", "<number>px".
      */
     public function minWidth(Width|int $minWidth): self
     {
@@ -106,7 +111,7 @@ final class ColumnSet extends AbstractElement
     }
 
     /**
-     * Controls whether corners should be rounded.
+     * Controls if the container should have rounded corners.
      */
     public function roundedCorners(bool $value = true): self
     {
@@ -114,7 +119,7 @@ final class ColumnSet extends AbstractElement
     }
 
     /**
-     * Controls whether border should be displayed.
+     * Controls if a border should be displayed around the container.
      */
     public function showBorder(bool $value = true): self
     {
@@ -122,7 +127,8 @@ final class ColumnSet extends AbstractElement
     }
 
     /**
-     * An Action that will be invoked when the ColumnSet is tapped or clicked.
+     * An Action that will be invoked when the element is tapped or clicked.
+     * Action.ShowCard is not supported.
      */
     public function selectAction(AbstractAction $action): self
     {

@@ -52,7 +52,8 @@ final class RichTextBlock extends AbstractElement
     }
 
     /**
-     * The list of inlines to display.
+     * The inlines making up the rich text block.
+     * Valid values: TextRun, IconRun, ImageRun, CitationRun.
      *
      * @param iterable<TextRun|IconRun|ImageRun> $inlines
      */
@@ -101,7 +102,7 @@ final class RichTextBlock extends AbstractElement
     }
 
     /**
-     * A string identifier representing the input element that this text block provides a label for.
+     * The Id of the input the RichTextBlock should act as the label of.
      */
     public function labelFor(string $inputId): self
     {

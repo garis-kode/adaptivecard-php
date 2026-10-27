@@ -20,8 +20,7 @@ final class Icon extends AbstractElement
     }
 
     /**
-     * The name of an icon from the Adaptive Card icon catalog to display,
-     * in the `<icon-name>[,regular|filled]` format.
+     * The name of the icon to display.
      */
     public function name(string $name): self
     {
@@ -29,7 +28,7 @@ final class Icon extends AbstractElement
     }
 
     /**
-     * Controls the color of Icon elements.
+     * The color of the icon.
      * Valid values: "Default", "Dark", "Light", "Accent", "Good", "Warning", "Attention".
      */
     public function color(Colors $color): self
@@ -38,7 +37,7 @@ final class Icon extends AbstractElement
     }
 
     /**
-     * Controls the size of the icon.
+     * The size of the icon.
      * Valid values: "xxSmall", "xSmall", "Small", "Standard", "Medium", "Large", "xLarge", "xxLarge".
      */
     public function size(IconSize $size): self
@@ -47,7 +46,7 @@ final class Icon extends AbstractElement
     }
 
     /**
-     * Controls the style of the icon.
+     * The style of the icon.
      * Valid values: "Regular", "Filled".
      */
     public function style(IconStyle $style): self
@@ -57,6 +56,7 @@ final class Icon extends AbstractElement
 
     /**
      * An Action that will be invoked when the icon is tapped or clicked.
+     * Action.ShowCard is not supported.
      */
     public function selectAction(AbstractAction $action): self
     {

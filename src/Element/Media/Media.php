@@ -7,7 +7,7 @@ namespace AdaptiveCards\Element\Media;
 use AdaptiveCards\Element\AbstractElement;
 
 /**
- * A media element that makes it possible to embed videos inside cards.
+ * A media element that makes it possible to embed videos inside a card.
  */
 final class Media extends AbstractElement
 {
@@ -39,7 +39,8 @@ final class Media extends AbstractElement
     }
 
     /**
-     * The media sources.
+     * The sources for the media. For YouTube, Dailymotion and Vimeo, only one source can be specified.
+     * Valid values: MediaSource.
      *
      * @param iterable<MediaSource> $sources
      */
@@ -71,7 +72,8 @@ final class Media extends AbstractElement
     }
 
     /**
-     * The caption sources.
+     * The caption sources for the media. Caption sources are not used for YouTube, Dailymotion or Vimeo sources.
+     * Valid values: CaptionSource.
      *
      * @param iterable<CaptionSource> $captionSources
      */
@@ -81,7 +83,7 @@ final class Media extends AbstractElement
     }
 
     /**
-     * The URL of an image to display before the media plays.
+     * The URL of the poster image to display.
      */
     public function poster(string $url): self
     {
@@ -89,7 +91,7 @@ final class Media extends AbstractElement
     }
 
     /**
-     * Alternative text for this media element.
+     * The alternate text for the media, used for accessibility purposes.
      */
     public function altText(string $altText): self
     {

@@ -24,7 +24,7 @@ final class CaptionSource extends Node
     }
 
     /**
-     * URL to the captions file. Currently only VTT format is supported.
+     * The URL of the source.
      */
     public function url(string $url): self
     {
@@ -32,7 +32,7 @@ final class CaptionSource extends Node
     }
 
     /**
-     * MIME type of captions file. Currently only 'text/vtt' is supported.
+     * The MIME type of the source.
      */
     public function mimeType(string $mimeType): self
     {
@@ -40,7 +40,7 @@ final class CaptionSource extends Node
     }
 
     /**
-     * Label for the caption track, shown to user as option in closed caption selection.
+     * The label of this caption source.
      */
     public function label(string $label): self
     {
