@@ -55,9 +55,9 @@ final class ColumnSet extends AbstractElement
     /**
      * Create, configure and append a column in one call.
      *
-     * @param Width|int|null $width Width::Auto, Width::Stretch, or a weight number.
+     * @param Width|string|int|null $width Width::Auto, Width::Stretch, explicit pixel width (e.g. '25px'), or a weight number.
      */
-    public function column(Width|int|null $width = null, ?callable $configure = null): self
+    public function column(Width|string|int|null $width = null, ?callable $configure = null): self
     {
         $column = new Column();
         if ($width !== null) {
@@ -103,9 +103,9 @@ final class ColumnSet extends AbstractElement
      * available width is less than the specified minimum width.
      * Valid values: "auto", "<number>px".
      */
-    public function minWidth(Width|int $minWidth): self
+    public function minWidth(Width|string $minWidth): self
     {
-        $value = $minWidth instanceof Width ? $minWidth->value : "{$minWidth}px";
+        $value = $minWidth instanceof Width ? $minWidth->value : $minWidth;
 
         return $this->set('minWidth', $value);
     }

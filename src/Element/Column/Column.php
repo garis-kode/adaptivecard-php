@@ -33,19 +33,11 @@ final class Column extends AbstractElement
      * and using the `<number>px` format will give the column an explicit width in pixels.
      * Valid values: "auto", "stretch", "<number>px".
      */
-    public function width(Width|int $width): self
+    public function width(Width|string|int $width): self
     {
         $value = $width instanceof Width ? $width->value : $width;
 
         return $this->set('width', $value);
-    }
-
-    /**
-     * Explicit pixel width for the column, in pixels.
-     */
-    public function pixelWidth(int $pixels): self
-    {
-        return $this->set('width', "{$pixels}px");
     }
 
     /**

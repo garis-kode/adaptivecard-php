@@ -97,9 +97,9 @@ final class ChoiceSetInput extends AbstractInput
      * This ensures that choice items remain readable even when horizontal space is limited.
      * Valid values: "<number>px".
      */
-    public function minColumnWidth(int $width): self
+    public function minColumnWidth(string $width): self
     {
-        return $this->set('minColumnWidth', "{$width}px");
+        return $this->set('minColumnWidth', $width);
     }
 
     /**

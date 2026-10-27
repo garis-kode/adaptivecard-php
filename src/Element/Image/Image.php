@@ -77,9 +77,9 @@ final class Image extends AbstractElement
      * The width of the image.
      * Valid values: "auto", "stretch", "<number>px".
      */
-    public function width(Width|int $width): self
+    public function width(Width|string $width): self
     {
-        $value = $width instanceof Width ? $width->value : "{$width}px";
+        $value = $width instanceof Width ? $width->value : $width;
 
         return $this->set('width', $value);
     }

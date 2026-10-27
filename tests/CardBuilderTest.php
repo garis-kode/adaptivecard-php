@@ -170,7 +170,7 @@ final class CardBuilderTest extends TestCase
                                     $cs->column(Width::Auto, function (Column $c): void {
                                         $c->verticalContentAlignment(VerticalAlignment::Center)
                                             ->addImage('https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Card-Samples/main/samples/account/assets/avatar_small.png', function (Image $img): void {
-                                                $img->width(20);
+                                                $img->width('20px');
                                             });
                                     })
                                     ->column(Width::Stretch, function (Column $c): void {
@@ -211,7 +211,7 @@ final class CardBuilderTest extends TestCase
                             ->column(Width::Auto, function (Column $c): void {
                                 $c->verticalContentAlignment(VerticalAlignment::Center)
                                     ->addImage('https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Card-Samples/main/samples/account/assets/avatar_small.png', function (Image $img): void {
-                                        $img->width(20);
+                                        $img->width('20px');
                                     });
                             })
                             ->column(Width::Stretch, function (Column $c): void {
@@ -251,7 +251,7 @@ final class CardBuilderTest extends TestCase
                                 ->column(Width::Auto, function (Column $col): void {
                                     $col->verticalContentAlignment(VerticalAlignment::Center)
                                         ->addImage('https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Card-Samples/main/samples/account/assets/avatar_small.png', function (Image $img): void {
-                                            $img->width(20);
+                                            $img->width('20px');
                                         });
                                 })
                                 ->column(Width::Stretch, function (Column $col): void {
@@ -272,7 +272,7 @@ final class CardBuilderTest extends TestCase
                         $c->verticalContentAlignment(VerticalAlignment::Center)
                             ->addImage('https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Card-Samples/main/samples/account/assets/avatar_large.png', function (Image $img): void {
                                 $img->style(ImageStyle::Person)
-                                    ->width(35);
+                                    ->width('35px');
                             });
                     })
                     ->column(Width::Stretch, function (Column $c): void {
@@ -996,7 +996,7 @@ final class CardBuilderTest extends TestCase
                 $cs->column(Width::Auto, function (Column $c): void {
                     $c->verticalContentAlignment(VerticalAlignment::Center)
                         ->addImage('https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Card-Samples/main/samples/author-highlight-video/assets/avatar.png', function (Image $img): void {
-                            $img->width(24)
+                            $img->width('24px')
                                 ->height(24)
                                 ->style(ImageStyle::Person)
                                 ->altText('Avatar of Kayo Miwa');
@@ -1263,14 +1263,14 @@ final class CardBuilderTest extends TestCase
                     ->column(Width::Auto, function (Column $c) use ($heroImageUrl, $toggleTargets): void {
                         $c->addImage($heroImageUrl, function (Image $img): void {
                             $img->targetWidth(TargetWidth::AtLeastStandard)
-                                ->width(150)
+                                ->width('150px')
                                 ->height(Height::Auto)
                                 ->altText('Beach Image')
                                 ->style(ImageStyle::RoundedCorners);
                         })
                         ->addImage($heroImageUrl, function (Image $img): void {
                             $img->targetWidth(TargetWidth::Narrow)
-                                ->width(100)
+                                ->width('100px')
                                 ->height(Height::Auto)
                                 ->altText('Beach Image')
                                 ->style(ImageStyle::RoundedCorners);
@@ -1342,7 +1342,7 @@ final class CardBuilderTest extends TestCase
                         })
                         ->column(Width::Auto, function (Column $col) use ($heroImageUrl): void {
                             $col->addImage($heroImageUrl, function (Image $img): void {
-                                $img->width(60)
+                                $img->width('60px')
                                     ->style(ImageStyle::RoundedCorners);
                             });
                         });
@@ -1894,7 +1894,7 @@ final class CardBuilderTest extends TestCase
                         $c->horizontalAlignment(HorizontalAlignment::Center)
                             ->verticalContentAlignment(VerticalAlignment::Center)
                             ->addImage('https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Card-Samples/main/samples/course-video/assets/logo_image.png', function (Image $img): void {
-                                $img->width(16)
+                                $img->width('16px')
                                     ->height(16)
                                     ->altText('Logo');
                             });
@@ -2275,7 +2275,7 @@ final class CardBuilderTest extends TestCase
                                             $c->verticalContentAlignment(VerticalAlignment::Center)
                                                 ->horizontalAlignment(HorizontalAlignment::Center)
                                                 ->addImage('https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Card-Samples/main/samples/issue/assets/avatar.png', function (Image $img): void {
-                                                    $img->width(16);
+                                                    $img->width('16px');
                                                 });
                                         })
                                         ->column(Width::Stretch, function (Column $c): void {
@@ -2344,7 +2344,7 @@ final class CardBuilderTest extends TestCase
                                 $c->verticalContentAlignment(VerticalAlignment::Center)
                                     ->horizontalAlignment(HorizontalAlignment::Center)
                                     ->addImage('https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Card-Samples/main/samples/issue/assets/avatar.png', function (Image $img): void {
-                                        $img->width(16);
+                                        $img->width('16px');
                                     });
                             })
                             ->column(Width::Stretch, function (Column $c): void {

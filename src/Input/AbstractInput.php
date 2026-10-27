@@ -57,7 +57,7 @@ abstract class AbstractInput extends AbstractElement
      * Controls the width of the label when labelPosition is set to Before.
      * Supports pixel values, percentage values, or "auto".
      */
-    public function labelWidth(string|int $width): static
+    public function labelWidth(string $width): static
     {
         return $this->set('labelWidth', $width);
     }

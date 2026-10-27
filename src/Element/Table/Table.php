@@ -163,9 +163,9 @@ final class Table extends AbstractElement
      * the available width is less than the specified minimum width.
      * Valid values: "auto", "<number>px".
      */
-    public function minWidth(Width|int $width): self
+    public function minWidth(Width|string $width): self
     {
-        $value = $width instanceof Width ? $width->value : "{$width}px";
+        $value = $width instanceof Width ? $width->value : $width;
 
         return $this->set('minWidth', $value);
     }

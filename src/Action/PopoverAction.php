@@ -54,9 +54,9 @@ final class PopoverAction extends AbstractAction
      * The maximum width of the popover in pixels, in the `<number>px` format.
      * Valid values: "<number>px".
      */
-    public function maxPopoverWidth(int $maxPopoverWidth): self
+    public function maxPopoverWidth(string $maxPopoverWidth): self
     {
-        return $this->set('maxPopoverWidth', "{$maxPopoverWidth}px");
+        return $this->set('maxPopoverWidth', $maxPopoverWidth);
     }
 
     /**

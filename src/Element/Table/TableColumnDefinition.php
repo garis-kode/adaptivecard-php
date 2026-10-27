@@ -14,14 +14,14 @@ use AdaptiveCards\Node;
  */
 final class TableColumnDefinition extends Node
 {
-    public function __construct(Width|int|null $width = null)
+    public function __construct(Width|string|int|null $width = null)
     {
         if ($width !== null) {
             $this->width($width);
         }
     }
 
-    public static function make(Width|int|null $width = null): self
+    public static function make(Width|string|int|null $width = null): self
     {
         return new self($width);
     }
@@ -33,19 +33,11 @@ final class TableColumnDefinition extends Node
      * give the column an explicit width in pixels.
      * Valid values: "auto", "<number>px".
      */
-    public function width(Width|int $width): self
+    public function width(Width|string|int $width): self
     {
         $value = $width instanceof Width ? $width->value : $width;
 
         return $this->set('width', $value);
-    }
-
-    /**
-     * Explicit pixel width for the column, in pixels.
-     */
-    public function pixelWidth(int $pixels): self
-    {
-        return $this->set('width', "{$pixels}px");
     }
 
     /**

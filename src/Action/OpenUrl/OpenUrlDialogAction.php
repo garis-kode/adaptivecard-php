@@ -56,9 +56,9 @@ final class OpenUrlDialogAction extends AbstractAction
      * The width of the dialog. To define width as a number of pixels, use the `<number>px` format.
      * Valid values: "small", "medium", "large", "<number>px".
      */
-    public function dialogWidth(DialogSize|int $dialogWidth): self
+    public function dialogWidth(DialogSize|string $dialogWidth): self
     {
-        $value = $dialogWidth instanceof DialogSize ? $dialogWidth->value : "{$dialogWidth}px";
+        $value = $dialogWidth instanceof DialogSize ? $dialogWidth->value : $dialogWidth;
 
         return $this->set('dialogWidth', $value);
     }
