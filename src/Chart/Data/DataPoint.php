@@ -69,7 +69,7 @@ final class DataPoint extends Node
     }
 
     /**
-     * The x-axis value (string, number, or date).
+     * The x axis value of the data point.
      */
     public function x(string|int|float $x): self
     {
@@ -77,7 +77,7 @@ final class DataPoint extends Node
     }
 
     /**
-     * The y-axis value.
+     * The y axis value of the data point.
      */
     public function y(string|int|float $y): self
     {
@@ -85,7 +85,7 @@ final class DataPoint extends Node
     }
 
     /**
-     * Label for this data point.
+     * The legend of the chart.
      */
     public function legend(string $legend): self
     {
@@ -93,7 +93,7 @@ final class DataPoint extends Node
     }
 
     /**
-     * Value of this data point.
+     * The value associated with the data point.
      */
     public function value(float|int $value): self
     {
@@ -101,7 +101,7 @@ final class DataPoint extends Node
     }
 
     /**
-     * Color identifier or hex color for this data point.
+     * The color to use for the data point. See Chart colors reference.
      */
     public function color(ChartColor $color): self
     {

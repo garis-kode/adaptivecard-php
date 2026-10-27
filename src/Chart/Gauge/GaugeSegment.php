@@ -28,7 +28,7 @@ final class GaugeSegment extends Node
     }
 
     /**
-     * Label for the segment.
+     * The legend text associated with the segment.
      */
     public function legend(string $legend): self
     {
@@ -36,7 +36,7 @@ final class GaugeSegment extends Node
     }
 
     /**
-     * The size/range of the segment.
+     * The size of the segment.
      */
     public function size(float|int $size): self
     {
@@ -44,7 +44,7 @@ final class GaugeSegment extends Node
     }
 
     /**
-     * The color of the segment.
+     * The color to use for the segment. See Chart colors reference.
      */
     public function color(ChartColor $color): self
     {

@@ -65,7 +65,7 @@ final class PieChart extends AbstractChart
     }
 
     /**
-     * The data points of the pie chart.
+     * The data to display in the chart.
      *
      * @param iterable<DataPoint> $data
      */
@@ -75,7 +75,7 @@ final class PieChart extends AbstractChart
     }
 
     /**
-     * Controls whether slice outlines are displayed.
+     * Controls whether the outlines of the donut segments are displayed.
      */
     public function showOutlines(bool $show = true): self
     {
@@ -83,7 +83,7 @@ final class PieChart extends AbstractChart
     }
 
     /**
-     * Thickness of the pie chart.
+     * Controls the thickness of the donut segments. Default is Thick.
      * Valid values: "Thin", "Thick".
      */
     public function thickness(ChartThickness $thickness): self
@@ -92,8 +92,7 @@ final class PieChart extends AbstractChart
     }
 
     /**
-     * The value that should be displayed in the center of a Donut chart.
-     * Note: `value` is ignored for Pie charts by host renderers.
+     * The value that should be displayed in the center of a Donut chart. `value` is ignored for Pie charts.
      */
     public function value(string|int|float $value): self
     {
@@ -101,7 +100,7 @@ final class PieChart extends AbstractChart
     }
 
     /**
-     * Color of the value text.
+     * Controls the color of the value displayed in the center of a Donut chart.
      */
     public function valueColor(ChartColor $color): self
     {

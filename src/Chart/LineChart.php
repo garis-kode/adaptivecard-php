@@ -74,12 +74,8 @@ final class LineChart extends AbstractChart
     }
 
     /**
-     * The minimum width reserved for the x axis labels. When the available space is
-     * insufficient, the chart selectively renders fewer labels instead of truncating them.
-     * Width::Auto will automatically adjust the labels' minimum width according to its content,
-     * and integer will give the labels an explicit minimum width in pixels.
-     *
-     * Valid values: Width::Auto, integer (pixels).
+     * The minimum width reserved for the x axis labels. When the available space is insufficient, the chart selectively renders fewer labels instead of truncating them. auto will automatically adjust the labels' minimum width according to its content and using the <number>px format will give the labels an explicit minimum width in pixels.
+     * Valid values: "auto", "<number>px".
      */
     public function xAxisLabelMinWidth(Width|int $width): self
     {
@@ -89,7 +85,7 @@ final class LineChart extends AbstractChart
     }
 
     /**
-     * Add a data series to the chart.
+     * Add a series of data points to the line chart.
      */
     public function addSeries(ChartSeries $series): self
     {
@@ -97,6 +93,8 @@ final class LineChart extends AbstractChart
     }
 
     /**
+     * Add multiple series of data points to the line chart.
+     *
      * @param iterable<ChartSeries> $data
      */
     public function addSeriesList(iterable $data): self
@@ -109,6 +107,8 @@ final class LineChart extends AbstractChart
     }
 
     /**
+     * The data point series in the line chart.
+     *
      * @param iterable<ChartSeries> $data
      */
     public function data(iterable $data): self

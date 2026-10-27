@@ -58,7 +58,7 @@ final class GroupedVerticalBarChart extends AbstractChart
     }
 
     /**
-     * Controls whether bars are stacked instead of grouped.
+     * Controls if bars in the chart should be displayed as stacks instead of groups. Note: stacked vertical bar charts do not support custom Y ranges nor negative Y values.
      */
     public function stacked(bool $stacked = true): self
     {
@@ -88,7 +88,7 @@ final class GroupedVerticalBarChart extends AbstractChart
     }
 
     /**
-     * The series of data points in the grouped vertical bar chart.
+     * The data points in a series.
      *
      * @param iterable<ChartSeries> $data
      */
@@ -98,7 +98,7 @@ final class GroupedVerticalBarChart extends AbstractChart
     }
 
     /**
-     * Controls whether the values of the bars should be displayed above each bar.
+     * Controls if values should be displayed on each bar.
      */
     public function showBarValues(bool $show = true): self
     {
@@ -106,7 +106,7 @@ final class GroupedVerticalBarChart extends AbstractChart
     }
 
     /**
-     * The minimum value to be displayed on the y axis.
+     * The requested minimum for the Y axis range. The value used at runtime may be different to optimize visual presentation. `yMin` is ignored if `stacked` is set to true.
      */
     public function yMin(float|int $min): self
     {
@@ -114,7 +114,7 @@ final class GroupedVerticalBarChart extends AbstractChart
     }
 
     /**
-     * The maximum value to be displayed on the y axis.
+     * The requested maximum for the Y axis range. The value used at runtime may be different to optimize visual presentation. `yMax` is ignored if `stacked` is set to true.
      */
     public function yMax(float|int $max): self
     {

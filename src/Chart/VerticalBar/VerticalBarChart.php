@@ -56,7 +56,7 @@ final class VerticalBarChart extends AbstractChart
     }
 
     /**
-     * Add a data point to the chart.
+     * Add a data point to the vertical bar chart.
      */
     public function addDataPoint(DataPoint $point): self
     {
@@ -64,7 +64,7 @@ final class VerticalBarChart extends AbstractChart
     }
 
     /**
-     * Add multiple data points to the chart.
+     * Add multiple data points to the vertical bar chart.
      *
      * @param iterable<DataPoint> $data
      */
@@ -78,7 +78,7 @@ final class VerticalBarChart extends AbstractChart
     }
 
     /**
-     * The data points of the chart.
+     * The data to display in the chart.
      *
      * @param iterable<DataPoint> $data
      */
@@ -88,7 +88,7 @@ final class VerticalBarChart extends AbstractChart
     }
 
     /**
-     * Controls whether the values of the bars should be displayed above each bar.
+     * Controls if the bar values should be displayed.
      */
     public function showBarValues(bool $show = true): self
     {
@@ -96,7 +96,7 @@ final class VerticalBarChart extends AbstractChart
     }
 
     /**
-     * The minimum value to be displayed on the y axis.
+     * The requested minimum for the Y axis range. The value used at runtime may be different to optimize visual presentation.
      */
     public function yMin(float|int $min): self
     {
@@ -104,7 +104,7 @@ final class VerticalBarChart extends AbstractChart
     }
 
     /**
-     * The maximum value to be displayed on the y axis.
+     * The requested maximum for the Y axis range. The value used at runtime may be different to optimize visual presentation.
      */
     public function yMax(float|int $max): self
     {

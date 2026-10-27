@@ -57,7 +57,7 @@ final class HorizontalBarChart extends AbstractChart
     }
 
     /**
-     * Add a data point to the chart.
+     * Add a data point to the horizontal bar chart.
      */
     public function addDataPoint(DataPoint $point): self
     {
@@ -65,7 +65,7 @@ final class HorizontalBarChart extends AbstractChart
     }
 
     /**
-     * Add multiple data points to the chart.
+     * Add multiple data points to the horizontal bar chart.
      *
      * @param iterable<DataPoint> $data
      */
@@ -79,7 +79,7 @@ final class HorizontalBarChart extends AbstractChart
     }
 
     /**
-     * The data points of the chart.
+     * The data points in the chart.
      *
      * @param iterable<DataPoint> $data
      */
@@ -89,7 +89,7 @@ final class HorizontalBarChart extends AbstractChart
     }
 
     /**
-     * Controls whether the chart is displayed in standard or parts-to-whole mode.
+     * Controls how the chart should be visually laid out.
      * Valid values: "AbsoluteWithAxis", "AbsoluteNoAxis", "PartToWhole".
      */
     public function displayMode(ChartDisplayMode $mode): self

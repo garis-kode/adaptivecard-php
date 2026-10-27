@@ -47,7 +47,7 @@ final class GaugeChart extends AbstractChart
     }
 
     /**
-     * The current value of the gauge.
+     * The value of the gauge.
      */
     public function value(float|int $value): self
     {
@@ -93,7 +93,7 @@ final class GaugeChart extends AbstractChart
     }
 
     /**
-     * The collection of segments in the gauge chart.
+     * The segments to display in the gauge.
      *
      * @param iterable<GaugeSegment> $segments
      */
@@ -103,7 +103,7 @@ final class GaugeChart extends AbstractChart
     }
 
     /**
-     * Controls whether min/max labels are displayed.
+     * Controls whether the min/max values should be displayed.
      */
     public function showMinMax(bool $show = true): self
     {
@@ -111,7 +111,7 @@ final class GaugeChart extends AbstractChart
     }
 
     /**
-     * Controls whether the needle is displayed.
+     * Controls whether the gauge's needle is displayed. Default is true.
      */
     public function showNeedle(bool $show = true): self
     {
@@ -119,7 +119,7 @@ final class GaugeChart extends AbstractChart
     }
 
     /**
-     * Controls whether segment outlines are displayed.
+     * Controls whether the outlines of the gauge segments are displayed.
      */
     public function showOutlines(bool $show = true): self
     {
@@ -127,7 +127,7 @@ final class GaugeChart extends AbstractChart
     }
 
     /**
-     * Sub-label text displayed in the gauge.
+     * The sub-label of the gauge.
      */
     public function subLabel(string $subLabel): self
     {
@@ -135,7 +135,7 @@ final class GaugeChart extends AbstractChart
     }
 
     /**
-     * Controls the format of the value.
+     * The format used to display the gauge's value.
      * Valid values: "Percentage", "Fraction".
      */
     public function valueFormat(GaugeValueFormat $format): self

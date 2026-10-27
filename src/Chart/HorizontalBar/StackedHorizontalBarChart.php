@@ -62,7 +62,7 @@ final class StackedHorizontalBarChart extends AbstractChart
     }
 
     /**
-     * The series of data points in the stacked horizontal bar chart.
+     * The data to display in the chart.
      *
      * @param iterable<ChartSeries> $data
      */

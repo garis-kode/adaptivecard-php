@@ -40,7 +40,7 @@ final class ChartSeries extends Node
     }
 
     /**
-     * The legend/label for this series.
+     * The legend of the chart.
      */
     public function legend(string $legend): self
     {
@@ -48,7 +48,7 @@ final class ChartSeries extends Node
     }
 
     /**
-     * The title of this series.
+     * The title of the series.
      */
     public function title(string $title): self
     {
@@ -56,7 +56,7 @@ final class ChartSeries extends Node
     }
 
     /**
-     * The color of this series.
+     * The color to use for all data points in the series. See Chart colors reference.
      */
     public function color(ChartColor $color): self
     {
@@ -86,7 +86,7 @@ final class ChartSeries extends Node
     }
 
     /**
-     * The collection of data points in this series.
+     * The data points in the series.
      *
      * @param iterable<DataPoint> $points
      */
@@ -118,7 +118,7 @@ final class ChartSeries extends Node
     }
 
     /**
-     * The collection of values in this series.
+     * The data points in the series.
      *
      * @param iterable<DataPoint> $points
      */

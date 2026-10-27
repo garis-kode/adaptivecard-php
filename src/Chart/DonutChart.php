@@ -43,7 +43,7 @@ final class DonutChart extends AbstractChart
     }
 
     /**
-     * Controls whether slice outlines are displayed.
+     * Controls whether the outlines of the donut segments are displayed.
      */
     public function showOutlines(bool $show = true): self
     {
@@ -51,7 +51,7 @@ final class DonutChart extends AbstractChart
     }
 
     /**
-     * Thickness of the donut ring.
+     * Controls the thickness of the donut segments. Default is Thick.
      * Valid values: "Thin", "Thick".
      */
     public function thickness(ChartThickness $thickness): self
@@ -60,7 +60,7 @@ final class DonutChart extends AbstractChart
     }
 
     /**
-     * The central value displayed inside the donut chart.
+     * The value that should be displayed in the center of a Donut chart.
      */
     public function value(string|int|float $value): self
     {
@@ -68,19 +68,24 @@ final class DonutChart extends AbstractChart
     }
 
     /**
-     * Color of the central value text.
+     * Controls the color of the value displayed in the center of a Donut chart.
      */
     public function valueColor(ChartColor $color): self
     {
         return $this->set('valueColor', $color->value);
     }
 
+    /**
+     * Add a data point to the donut chart.
+     */
     public function addDataPoint(DataPoint $point): self
     {
         return $this->push('data', $point);
     }
 
     /**
+     * Add multiple data points to the donut chart.
+     *
      * @param iterable<DataPoint> $data
      */
     public function addDataPoints(iterable $data): self
@@ -93,6 +98,8 @@ final class DonutChart extends AbstractChart
     }
 
     /**
+     * The data to display in the chart.
+     *
      * @param iterable<DataPoint> $data
      */
     public function data(iterable $data): self
