@@ -43,7 +43,7 @@ final class ColumnSet extends AbstractElement
 
     /**
      * The columns in the set.
-     * Valid values: Column.
+     * Valid values: "Column".
      *
      * @param iterable<Column> $columns
      */

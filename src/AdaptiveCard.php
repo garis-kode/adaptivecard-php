@@ -102,9 +102,9 @@ final class AdaptiveCard extends Node
 
     /**
      * The card level actions, which always appear at the bottom of the card.
-     * Valid values: Action.Execute, Action.InsertImage, Action.OpenUrl, Action.OpenUrlDialog,
-     * Action.Popover, Action.ResetInputs, Action.RunCommands, Action.ShowCard, Action.Submit,
-     * Action.ToggleVisibility.
+     * Valid values: "Action.Execute", "Action.InsertImage", "Action.OpenUrl", "Action.OpenUrlDialog",
+     * "Action.Popover", "Action.ResetInputs", "Action.RunCommands", "Action.ShowCard", "Action.Submit",
+     * "Action.ToggleVisibility".
      *
      * @param iterable<AbstractAction> $actions
      */
@@ -116,8 +116,8 @@ final class AdaptiveCard extends Node
     /**
      * An Action that will be invoked when the card is tapped or clicked.
      * Action.ShowCard is not supported.
-     * Valid values: Action.Execute, Action.InsertImage, Action.OpenUrl, Action.OpenUrlDialog,
-     * Action.Popover, Action.ResetInputs, Action.RunCommands, Action.Submit, Action.ToggleVisibility.
+     * Valid values: "Action.Execute", "Action.InsertImage", "Action.OpenUrl", "Action.OpenUrlDialog",
+     * "Action.Popover", "Action.ResetInputs", "Action.RunCommands", "Action.Submit", "Action.ToggleVisibility".
      */
     public function selectAction(AbstractAction $action): self
     {
@@ -134,7 +134,7 @@ final class AdaptiveCard extends Node
 
     /**
      * Defines the container's background image.
-     * Valid values: BackgroundImage.
+     * Valid values: "BackgroundImage".
      */
     public function backgroundImage(BackgroundImage $backgroundImage): self
     {
@@ -173,7 +173,7 @@ final class AdaptiveCard extends Node
      * A list of capabilities the element requires the host application to support.
      * If the host application doesn't support at least one of the listed capabilities,
      * the element is not rendered (or its fallback is rendered if provided).
-     * Valid values: HostCapabilities.
+     * Valid values: "HostCapabilities".
      *
      * @param array<string, string> $requires
      */
@@ -245,7 +245,7 @@ final class AdaptiveCard extends Node
 
     /**
      * Defines how the card can be refreshed by making a request to the target Bot.
-     * Valid values: RefreshDefinition.
+     * Valid values: "RefreshDefinition".
      */
     public function refresh(Refresh $refresh): self
     {
@@ -255,7 +255,7 @@ final class AdaptiveCard extends Node
     /**
      * Defines authentication information to enable on-behalf-of single-sign-on or just-in-time OAuth.
      * This information is used in conjunction with the `refresh` property and `Action.Execute` in general.
-     * Valid values: Authentication.
+     * Valid values: "Authentication".
      */
     public function authentication(Authentication $authentication): self
     {
@@ -264,7 +264,7 @@ final class AdaptiveCard extends Node
 
     /**
      * Metadata associated with the card.
-     * Valid values: CardMetadata.
+     * Valid values: "CardMetadata".
      */
     public function metadata(Metadata $metadata): self
     {
@@ -273,7 +273,7 @@ final class AdaptiveCard extends Node
 
     /**
      * Teams-specific metadata associated with the card.
-     * Valid values: TeamsCardProperties.
+     * Valid values: "TeamsCardProperties".
      */
     public function msteams(TeamsCardProperties $msteams, bool $useCamelCaseKey = false): self
     {
@@ -286,7 +286,7 @@ final class AdaptiveCard extends Node
 
     /**
      * Resources card elements can reference.
-     * Valid values: Resources.
+     * Valid values: "Resources".
      */
     public function resources(Resources $resources): self
     {
@@ -317,7 +317,7 @@ final class AdaptiveCard extends Node
 
     /**
      * References that can be cited in TextBlock and RichTextBlock elements.
-     * Valid values: AdaptiveCardReference, DocumentReference.
+     * Valid values: "AdaptiveCardReference", "DocumentReference".
      *
      * @param iterable<AdaptiveCardReference|DocumentReference> $references
      */
@@ -351,7 +351,7 @@ final class AdaptiveCard extends Node
     /**
      * The layouts associated with the container. The container can dynamically switch
      * from one layout to another as the card's width changes.
-     * Valid values: Layout.Stack, Layout.Flow, Layout.AreaGrid.
+     * Valid values: "Layout.Stack", "Layout.Flow", "Layout.AreaGrid".
      *
      * @param iterable<AbstractLayout> $layouts
      */

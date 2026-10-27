@@ -40,7 +40,7 @@ final class Media extends AbstractElement
 
     /**
      * The sources for the media. For YouTube, Dailymotion and Vimeo, only one source can be specified.
-     * Valid values: MediaSource.
+     * Valid values: "MediaSource".
      *
      * @param iterable<MediaSource> $sources
      */
@@ -73,7 +73,7 @@ final class Media extends AbstractElement
 
     /**
      * The caption sources for the media. Caption sources are not used for YouTube, Dailymotion or Vimeo sources.
-     * Valid values: CaptionSource.
+     * Valid values: "CaptionSource".
      *
      * @param iterable<CaptionSource> $captionSources
      */

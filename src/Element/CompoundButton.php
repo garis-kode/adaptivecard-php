@@ -52,7 +52,7 @@ final class CompoundButton extends AbstractElement
 
     /**
      * The icon to show on the button.
-     * Valid values: IconInfo.
+     * Valid values: "IconInfo".
      *
      * @param string|array{name: string, style?: string} $icon
      */

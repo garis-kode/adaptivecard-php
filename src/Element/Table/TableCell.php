@@ -93,7 +93,7 @@ final class TableCell extends AbstractElement
     /**
      * The layouts associated with the container. The container can dynamically switch
      * from one layout to another as the card's width changes.
-     * Valid values: Layout.Stack, Layout.Flow, Layout.AreaGrid.
+     * Valid values: "Layout.Stack", "Layout.Flow", "Layout.AreaGrid".
      *
      * @param iterable<AbstractLayout> $layouts
      */
@@ -112,7 +112,7 @@ final class TableCell extends AbstractElement
 
     /**
      * Defines the container's background image.
-     * Valid values: BackgroundImage.
+     * Valid values: "BackgroundImage".
      */
     public function backgroundImage(BackgroundImage $backgroundImage): self
     {

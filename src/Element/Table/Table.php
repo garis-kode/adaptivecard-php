@@ -67,7 +67,7 @@ final class Table extends AbstractElement
 
     /**
      * The columns in the table.
-     * Valid values: ColumnDefinition.
+     * Valid values: "ColumnDefinition".
      *
      * @param iterable<TableColumnDefinition> $columns
      */
@@ -100,7 +100,7 @@ final class Table extends AbstractElement
 
     /**
      * The rows of the table.
-     * Valid values: TableRow.
+     * Valid values: "TableRow".
      *
      * @param iterable<TableRow> $rows
      */

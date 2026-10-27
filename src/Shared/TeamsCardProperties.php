@@ -40,7 +40,7 @@ final class TeamsCardProperties extends Node
 
     /**
      * The Teams-specific entities associated with the card.
-     * Valid values: mention.
+     * Valid values: "mention".
      *
      * @param iterable<Mention> $entities
      */

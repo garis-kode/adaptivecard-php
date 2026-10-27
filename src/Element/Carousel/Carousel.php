@@ -41,7 +41,7 @@ final class Carousel extends AbstractElement
 
     /**
      * The pages in the carousel.
-     * Valid values: CarouselPage.
+     * Valid values: "CarouselPage".
      *
      * @param iterable<CarouselPage> $pages
      */

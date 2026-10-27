@@ -82,7 +82,7 @@ abstract class AbstractInput extends AbstractElement
 
     /**
      * An action that will be executed when the value of the input changes.
-     * Valid values: Action.OpenUrlDialog, Action.Popover, Action.ResetInputs, Action.RunCommands.
+     * Valid values: "Action.OpenUrlDialog", "Action.Popover", "Action.ResetInputs", "Action.RunCommands".
      */
     public function valueChangedAction(AbstractAction $action): static
     {

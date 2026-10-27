@@ -52,7 +52,7 @@ final class ImageRun extends AbstractElement
 
     /**
      * A set of theme-specific image URLs.
-     * Valid values: ThemedUrl.
+     * Valid values: "ThemedUrl".
      *
      * @param list<array{imageBaseUrl: string, mimeType: string}> $themedUrls
      */

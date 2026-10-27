@@ -32,7 +32,7 @@ final class Mention extends Node
 
     /**
      * Defines the entity being mentioned.
-     * Valid values: MentionedEntity.
+     * Valid values: "MentionedEntity".
      */
     public function mentioned(MentionedEntity $mentioned): self
     {

@@ -19,7 +19,7 @@ final class Refresh extends Node
 
     /**
      * The `Action.Execute` action to invoke to refresh the card.
-     * Valid values: Action.Execute.
+     * Valid values: "Action.Execute".
      */
     public function action(ExecuteAction $action): self
     {

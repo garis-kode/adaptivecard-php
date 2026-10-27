@@ -53,7 +53,7 @@ final class RichTextBlock extends AbstractElement
 
     /**
      * The inlines making up the rich text block.
-     * Valid values: TextRun, IconRun, ImageRun, CitationRun.
+     * Valid values: "TextRun", "IconRun", "ImageRun", "CitationRun".
      *
      * @param iterable<TextRun|IconRun|ImageRun> $inlines
      */

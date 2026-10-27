@@ -138,7 +138,7 @@ final class Image extends AbstractElement
 
     /**
      * A set of theme-specific image URLs.
-     * Valid values: ThemedUrl.
+     * Valid values: "ThemedUrl".
      *
      * @param list<array<string, mixed>> $themedUrls
      */
@@ -149,7 +149,7 @@ final class Image extends AbstractElement
 
     /**
      * Teams-specific metadata associated with the image.
-     * Valid values: TeamsImageProperties.
+     * Valid values: "TeamsImageProperties".
      */
     public function msteams(TeamsImageProperties $properties, bool $useCamelCaseKey = false): self
     {

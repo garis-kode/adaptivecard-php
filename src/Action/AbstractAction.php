@@ -167,8 +167,8 @@ abstract class AbstractAction extends Node
 
     /**
      * The actions to display in the overflow menu of a Split action button.
-     * Valid values: Action.Execute, Action.InsertImage, Action.OpenUrl, Action.OpenUrlDialog,
-     * Action.ResetInputs, Action.RunCommands, Action.Submit, Action.ToggleVisibility.
+     * Valid values: "Action.Execute", "Action.InsertImage", "Action.OpenUrl", "Action.OpenUrlDialog",
+     * "Action.ResetInputs", "Action.RunCommands", "Action.Submit", "Action.ToggleVisibility".
      *
      * @param iterable<AbstractAction> $actions
      */
@@ -179,7 +179,7 @@ abstract class AbstractAction extends Node
 
     /**
      * A set of theme-specific icon URLs.
-     * Valid values: ThemedUrl.
+     * Valid values: "ThemedUrl".
      *
      * @param array<string, string> $themedUrls
      */
@@ -191,7 +191,7 @@ abstract class AbstractAction extends Node
     /**
      * A set of theme-specific icon URLs to use when the action is in the toggled state.
      * Only applies when `behavior` is set to `Toggle`.
-     * Valid values: ThemedUrl.
+     * Valid values: "ThemedUrl".
      *
      * @param array<string, string> $themedUrls
      */
@@ -231,7 +231,7 @@ abstract class AbstractAction extends Node
      * A list of capabilities the element requires the host application to support.
      * If the host application doesn't support at least one of the listed capabilities,
      * the element is not rendered (or its fallback is rendered if provided).
-     * Valid values: HostCapabilities.
+     * Valid values: "HostCapabilities".
      *
      * @param array<string, string> $requires feature name => minimum version
      */

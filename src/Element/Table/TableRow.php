@@ -43,7 +43,7 @@ final class TableRow extends AbstractElement
 
     /**
      * The cells in the row.
-     * Valid values: TableCell.
+     * Valid values: "TableCell".
      *
      * @param iterable<TableCell> $cells
      */

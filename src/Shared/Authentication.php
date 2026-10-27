@@ -35,7 +35,7 @@ final class Authentication extends Node
 
     /**
      * Provides information required to enable on-behalf-of single sign-on user authentication.
-     * Valid values: TokenExchangeResource.
+     * Valid values: "TokenExchangeResource".
      */
     public function tokenExchangeResource(TokenExchangeResource $resource): self
     {
@@ -68,7 +68,7 @@ final class Authentication extends Node
      * The buttons that should be displayed to the user when prompting for authentication.
      * The array MUST contain one button of type "signin". Other button types are not
      * currently supported.
-     * Valid values: AuthCardButton.
+     * Valid values: "AuthCardButton".
      *
      * @param iterable<AuthCardButton> $buttons
      */

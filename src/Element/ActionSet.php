@@ -40,9 +40,9 @@ final class ActionSet extends AbstractElement
 
     /**
      * The actions in the set.
-     * Valid values: Action.Execute, Action.InsertImage, Action.OpenUrl, Action.OpenUrlDialog,
-     * Action.Popover, Action.ResetInputs, Action.RunCommands, Action.ShowCard, Action.Submit,
-     * Action.ToggleVisibility.
+     * Valid values: "Action.Execute", "Action.InsertImage", "Action.OpenUrl", "Action.OpenUrlDialog",
+     * "Action.Popover", "Action.ResetInputs", "Action.RunCommands", "Action.ShowCard", "Action.Submit",
+     * "Action.ToggleVisibility".
      *
      * @param iterable<AbstractAction> $actions
      */

@@ -49,7 +49,7 @@ final class ChoiceSetInput extends AbstractInput
 
     /**
      * The choices associated with the input.
-     * Valid values: Choice.
+     * Valid values: "Choice".
      *
      * @param iterable<Choice> $choices
      */
@@ -114,7 +114,7 @@ final class ChoiceSetInput extends AbstractInput
     /**
      * A Data.Query object that defines the dataset from which to dynamically fetch the choices
      * for the input.
-     * Valid values: Data.Query.
+     * Valid values: "Data.Query".
      */
     public function dataQuery(DataQuery $dataQuery): self
     {

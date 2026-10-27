@@ -27,7 +27,7 @@ final class ShowCardAction extends AbstractAction
 
     /**
      * The card that should be displayed when the action is executed.
-     * Valid values: AdaptiveCard.
+     * Valid values: "AdaptiveCard".
      */
     public function card(AdaptiveCard $card): self
     {

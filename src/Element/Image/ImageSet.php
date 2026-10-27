@@ -41,7 +41,7 @@ final class ImageSet extends AbstractElement
 
     /**
      * The images in the set.
-     * Valid values: Image.
+     * Valid values: "Image".
      *
      * @param iterable<Image> $images
      */
