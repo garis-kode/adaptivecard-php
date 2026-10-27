@@ -38,6 +38,7 @@ use AdaptiveCards\Enum\TargetWidth;
 use AdaptiveCards\Enum\TextSize;
 use AdaptiveCards\Enum\TextWeight;
 use AdaptiveCards\Enum\VerticalAlignment;
+use AdaptiveCards\Enum\Width;
 use PHPUnit\Framework\TestCase;
 
 final class CardBuilderTest extends TestCase
@@ -2149,6 +2150,595 @@ final class CardBuilderTest extends TestCase
                         [
                             'type' => 'Action.Execute',
                             'iconUrl' => 'icon:Bookmark',
+                        ],
+                    ],
+                ],
+            ],
+        ];
+
+        self::assertEquals($expected, $card->toArray());
+    }
+
+    public function testBuildIssueCard(): void
+    {
+        $card = AdaptiveCard::make('1.6')
+            ->schema('https://adaptivecards.io/schemas/adaptive-card.json')
+            ->speak('Version 2.2 performance optimization')
+            ->addRichTextBlock(function (RichTextBlock $rtb): void {
+                $rtb->addTextRun('Android Scrum Project / SSP-98', function (TextRun $tr): void {
+                    $tr->size(TextSize::Small)
+                        ->selectAction(OpenUrlAction::make('https://adaptivecards.io'));
+                });
+            })
+            ->addColumnSet(function (ColumnSet $cs): void {
+                $cs->spacing(Spacing::Small)
+                    ->column(Width::Auto, function (Column $c): void {
+                        $c->addIcon('Branch', function (Icon $icon): void {
+                            $icon->color(Colors::Accent);
+                        });
+                    })
+                    ->column(Width::Stretch, function (Column $c): void {
+                        $c->verticalContentAlignment(VerticalAlignment::Center)
+                            ->spacing(Spacing::Small)
+                            ->addTextBlock('Version 2.2 Performance Optimization', function (TextBlock $t): void {
+                                $t->size(TextSize::Large)
+                                    ->weight(TextWeight::Bolder)
+                                    ->wrap(true);
+                            });
+                    });
+            })
+            ->addTable(function (Table $table): void {
+                $table->targetWidth(TargetWidth::AtLeastNarrow)
+                    ->addColumn(TableColumnDefinition::make(1))
+                    ->addColumn(TableColumnDefinition::make(2))
+                    ->addRow(
+                        TableRow::make()
+                            ->addCell(
+                                TableCell::make()
+                                    ->verticalContentAlignment(VerticalAlignment::Center)
+                                    ->addTextBlock('Status', function (TextBlock $t): void {
+                                        $t->wrap(true)
+                                            ->weight(TextWeight::Bolder);
+                                    })
+                            )
+                            ->addCell(
+                                TableCell::make()
+                                    ->verticalContentAlignment(VerticalAlignment::Center)
+                                    ->addTextBlock('Waiting for Review', function (TextBlock $t): void {
+                                        $t->wrap(true);
+                                    })
+                            )
+                    )
+                    ->addRow(
+                        TableRow::make()
+                            ->addCell(
+                                TableCell::make()
+                                    ->addTextBlock('Due Date', function (TextBlock $t): void {
+                                        $t->wrap(true)
+                                            ->weight(TextWeight::Bolder);
+                                    })
+                            )
+                            ->addCell(
+                                TableCell::make()
+                                    ->addTextBlock('May 21, 2023', function (TextBlock $t): void {
+                                        $t->wrap(true);
+                                    })
+                            )
+                    )
+                    ->addRow(
+                        TableRow::make()
+                            ->addCell(
+                                TableCell::make()
+                                    ->verticalContentAlignment(VerticalAlignment::Center)
+                                    ->addTextBlock('Priority', function (TextBlock $t): void {
+                                        $t->wrap(true)
+                                            ->weight(TextWeight::Bolder);
+                                    })
+                            )
+                            ->addCell(
+                                TableCell::make()
+                                    ->verticalContentAlignment(VerticalAlignment::Center)
+                                    ->addColumnSet(function (ColumnSet $cs): void {
+                                        $cs->spacing(Spacing::Small)
+                                            ->column(Width::Auto, function (Column $c): void {
+                                                $c->addIcon('Flag', function (Icon $icon): void {
+                                                    $icon->color(Colors::Attention)
+                                                        ->size(IconSize::XSmall)
+                                                        ->horizontalAlignment(HorizontalAlignment::Center);
+                                                });
+                                            })
+                                            ->column(Width::Stretch, function (Column $c): void {
+                                                $c->spacing(Spacing::Small)
+                                                    ->addTextBlock('Critical', function (TextBlock $t): void {
+                                                        $t->color(Colors::Attention)
+                                                            ->wrap(true)
+                                                            ->spacing(Spacing::Small);
+                                                    });
+                                            });
+                                    })
+                            )
+                    )
+                    ->addRow(
+                        TableRow::make()
+                            ->addCell(
+                                TableCell::make()
+                                    ->verticalContentAlignment(VerticalAlignment::Center)
+                                    ->addTextBlock('Assigned To', function (TextBlock $t): void {
+                                        $t->wrap(true)
+                                            ->weight(TextWeight::Bolder);
+                                    })
+                            )
+                            ->addCell(
+                                TableCell::make()
+                                    ->addColumnSet(function (ColumnSet $cs): void {
+                                        $cs->column(Width::Auto, function (Column $c): void {
+                                            $c->verticalContentAlignment(VerticalAlignment::Center)
+                                                ->horizontalAlignment(HorizontalAlignment::Center)
+                                                ->addImage('https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Card-Samples/main/samples/issue/assets/avatar.png', function (Image $img): void {
+                                                    $img->width(16);
+                                                });
+                                        })
+                                        ->column(Width::Stretch, function (Column $c): void {
+                                            $c->spacing(Spacing::Small)
+                                                ->addTextBlock('Charlotte Waltson', function (TextBlock $t): void {
+                                                    $t->wrap(true);
+                                                });
+                                        });
+                                    })
+                            )
+                    )
+                    ->firstRowAsHeaders(false)
+                    ->showGridLines(false);
+            })
+            ->addContainer(function (Container $cont): void {
+                $cont->targetWidth(TargetWidth::VeryNarrow)
+                    ->addTextBlock('Status', function (TextBlock $t): void {
+                        $t->weight(TextWeight::Bolder)
+                            ->wrap(true);
+                    })
+                    ->addTextBlock('Waiting for Review', function (TextBlock $t): void {
+                        $t->wrap(true)
+                            ->spacing(Spacing::None);
+                    })
+                    ->addTextBlock('Due Date', function (TextBlock $t): void {
+                        $t->weight(TextWeight::Bolder)
+                            ->wrap(true)
+                            ->spacing(Spacing::Small);
+                    })
+                    ->addTextBlock('May 21, 2023', function (TextBlock $t): void {
+                        $t->wrap(true)
+                            ->spacing(Spacing::None);
+                    })
+                    ->addTextBlock('Priority', function (TextBlock $t): void {
+                        $t->weight(TextWeight::Bolder)
+                            ->wrap(true)
+                            ->spacing(Spacing::Small);
+                    })
+                    ->addColumnSet(function (ColumnSet $cs): void {
+                        $cs->spacing(Spacing::None)
+                            ->column(Width::Auto, function (Column $c): void {
+                                $c->verticalContentAlignment(VerticalAlignment::Center)
+                                    ->addIcon('Flag', function (Icon $icon): void {
+                                        $icon->color(Colors::Attention)
+                                            ->size(IconSize::XSmall)
+                                            ->horizontalAlignment(HorizontalAlignment::Center);
+                                    });
+                            })
+                            ->column(Width::Stretch, function (Column $c): void {
+                                $c->spacing(Spacing::Small)
+                                    ->addTextBlock('Critical', function (TextBlock $t): void {
+                                        $t->color(Colors::Attention)
+                                            ->wrap(true)
+                                            ->spacing(Spacing::Small);
+                                    });
+                            });
+                    })
+                    ->addTextBlock('Assigned To', function (TextBlock $t): void {
+                        $t->weight(TextWeight::Bolder)
+                            ->wrap(true)
+                            ->spacing(Spacing::Small);
+                    })
+                    ->addColumnSet(function (ColumnSet $cs): void {
+                        $cs->spacing(Spacing::None)
+                            ->column(Width::Auto, function (Column $c): void {
+                                $c->verticalContentAlignment(VerticalAlignment::Center)
+                                    ->horizontalAlignment(HorizontalAlignment::Center)
+                                    ->addImage('https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Card-Samples/main/samples/issue/assets/avatar.png', function (Image $img): void {
+                                        $img->width(16);
+                                    });
+                            })
+                            ->column(Width::Stretch, function (Column $c): void {
+                                $c->spacing(Spacing::Small)
+                                    ->addTextBlock('Charlotte Waltson', function (TextBlock $t): void {
+                                        $t->wrap(true);
+                                    });
+                            });
+                    });
+            })
+            ->addActionSet(function (ActionSet $as): void {
+                $as->spacing(Spacing::ExtraLarge)
+                    ->targetWidth(TargetWidth::AtLeastNarrow)
+                    ->addAction(OpenUrlAction::make('https://adaptivecards.io/', 'Comment'))
+                    ->addAction(OpenUrlAction::make('https://adaptivecards.io/', 'Edit Issue'));
+            })
+            ->addActionSet(function (ActionSet $as): void {
+                $as->spacing(Spacing::ExtraLarge)
+                    ->targetWidth(TargetWidth::VeryNarrow)
+                    ->addAction(OpenUrlAction::make('https://adaptivecards.io/', 'Comment'))
+                    ->addAction(OpenUrlAction::make('https://adaptivecards.io/')->iconUrl('icon:Edit'));
+            });
+
+        $expected = [
+            '$schema' => 'https://adaptivecards.io/schemas/adaptive-card.json',
+            'type' => 'AdaptiveCard',
+            'version' => '1.6',
+            'speak' => 'Version 2.2 performance optimization',
+            'body' => [
+                [
+                    'type' => 'RichTextBlock',
+                    'inlines' => [
+                        [
+                            'type' => 'TextRun',
+                            'text' => 'Android Scrum Project / SSP-98',
+                            'size' => 'Small',
+                            'selectAction' => [
+                                'type' => 'Action.OpenUrl',
+                                'url' => 'https://adaptivecards.io',
+                            ],
+                        ],
+                    ],
+                ],
+                [
+                    'type' => 'ColumnSet',
+                    'spacing' => 'Small',
+                    'columns' => [
+                        [
+                            'type' => 'Column',
+                            'width' => 'auto',
+                            'items' => [
+                                [
+                                    'type' => 'Icon',
+                                    'name' => 'Branch',
+                                    'color' => 'Accent',
+                                ],
+                            ],
+                        ],
+                        [
+                            'type' => 'Column',
+                            'width' => 'stretch',
+                            'verticalContentAlignment' => 'Center',
+                            'spacing' => 'Small',
+                            'items' => [
+                                [
+                                    'type' => 'TextBlock',
+                                    'text' => 'Version 2.2 Performance Optimization',
+                                    'size' => 'Large',
+                                    'weight' => 'Bolder',
+                                    'wrap' => true,
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+                [
+                    'type' => 'Table',
+                    'targetWidth' => 'atLeast:Narrow',
+                    'columns' => [
+                        [
+                            'width' => 1,
+                        ],
+                        [
+                            'width' => 2,
+                        ],
+                    ],
+                    'rows' => [
+                        [
+                            'type' => 'TableRow',
+                            'cells' => [
+                                [
+                                    'type' => 'TableCell',
+                                    'verticalContentAlignment' => 'Center',
+                                    'items' => [
+                                        [
+                                            'type' => 'TextBlock',
+                                            'text' => 'Status',
+                                            'wrap' => true,
+                                            'weight' => 'Bolder',
+                                        ],
+                                    ],
+                                ],
+                                [
+                                    'type' => 'TableCell',
+                                    'verticalContentAlignment' => 'Center',
+                                    'items' => [
+                                        [
+                                            'type' => 'TextBlock',
+                                            'text' => 'Waiting for Review',
+                                            'wrap' => true,
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                        [
+                            'type' => 'TableRow',
+                            'cells' => [
+                                [
+                                    'type' => 'TableCell',
+                                    'items' => [
+                                        [
+                                            'type' => 'TextBlock',
+                                            'text' => 'Due Date',
+                                            'wrap' => true,
+                                            'weight' => 'Bolder',
+                                        ],
+                                    ],
+                                ],
+                                [
+                                    'type' => 'TableCell',
+                                    'items' => [
+                                        [
+                                            'type' => 'TextBlock',
+                                            'text' => 'May 21, 2023',
+                                            'wrap' => true,
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                        [
+                            'type' => 'TableRow',
+                            'cells' => [
+                                [
+                                    'type' => 'TableCell',
+                                    'verticalContentAlignment' => 'Center',
+                                    'items' => [
+                                        [
+                                            'type' => 'TextBlock',
+                                            'text' => 'Priority',
+                                            'wrap' => true,
+                                            'weight' => 'Bolder',
+                                        ],
+                                    ],
+                                ],
+                                [
+                                    'type' => 'TableCell',
+                                    'verticalContentAlignment' => 'Center',
+                                    'items' => [
+                                        [
+                                            'type' => 'ColumnSet',
+                                            'spacing' => 'Small',
+                                            'columns' => [
+                                                [
+                                                    'type' => 'Column',
+                                                    'width' => 'auto',
+                                                    'items' => [
+                                                        [
+                                                            'type' => 'Icon',
+                                                            'name' => 'Flag',
+                                                            'color' => 'Attention',
+                                                            'size' => 'xSmall',
+                                                            'horizontalAlignment' => 'Center',
+                                                        ],
+                                                    ],
+                                                ],
+                                                [
+                                                    'type' => 'Column',
+                                                    'width' => 'stretch',
+                                                    'spacing' => 'Small',
+                                                    'items' => [
+                                                        [
+                                                            'type' => 'TextBlock',
+                                                            'text' => 'Critical',
+                                                            'color' => 'Attention',
+                                                            'wrap' => true,
+                                                            'spacing' => 'Small',
+                                                        ],
+                                                    ],
+                                                ],
+                                            ],
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                        [
+                            'type' => 'TableRow',
+                            'cells' => [
+                                [
+                                    'type' => 'TableCell',
+                                    'verticalContentAlignment' => 'Center',
+                                    'items' => [
+                                        [
+                                            'type' => 'TextBlock',
+                                            'text' => 'Assigned To',
+                                            'wrap' => true,
+                                            'weight' => 'Bolder',
+                                        ],
+                                    ],
+                                ],
+                                [
+                                    'type' => 'TableCell',
+                                    'items' => [
+                                        [
+                                            'type' => 'ColumnSet',
+                                            'columns' => [
+                                                [
+                                                    'type' => 'Column',
+                                                    'width' => 'auto',
+                                                    'verticalContentAlignment' => 'Center',
+                                                    'horizontalAlignment' => 'Center',
+                                                    'items' => [
+                                                        [
+                                                            'type' => 'Image',
+                                                            'url' => 'https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Card-Samples/main/samples/issue/assets/avatar.png',
+                                                            'width' => '16px',
+                                                        ],
+                                                    ],
+                                                ],
+                                                [
+                                                    'type' => 'Column',
+                                                    'width' => 'stretch',
+                                                    'spacing' => 'Small',
+                                                    'items' => [
+                                                        [
+                                                            'type' => 'TextBlock',
+                                                            'text' => 'Charlotte Waltson',
+                                                            'wrap' => true,
+                                                        ],
+                                                    ],
+                                                ],
+                                            ],
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                    'firstRowAsHeaders' => false,
+                    'showGridLines' => false,
+                ],
+                [
+                    'type' => 'Container',
+                    'targetWidth' => 'VeryNarrow',
+                    'items' => [
+                        [
+                            'type' => 'TextBlock',
+                            'text' => 'Status',
+                            'weight' => 'Bolder',
+                            'wrap' => true,
+                        ],
+                        [
+                            'type' => 'TextBlock',
+                            'text' => 'Waiting for Review',
+                            'wrap' => true,
+                            'spacing' => 'None',
+                        ],
+                        [
+                            'type' => 'TextBlock',
+                            'text' => 'Due Date',
+                            'weight' => 'Bolder',
+                            'wrap' => true,
+                            'spacing' => 'Small',
+                        ],
+                        [
+                            'type' => 'TextBlock',
+                            'text' => 'May 21, 2023',
+                            'wrap' => true,
+                            'spacing' => 'None',
+                        ],
+                        [
+                            'type' => 'TextBlock',
+                            'text' => 'Priority',
+                            'weight' => 'Bolder',
+                            'wrap' => true,
+                            'spacing' => 'Small',
+                        ],
+                        [
+                            'type' => 'ColumnSet',
+                            'spacing' => 'None',
+                            'columns' => [
+                                [
+                                    'type' => 'Column',
+                                    'width' => 'auto',
+                                    'verticalContentAlignment' => 'Center',
+                                    'items' => [
+                                        [
+                                            'type' => 'Icon',
+                                            'name' => 'Flag',
+                                            'color' => 'Attention',
+                                            'size' => 'xSmall',
+                                            'horizontalAlignment' => 'Center',
+                                        ],
+                                    ],
+                                ],
+                                [
+                                    'type' => 'Column',
+                                    'width' => 'stretch',
+                                    'spacing' => 'Small',
+                                    'items' => [
+                                        [
+                                            'type' => 'TextBlock',
+                                            'text' => 'Critical',
+                                            'color' => 'Attention',
+                                            'wrap' => true,
+                                            'spacing' => 'Small',
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                        [
+                            'type' => 'TextBlock',
+                            'text' => 'Assigned To',
+                            'weight' => 'Bolder',
+                            'wrap' => true,
+                            'spacing' => 'Small',
+                        ],
+                        [
+                            'type' => 'ColumnSet',
+                            'spacing' => 'None',
+                            'columns' => [
+                                [
+                                    'type' => 'Column',
+                                    'width' => 'auto',
+                                    'verticalContentAlignment' => 'Center',
+                                    'horizontalAlignment' => 'Center',
+                                    'items' => [
+                                        [
+                                            'type' => 'Image',
+                                            'url' => 'https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Card-Samples/main/samples/issue/assets/avatar.png',
+                                            'width' => '16px',
+                                        ],
+                                    ],
+                                ],
+                                [
+                                    'type' => 'Column',
+                                    'width' => 'stretch',
+                                    'spacing' => 'Small',
+                                    'items' => [
+                                        [
+                                            'type' => 'TextBlock',
+                                            'text' => 'Charlotte Waltson',
+                                            'wrap' => true,
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+                [
+                    'type' => 'ActionSet',
+                    'spacing' => 'ExtraLarge',
+                    'targetWidth' => 'atLeast:Narrow',
+                    'actions' => [
+                        [
+                            'type' => 'Action.OpenUrl',
+                            'url' => 'https://adaptivecards.io/',
+                            'title' => 'Comment',
+                        ],
+                        [
+                            'type' => 'Action.OpenUrl',
+                            'url' => 'https://adaptivecards.io/',
+                            'title' => 'Edit Issue',
+                        ],
+                    ],
+                ],
+                [
+                    'type' => 'ActionSet',
+                    'spacing' => 'ExtraLarge',
+                    'targetWidth' => 'VeryNarrow',
+                    'actions' => [
+                        [
+                            'type' => 'Action.OpenUrl',
+                            'url' => 'https://adaptivecards.io/',
+                            'title' => 'Comment',
+                        ],
+                        [
+                            'type' => 'Action.OpenUrl',
+                            'url' => 'https://adaptivecards.io/',
+                            'iconUrl' => 'icon:Edit',
                         ],
                     ],
                 ],
