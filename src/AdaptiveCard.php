@@ -62,6 +62,13 @@ final class AdaptiveCard extends Node
      * The body of the card, comprised of a list of elements displayed according to
      * the `layouts` property. If the `layouts` property is not specified, a
      * `Layout.Stack` is used.
+     * Valid values: "Accordion", "ActionSet", "Badge", "Carousel", "Chart.Donut", "Chart.Gauge",
+     * "Chart.HorizontalBar", "Chart.HorizontalBar.Stacked", "Chart.Line", "Chart.Pie",
+     * "Chart.VerticalBar", "Chart.VerticalBar.Grouped", "CodeBlock", "ColumnSet", "Calendar event",
+     * "File", "Graph resource", "Persona", "PersonaSet", "CompoundButton", "Container", "FactSet",
+     * "Icon", "Image", "ImageSet", "Input.ChoiceSet", "Input.Date", "Input.Number", "Input.Rating",
+     * "Input.Text", "Input.Time", "Input.Toggle", "LoopComponent", "Media", "ProgressBar",
+     * "ProgressRing", "Rating", "RichTextBlock", "Table", "TabSet", "TextBlock".
      *
      * @param iterable<AbstractElement> $elements
      */
@@ -163,6 +170,13 @@ final class AdaptiveCard extends Node
      * An alternate element to render if the type of this one is unsupported or
      * if the host application doesn't support all the capabilities specified in
      * the `requires` property.
+     * Valid values: "Container", "ActionSet", "ColumnSet", "Media", "RichTextBlock", "Table",
+     * "TextBlock", "FactSet", "ImageSet", "Image", "Input.Text", "Input.Date", "Input.Time",
+     * "Input.Number", "Input.Toggle", "Input.ChoiceSet", "Input.Rating", "Rating", "CompoundButton",
+     * "Icon", "Carousel", "TabSet", "Accordion", "Badge", "ProgressRing", "ProgressBar",
+     * "LoopComponent", "Chart.Donut", "Chart.Pie", "Chart.VerticalBar.Grouped", "Chart.VerticalBar",
+     * "Chart.HorizontalBar", "Chart.HorizontalBar.Stacked", "Chart.Line", "Chart.Gauge",
+     * "CodeBlock", "Persona", "PersonaSet", "Graph resource", "File", "Calendar event", "drop".
      */
     public function fallback(mixed $fallback): self
     {

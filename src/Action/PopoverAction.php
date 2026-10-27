@@ -27,6 +27,14 @@ final class PopoverAction extends AbstractAction
 
     /**
      * The content of the popover, which can be any element.
+     * Valid values: "Accordion", "ActionSet", "Badge", "Carousel", "Chart.Donut", "Chart.Gauge",
+     * "Chart.HorizontalBar", "Chart.HorizontalBar.Stacked", "Chart.Line", "Chart.Pie",
+     * "Chart.VerticalBar", "Chart.VerticalBar.Grouped", "CitationRun", "CodeBlock", "ColumnSet",
+     * "Calendar event", "File", "Graph resource", "Persona", "PersonaSet", "CompoundButton",
+     * "Container", "FactSet", "Icon", "IconRun", "Image", "ImageRun", "ImageSet", "Input.ChoiceSet",
+     * "Input.Date", "Input.Number", "Input.Rating", "Input.Text", "Input.Time", "Input.Toggle",
+     * "LoopComponent", "Media", "ProgressBar", "ProgressRing", "Rating", "RichTextBlock", "Table",
+     * "TabSet", "TextBlock", "TextRun".
      */
     public function content(Node|AbstractElement $content): self
     {

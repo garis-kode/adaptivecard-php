@@ -27,6 +27,7 @@ final class SubmitAction extends AbstractAction
 
     /**
      * The data to send to the Bot when the action is executed.
+     * Valid values: "SubmitActionData".
      *
      * @param array<string, mixed>|string $data
      */
@@ -37,7 +38,7 @@ final class SubmitAction extends AbstractAction
 
     /**
      * The Ids of the inputs associated with the Action.Submit. When the action is executed,
-     * the values of the associated inputs are sent to the Bot.
+     * the values of the associated inputs are sent to the Bot. See **Input validation** for more details.
      * Valid values: "auto", "none".
      */
     public function associatedInputs(AssociatedInputs $associatedInputs): self

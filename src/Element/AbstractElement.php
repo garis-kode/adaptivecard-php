@@ -141,6 +141,13 @@ abstract class AbstractElement extends Node
      * An alternate element to render if the type of this one is unsupported or
      * if the host application doesn't support all the capabilities specified in
      * the `requires` property. Either the literal "drop" or a replacement element.
+     * Valid values: "Container", "ActionSet", "ColumnSet", "Media", "RichTextBlock", "Table",
+     * "TextBlock", "FactSet", "ImageSet", "Image", "Input.Text", "Input.Date", "Input.Time",
+     * "Input.Number", "Input.Toggle", "Input.ChoiceSet", "Input.Rating", "Rating", "CompoundButton",
+     * "Icon", "Carousel", "TabSet", "Accordion", "Badge", "ProgressRing", "ProgressBar",
+     * "LoopComponent", "Chart.Donut", "Chart.Pie", "Chart.VerticalBar.Grouped", "Chart.VerticalBar",
+     * "Chart.HorizontalBar", "Chart.HorizontalBar.Stacked", "Chart.Line", "Chart.Gauge",
+     * "CodeBlock", "Persona", "PersonaSet", "Graph resource", "File", "Calendar event", "drop".
      */
     public function fallback(string|AbstractElement $fallback): static
     {

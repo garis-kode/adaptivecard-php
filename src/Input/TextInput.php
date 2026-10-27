@@ -78,6 +78,9 @@ final class TextInput extends AbstractInput
     /**
      * The action that should be displayed as a button alongside the input.
      * Action.ShowCard is not supported.
+     * Valid values: "Action.Execute", "Action.InsertImage", "Action.OpenUrl",
+     * "Action.OpenUrlDialog", "Action.Popover", "Action.ResetInputs", "Action.RunCommands",
+     * "Action.Submit", "Action.ToggleVisibility".
      */
     public function inlineAction(AbstractAction $action): self
     {

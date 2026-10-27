@@ -60,7 +60,8 @@ final class DonutChart extends AbstractChart
     }
 
     /**
-     * The value that should be displayed in the center of a Donut chart.
+     * The value that should be displayed in the center of a Donut chart. `value` is
+     * ignored for Pie charts.
      */
     public function value(string|int|float $value): self
     {

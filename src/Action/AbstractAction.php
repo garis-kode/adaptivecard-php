@@ -244,6 +244,9 @@ abstract class AbstractAction extends Node
      * An alternate action to render if the type of this one is unsupported or
      * if the host application doesn't support all the capabilities specified in
      * the `requires` property. Either the literal "drop" or an action.
+     * Valid values: "Action.Submit", "Action.OpenUrl", "Action.Execute", "Action.ToggleVisibility",
+     * "Action.ShowCard", "Action.ResetInputs", "Action.Popover", "Action.OpenUrlDialog",
+     * "Action.InsertImage", "Action.RunCommands", "drop".
      */
     public function fallback(string|AbstractAction $fallback): static
     {
