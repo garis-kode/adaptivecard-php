@@ -91,9 +91,9 @@ final class ColumnSet extends AbstractElement
     /**
      * The minimum height, in pixels, of the container.
      */
-    public function minHeight(int $minHeight): self
+    public function minHeight(string $minHeight): self
     {
-        return $this->set('minHeight', "{$minHeight}px");
+        return $this->set('minHeight', $minHeight);
     }
 
     /**

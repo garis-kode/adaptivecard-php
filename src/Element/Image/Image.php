@@ -88,9 +88,9 @@ final class Image extends AbstractElement
      * The height of the image.
      * Valid values: "auto", "stretch", "<number>px".
      */
-    public function height(Height|int $height): static
+    public function height(Height|string $height): static
     {
-        $value = $height instanceof Height ? $height->value : "{$height}px";
+        $value = $height instanceof Height ? $height->value : $height;
 
         return $this->set('height', $value);
     }

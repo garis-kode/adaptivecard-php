@@ -54,18 +54,18 @@ final class TableCell extends AbstractElement
     /**
      * The minimum height, in pixels, of the container.
      */
-    public function minHeight(int $minHeight): self
+    public function minHeight(string $minHeight): self
     {
-        return $this->set('minHeight', "{$minHeight}px");
+        return $this->set('minHeight', $minHeight);
     }
 
     /**
      * The maximum height, in pixels, of the container. When the content of a container
      * exceeds the container's maximum height, a vertical scrollbar is displayed.
      */
-    public function maxHeight(int $maxHeight): self
+    public function maxHeight(string $maxHeight): self
     {
-        return $this->set('maxHeight', "{$maxHeight}px");
+        return $this->set('maxHeight', $maxHeight);
     }
 
     /**

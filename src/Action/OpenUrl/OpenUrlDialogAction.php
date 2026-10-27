@@ -14,7 +14,7 @@ final class OpenUrlDialogAction extends AbstractAction
 {
     public function __construct(
         string $dialogTitle,
-        DialogSize|int $dialogHeight,
+        DialogSize|string $dialogHeight,
         string $url,
         ?string $title = null,
     ) {
@@ -29,7 +29,7 @@ final class OpenUrlDialogAction extends AbstractAction
 
     public static function make(
         string $dialogTitle,
-        DialogSize|int $dialogHeight,
+        DialogSize|string $dialogHeight,
         string $url,
         ?string $title = null,
     ): self {
@@ -67,9 +67,9 @@ final class OpenUrlDialogAction extends AbstractAction
      * The height of the dialog. To define height as a number of pixels, use the `<number>px` format.
      * Valid values: "small", "medium", "large", "<number>px".
      */
-    public function dialogHeight(DialogSize|int $dialogHeight): self
+    public function dialogHeight(DialogSize|string $dialogHeight): self
     {
-        $value = $dialogHeight instanceof DialogSize ? $dialogHeight->value : "{$dialogHeight}px";
+        $value = $dialogHeight instanceof DialogSize ? $dialogHeight->value : $dialogHeight;
 
         return $this->set('dialogHeight', $value);
     }
