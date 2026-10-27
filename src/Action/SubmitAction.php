@@ -45,9 +45,10 @@ final class SubmitAction extends AbstractAction
     }
 
     /**
-     * Teams-specific properties associated with the action.
+     * Teams-specific metadata associated with the action (TeamsSubmitActionProperties).
+     * Supported properties include `feedback` (e.g. `['hide' => true]` to hide the card after execution).
      *
-     * @param array<string, mixed> $properties
+     * @param array<string, mixed> $properties TeamsSubmitActionProperties (e.g. ['feedback' => ['hide' => true]])
      */
     public function msteams(array $properties, bool $useCamelCaseKey = false): self
     {

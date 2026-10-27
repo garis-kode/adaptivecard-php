@@ -57,7 +57,7 @@ final class LineChart extends AbstractChart
     }
 
     /**
-     * Minimum y-axis value.
+     * The maximum y range.
      */
     public function yMin(float|int $yMin): self
     {
@@ -65,7 +65,7 @@ final class LineChart extends AbstractChart
     }
 
     /**
-     * The maximum value to be displayed on the y axis.
+     * The minimum y range.
      */
     public function yMax(float|int $yMax): self
     {
@@ -73,12 +73,20 @@ final class LineChart extends AbstractChart
     }
 
     /**
-     * Controls the minimum width allocated to x axis labels.
-     * Valid values: "<number>px" or an integer for pixel count.
+     * The minimum width reserved for the x axis labels. When the available space is
+     * insufficient, the chart selectively renders fewer labels instead of truncating them.
+     * `auto` will automatically adjust the labels' minimum width according to its content,
+     * and using the `<number>px` format will give the labels an explicit minimum width in pixels.
+     *
+     * Valid values: "auto", "<number>px".
+     *
+     * @param string|int $width Width string ("auto", "<number>px") or integer pixel count (automatically converted to "<number>px").
      */
     public function xAxisLabelMinWidth(string|int $width): self
     {
-        return $this->set('xAxisLabelMinWidth', $width);
+        $value = is_int($width) ? "{$width}px" : $width;
+
+        return $this->set('xAxisLabelMinWidth', $value);
     }
 
     /**

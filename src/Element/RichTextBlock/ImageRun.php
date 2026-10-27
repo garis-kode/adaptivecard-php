@@ -25,7 +25,7 @@ final class ImageRun extends AbstractElement
     }
 
     /**
-     * The URL to the image.
+     * The URL (or Base64-encoded Data URI) of the image. Acceptable formats are PNG, JPEG, GIF and SVG.
      */
     public function url(string $url): self
     {

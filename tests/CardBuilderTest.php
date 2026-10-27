@@ -10,6 +10,7 @@ use AdaptiveCards\Action\SubmitAction;
 use AdaptiveCards\Action\ToggleVisibility\TargetElement;
 use AdaptiveCards\Action\ToggleVisibility\ToggleVisibilityAction;
 use AdaptiveCards\AdaptiveCard;
+use AdaptiveCards\Chart\LineChart;
 use AdaptiveCards\Element\ActionSet;
 use AdaptiveCards\Element\Column\Column;
 use AdaptiveCards\Element\Column\ColumnSet;

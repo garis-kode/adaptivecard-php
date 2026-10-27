@@ -36,6 +36,7 @@ final class IconRun extends AbstractElement
 
     /**
      * Controls the color of IconRun elements.
+     * Valid values: "Default", "Dark", "Light", "Accent", "Good", "Warning", "Attention".
      */
     public function color(Colors $color): self
     {
@@ -53,6 +54,7 @@ final class IconRun extends AbstractElement
 
     /**
      * Controls the style of the icon.
+     * Valid values: "Regular", "Filled".
      */
     public function style(IconStyle $style): self
     {
