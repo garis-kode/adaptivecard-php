@@ -8,7 +8,6 @@ use AdaptiveCards\Action\AbstractAction;
 use AdaptiveCards\Element\AbstractElement;
 use AdaptiveCards\Enum\ContainerStyle;
 use AdaptiveCards\Enum\VerticalAlignment;
-use AdaptiveCards\Exception\ValidationException;
 use AdaptiveCards\Layout\AbstractLayout;
 use AdaptiveCards\Shared\AdaptiveCardReference;
 use AdaptiveCards\Shared\Authentication;
@@ -19,7 +18,6 @@ use AdaptiveCards\Shared\Refresh;
 use AdaptiveCards\Shared\Resources;
 use AdaptiveCards\Shared\TeamsCardProperties;
 use AdaptiveCards\Support\HasItems;
-use AdaptiveCards\Validation\SchemaValidator;
 
 /**
  * An Adaptive Card, containing a free-form body of card elements, and an optional set of actions.
@@ -379,35 +377,5 @@ final class AdaptiveCard extends Node
     public function __toString(): string
     {
         return $this->toJson();
-    }
-
-    /**
-     * Collect schema-validation errors without throwing.
-     *
-     * @return list<array{property: string, message: string}>
-     */
-    public function getValidationErrors(): array
-    {
-        return (new SchemaValidator())->validate($this->toArray());
-    }
-
-    public function isValid(): bool
-    {
-        return $this->getValidationErrors() === [];
-    }
-
-    /**
-     * Validate against the bundled 1.6 schema, throwing on any violation.
-     *
-     * @throws ValidationException
-     */
-    public function validate(): self
-    {
-        $errors = $this->getValidationErrors();
-        if ($errors !== []) {
-            throw new ValidationException($errors);
-        }
-
-        return $this;
     }
 }
