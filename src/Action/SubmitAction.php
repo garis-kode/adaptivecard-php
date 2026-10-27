@@ -26,7 +26,7 @@ final class SubmitAction extends AbstractAction
     }
 
     /**
-     * Initial data that input fields will be combined with. These are essentially 'hidden' fields.
+     * The data to send to the Bot when the action is executed.
      *
      * @param array<string, mixed>|string $data
      */
@@ -36,7 +36,8 @@ final class SubmitAction extends AbstractAction
     }
 
     /**
-     * Controls which inputs are associated with the action.
+     * The Ids of the inputs associated with the Action.Submit. When the action is executed,
+     * the values of the associated inputs are sent to the Bot.
      * Valid values: "auto", "none".
      */
     public function associatedInputs(AssociatedInputs $associatedInputs): self
@@ -45,7 +46,8 @@ final class SubmitAction extends AbstractAction
     }
 
     /**
-     * Teams-specific metadata associated with the action (TeamsSubmitActionProperties).
+     * Teams-specific metadata associated with the action.
+     * Valid values: TeamsSubmitActionProperties.
      * Supported properties include `feedback` (e.g. `['hide' => true]` to hide the card after execution).
      *
      * @param array<string, mixed> $properties TeamsSubmitActionProperties (e.g. ['feedback' => ['hide' => true]])

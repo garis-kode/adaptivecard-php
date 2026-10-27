@@ -37,7 +37,7 @@ final class OpenUrlDialogAction extends AbstractAction
     }
 
     /**
-     * The URL of the webpage to load in the modal dialog.
+     * The URL to open.
      */
     public function url(string $url): self
     {
@@ -45,7 +45,7 @@ final class OpenUrlDialogAction extends AbstractAction
     }
 
     /**
-     * The title of the modal dialog.
+     * The title of the dialog to be displayed in the dialog header.
      */
     public function dialogTitle(string $dialogTitle): self
     {
@@ -53,8 +53,8 @@ final class OpenUrlDialogAction extends AbstractAction
     }
 
     /**
-     * The width of the dialog.
-     * Valid values: DialogSize, integer pixel count.
+     * The width of the dialog. To define width as a number of pixels, use the `<number>px` format.
+     * Valid values: "small", "medium", "large", "<number>px".
      */
     public function dialogWidth(DialogSize|int $dialogWidth): self
     {
@@ -64,8 +64,8 @@ final class OpenUrlDialogAction extends AbstractAction
     }
 
     /**
-     * The height of the dialog.
-     * Valid values: DialogSize, integer pixel count.
+     * The height of the dialog. To define height as a number of pixels, use the `<number>px` format.
+     * Valid values: "small", "medium", "large", "<number>px".
      */
     public function dialogHeight(DialogSize|int $dialogHeight): self
     {

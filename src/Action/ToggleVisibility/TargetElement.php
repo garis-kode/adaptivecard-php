@@ -26,7 +26,7 @@ final class TargetElement extends Node
     }
 
     /**
-     * Element ID of the element to toggle.
+     * The Id of the element to change the visibility of.
      */
     public function elementId(string $elementId): self
     {
@@ -34,7 +34,7 @@ final class TargetElement extends Node
     }
 
     /**
-     * If null, toggle current visibility of element. If true, show element. If false, hide element.
+     * The new visibility state of the element.
      */
     public function isVisible(bool $isVisible = true): self
     {

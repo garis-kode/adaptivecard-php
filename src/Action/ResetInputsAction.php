@@ -44,7 +44,7 @@ final class ResetInputsAction extends AbstractAction
     }
 
     /**
-     * An array of IDs of the inputs that should be reset. If omitted, all inputs in the card are reset.
+     * The Ids of the inputs that should be reset.
      *
      * @param iterable<string> $targetInputIds
      */

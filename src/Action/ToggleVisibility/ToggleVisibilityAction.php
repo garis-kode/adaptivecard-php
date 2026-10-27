@@ -55,7 +55,8 @@ final class ToggleVisibilityAction extends AbstractAction
     }
 
     /**
-     * The array of elements to toggle the visibility of.
+     * The Ids of the elements to toggle the visibility of.
+     * Valid values: TargetElement.
      *
      * @param iterable<TargetElement> $targets
      */

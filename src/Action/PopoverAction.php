@@ -26,7 +26,7 @@ final class PopoverAction extends AbstractAction
     }
 
     /**
-     * The content to display inside the popover.
+     * The content of the popover, which can be any element.
      */
     public function content(Node|AbstractElement $content): self
     {
@@ -34,7 +34,7 @@ final class PopoverAction extends AbstractAction
     }
 
     /**
-     * Controls where the popover should be positioned relative to the target element.
+     * Controls where the popover should be displayed with regards to the element that triggered it.
      * Valid values: "Above", "Below", "Before", "After".
      */
     public function position(PopoverPosition $position): self
@@ -43,7 +43,7 @@ final class PopoverAction extends AbstractAction
     }
 
     /**
-     * Controls whether an arrow pointing to the target element is displayed.
+     * Controls if an arrow should be displayed towards the element that triggered the popover.
      */
     public function displayArrow(bool $displayArrow = true): self
     {
@@ -51,7 +51,8 @@ final class PopoverAction extends AbstractAction
     }
 
     /**
-     * The maximum width of the popover in pixels.
+     * The maximum width of the popover in pixels, in the `<number>px` format.
+     * Valid values: "<number>px".
      */
     public function maxPopoverWidth(int $maxPopoverWidth): self
     {
@@ -59,7 +60,7 @@ final class PopoverAction extends AbstractAction
     }
 
     /**
-     * Title text to display in the popover header.
+     * The optional title of the popover, which will only be displayed on mobile devices.
      */
     public function popoverTitle(string $popoverTitle): self
     {

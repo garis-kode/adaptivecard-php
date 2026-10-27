@@ -27,7 +27,7 @@ final class InsertImageAction extends AbstractAction
     }
 
     /**
-     * URL to the image to insert.
+     * The URL of the image to insert.
      */
     public function url(string $url): self
     {
@@ -35,7 +35,7 @@ final class InsertImageAction extends AbstractAction
     }
 
     /**
-     * Alternative text describing the image.
+     * The alternate text for the image.
      */
     public function altText(string $altText): self
     {
@@ -43,7 +43,7 @@ final class InsertImageAction extends AbstractAction
     }
 
     /**
-     * Controls the position where the image should be inserted.
+     * The position at which to insert the image.
      * Valid values: "Selection", "Top", "Bottom".
      */
     public function insertPosition(InsertPosition $insertPosition): self
