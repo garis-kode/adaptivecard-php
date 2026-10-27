@@ -77,7 +77,8 @@ final class Carousel extends AbstractElement
     }
 
     /**
-     * The minimum height, in pixels, of the container.
+     * The minimum height, in pixels, of the container, in the `<number>px` format.
+     * Valid values: "<number>px".
      */
     public function minHeight(string $minHeight): self
     {

@@ -13,7 +13,7 @@ use AdaptiveCards\Shared\BackgroundImage;
 use AdaptiveCards\Support\HasItems;
 
 /**
- * A page inside a Carousel element.
+ * A page inside a `Carousel` element.
  */
 final class CarouselPage extends AbstractElement
 {
@@ -51,7 +51,8 @@ final class CarouselPage extends AbstractElement
     }
 
     /**
-     * The minimum height, in pixels, of the container.
+     * The minimum height, in pixels, of the container, in the `<number>px` format.
+     * Valid values: "<number>px".
      */
     public function minHeight(string $minHeight): self
     {
@@ -59,8 +60,9 @@ final class CarouselPage extends AbstractElement
     }
 
     /**
-     * The maximum height, in pixels, of the container. When the content of a container
+     * The maximum height, in pixels, of the container, in the `<number>px` format. When the content of a container
      * exceeds the container's maximum height, a vertical scrollbar is displayed.
+     * Valid values: "<number>px".
      */
     public function maxHeight(string $maxHeight): self
     {
