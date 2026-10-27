@@ -64,7 +64,7 @@ final class CardBuilderTest extends TestCase
         $card = AdaptiveCard::make('1.6')
             ->schema('https://adaptivecards.io/schemas/adaptive-card.json')
             ->addColumnSet(function (ColumnSet $cs): void {
-                $cs->column('stretch', function (Column $c): void {
+                $cs->column(Width::Stretch, function (Column $c): void {
                     $c->verticalContentAlignment(VerticalAlignment::Center)
                         ->addTextBlock('Fourth Coffee Distillery Equipment ', function (TextBlock $t): void {
                             $t->size(TextSize::Large)
@@ -72,7 +72,7 @@ final class CardBuilderTest extends TestCase
                                 ->wrap(true);
                         });
                 })
-                ->column('auto', function (Column $c): void {
+                ->column(Width::Auto, function (Column $c): void {
                     $c->targetWidth(TargetWidth::AtLeastStandard)
                         ->spacing(Spacing::Small)
                         ->addTextBlock('Status', function (TextBlock $t): void {
@@ -89,7 +89,7 @@ final class CardBuilderTest extends TestCase
                                 ->wrap(true);
                         });
                 })
-                ->column('auto', function (Column $c): void {
+                ->column(Width::Auto, function (Column $c): void {
                     $c->targetWidth(TargetWidth::AtLeastStandard)
                         ->separator(true)
                         ->addTextBlock('Opportunity Score', function (TextBlock $t): void {
@@ -167,13 +167,13 @@ final class CardBuilderTest extends TestCase
                             )
                             ->addCell(
                                 TableCell::make()->addColumnSet(function (ColumnSet $cs): void {
-                                    $cs->column('auto', function (Column $c): void {
+                                    $cs->column(Width::Auto, function (Column $c): void {
                                         $c->verticalContentAlignment(VerticalAlignment::Center)
                                             ->addImage('https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Card-Samples/main/samples/account/assets/avatar_small.png', function (Image $img): void {
-                                                $img->width('20px');
+                                                $img->width(20);
                                             });
                                     })
-                                    ->column('stretch', function (Column $c): void {
+                                    ->column(Width::Stretch, function (Column $c): void {
                                         $c->spacing(Spacing::Small)
                                             ->verticalContentAlignment(VerticalAlignment::Center)
                                             ->addTextBlock('Reta Taylor', function (TextBlock $t): void {
@@ -208,13 +208,13 @@ final class CardBuilderTest extends TestCase
                     })
                     ->addColumnSet(function (ColumnSet $cs): void {
                         $cs->spacing(Spacing::None)
-                            ->column('auto', function (Column $c): void {
+                            ->column(Width::Auto, function (Column $c): void {
                                 $c->verticalContentAlignment(VerticalAlignment::Center)
                                     ->addImage('https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Card-Samples/main/samples/account/assets/avatar_small.png', function (Image $img): void {
-                                        $img->width('20px');
+                                        $img->width(20);
                                     });
                             })
-                            ->column('stretch', function (Column $c): void {
+                            ->column(Width::Stretch, function (Column $c): void {
                                 $c->spacing(Spacing::Small)
                                     ->verticalContentAlignment(VerticalAlignment::Center)
                                     ->addTextBlock('Reta Taylor', function (TextBlock $t): void {
@@ -248,13 +248,13 @@ final class CardBuilderTest extends TestCase
                         })
                         ->addColumnSet(function (ColumnSet $innerCs): void {
                             $innerCs->spacing(Spacing::None)
-                                ->column('auto', function (Column $col): void {
+                                ->column(Width::Auto, function (Column $col): void {
                                     $col->verticalContentAlignment(VerticalAlignment::Center)
                                         ->addImage('https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Card-Samples/main/samples/account/assets/avatar_small.png', function (Image $img): void {
-                                            $img->width('20px');
+                                            $img->width(20);
                                         });
                                 })
-                                ->column('stretch', function (Column $col): void {
+                                ->column(Width::Stretch, function (Column $col): void {
                                     $col->spacing(Spacing::Small)
                                         ->verticalContentAlignment(VerticalAlignment::Center)
                                         ->addTextBlock('Reta Taylor', function (TextBlock $t): void {
@@ -263,19 +263,19 @@ final class CardBuilderTest extends TestCase
                                 });
                         });
                     })
-                    ->column('stretch');
+                    ->column(Width::Stretch);
             })
             ->addColumnSet(function (ColumnSet $cs) use ($createToggleAction): void {
                 $cs->separator(true)
                     ->spacing(Spacing::ExtraLarge)
-                    ->column('auto', function (Column $c): void {
+                    ->column(Width::Auto, function (Column $c): void {
                         $c->verticalContentAlignment(VerticalAlignment::Center)
                             ->addImage('https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Card-Samples/main/samples/account/assets/avatar_large.png', function (Image $img): void {
                                 $img->style(ImageStyle::Person)
-                                    ->width('35px');
+                                    ->width(35);
                             });
                     })
-                    ->column('stretch', function (Column $c): void {
+                    ->column(Width::Stretch, function (Column $c): void {
                         $c->verticalContentAlignment(VerticalAlignment::Center)
                             ->spacing(Spacing::Small)
                             ->addTextBlock('Mona Kane', function (TextBlock $t): void {
@@ -288,10 +288,10 @@ final class CardBuilderTest extends TestCase
                                     ->isSubtle(true);
                             });
                     })
-                    ->column('auto', function (Column $c) use ($createToggleAction): void {
+                    ->column(Width::Auto, function (Column $c) use ($createToggleAction): void {
                         $c->verticalContentAlignment(VerticalAlignment::Center)
                             ->addColumnSet(function (ColumnSet $subCs) use ($createToggleAction): void {
-                                $subCs->column('auto', function (Column $col) use ($createToggleAction): void {
+                                $subCs->column(Width::Auto, function (Column $col) use ($createToggleAction): void {
                                     $col->targetWidth(TargetWidth::AtLeastNarrow)
                                         ->verticalContentAlignment(VerticalAlignment::Center)
                                         ->rtl(false)
@@ -309,7 +309,7 @@ final class CardBuilderTest extends TestCase
                                                 });
                                         });
                                 })
-                                ->column('auto', function (Column $col) use ($createToggleAction): void {
+                                ->column(Width::Auto, function (Column $col) use ($createToggleAction): void {
                                     $col->targetWidth(TargetWidth::AtLeastNarrow)
                                         ->verticalContentAlignment(VerticalAlignment::Bottom)
                                         ->horizontalAlignment(HorizontalAlignment::Center)
@@ -334,13 +334,13 @@ final class CardBuilderTest extends TestCase
             ->addColumnSet(function (ColumnSet $cs) use ($createToggleAction): void {
                 $cs->targetWidth(TargetWidth::VeryNarrow)
                     ->spacing(Spacing::Small)
-                    ->column('auto', function (Column $c) use ($createToggleAction): void {
+                    ->column(Width::Auto, function (Column $c) use ($createToggleAction): void {
                     $c->verticalContentAlignment(VerticalAlignment::Center)
                         ->addRichTextBlock(function (RichTextBlock $rtb) use ($createToggleAction): void {
                             $rtb->id('showMore2')
                                 ->addTextRun('See more', function (TextRun $tr) use ($createToggleAction): void {
                                     $tr->selectAction($createToggleAction());
-                                });
+                                  });
                         })
                         ->addRichTextBlock(function (RichTextBlock $rtb) use ($createToggleAction): void {
                             $rtb->id('showLess2')
@@ -350,7 +350,7 @@ final class CardBuilderTest extends TestCase
                                 });
                         });
                 })
-                ->column('auto', function (Column $c) use ($createToggleAction): void {
+                ->column(Width::Auto, function (Column $c) use ($createToggleAction): void {
                     $c->verticalContentAlignment(VerticalAlignment::Bottom)
                         ->horizontalAlignment(HorizontalAlignment::Center)
                         ->spacing(Spacing::None)
@@ -993,16 +993,16 @@ final class CardBuilderTest extends TestCase
                     ->weight(TextWeight::Bolder);
             })
             ->addColumnSet(function (ColumnSet $cs): void {
-                $cs->column('auto', function (Column $c): void {
+                $cs->column(Width::Auto, function (Column $c): void {
                     $c->verticalContentAlignment(VerticalAlignment::Center)
                         ->addImage('https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Card-Samples/main/samples/author-highlight-video/assets/avatar.png', function (Image $img): void {
-                            $img->width('24px')
-                                ->height('24px')
+                            $img->width(24)
+                                ->height(24)
                                 ->style(ImageStyle::Person)
                                 ->altText('Avatar of Kayo Miwa');
                         });
                 })
-                ->column('stretch', function (Column $c): void {
+                ->column(Width::Stretch, function (Column $c): void {
                     $c->spacing(Spacing::Small)
                         ->verticalContentAlignment(VerticalAlignment::Center)
                         ->addTextBlock('Kayo Miwa', function (TextBlock $t): void {
@@ -1134,14 +1134,14 @@ final class CardBuilderTest extends TestCase
             ->speak('Hawaii holiday escape deals start tonight')
             ->addColumnSet(function (ColumnSet $cs): void {
                 $cs->targetWidth(TargetWidth::Narrow)
-                    ->column('auto', function (Column $c): void {
+                    ->column(Width::Auto, function (Column $c): void {
                         $c->addIcon('Megaphone', function (Icon $i): void {
                             $i->style(IconStyle::Filled)
                                 ->size(IconSize::XxSmall)
                                 ->color(Colors::Accent);
                         });
                     })
-                    ->column('stretch', function (Column $c): void {
+                    ->column(Width::Stretch, function (Column $c): void {
                         $c->spacing(Spacing::Small)
                             ->addTextBlock('Posted in Employee Deals', function (TextBlock $t): void {
                                 $t->isSubtle(true)
@@ -1152,13 +1152,13 @@ final class CardBuilderTest extends TestCase
             })
             ->addColumnSet(function (ColumnSet $cs) use ($avatarUrl): void {
                 $cs->targetWidth(TargetWidth::Narrow)
-                    ->column('auto', function (Column $c) use ($avatarUrl): void {
+                    ->column(Width::Auto, function (Column $c) use ($avatarUrl): void {
                         $c->addImage($avatarUrl, function (Image $img): void {
                             $img->height(Height::Auto)
                                 ->altText('Avatar of Laurence Gibertson');
                         });
                     })
-                    ->column('stretch', function (Column $c): void {
+                    ->column(Width::Stretch, function (Column $c): void {
                         $c->addTextBlock('Laurence Gibertson', function (TextBlock $t): void {
                             $t->weight(TextWeight::Bolder)
                                 ->wrap(true);
@@ -1173,17 +1173,17 @@ final class CardBuilderTest extends TestCase
             })
             ->addColumnSet(function (ColumnSet $cs) use ($avatarUrl, $heroImageUrl, $toggleTargets): void {
                 $cs->targetWidth(TargetWidth::AtLeastNarrow)
-                    ->column('stretch', function (Column $c) use ($avatarUrl): void {
+                    ->column(Width::Stretch, function (Column $c) use ($avatarUrl): void {
                         $c->addColumnSet(function (ColumnSet $innerCs): void {
                             $innerCs->targetWidth(TargetWidth::AtLeastStandard)
-                                ->column('auto', function (Column $col): void {
+                                ->column(Width::Auto, function (Column $col): void {
                                     $col->addIcon('Megaphone', function (Icon $i): void {
                                         $i->style(IconStyle::Filled)
                                             ->size(IconSize::XxSmall)
                                             ->color(Colors::Accent);
                                     });
                                 })
-                                ->column('stretch', function (Column $col): void {
+                                ->column(Width::Stretch, function (Column $col): void {
                                     $col->spacing(Spacing::Small)
                                         ->addTextBlock('Posted in Employee Deals', function (TextBlock $t): void {
                                             $t->isSubtle(true)
@@ -1194,13 +1194,13 @@ final class CardBuilderTest extends TestCase
                         })
                         ->addColumnSet(function (ColumnSet $innerCs) use ($avatarUrl): void {
                             $innerCs->targetWidth(TargetWidth::AtLeastStandard)
-                                ->column('auto', function (Column $col) use ($avatarUrl): void {
+                                ->column(Width::Auto, function (Column $col) use ($avatarUrl): void {
                                     $col->addImage($avatarUrl, function (Image $img): void {
                                         $img->height(Height::Auto)
                                             ->altText('Avatar of Laurence Gibertson');
                                     });
                                 })
-                                ->column('stretch', function (Column $col): void {
+                                ->column(Width::Stretch, function (Column $col): void {
                                     $col->addTextBlock('Laurence Gibertson', function (TextBlock $t): void {
                                         $t->weight(TextWeight::Bolder)
                                             ->wrap(true);
@@ -1227,7 +1227,7 @@ final class CardBuilderTest extends TestCase
                         ->addColumnSet(function (ColumnSet $innerCs): void {
                             $innerCs->height(Height::Stretch)
                                 ->spacing(Spacing::ExtraLarge)
-                                ->column('auto', function (Column $col): void {
+                                ->column(Width::Auto, function (Column $col): void {
                                     $col->verticalContentAlignment(VerticalAlignment::Bottom)
                                         ->spacing(Spacing::None)
                                         ->addIcon('ThumbLike', function (Icon $i): void {
@@ -1243,7 +1243,7 @@ final class CardBuilderTest extends TestCase
                                                 ->isVisible(false);
                                         });
                                 })
-                                ->column('stretch', function (Column $col): void {
+                                ->column(Width::Stretch, function (Column $col): void {
                                     $col->verticalContentAlignment(VerticalAlignment::Bottom)
                                         ->spacing(Spacing::Small)
                                         ->addTextBlock('26 people like this', function (TextBlock $t): void {
@@ -1260,17 +1260,17 @@ final class CardBuilderTest extends TestCase
                                 });
                         });
                     })
-                    ->column('auto', function (Column $c) use ($heroImageUrl, $toggleTargets): void {
+                    ->column(Width::Auto, function (Column $c) use ($heroImageUrl, $toggleTargets): void {
                         $c->addImage($heroImageUrl, function (Image $img): void {
                             $img->targetWidth(TargetWidth::AtLeastStandard)
-                                ->width('150px')
+                                ->width(150)
                                 ->height(Height::Auto)
                                 ->altText('Beach Image')
                                 ->style(ImageStyle::RoundedCorners);
                         })
                         ->addImage($heroImageUrl, function (Image $img): void {
                             $img->targetWidth(TargetWidth::Narrow)
-                                ->width('100px')
+                                ->width(100)
                                 ->height(Height::Auto)
                                 ->altText('Beach Image')
                                 ->style(ImageStyle::RoundedCorners);
@@ -1290,14 +1290,14 @@ final class CardBuilderTest extends TestCase
             ->addContainer(function (Container $container) use ($avatarUrl, $heroImageUrl): void {
                 $container->targetWidth(TargetWidth::VeryNarrow)
                     ->addColumnSet(function (ColumnSet $cs): void {
-                        $cs->column('auto', function (Column $col): void {
+                        $cs->column(Width::Auto, function (Column $col): void {
                             $col->addIcon('Megaphone', function (Icon $i): void {
                                 $i->style(IconStyle::Filled)
                                     ->size(IconSize::XxSmall)
                                     ->color(Colors::Accent);
                             });
                         })
-                        ->column('stretch', function (Column $col): void {
+                        ->column(Width::Stretch, function (Column $col): void {
                             $col->spacing(Spacing::Small)
                                 ->addTextBlock('Posted in Employee Deals', function (TextBlock $t): void {
                                     $t->isSubtle(true)
@@ -1307,13 +1307,13 @@ final class CardBuilderTest extends TestCase
                         });
                     })
                     ->addColumnSet(function (ColumnSet $cs) use ($avatarUrl): void {
-                        $cs->column('auto', function (Column $col) use ($avatarUrl): void {
+                        $cs->column(Width::Auto, function (Column $col) use ($avatarUrl): void {
                             $col->addImage($avatarUrl, function (Image $img): void {
                                 $img->height(Height::Auto)
                                     ->altText('Avatar of Laurence Gibertson');
                             });
                         })
-                        ->column('stretch', function (Column $col): void {
+                        ->column(Width::Stretch, function (Column $col): void {
                             $col->addTextBlock('Laurence Gibertson', function (TextBlock $t): void {
                                 $t->weight(TextWeight::Bolder)
                                     ->wrap(true);
@@ -1333,23 +1333,23 @@ final class CardBuilderTest extends TestCase
                             ->spacing(Spacing::Small);
                     })
                     ->addColumnSet(function (ColumnSet $cs) use ($heroImageUrl): void {
-                        $cs->column('stretch', function (Column $col): void {
+                        $cs->column(Width::Stretch, function (Column $col): void {
                             $col->addTextBlock('For a limited time, you can book a four night stay at luxury resort on the island of Maui for only $999 per person.', function (TextBlock $t): void {
                                 $t->maxLines(4)
                                     ->wrap(true)
                                     ->spacing(Spacing::Small);
                             });
                         })
-                        ->column('auto', function (Column $col) use ($heroImageUrl): void {
+                        ->column(Width::Auto, function (Column $col) use ($heroImageUrl): void {
                             $col->addImage($heroImageUrl, function (Image $img): void {
-                                $img->width('60px')
+                                $img->width(60)
                                     ->style(ImageStyle::RoundedCorners);
                             });
                         });
                     })
                     ->addColumnSet(function (ColumnSet $cs): void {
                         $cs->spacing(Spacing::ExtraLarge)
-                            ->column('auto', function (Column $col): void {
+                            ->column(Width::Auto, function (Column $col): void {
                                 $col->verticalContentAlignment(VerticalAlignment::Center)
                                     ->spacing(Spacing::None)
                                     ->addIcon('ThumbLike', function (Icon $i): void {
@@ -1365,7 +1365,7 @@ final class CardBuilderTest extends TestCase
                                             ->isVisible(false);
                                     });
                             })
-                            ->column('stretch', function (Column $col): void {
+                            ->column(Width::Stretch, function (Column $col): void {
                                 $col->verticalContentAlignment(VerticalAlignment::Center)
                                     ->spacing(Spacing::Small)
                                     ->addTextBlock('26 people like this', function (TextBlock $t): void {
@@ -1890,16 +1890,16 @@ final class CardBuilderTest extends TestCase
             })
             ->addColumnSet(function (ColumnSet $cs): void {
                 $cs->spacing(Spacing::None)
-                    ->column('auto', function (Column $c): void {
+                    ->column(Width::Auto, function (Column $c): void {
                         $c->horizontalAlignment(HorizontalAlignment::Center)
                             ->verticalContentAlignment(VerticalAlignment::Center)
                             ->addImage('https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Card-Samples/main/samples/course-video/assets/logo_image.png', function (Image $img): void {
-                                $img->width('16px')
-                                    ->height('16px')
+                                $img->width(16)
+                                    ->height(16)
                                     ->altText('Logo');
                             });
                     })
-                    ->column('auto', function (Column $c): void {
+                    ->column(Width::Auto, function (Column $c): void {
                         $c->spacing(Spacing::Small)
                             ->verticalContentAlignment(VerticalAlignment::Center)
                             ->addTextBlock('Sketchpad Scholars', function (TextBlock $t): void {
@@ -1907,13 +1907,13 @@ final class CardBuilderTest extends TestCase
                                 ->weight(TextWeight::Bolder);
                         });
                     })
-                    ->column('auto', function (Column $c): void {
+                    ->column(Width::Auto, function (Column $c): void {
                         $c->targetWidth(TargetWidth::AtLeastStandard)
                             ->spacing(Spacing::Small)
                             ->verticalContentAlignment(VerticalAlignment::Center)
                             ->addTextBlock('·');
                     })
-                    ->column('auto', function (Column $c): void {
+                    ->column(Width::Auto, function (Column $c): void {
                         $c->targetWidth(TargetWidth::AtLeastStandard)
                             ->spacing(Spacing::Small)
                             ->verticalContentAlignment(VerticalAlignment::Center)
