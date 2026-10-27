@@ -63,6 +63,7 @@ final class StackedHorizontalBarChart extends AbstractChart
 
     /**
      * The data to display in the chart.
+     * Valid values: "StackedHorizontalBarChartData".
      *
      * @param iterable<ChartSeries> $data
      */

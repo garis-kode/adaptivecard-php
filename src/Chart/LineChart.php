@@ -108,6 +108,7 @@ final class LineChart extends AbstractChart
 
     /**
      * The data point series in the line chart.
+     * Valid values: "LineChartData".
      *
      * @param iterable<ChartSeries> $data
      */

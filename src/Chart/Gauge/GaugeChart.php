@@ -94,6 +94,7 @@ final class GaugeChart extends AbstractChart
 
     /**
      * The segments to display in the gauge.
+     * Valid values: "GaugeChartLegend".
      *
      * @param iterable<GaugeSegment> $segments
      */

@@ -79,6 +79,7 @@ final class VerticalBarChart extends AbstractChart
 
     /**
      * The data to display in the chart.
+     * Valid values: "VerticalBarChartDataValue".
      *
      * @param iterable<DataPoint> $data
      */

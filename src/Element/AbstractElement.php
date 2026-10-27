@@ -128,6 +128,7 @@ abstract class AbstractElement extends Node
      * If the host application doesn't support at least one of the listed
      * capabilities, the element is not rendered (or its fallback is rendered
      * if provided).
+     * Valid values: "HostCapabilities".
      *
      * @param array<string, string> $requires feature name => minimum version
      */

@@ -52,7 +52,8 @@ final class TableCell extends AbstractElement
     }
 
     /**
-     * The minimum height, in pixels, of the container.
+     * The minimum height, in pixels, of the container, in the `<number>px` format.
+     * Valid values: "<number>px".
      */
     public function minHeight(string $minHeight): self
     {
@@ -60,8 +61,9 @@ final class TableCell extends AbstractElement
     }
 
     /**
-     * The maximum height, in pixels, of the container. When the content of a container
+     * The maximum height, in pixels, of the container, in the `<number>px` format. When the content of a container
      * exceeds the container's maximum height, a vertical scrollbar is displayed.
+     * Valid values: "<number>px".
      */
     public function maxHeight(string $maxHeight): self
     {
@@ -122,6 +124,8 @@ final class TableCell extends AbstractElement
     /**
      * An Action that will be invoked when the element is tapped or clicked.
      * Action.ShowCard is not supported.
+     * Valid values: "Action.Execute", "Action.InsertImage", "Action.OpenUrl", "Action.OpenUrlDialog",
+     * "Action.Popover", "Action.ResetInputs", "Action.RunCommands", "Action.Submit", "Action.ToggleVisibility".
      */
     public function selectAction(AbstractAction $action): self
     {

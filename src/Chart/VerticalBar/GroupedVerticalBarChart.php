@@ -89,6 +89,7 @@ final class GroupedVerticalBarChart extends AbstractChart
 
     /**
      * The data points in a series.
+     * Valid values: "GroupedVerticalBarChartData".
      *
      * @param iterable<ChartSeries> $data
      */

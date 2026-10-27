@@ -99,6 +99,7 @@ final class DonutChart extends AbstractChart
 
     /**
      * The data to display in the chart.
+     * Valid values: "DonutChartData".
      *
      * @param iterable<DataPoint> $data
      */

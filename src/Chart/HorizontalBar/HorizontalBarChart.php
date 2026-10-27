@@ -80,6 +80,7 @@ final class HorizontalBarChart extends AbstractChart
 
     /**
      * The data points in the chart.
+     * Valid values: "HorizontalBarChartDataValue".
      *
      * @param iterable<DataPoint> $data
      */
