@@ -17,7 +17,6 @@ abstract class Node implements \JsonSerializable
 
     /**
      * Store a property unless the value is null (which means "leave as default").
-     * Enum cases are normalised to their backing string value.
      */
     protected function set(string $key, mixed $value): static
     {
@@ -25,7 +24,7 @@ abstract class Node implements \JsonSerializable
             return $this;
         }
 
-        $this->properties[$key] = $value instanceof \BackedEnum ? $value->value : $value;
+        $this->properties[$key] = $value;
 
         return $this;
     }
