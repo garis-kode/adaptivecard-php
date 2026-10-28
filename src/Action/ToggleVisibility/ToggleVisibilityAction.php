@@ -7,7 +7,8 @@ namespace AdaptiveCards\Action\ToggleVisibility;
 use AdaptiveCards\Action\AbstractAction;
 
 /**
- * Toggles the visibility of a set of elements.
+ * Toggles the visibility of a set of elements. `Action.ToggleVisibility` is useful for creating
+ * "Show more" type UI patterns.
  */
 final class ToggleVisibilityAction extends AbstractAction
 {

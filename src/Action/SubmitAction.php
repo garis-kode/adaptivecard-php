@@ -26,7 +26,10 @@ final class SubmitAction extends AbstractAction
     }
 
     /**
-     * The data to send to the Bot when the action is executed.
+     * The data to send to the Bot when the action is executed. When expressed as an object, `data`
+     * is sent back to the Bot when the action is executed, adorned with the values of the inputs
+     * expressed as key/value pairs, where the key is the Id of the input. If `data` is expressed as
+     * a string, input values are not sent to the Bot. 
      * Valid values: "SubmitActionData".
      *
      * @param array<string, mixed>|string $data
@@ -49,7 +52,6 @@ final class SubmitAction extends AbstractAction
     /**
      * Teams-specific metadata associated with the action.
      * Valid values: "TeamsSubmitActionProperties".
-     * Supported properties include `feedback` (e.g. `['hide' => true]` to hide the card after execution).
      *
      * @param array<string, mixed> $properties TeamsSubmitActionProperties (e.g. ['feedback' => ['hide' => true]])
      */

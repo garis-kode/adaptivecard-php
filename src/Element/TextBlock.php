@@ -85,7 +85,7 @@ final class TextBlock extends AbstractElement
     }
 
     /**
-     * Controls whether the text should be rendered using a subtler variant of the select color.
+     * Controls whether the text should be renderer using a subtler variant of the select color.
      */
     public function isSubtle(bool $subtle = true): self
     {

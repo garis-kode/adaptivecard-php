@@ -37,7 +37,7 @@ final class TokenExchangeResource extends Node
     }
 
     /**
-     * The unique identifier of this token exchange instance.
+     * The unique identified of this token exchange instance.
      */
     public function id(string $id): self
     {

@@ -35,8 +35,8 @@ final class TextRun extends AbstractElement
     }
 
     /**
-     * Defines an expression whose evaluated value will be used to update the
-     * `text` property of the element at runtime.
+     * Defines an expression whose evaluated value will be used to update the `text` property of the
+     * TextBlock at runtime.
      */
     public function textDynamic(string $expression): self
     {
@@ -80,7 +80,7 @@ final class TextRun extends AbstractElement
     }
 
     /**
-     * Controls whether the text should be rendered using a subtler variant of the select color.
+     * Controls whether the text should be renderer using a subtler variant of the select color.
      */
     public function isSubtle(bool $subtle = true): self
     {

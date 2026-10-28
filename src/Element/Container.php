@@ -105,10 +105,11 @@ final class Container extends AbstractElement
     }
 
     /**
-     * An Action that will be invoked when the container is tapped or clicked.
-     * Action.ShowCard is not supported.
-     * Valid values: "Action.Execute", "Action.InsertImage", "Action.OpenUrl", "Action.OpenUrlDialog",
-     * "Action.Popover", "Action.ResetInputs", "Action.RunCommands", "Action.Submit", "Action.ToggleVisibility".
+     * An Action that will be invoked when the element is tapped or clicked. `Action.ShowCard` is
+     * not supported.
+     * Valid values: "Action.Execute", "Action.InsertImage", "Action.OpenUrl",
+     * "Action.OpenUrlDialog", "Action.Popover", "Action.ResetInputs", "Action.RunCommands",
+     * "Action.Submit", "Action.ToggleVisibility".
      */
     public function selectAction(AbstractAction $action): self
     {
