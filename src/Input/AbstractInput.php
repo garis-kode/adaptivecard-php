@@ -29,7 +29,7 @@ abstract class AbstractInput extends AbstractElement
     }
 
     /**
-     * Controls whether the input is required.
+     * Controls whether the input is required. See **Input validation** for more details.
      */
     public function isRequired(bool $required = true): static
     {
@@ -37,7 +37,8 @@ abstract class AbstractInput extends AbstractElement
     }
 
     /**
-     * The error message to display when the input fails validation.
+     * The error message to display when the input fails validation. See **Input validation**
+     * for more details.
      */
     public function errorMessage(string $message): static
     {

@@ -88,7 +88,8 @@ abstract class AbstractElement extends Node
      * Controls for which card width the element should be displayed. If
      * `targetWidth` isn't specified, the element is rendered at all card
      * widths. Using `targetWidth` makes it possible to author responsive
-     * cards that adapt their layout to the available horizontal space.
+     * cards that adapt their layout to the available horizontal space. For
+     * more details, see **Responsive layout**.
      * Valid values: "VeryNarrow", "Narrow", "Standard", "Wide",
      * "atLeast:VeryNarrow", "atMost:VeryNarrow", "atLeast:Narrow", "atMost:Narrow",
      * "atLeast:Standard", "atMost:Standard", "atLeast:Wide", "atMost:Wide".
@@ -140,7 +141,7 @@ abstract class AbstractElement extends Node
     /**
      * An alternate element to render if the type of this one is unsupported or
      * if the host application doesn't support all the capabilities specified in
-     * the `requires` property. Either the literal "drop" or a replacement element.
+     * the `requires` property.
      * Valid values: "Container", "ActionSet", "ColumnSet", "Media", "RichTextBlock", "Table",
      * "TextBlock", "FactSet", "ImageSet", "Image", "Input.Text", "Input.Date", "Input.Time",
      * "Input.Number", "Input.Toggle", "Input.ChoiceSet", "Input.Rating", "Rating", "CompoundButton",

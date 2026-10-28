@@ -22,7 +22,10 @@ abstract class AbstractAction extends Node
 
     /**
      * A URL (or Base64-encoded Data URI) to a PNG, GIF, JPEG or SVG image to be displayed
-     * on the left of the action's title.
+     * on the left of the action's title. `iconUrl` also accepts the `icon:<icon-name>[,regular|filled]`
+     * format to display an icon from the vast Adaptive Card icon catalog instead of an image.
+     * For example, use `icon:Calendar` for the regular style or `icon:Calendar,filled` for the
+     * filled style.
      */
     public function iconUrl(string $url): static
     {
@@ -39,7 +42,8 @@ abstract class AbstractAction extends Node
     }
 
     /**
-     * A unique identifier for the element or action.
+     * A unique identifier for the element or action. Input elements must have an `id`,
+     * otherwise they will not be validated and their values will not be sent to the Bot.
      */
     public function id(string $id): static
     {
@@ -243,7 +247,7 @@ abstract class AbstractAction extends Node
     /**
      * An alternate action to render if the type of this one is unsupported or
      * if the host application doesn't support all the capabilities specified in
-     * the `requires` property. Either the literal "drop" or an action.
+     * the `requires` property.
      * Valid values: "Action.Submit", "Action.OpenUrl", "Action.Execute", "Action.ToggleVisibility",
      * "Action.ShowCard", "Action.ResetInputs", "Action.Popover", "Action.OpenUrlDialog",
      * "Action.InsertImage", "Action.RunCommands", "drop".
