@@ -5,14 +5,10 @@ declare(strict_types=1);
 namespace AdaptiveCards\Input;
 
 use AdaptiveCards\Action\AbstractAction;
-use AdaptiveCards\Element\AbstractElement;
+use AdaptiveCards\Element\AbstractBlockElement;
 use AdaptiveCards\Enum\InputLabelPosition;
 
-/**
- * Shared base for all Input.* elements. Inputs extend the element base and add
- * id (required), label, error messaging and validation-related properties.
- */
-abstract class AbstractInput extends AbstractElement
+abstract class AbstractInput extends AbstractBlockElement
 {
     public function __construct(string $id)
     {

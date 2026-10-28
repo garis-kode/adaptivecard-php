@@ -9,7 +9,7 @@ use AdaptiveCards\Action\AbstractAction;
 /**
  * Displays a set of action, which can be placed anywhere in the card.
  */
-final class ActionSet extends AbstractElement
+final class ActionSet extends AbstractBlockElement
 {
     public static function make(): self
     {

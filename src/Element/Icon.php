@@ -12,7 +12,7 @@ use AdaptiveCards\Enum\IconStyle;
 /**
  * A standalone icon element. Icons can be picked from the vast Adaptive Card icon catalog.
  */
-final class Icon extends AbstractElement
+final class Icon extends AbstractBlockElement
 {
     public static function make(): self
     {

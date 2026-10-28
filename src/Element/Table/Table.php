@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Element\Table;
 
-use AdaptiveCards\Element\AbstractElement;
+use AdaptiveCards\Element\AbstractBlockElement;
 use AdaptiveCards\Element\TextBlock;
 use AdaptiveCards\Enum\ContainerStyle;
 use AdaptiveCards\Enum\HorizontalAlignment;
@@ -14,7 +14,7 @@ use AdaptiveCards\Enum\Width;
 /**
  * Use tables to display data in a tabular way, with rows, columns and cells.
  */
-final class Table extends AbstractElement
+final class Table extends AbstractBlockElement
 {
     /**
      * @param iterable<TableColumnDefinition>|null $columns

@@ -13,7 +13,7 @@ use AdaptiveCards\Enum\IconPosition;
 /**
  * A badge element to show an icon and/or text in a compact form over a colored background.
  */
-final class Badge extends AbstractElement
+final class Badge extends AbstractBlockElement
 {
     public function __construct(
         ?string $text = null,

@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Element\Progress;
 
-use AdaptiveCards\Element\AbstractElement;
+use AdaptiveCards\Element\AbstractBlockElement;
 use AdaptiveCards\Enum\ProgressRingLabelPosition;
 use AdaptiveCards\Enum\ProgressRingSize;
 
 /**
  * A spinning ring element, to indicate progress.
  */
-final class ProgressRing extends AbstractElement
+final class ProgressRing extends AbstractBlockElement
 {
     public function __construct(?string $label = null)
     {

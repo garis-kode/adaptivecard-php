@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace AdaptiveCards\Element\Column;
 
 use AdaptiveCards\Action\AbstractAction;
-use AdaptiveCards\Element\AbstractElement;
+use AdaptiveCards\Element\AbstractBlockElement;
 use AdaptiveCards\Enum\ContainerStyle;
 use AdaptiveCards\Enum\Width;
 
 /**
  * Splits the available horizontal space into separate columns, so elements can be organized in a row.
  */
-final class ColumnSet extends AbstractElement
+final class ColumnSet extends AbstractBlockElement
 {
     public static function make(): self
     {

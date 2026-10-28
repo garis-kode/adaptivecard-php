@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace AdaptiveCards\Element\RichTextBlock;
 
 use AdaptiveCards\Action\AbstractAction;
-use AdaptiveCards\Element\AbstractElement;
+use AdaptiveCards\Element\AbstractInlineElement;
 use AdaptiveCards\Enum\Colors;
 use AdaptiveCards\Enum\IconStyle;
 use AdaptiveCards\Enum\TextSize;
@@ -13,7 +13,7 @@ use AdaptiveCards\Enum\TextSize;
 /**
  * An inline icon inside a RichTextBlock element.
  */
-final class IconRun extends AbstractElement
+final class IconRun extends AbstractInlineElement
 {
     public function __construct(string $name)
     {

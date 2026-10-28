@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace AdaptiveCards\Element\RichTextBlock;
 
 use AdaptiveCards\Action\AbstractAction;
-use AdaptiveCards\Element\AbstractElement;
+use AdaptiveCards\Element\AbstractInlineElement;
 use AdaptiveCards\Enum\Colors;
 use AdaptiveCards\Enum\FontType;
 use AdaptiveCards\Enum\TextSize;
@@ -14,7 +14,7 @@ use AdaptiveCards\Enum\TextWeight;
 /**
  * A block of text inside a RichTextBlock element.
  */
-final class TextRun extends AbstractElement
+final class TextRun extends AbstractInlineElement
 {
     public function __construct(string $text)
     {

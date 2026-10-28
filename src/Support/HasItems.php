@@ -15,7 +15,7 @@ use AdaptiveCards\Chart\LineChart;
 use AdaptiveCards\Chart\PieChart;
 use AdaptiveCards\Chart\VerticalBar\GroupedVerticalBarChart;
 use AdaptiveCards\Chart\VerticalBar\VerticalBarChart;
-use AdaptiveCards\Element\AbstractElement;
+use AdaptiveCards\Element\AbstractBlockElement;
 use AdaptiveCards\Element\ActionSet;
 use AdaptiveCards\Element\Badge;
 use AdaptiveCards\Element\Carousel\Carousel;
@@ -62,13 +62,13 @@ trait HasItems
         return 'items';
     }
 
-    public function addItem(AbstractElement $element): static
+    public function addItem(AbstractBlockElement $element): static
     {
         return $this->push($this->itemsKey(), $element);
     }
 
     /**
-     * @param iterable<AbstractElement> $elements
+     * @param iterable<AbstractBlockElement> $elements
      */
     public function addItems(iterable $elements): static
     {
@@ -82,7 +82,7 @@ trait HasItems
     /**
      * The items in the container.
      *
-     * @param iterable<AbstractElement> $elements
+     * @param iterable<AbstractBlockElement> $elements
      */
     public function items(iterable $elements): static
     {

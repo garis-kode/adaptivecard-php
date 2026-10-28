@@ -14,7 +14,7 @@ use AdaptiveCards\Enum\TextWeight;
 /**
  * A block of text, optionally formatted using Markdown.
  */
-final class TextBlock extends AbstractElement
+final class TextBlock extends AbstractBlockElement
 {
     public function __construct(?string $text = null, ?bool $wrap = null)
     {

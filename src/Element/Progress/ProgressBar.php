@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Element\Progress;
 
-use AdaptiveCards\Element\AbstractElement;
+use AdaptiveCards\Element\AbstractBlockElement;
 use AdaptiveCards\Enum\ProgressBarColor;
 
 /**
  * A progress bar element, to represent a value within a range.
  */
-final class ProgressBar extends AbstractElement
+final class ProgressBar extends AbstractBlockElement
 {
     public static function make(): self
     {

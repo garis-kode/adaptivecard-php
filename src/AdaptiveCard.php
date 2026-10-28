@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace AdaptiveCards;
 
 use AdaptiveCards\Action\AbstractAction;
-use AdaptiveCards\Element\AbstractElement;
+use AdaptiveCards\Element\AbstractBlockElement;
 use AdaptiveCards\Enum\ContainerStyle;
 use AdaptiveCards\Enum\VerticalAlignment;
 use AdaptiveCards\Layout\AbstractLayout;
@@ -70,7 +70,7 @@ final class AdaptiveCard extends Node
      * "Input.Text", "Input.Time", "Input.Toggle", "LoopComponent", "Media", "ProgressBar",
      * "ProgressRing", "Rating", "RichTextBlock", "Table", "TabSet", "TextBlock".
      *
-     * @param iterable<AbstractElement> $elements
+     * @param iterable<AbstractBlockElement> $elements
      */
     public function body(iterable $elements): self
     {

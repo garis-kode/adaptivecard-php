@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace AdaptiveCards\Element\RichTextBlock;
 
 use AdaptiveCards\Action\AbstractAction;
-use AdaptiveCards\Element\AbstractElement;
+use AdaptiveCards\Element\AbstractInlineElement;
 use AdaptiveCards\Enum\ImageStyle;
 use AdaptiveCards\Enum\TextSize;
 
 /**
  * An inline image inside a RichTextBlock element.
  */
-final class ImageRun extends AbstractElement
+final class ImageRun extends AbstractInlineElement
 {
     public function __construct(string $url)
     {

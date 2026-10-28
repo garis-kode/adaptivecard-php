@@ -11,7 +11,7 @@ use AdaptiveCards\Enum\RatingStyle;
 /**
  * A read-only star rating element, to display the rating of something.
  */
-final class Rating extends AbstractElement
+final class Rating extends AbstractBlockElement
 {
     public static function make(): self
     {

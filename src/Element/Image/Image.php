@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace AdaptiveCards\Element\Image;
 
 use AdaptiveCards\Action\AbstractAction;
-use AdaptiveCards\Element\AbstractElement;
+use AdaptiveCards\Element\AbstractBlockElement;
 use AdaptiveCards\Enum\Height;
 use AdaptiveCards\Enum\HorizontalAlignment;
 use AdaptiveCards\Enum\ImageFitMode;
@@ -17,7 +17,7 @@ use AdaptiveCards\Enum\Width;
 /**
  * A standalone image element.
  */
-final class Image extends AbstractElement
+final class Image extends AbstractBlockElement
 {
     public function __construct(?string $url = null)
     {

@@ -15,7 +15,7 @@ use AdaptiveCards\Support\HasItems;
  * A container for other elements. Use containers for styling purposes and/or to logically
  * group a set of elements together, which can be especially useful when used with `Action.ToggleVisibility`.
  */
-final class Container extends AbstractElement
+final class Container extends AbstractBlockElement
 {
     use HasItems;
 

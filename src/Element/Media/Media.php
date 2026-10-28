@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Element\Media;
 
-use AdaptiveCards\Element\AbstractElement;
+use AdaptiveCards\Element\AbstractBlockElement;
 
 /**
  * A media element that makes it possible to embed videos inside a card.
  */
-final class Media extends AbstractElement
+final class Media extends AbstractBlockElement
 {
     public static function make(): self
     {

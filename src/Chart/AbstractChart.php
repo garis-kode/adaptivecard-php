@@ -4,14 +4,11 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Chart;
 
-use AdaptiveCards\Element\AbstractElement;
+use AdaptiveCards\Element\AbstractBlockElement;
 use AdaptiveCards\Enum\ChartColor;
 use AdaptiveCards\Enum\ChartColorSet;
 
-/**
- * Base class for all Chart elements.
- */
-abstract class AbstractChart extends AbstractElement
+abstract class AbstractChart extends AbstractBlockElement
 {
     /**
      * The title of the chart.

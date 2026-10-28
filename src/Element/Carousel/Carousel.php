@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Element\Carousel;
 
-use AdaptiveCards\Element\AbstractElement;
+use AdaptiveCards\Element\AbstractBlockElement;
 use AdaptiveCards\Enum\PageAnimation;
 
 /**
  * A carousel with sliding pages.
  */
-final class Carousel extends AbstractElement
+final class Carousel extends AbstractBlockElement
 {
     public static function make(): self
     {

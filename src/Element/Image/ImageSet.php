@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Element\Image;
 
-use AdaptiveCards\Element\AbstractElement;
+use AdaptiveCards\Element\AbstractBlockElement;
 use AdaptiveCards\Enum\ImageSetSize;
 
 /**
  * A set of images, displayed side-by-side and wrapped across multiple rows as needed.
  */
-final class ImageSet extends AbstractElement
+final class ImageSet extends AbstractBlockElement
 {
     public static function make(): self
     {

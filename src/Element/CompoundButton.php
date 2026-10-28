@@ -9,7 +9,7 @@ use AdaptiveCards\Action\AbstractAction;
 /**
  * A special type of button with an icon, title and description.
  */
-final class CompoundButton extends AbstractElement
+final class CompoundButton extends AbstractBlockElement
 {
     public function __construct(?string $title = null, ?string $description = null)
     {

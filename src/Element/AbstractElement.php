@@ -10,11 +10,6 @@ use AdaptiveCards\Enum\Spacing;
 use AdaptiveCards\Enum\TargetWidth;
 use AdaptiveCards\Node;
 
-/**
- * Shared base for every card element. Provides the properties defined on the
- * schema's `Element` type: id, isVisible, spacing, separator, height,
- * requires and fallback.
- */
 abstract class AbstractElement extends Node
 {
     /**

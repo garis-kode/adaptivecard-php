@@ -9,7 +9,7 @@ use AdaptiveCards\Enum\CodeBlockLanguage;
 /**
  * A formatted and syntax-colored code block.
  */
-final class CodeBlock extends AbstractElement
+final class CodeBlock extends AbstractBlockElement
 {
     public static function make(): self
     {
