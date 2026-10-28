@@ -22,7 +22,7 @@ abstract class AbstractChart extends AbstractElement
     }
 
     /**
-     * The name of the set of colors to use to render the chart. See Chart colors reference.
+     * The name of the set of colors to use to render the chart.
      * Valid values: "categorical", "sequential", "sequentialred", "sequentialgreen", "sequentialyellow", "diverging".
      */
     public function colorSet(ChartColorSet $colorSet): static
@@ -31,7 +31,7 @@ abstract class AbstractChart extends AbstractElement
     }
 
     /**
-     * The color to use for all data points. See **Chart colors reference**.
+     * The color to use for all data points.
      * Valid values: "good", "warning", "attention", "neutral", "categoricalRed", "categoricalPurple",
      * "categoricalLavender", "categoricalBlue", "categoricalLightBlue", "categoricalTeal",
      * "categoricalGreen", "categoricalLime", "categoricalMarigold", "sequential1", "sequential2",

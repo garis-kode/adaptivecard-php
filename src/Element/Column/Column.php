@@ -61,7 +61,6 @@ final class Column extends AbstractElement
 
     /**
      * Controls if the container should bleed into its parent. A bleeding container extends into its parent's padding.
-     * See **Edge-to-edge content** for more information.
      */
     public function bleed(bool $bleed = true): self
     {
@@ -127,8 +126,7 @@ final class Column extends AbstractElement
 
     /**
      * The layouts associated with the container. The container can dynamically switch
-     * from one layout to another as the card's width changes. See **Container layouts**
-     * for more details.
+     * from one layout to another as the card's width changes.
      * Valid values: "Layout.Stack", "Layout.Flow", "Layout.AreaGrid".
      *
      * @param iterable<AbstractLayout> $layouts

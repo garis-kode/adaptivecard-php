@@ -8,7 +8,6 @@ use AdaptiveCards\Node;
 
 /**
  * Defines information required to enable on-behalf-of single sign-on user authentication.
- * For more information, refer to the Bot Framework TokenExchangeResource type.
  */
 final class TokenExchangeResource extends Node
 {

@@ -7,8 +7,7 @@ namespace AdaptiveCards\Shared;
 use AdaptiveCards\Node;
 
 /**
- * Defines authentication information associated with a card. For more
- * information, refer to the Bot Framework OAuthCard type.
+ * Defines authentication information associated with a card.
  */
 final class Authentication extends Node
 {

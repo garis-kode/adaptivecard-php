@@ -365,8 +365,7 @@ final class AdaptiveCard extends Node
 
     /**
      * The layouts associated with the container. The container can dynamically switch
-     * from one layout to another as the card's width changes. See **Container layouts**
-     * for more details.
+     * from one layout to another as the card's width changes.
      * Valid values: "Layout.Stack", "Layout.Flow", "Layout.AreaGrid".
      *
      * @param iterable<AbstractLayout> $layouts

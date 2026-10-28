@@ -56,7 +56,7 @@ final class ChartSeries extends Node
     }
 
     /**
-     * The color to use for all data points in the series. See Chart colors reference.
+     * The color to use for all data points in the series.
      */
     public function color(ChartColor $color): self
     {

@@ -44,7 +44,7 @@ final class GaugeSegment extends Node
     }
 
     /**
-     * The color to use for the segment. See **Chart colors reference**.
+     * The color to use for the segment.
      * Valid values: "good", "warning", "attention", "neutral", "categoricalRed", "categoricalPurple",
      * "categoricalLavender", "categoricalBlue", "categoricalLightBlue", "categoricalTeal",
      * "categoricalGreen", "categoricalLime", "categoricalMarigold", "sequential1", "sequential2",

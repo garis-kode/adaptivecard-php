@@ -70,7 +70,6 @@ final class Carousel extends AbstractElement
 
     /**
      * Controls if the container should bleed into its parent. A bleeding container extends into its parent's padding.
-     * See **Edge-to-edge content** for more information.
      */
     public function bleed(bool $bleed = true): self
     {
