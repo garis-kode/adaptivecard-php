@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Action;
 
+use AdaptiveCards\Action\Submit\SubmitActionData;
 use AdaptiveCards\Enum\AssociatedInputs;
 
 /**
@@ -36,13 +37,10 @@ final class ExecuteAction extends AbstractAction
     /**
      * The data to send to the Bot when the action is executed. When expressed as an object, `data`
      * is sent back to the Bot when the action is executed, adorned with the values of the inputs
-     * expressed as key/value pairs, where the key is the Id of the input. If `data` is expressed as
-     * a string, input values are not sent to the Bot. 
+     * expressed as key/value pairs, where the key is the Id of the input.
      * Valid values: "SubmitActionData".
-     *
-     * @param array<string, mixed>|string $data
      */
-    public function data(array|string $data): self
+    public function data(SubmitActionData $data): self
     {
         return $this->set('data', $data);
     }

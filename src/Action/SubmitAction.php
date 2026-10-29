@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Action;
 
+use AdaptiveCards\Action\Submit\SubmitActionData;
+use AdaptiveCards\Action\Submit\TeamsSubmitActionProperties;
 use AdaptiveCards\Enum\AssociatedInputs;
 
 /**
@@ -31,10 +33,8 @@ final class SubmitAction extends AbstractAction
      * expressed as key/value pairs, where the key is the Id of the input. If `data` is expressed as
      * a string, input values are not sent to the Bot. 
      * Valid values: "SubmitActionData".
-     *
-     * @param array<string, mixed>|string $data
      */
-    public function data(array|string $data): self
+    public function data(SubmitActionData $data): self
     {
         return $this->set('data', $data);
     }
@@ -52,15 +52,9 @@ final class SubmitAction extends AbstractAction
     /**
      * Teams-specific metadata associated with the action.
      * Valid values: "TeamsSubmitActionProperties".
-     *
-     * @param array<string, mixed> $properties TeamsSubmitActionProperties (e.g. ['feedback' => ['hide' => true]])
      */
-    public function msteams(array $properties, bool $useCamelCaseKey = false): self
+    public function msteams(TeamsSubmitActionProperties $properties): self
     {
-        if ($useCamelCaseKey) {
-            return $this->set('msTeams', $properties);
-        }
-
         return $this->set('msteams', $properties);
     }
 
