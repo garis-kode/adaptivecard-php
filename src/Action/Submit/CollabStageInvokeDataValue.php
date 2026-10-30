@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace AdaptiveCards\Action\Submit;
 
 use AdaptiveCards\Node;
+use AdaptiveCards\Other\TabInfo;
 
 /**
  * Data for invoking a collaboration stage action.

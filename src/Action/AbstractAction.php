@@ -9,6 +9,8 @@ use AdaptiveCards\Enum\ActionInitialState;
 use AdaptiveCards\Enum\ActionMode;
 use AdaptiveCards\Enum\ActionStyle;
 use AdaptiveCards\Node;
+use AdaptiveCards\Other\HostCapabilities;
+use AdaptiveCards\Other\ThemedUrl;
 
 abstract class AbstractAction extends Node
 {
@@ -182,14 +184,58 @@ abstract class AbstractAction extends Node
     }
 
     /**
+     * Add a theme-specific icon URL.
+     */
+    public function addThemedIconUrl(ThemedUrl $themedUrl): static
+    {
+        return $this->push('themedIconUrls', $themedUrl);
+    }
+
+    /**
+     * Add multiple theme-specific icon URLs.
+     *
+     * @param iterable<ThemedUrl> $themedUrls
+     */
+    public function addThemedIconUrls(iterable $themedUrls): static
+    {
+        foreach ($themedUrls as $themedUrl) {
+            $this->addThemedIconUrl($themedUrl);
+        }
+
+        return $this;
+    }
+
+    /**
      * A set of theme-specific icon URLs.
      * Valid values: "ThemedUrl".
      *
-     * @param array<string, string> $themedUrls
+     * @param iterable<ThemedUrl> $themedUrls
      */
-    public function themedIconUrls(array $themedUrls): static
+    public function themedIconUrls(iterable $themedUrls): static
     {
-        return $this->set('themedIconUrls', $themedUrls);
+        return $this->addThemedIconUrls($themedUrls);
+    }
+
+    /**
+     * Add a theme-specific icon URL to use when the action is in the toggled state.
+     */
+    public function addToggledThemedIconUrl(ThemedUrl $themedUrl): static
+    {
+        return $this->push('themedIconUrls.toggled', $themedUrl);
+    }
+
+    /**
+     * Add multiple theme-specific icon URLs to use when the action is in the toggled state.
+     *
+     * @param iterable<ThemedUrl> $themedUrls
+     */
+    public function addToggledThemedIconUrls(iterable $themedUrls): static
+    {
+        foreach ($themedUrls as $themedUrl) {
+            $this->addToggledThemedIconUrl($themedUrl);
+        }
+
+        return $this;
     }
 
     /**
@@ -197,11 +243,11 @@ abstract class AbstractAction extends Node
      * Only applies when `behavior` is set to `Toggle`.
      * Valid values: "ThemedUrl".
      *
-     * @param array<string, string> $themedUrls
+     * @param iterable<ThemedUrl> $themedUrls
      */
-    public function toggledThemedIconUrls(array $themedUrls): static
+    public function toggledThemedIconUrls(iterable $themedUrls): static
     {
-        return $this->set('themedIconUrls.toggled', $themedUrls);
+        return $this->addToggledThemedIconUrls($themedUrls);
     }
 
     /**
@@ -236,10 +282,8 @@ abstract class AbstractAction extends Node
      * If the host application doesn't support at least one of the listed capabilities,
      * the element is not rendered (or its fallback is rendered if provided).
      * Valid values: "HostCapabilities".
-     *
-     * @param array<string, string> $requires feature name => minimum version
      */
-    public function requires(array $requires): static
+    public function requires(HostCapabilities $requires): static
     {
         return $this->set('requires', $requires);
     }

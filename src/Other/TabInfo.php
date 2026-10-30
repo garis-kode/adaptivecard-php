@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace AdaptiveCards\Action\Submit;
+namespace AdaptiveCards\Other;
 
 use AdaptiveCards\Node;
 

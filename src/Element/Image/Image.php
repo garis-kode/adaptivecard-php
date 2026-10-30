@@ -13,6 +13,7 @@ use AdaptiveCards\Enum\ImageSize;
 use AdaptiveCards\Enum\ImageStyle;
 use AdaptiveCards\Enum\VerticalAlignment;
 use AdaptiveCards\Enum\Width;
+use AdaptiveCards\Other\ThemedUrl;
 
 /**
  * A standalone image element.
@@ -137,14 +138,36 @@ final class Image extends AbstractBlockElement
     }
 
     /**
+     * Add a theme-specific image URL.
+     */
+    public function addThemedUrl(ThemedUrl $themedUrl): self
+    {
+        return $this->push('themedUrls', $themedUrl);
+    }
+
+    /**
+     * Add multiple theme-specific image URLs.
+     *
+     * @param iterable<ThemedUrl> $themedUrls
+     */
+    public function addThemedUrls(iterable $themedUrls): self
+    {
+        foreach ($themedUrls as $themedUrl) {
+            $this->addThemedUrl($themedUrl);
+        }
+
+        return $this;
+    }
+
+    /**
      * A set of theme-specific image URLs.
      * Valid values: "ThemedUrl".
      *
-     * @param list<array<string, mixed>> $themedUrls
+     * @param iterable<ThemedUrl> $themedUrls
      */
-    public function themedUrls(array $themedUrls): self
+    public function themedUrls(iterable $themedUrls): self
     {
-        return $this->set('themedUrls', $themedUrls);
+        return $this->addThemedUrls($themedUrls);
     }
 
     /**

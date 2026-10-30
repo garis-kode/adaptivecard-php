@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace AdaptiveCards\Element;
 
 use AdaptiveCards\Action\AbstractAction;
+use AdaptiveCards\Other\IconInfo;
 
 /**
  * A special type of button with an icon, title and description.
@@ -53,15 +54,9 @@ final class CompoundButton extends AbstractBlockElement
     /**
      * The icon to show on the button.
      * Valid values: "IconInfo".
-     *
-     * @param string|array{name: string, style?: string} $icon
      */
-    public function icon(string|array $icon): self
+    public function icon(IconInfo $icon): self
     {
-        if (is_string($icon)) {
-            $icon = ['name' => $icon];
-        }
-
         return $this->set('icon', $icon);
     }
 

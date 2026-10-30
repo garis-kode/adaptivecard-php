@@ -16,6 +16,7 @@ use AdaptiveCards\Chart\PieChart;
 use AdaptiveCards\Chart\VerticalBar\GroupedVerticalBarChart;
 use AdaptiveCards\Chart\VerticalBar\VerticalBarChart;
 use AdaptiveCards\Element\AbstractBlockElement;
+use AdaptiveCards\Element\Accordion;
 use AdaptiveCards\Element\ActionSet;
 use AdaptiveCards\Element\Badge;
 use AdaptiveCards\Element\Carousel\Carousel;
@@ -34,6 +35,7 @@ use AdaptiveCards\Element\Progress\ProgressRing;
 use AdaptiveCards\Element\Rating;
 use AdaptiveCards\Element\RichTextBlock\RichTextBlock;
 use AdaptiveCards\Element\Table\Table;
+use AdaptiveCards\Element\TabSet;
 use AdaptiveCards\Element\TextBlock;
 use AdaptiveCards\Enum\ChartColorSet;
 use AdaptiveCards\Enum\CodeBlockLanguage;
@@ -155,6 +157,16 @@ trait HasItems
     public function addCarousel(?callable $configure = null): static
     {
         return $this->addItem($this->configure(new Carousel(), $configure));
+    }
+
+    public function addAccordion(?callable $configure = null): static
+    {
+        return $this->addItem($this->configure(new Accordion(), $configure));
+    }
+
+    public function addTabSet(?callable $configure = null): static
+    {
+        return $this->addItem($this->configure(new TabSet(), $configure));
     }
 
     public function addCodeBlock(

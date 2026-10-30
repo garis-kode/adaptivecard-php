@@ -9,6 +9,7 @@ use AdaptiveCards\Element\AbstractBlockElement;
 use AdaptiveCards\Enum\ContainerStyle;
 use AdaptiveCards\Enum\VerticalAlignment;
 use AdaptiveCards\Layout\AbstractLayout;
+use AdaptiveCards\Other\HostCapabilities;
 use AdaptiveCards\Shared\AdaptiveCardReference;
 use AdaptiveCards\Shared\Authentication;
 use AdaptiveCards\Shared\BackgroundImage;
@@ -189,10 +190,8 @@ final class AdaptiveCard extends Node
      * If the host application doesn't support at least one of the listed capabilities,
      * the element is not rendered (or its fallback is rendered if provided).
      * Valid values: "HostCapabilities".
-     *
-     * @param array<string, string> $requires
      */
-    public function requires(array $requires): self
+    public function requires(HostCapabilities $requires): self
     {
         return $this->set('requires', $requires);
     }

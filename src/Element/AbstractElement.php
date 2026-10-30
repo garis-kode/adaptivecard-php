@@ -9,6 +9,7 @@ use AdaptiveCards\Enum\HorizontalAlignment;
 use AdaptiveCards\Enum\Spacing;
 use AdaptiveCards\Enum\TargetWidth;
 use AdaptiveCards\Node;
+use AdaptiveCards\Other\HostCapabilities;
 
 abstract class AbstractElement extends Node
 {
@@ -124,10 +125,8 @@ abstract class AbstractElement extends Node
      * capabilities, the element is not rendered (or its fallback is rendered
      * if provided).
      * Valid values: "HostCapabilities".
-     *
-     * @param array<string, string> $requires feature name => minimum version
      */
-    public function requires(array $requires): static
+    public function requires(HostCapabilities $requires): static
     {
         return $this->set('requires', $requires);
     }
