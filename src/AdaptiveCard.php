@@ -8,7 +8,6 @@ use AdaptiveCards\Action\AbstractAction;
 use AdaptiveCards\Element\AbstractBlockElement;
 use AdaptiveCards\Enum\ContainerStyle;
 use AdaptiveCards\Enum\VerticalAlignment;
-use AdaptiveCards\Layout\AbstractLayout;
 use AdaptiveCards\Other\HostCapabilities;
 use AdaptiveCards\Shared\AdaptiveCardReference;
 use AdaptiveCards\Shared\Authentication;
@@ -20,13 +19,14 @@ use AdaptiveCards\Shared\Resources;
 use AdaptiveCards\Shared\TeamsCardProperties;
 use AdaptiveCards\Support\HasItems;
 use AdaptiveCards\Support\HasKey;
+use AdaptiveCards\Support\HasLayouts;
 
 /**
  * An Adaptive Card, containing a free-form body of card elements, and an optional set of actions.
  */
 final class AdaptiveCard extends Node
 {
-    use HasItems, HasKey;
+    use HasItems, HasKey, HasLayouts;
 
     public const SCHEMA_URL = 'http://adaptivecards.io/schemas/adaptive-card.json';
     public const DEFAULT_VERSION = '1.6';
@@ -339,40 +339,6 @@ final class AdaptiveCard extends Node
     public function references(iterable $references): self
     {
         return $this->addReferences($references);
-    }
-
-    /**
-     * Add a layout associated with the container.
-     */
-    public function addLayout(AbstractLayout $layout): self
-    {
-        return $this->push('layouts', $layout);
-    }
-
-    /**
-     * Add multiple layouts associated with the container.
-     *
-     * @param iterable<AbstractLayout> $layouts
-     */
-    public function addLayouts(iterable $layouts): self
-    {
-        foreach ($layouts as $layout) {
-            $this->addLayout($layout);
-        }
-
-        return $this;
-    }
-
-    /**
-     * The layouts associated with the container. The container can dynamically switch
-     * from one layout to another as the card's width changes.
-     * Valid values: "Layout.Stack", "Layout.Flow", "Layout.AreaGrid".
-     *
-     * @param iterable<AbstractLayout> $layouts
-     */
-    public function layouts(iterable $layouts): self
-    {
-        return $this->addLayouts($layouts);
     }
 
     /**

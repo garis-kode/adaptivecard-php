@@ -8,10 +8,10 @@ use AdaptiveCards\Action\AbstractAction;
 use AdaptiveCards\Element\AbstractElement;
 use AdaptiveCards\Enum\ContainerStyle;
 use AdaptiveCards\Enum\VerticalAlignment;
-use AdaptiveCards\Layout\AbstractLayout;
 use AdaptiveCards\Shared\BackgroundImage;
 use AdaptiveCards\Support\HasHeight;
 use AdaptiveCards\Support\HasItems;
+use AdaptiveCards\Support\HasLayouts;
 use AdaptiveCards\Support\HasSeparator;
 use AdaptiveCards\Support\HasSpacing;
 
@@ -20,7 +20,7 @@ use AdaptiveCards\Support\HasSpacing;
  */
 final class TableCell extends AbstractElement
 {
-    use HasHeight, HasItems, HasSeparator, HasSpacing;
+    use HasHeight, HasItems, HasLayouts, HasSeparator, HasSpacing;
 
     public static function make(): self
     {
@@ -71,40 +71,6 @@ final class TableCell extends AbstractElement
     public function maxHeight(string $maxHeight): self
     {
         return $this->set('maxHeight', $maxHeight);
-    }
-
-    /**
-     * Add a layout associated with the cell.
-     */
-    public function addLayout(AbstractLayout $layout): self
-    {
-        return $this->push('layouts', $layout);
-    }
-
-    /**
-     * Add multiple layouts associated with the cell.
-     *
-     * @param iterable<AbstractLayout> $layouts
-     */
-    public function addLayouts(iterable $layouts): self
-    {
-        foreach ($layouts as $layout) {
-            $this->addLayout($layout);
-        }
-
-        return $this;
-    }
-
-    /**
-     * The layouts associated with the container. The container can dynamically switch
-     * from one layout to another as the card's width changes.
-     * Valid values: "Layout.Stack", "Layout.Flow", "Layout.AreaGrid".
-     *
-     * @param iterable<AbstractLayout> $layouts
-     */
-    public function layouts(iterable $layouts): self
-    {
-        return $this->addLayouts($layouts);
     }
 
     /**

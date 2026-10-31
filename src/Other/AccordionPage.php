@@ -10,11 +10,11 @@ use AdaptiveCards\Enum\ContainerStyle;
 use AdaptiveCards\Enum\ExpandIconPosition;
 use AdaptiveCards\Enum\HeaderSize;
 use AdaptiveCards\Enum\VerticalAlignment;
-use AdaptiveCards\Layout\AbstractLayout;
 use AdaptiveCards\Shared\BackgroundImage;
 use AdaptiveCards\Support\HasHeight;
 use AdaptiveCards\Support\HasHorizontalAlignment;
 use AdaptiveCards\Support\HasItems;
+use AdaptiveCards\Support\HasLayouts;
 use AdaptiveCards\Support\HasSeparator;
 use AdaptiveCards\Support\HasSpacing;
 
@@ -23,7 +23,7 @@ use AdaptiveCards\Support\HasSpacing;
  */
 final class AccordionPage extends AbstractElement
 {
-    use HasHeight, HasHorizontalAlignment, HasItems, HasSeparator, HasSpacing;
+    use HasHeight, HasHorizontalAlignment, HasItems, HasLayouts, HasSeparator, HasSpacing;
 
     public function __construct(?string $headerTitle = null)
     {
@@ -147,40 +147,6 @@ final class AccordionPage extends AbstractElement
     public function showBorder(bool $showBorder = true): self
     {
         return $this->set('showBorder', $showBorder);
-    }
-
-    /**
-     * Add a layout associated with the container.
-     */
-    public function addLayout(AbstractLayout $layout): self
-    {
-        return $this->push('layouts', $layout);
-    }
-
-    /**
-     * Add multiple layouts associated with the container.
-     *
-     * @param iterable<AbstractLayout> $layouts
-     */
-    public function addLayouts(iterable $layouts): self
-    {
-        foreach ($layouts as $layout) {
-            $this->addLayout($layout);
-        }
-
-        return $this;
-    }
-
-    /**
-     * The layouts associated with the container. The container can dynamically switch
-     * from one layout to another as the card's width changes.
-     * Valid values: "Layout.Stack", "Layout.Flow", "Layout.AreaGrid".
-     *
-     * @param iterable<AbstractLayout> $layouts
-     */
-    public function layouts(iterable $layouts): self
-    {
-        return $this->addLayouts($layouts);
     }
 
     /**

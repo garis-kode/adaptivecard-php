@@ -8,17 +8,17 @@ use AdaptiveCards\Action\AbstractAction;
 use AdaptiveCards\Element\AbstractElement;
 use AdaptiveCards\Enum\ContainerStyle;
 use AdaptiveCards\Enum\VerticalAlignment;
-use AdaptiveCards\Layout\AbstractLayout;
 use AdaptiveCards\Shared\BackgroundImage;
 use AdaptiveCards\Support\HasHeight;
 use AdaptiveCards\Support\HasItems;
+use AdaptiveCards\Support\HasLayouts;
 
 /**
  * A page inside a `Carousel` element.
  */
 final class CarouselPage extends AbstractElement
 {
-    use HasHeight, HasItems;
+    use HasHeight, HasItems, HasLayouts;
 
     public static function make(): self
     {
@@ -68,40 +68,6 @@ final class CarouselPage extends AbstractElement
     public function maxHeight(string $maxHeight): self
     {
         return $this->set('maxHeight', $maxHeight);
-    }
-
-    /**
-     * Add a layout associated with the container.
-     */
-    public function addLayout(AbstractLayout $layout): self
-    {
-        return $this->push('layouts', $layout);
-    }
-
-    /**
-     * Add multiple layouts associated with the container.
-     *
-     * @param iterable<AbstractLayout> $layouts
-     */
-    public function addLayouts(iterable $layouts): self
-    {
-        foreach ($layouts as $layout) {
-            $this->addLayout($layout);
-        }
-
-        return $this;
-    }
-
-    /**
-     * The layouts associated with the container. The container can dynamically switch
-     * from one layout to another as the card's width changes.
-     * Valid values: "Layout.Stack", "Layout.Flow", "Layout.AreaGrid".
-     *
-     * @param iterable<AbstractLayout> $layouts
-     */
-    public function layouts(iterable $layouts): self
-    {
-        return $this->addLayouts($layouts);
     }
 
     /**
