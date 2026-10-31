@@ -6,13 +6,14 @@ namespace AdaptiveCards\Element;
 
 use AdaptiveCards\Enum\CodeBlockLanguage;
 use AdaptiveCards\Support\HasHorizontalAlignment;
+use AdaptiveCards\Support\HasSpacing;
 
 /**
  * A formatted and syntax-colored code block.
  */
 final class CodeBlock extends AbstractBlockElement
 {
-    use HasHorizontalAlignment;
+    use HasHorizontalAlignment, HasSpacing;
 
     public static function make(): self
     {

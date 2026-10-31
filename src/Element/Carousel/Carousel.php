@@ -6,12 +6,15 @@ namespace AdaptiveCards\Element\Carousel;
 
 use AdaptiveCards\Element\AbstractBlockElement;
 use AdaptiveCards\Enum\PageAnimation;
+use AdaptiveCards\Support\HasSpacing;
 
 /**
  * A carousel with sliding pages.
  */
 final class Carousel extends AbstractBlockElement
 {
+    use HasSpacing;
+
     public static function make(): self
     {
         return new self();

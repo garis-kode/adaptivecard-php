@@ -11,6 +11,7 @@ use AdaptiveCards\Layout\AbstractLayout;
 use AdaptiveCards\Shared\BackgroundImage;
 use AdaptiveCards\Support\HasHorizontalAlignment;
 use AdaptiveCards\Support\HasItems;
+use AdaptiveCards\Support\HasSpacing;
 
 /**
  * A container for other elements. Use containers for styling purposes and/or to logically
@@ -18,7 +19,7 @@ use AdaptiveCards\Support\HasItems;
  */
 final class Container extends AbstractBlockElement
 {
-    use HasHorizontalAlignment, HasItems;
+    use HasHorizontalAlignment, HasItems, HasSpacing;
 
     public static function make(): self
     {

@@ -7,9 +7,12 @@ namespace AdaptiveCards\Input;
 use AdaptiveCards\Action\AbstractAction;
 use AdaptiveCards\Element\AbstractBlockElement;
 use AdaptiveCards\Enum\InputLabelPosition;
+use AdaptiveCards\Support\HasSpacing;
 
 abstract class AbstractInput extends AbstractBlockElement
 {
+    use HasSpacing;
+
     public function __construct(string $id)
     {
         $this->id($id);

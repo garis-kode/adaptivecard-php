@@ -8,13 +8,14 @@ use AdaptiveCards\Enum\RatingColor;
 use AdaptiveCards\Enum\RatingSize;
 use AdaptiveCards\Enum\RatingStyle;
 use AdaptiveCards\Support\HasHorizontalAlignment;
+use AdaptiveCards\Support\HasSpacing;
 
 /**
  * A read-only star rating element, to display the rating of something.
  */
 final class Rating extends AbstractBlockElement
 {
-    use HasHorizontalAlignment;
+    use HasHorizontalAlignment, HasSpacing;
 
     public static function make(): self
     {

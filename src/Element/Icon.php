@@ -9,13 +9,14 @@ use AdaptiveCards\Enum\Colors;
 use AdaptiveCards\Enum\IconSize;
 use AdaptiveCards\Enum\IconStyle;
 use AdaptiveCards\Support\HasHorizontalAlignment;
+use AdaptiveCards\Support\HasSpacing;
 
 /**
  * A standalone icon element. Icons can be picked from the vast Adaptive Card icon catalog.
  */
 final class Icon extends AbstractBlockElement
 {
-    use HasHorizontalAlignment;
+    use HasHorizontalAlignment, HasSpacing;
 
     public static function make(): self
     {

@@ -6,13 +6,14 @@ namespace AdaptiveCards\Element;
 
 use AdaptiveCards\Action\AbstractAction;
 use AdaptiveCards\Support\HasHorizontalAlignment;
+use AdaptiveCards\Support\HasSpacing;
 
 /**
  * Displays a set of action, which can be placed anywhere in the card.
  */
 final class ActionSet extends AbstractBlockElement
 {
-    use HasHorizontalAlignment;
+    use HasHorizontalAlignment, HasSpacing;
 
     public static function make(): self
     {

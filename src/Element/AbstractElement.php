@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace AdaptiveCards\Element;
 
 use AdaptiveCards\Enum\Height;
-use AdaptiveCards\Enum\Spacing;
 use AdaptiveCards\Enum\TargetWidth;
 use AdaptiveCards\Node;
 use AdaptiveCards\Other\HostCapabilities;
@@ -37,27 +36,6 @@ abstract class AbstractElement extends Node
     public function isVisibleDynamic(string $expression): static
     {
         return $this->set('isVisible.dynamic', $expression);
-    }
-
-    /**
-     * Controls the amount of space between this element and the previous one.
-     * No space will be added for the first element in a container.
-     * Valid values: "None", "ExtraSmall", "Small", "Default", "Medium", "Large", "ExtraLarge", "Padding".
-     */
-    public function spacing(Spacing $spacing): static
-    {
-        return $this->set('spacing', $spacing->value);
-    }
-
-    /**
-     * Controls whether a separator line should be displayed above the element
-     * to visually separate it from the previous element. No separator will be
-     * displayed for the first element in a container, even if this property is
-     * set to true.
-     */
-    public function separator(bool $separator = true): static
-    {
-        return $this->set('separator', $separator);
     }
 
     /**

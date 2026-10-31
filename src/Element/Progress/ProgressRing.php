@@ -8,13 +8,14 @@ use AdaptiveCards\Element\AbstractBlockElement;
 use AdaptiveCards\Enum\ProgressRingLabelPosition;
 use AdaptiveCards\Enum\ProgressRingSize;
 use AdaptiveCards\Support\HasHorizontalAlignment;
+use AdaptiveCards\Support\HasSpacing;
 
 /**
  * A spinning ring element, to indicate progress.
  */
 final class ProgressRing extends AbstractBlockElement
 {
-    use HasHorizontalAlignment;
+    use HasHorizontalAlignment, HasSpacing;
 
     public function __construct(?string $label = null)
     {

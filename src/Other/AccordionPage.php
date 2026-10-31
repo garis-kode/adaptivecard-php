@@ -14,13 +14,15 @@ use AdaptiveCards\Layout\AbstractLayout;
 use AdaptiveCards\Shared\BackgroundImage;
 use AdaptiveCards\Support\HasHorizontalAlignment;
 use AdaptiveCards\Support\HasItems;
+use AdaptiveCards\Support\HasSeparator;
+use AdaptiveCards\Support\HasSpacing;
 
 /**
  * A single page within an accordion.
  */
 final class AccordionPage extends AbstractElement
 {
-    use HasHorizontalAlignment, HasItems;
+    use HasHorizontalAlignment, HasItems, HasSeparator, HasSpacing;
 
     public function __construct(?string $headerTitle = null)
     {

@@ -5,12 +5,15 @@ declare(strict_types=1);
 namespace AdaptiveCards\Element\Fact;
 
 use AdaptiveCards\Element\AbstractBlockElement;
+use AdaptiveCards\Support\HasSpacing;
 
 /**
  * A set of facts, displayed as a table or a vertical list when horizontal space is constrained.
  */
 final class FactSet extends AbstractBlockElement
 {
+    use HasSpacing;
+
     public static function make(): self
     {
         return new self();

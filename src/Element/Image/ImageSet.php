@@ -7,13 +7,14 @@ namespace AdaptiveCards\Element\Image;
 use AdaptiveCards\Element\AbstractBlockElement;
 use AdaptiveCards\Enum\ImageSetSize;
 use AdaptiveCards\Support\HasHorizontalAlignment;
+use AdaptiveCards\Support\HasSpacing;
 
 /**
  * A set of images, displayed side-by-side and wrapped across multiple rows as needed.
  */
 final class ImageSet extends AbstractBlockElement
 {
-    use HasHorizontalAlignment;
+    use HasHorizontalAlignment, HasSpacing;
 
     public static function make(): self
     {

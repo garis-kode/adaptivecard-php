@@ -10,13 +10,14 @@ use AdaptiveCards\Enum\TextBlockStyle;
 use AdaptiveCards\Enum\TextSize;
 use AdaptiveCards\Enum\TextWeight;
 use AdaptiveCards\Support\HasHorizontalAlignment;
+use AdaptiveCards\Support\HasSpacing;
 
 /**
  * A block of text, optionally formatted using Markdown.
  */
 final class TextBlock extends AbstractBlockElement
 {
-    use HasHorizontalAlignment;
+    use HasHorizontalAlignment, HasSpacing;
 
     public function __construct(?string $text = null, ?bool $wrap = null)
     {

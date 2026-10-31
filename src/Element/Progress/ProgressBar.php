@@ -7,13 +7,14 @@ namespace AdaptiveCards\Element\Progress;
 use AdaptiveCards\Element\AbstractBlockElement;
 use AdaptiveCards\Enum\ProgressBarColor;
 use AdaptiveCards\Support\HasHorizontalAlignment;
+use AdaptiveCards\Support\HasSpacing;
 
 /**
  * A progress bar element, to represent a value within a range.
  */
 final class ProgressBar extends AbstractBlockElement
 {
-    use HasHorizontalAlignment;
+    use HasHorizontalAlignment, HasSpacing;
 
     public static function make(): self
     {

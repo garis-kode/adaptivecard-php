@@ -9,13 +9,15 @@ use AdaptiveCards\Enum\ContainerStyle;
 use AdaptiveCards\Enum\HorizontalAlignment;
 use AdaptiveCards\Enum\VerticalAlignment;
 use AdaptiveCards\Support\HasHorizontalAlignment;
+use AdaptiveCards\Support\HasSeparator;
+use AdaptiveCards\Support\HasSpacing;
 
 /**
  * Represents a row of cells in a table.
  */
 final class TableRow extends AbstractElement
 {
-    use HasHorizontalAlignment;
+    use HasHorizontalAlignment, HasSeparator, HasSpacing;
 
     public static function make(): self
     {

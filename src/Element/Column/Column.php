@@ -13,13 +13,15 @@ use AdaptiveCards\Layout\AbstractLayout;
 use AdaptiveCards\Shared\BackgroundImage;
 use AdaptiveCards\Support\HasHorizontalAlignment;
 use AdaptiveCards\Support\HasItems;
+use AdaptiveCards\Support\HasSeparator;
+use AdaptiveCards\Support\HasSpacing;
 
 /**
  * A column in a `ColumnSet` element.
  */
 final class Column extends AbstractElement
 {
-    use HasHorizontalAlignment, HasItems;
+    use HasHorizontalAlignment, HasItems, HasSeparator, HasSpacing;
 
     public static function make(): self
     {

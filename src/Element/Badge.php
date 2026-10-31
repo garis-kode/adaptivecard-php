@@ -10,13 +10,14 @@ use AdaptiveCards\Enum\BadgeSize;
 use AdaptiveCards\Enum\BadgeStyle;
 use AdaptiveCards\Enum\IconPosition;
 use AdaptiveCards\Support\HasHorizontalAlignment;
+use AdaptiveCards\Support\HasSpacing;
 
 /**
  * A badge element to show an icon and/or text in a compact form over a colored background.
  */
 final class Badge extends AbstractBlockElement
 {
-    use HasHorizontalAlignment;
+    use HasHorizontalAlignment, HasSpacing;
 
     public function __construct(
         ?string $text = null,

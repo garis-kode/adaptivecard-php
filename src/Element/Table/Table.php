@@ -11,13 +11,14 @@ use AdaptiveCards\Enum\HorizontalAlignment;
 use AdaptiveCards\Enum\VerticalAlignment;
 use AdaptiveCards\Enum\Width;
 use AdaptiveCards\Support\HasHorizontalAlignment;
+use AdaptiveCards\Support\HasSpacing;
 
 /**
  * Use tables to display data in a tabular way, with rows, columns and cells.
  */
 final class Table extends AbstractBlockElement
 {
-    use HasHorizontalAlignment;
+    use HasHorizontalAlignment, HasSpacing;
 
     /**
      * @param iterable<TableColumnDefinition>|null $columns

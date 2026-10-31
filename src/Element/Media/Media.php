@@ -5,12 +5,15 @@ declare(strict_types=1);
 namespace AdaptiveCards\Element\Media;
 
 use AdaptiveCards\Element\AbstractBlockElement;
+use AdaptiveCards\Support\HasSpacing;
 
 /**
  * A media element that makes it possible to embed videos inside a card.
  */
 final class Media extends AbstractBlockElement
 {
+    use HasSpacing;
+
     public static function make(): self
     {
         return new self();

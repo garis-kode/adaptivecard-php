@@ -8,10 +8,11 @@ use AdaptiveCards\Element\AbstractBlockElement;
 use AdaptiveCards\Enum\ChartColor;
 use AdaptiveCards\Enum\ChartColorSet;
 use AdaptiveCards\Support\HasHorizontalAlignment;
+use AdaptiveCards\Support\HasSpacing;
 
 abstract class AbstractChart extends AbstractBlockElement
 {
-    use HasHorizontalAlignment;
+    use HasHorizontalAlignment, HasSpacing;
     /**
      * The title of the chart.
      */

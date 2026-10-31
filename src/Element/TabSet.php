@@ -6,12 +6,15 @@ namespace AdaptiveCards\Element;
 
 use AdaptiveCards\Enum\TabSetSize;
 use AdaptiveCards\Other\TabPage;
+use AdaptiveCards\Support\HasSpacing;
 
 /**
  * An element that allows the end-user to navigate through pages using a tabbed interface.
  */
 final class TabSet extends AbstractBlockElement
 {
+    use HasSpacing;
+
     public static function make(): self
     {
         return new self();

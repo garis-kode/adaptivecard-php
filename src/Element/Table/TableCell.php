@@ -11,13 +11,15 @@ use AdaptiveCards\Enum\VerticalAlignment;
 use AdaptiveCards\Layout\AbstractLayout;
 use AdaptiveCards\Shared\BackgroundImage;
 use AdaptiveCards\Support\HasItems;
+use AdaptiveCards\Support\HasSeparator;
+use AdaptiveCards\Support\HasSpacing;
 
 /**
  * Represents a cell in a table row.
  */
 final class TableCell extends AbstractElement
 {
-    use HasItems;
+    use HasItems, HasSeparator, HasSpacing;
 
     public static function make(): self
     {

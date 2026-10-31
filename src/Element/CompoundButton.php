@@ -7,13 +7,14 @@ namespace AdaptiveCards\Element;
 use AdaptiveCards\Action\AbstractAction;
 use AdaptiveCards\Other\IconInfo;
 use AdaptiveCards\Support\HasHorizontalAlignment;
+use AdaptiveCards\Support\HasSpacing;
 
 /**
  * A special type of button with an icon, title and description.
  */
 final class CompoundButton extends AbstractBlockElement
 {
-    use HasHorizontalAlignment;
+    use HasHorizontalAlignment, HasSpacing;
 
     public function __construct(?string $title = null, ?string $description = null)
     {
