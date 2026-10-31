@@ -53,16 +53,13 @@ final class DataPoint extends Node
     /**
      * Create a slice/legend data point for pie, donut, or bar charts.
      */
-    public static function slice(string $legend, float|int $value, ?ChartColor $color = null, ?string $tooltip = null): self
+    public static function slice(string $legend, float|int $value, ?ChartColor $color = null): self
     {
         $dp = new self();
         $dp->set('legend', $legend);
         $dp->set('value', $value);
         if ($color !== null) {
             $dp->set('color', $color->value);
-        }
-        if ($tooltip !== null) {
-            $dp->set('tooltip', $tooltip);
         }
 
         return $dp;
@@ -106,14 +103,6 @@ final class DataPoint extends Node
     public function color(ChartColor $color): self
     {
         return $this->set('color', $color->value);
-    }
-
-    /**
-     * Tooltip text to display on hover.
-     */
-    public function tooltip(string $tooltip): self
-    {
-        return $this->set('tooltip', $tooltip);
     }
 
     public function getType(): ?string
