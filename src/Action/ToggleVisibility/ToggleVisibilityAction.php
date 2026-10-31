@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace AdaptiveCards\Action\ToggleVisibility;
 
 use AdaptiveCards\Action\AbstractAction;
+use AdaptiveCards\Support\HasMenuActions;
 
 /**
  * Toggles the visibility of a set of elements. `Action.ToggleVisibility` is useful for creating
@@ -12,6 +13,8 @@ use AdaptiveCards\Action\AbstractAction;
  */
 final class ToggleVisibilityAction extends AbstractAction
 {
+    use HasMenuActions;
+
     public function __construct(?string $title = null)
     {
         if ($title !== null) {

@@ -6,6 +6,7 @@ namespace AdaptiveCards\Action;
 
 use AdaptiveCards\Action\Submit\SubmitActionData;
 use AdaptiveCards\Enum\AssociatedInputs;
+use AdaptiveCards\Support\HasMenuActions;
 
 /**
  * Gathers input values, merges them with the `data` property if specified, and sends them to the
@@ -14,6 +15,8 @@ use AdaptiveCards\Enum\AssociatedInputs;
  */
 final class ExecuteAction extends AbstractAction
 {
+    use HasMenuActions;
+
     public function __construct(?string $title = null)
     {
         if ($title !== null) {

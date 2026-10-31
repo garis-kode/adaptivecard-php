@@ -4,11 +4,15 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Action;
 
+use AdaptiveCards\Support\HasMenuActions;
+
 /**
  * Resets the values of the inputs in the card.
  */
 final class ResetInputsAction extends AbstractAction
 {
+    use HasMenuActions;
+
     public function __construct(?string $title = null)
     {
         if ($title !== null) {
