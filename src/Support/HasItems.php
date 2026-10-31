@@ -4,17 +4,21 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Support;
 
-use AdaptiveCards\Chart\Data\ChartSeries;
-use AdaptiveCards\Chart\Data\DataPoint;
 use AdaptiveCards\Chart\DonutChart;
+use AdaptiveCards\Chart\DonutChartData;
 use AdaptiveCards\Chart\Gauge\GaugeChart;
-use AdaptiveCards\Chart\Gauge\GaugeSegment;
+use AdaptiveCards\Chart\Gauge\GaugeChartLegend;
 use AdaptiveCards\Chart\HorizontalBar\HorizontalBarChart;
+use AdaptiveCards\Chart\HorizontalBar\HorizontalBarChartDataValue;
 use AdaptiveCards\Chart\HorizontalBar\StackedHorizontalBarChart;
+use AdaptiveCards\Chart\HorizontalBar\StackedHorizontalBarChartData;
 use AdaptiveCards\Chart\LineChart;
+use AdaptiveCards\Chart\LineChartData;
 use AdaptiveCards\Chart\PieChart;
 use AdaptiveCards\Chart\VerticalBar\GroupedVerticalBarChart;
+use AdaptiveCards\Chart\VerticalBar\GroupedVerticalBarChartData;
 use AdaptiveCards\Chart\VerticalBar\VerticalBarChart;
+use AdaptiveCards\Chart\VerticalBar\VerticalBarChartDataValue;
 use AdaptiveCards\Element\AbstractBlockElement;
 use AdaptiveCards\Element\Accordion;
 use AdaptiveCards\Element\ActionSet;
@@ -299,7 +303,7 @@ trait HasItems
     }
 
     /**
-     * @param iterable<DataPoint>|null $data
+     * @param iterable<DonutChartData>|null $data
      * @param (callable(DonutChart): mixed)|null $configure
      */
     public function addDonutChart(
@@ -312,7 +316,7 @@ trait HasItems
     }
 
     /**
-     * @param iterable<GaugeSegment>|null $segments
+     * @param iterable<GaugeChartLegend>|null $segments
      * @param (callable(GaugeChart): mixed)|null $configure
      */
     public function addGaugeChart(
@@ -326,7 +330,7 @@ trait HasItems
     }
 
     /**
-     * @param iterable<DataPoint> $data
+     * @param iterable<HorizontalBarChartDataValue> $data
      * @param (callable(HorizontalBarChart): mixed)|null $configure
      */
     public function addHorizontalBarChart(
@@ -342,7 +346,7 @@ trait HasItems
     }
 
     /**
-     * @param iterable<ChartSeries> $data
+     * @param iterable<StackedHorizontalBarChartData> $data
      * @param (callable(StackedHorizontalBarChart): mixed)|null $configure
      */
     public function addStackedHorizontalBarChart(
@@ -355,7 +359,7 @@ trait HasItems
     }
 
     /**
-     * @param iterable<ChartSeries>|null $data
+     * @param iterable<LineChartData>|null $data
      * @param (callable(LineChart): mixed)|null $configure
      */
     public function addLineChart(
@@ -371,7 +375,7 @@ trait HasItems
     }
 
     /**
-     * @param iterable<DataPoint>|null $data
+     * @param iterable<DonutChartData>|null $data
      * @param (callable(PieChart): mixed)|null $configure
      */
     public function addPieChart(
@@ -384,7 +388,7 @@ trait HasItems
     }
 
     /**
-     * @param iterable<DataPoint> $data
+     * @param iterable<VerticalBarChartDataValue> $data
      * @param (callable(VerticalBarChart): mixed)|null $configure
      */
     public function addVerticalBarChart(
@@ -400,7 +404,7 @@ trait HasItems
     }
 
     /**
-     * @param iterable<ChartSeries>|null $data
+     * @param iterable<GroupedVerticalBarChartData>|null $data
      * @param (callable(GroupedVerticalBarChart): mixed)|null $configure
      */
     public function addGroupedVerticalBarChart(

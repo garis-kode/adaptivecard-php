@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Chart;
 
-use AdaptiveCards\Chart\Data\DataPoint;
 use AdaptiveCards\Enum\ChartColor;
 use AdaptiveCards\Enum\ChartThickness;
 
@@ -14,7 +13,7 @@ use AdaptiveCards\Enum\ChartThickness;
 final class DonutChart extends AbstractChart
 {
     /**
-     * @param iterable<DataPoint>|null $data
+     * @param iterable<DonutChartData>|null $data
      */
     public function __construct(
         string $title,
@@ -32,7 +31,7 @@ final class DonutChart extends AbstractChart
     }
 
     /**
-     * @param iterable<DataPoint>|null $data
+     * @param iterable<DonutChartData>|null $data
      */
     public static function make(
         string $title,
@@ -89,36 +88,42 @@ final class DonutChart extends AbstractChart
     }
 
     /**
-     * Add a data point to the donut chart.
+     * Add data to the donut chart (accepts a single item or an iterable of items).
+     *
+     * @param DonutChartData|iterable<DonutChartData> $data
      */
-    public function addDataPoint(DataPoint $point): self
+    public function addData(DonutChartData|iterable $data): self
     {
-        return $this->push('data', $point);
+        if (is_iterable($data)) {
+            foreach ($data as $item) {
+                $this->push('data', $item);
+            }
+
+            return $this;
+        }
+
+        return $this->push('data', $data);
     }
 
     /**
-     * Add multiple data points to the donut chart.
+     * Add multiple data items to the donut chart.
      *
-     * @param iterable<DataPoint> $data
+     * @param iterable<DonutChartData> $data
      */
-    public function addDataPoints(iterable $data): self
+    public function addDataList(iterable $data): self
     {
-        foreach ($data as $point) {
-            $this->addDataPoint($point);
-        }
-
-        return $this;
+        return $this->addData($data);
     }
 
     /**
      * The data to display in the chart.
      * Valid values: "DonutChartData".
      *
-     * @param iterable<DataPoint> $data
+     * @param iterable<DonutChartData> $data
      */
     public function data(iterable $data): self
     {
-        return $this->addDataPoints($data);
+        return $this->addData($data);
     }
 
     public function getType(): string
@@ -126,3 +131,4 @@ final class DonutChart extends AbstractChart
         return 'Chart.Donut';
     }
 }
+

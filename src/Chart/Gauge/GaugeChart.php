@@ -13,7 +13,7 @@ use AdaptiveCards\Enum\GaugeValueFormat;
 final class GaugeChart extends AbstractChart
 {
     /**
-     * @param iterable<GaugeSegment>|null $segments
+     * @param iterable<GaugeChartLegend>|null $segments
      */
     public function __construct(
         string $title,
@@ -35,7 +35,7 @@ final class GaugeChart extends AbstractChart
     }
 
     /**
-     * @param iterable<GaugeSegment>|null $segments
+     * @param iterable<GaugeChartLegend>|null $segments
      */
     public static function make(
         string $title,
@@ -71,17 +71,25 @@ final class GaugeChart extends AbstractChart
     }
 
     /**
-     * Add a segment to the gauge chart.
+     * Add a segment/legend to the gauge chart.
      */
-    public function addSegment(GaugeSegment $segment): self
+    public function addSegment(GaugeChartLegend $segment): self
     {
         return $this->push('segments', $segment);
     }
 
     /**
+     * Add a legend to the gauge chart.
+     */
+    public function addLegend(GaugeChartLegend $legend): self
+    {
+        return $this->addSegment($legend);
+    }
+
+    /**
      * Add multiple segments to the gauge chart.
      *
-     * @param iterable<GaugeSegment> $segments
+     * @param iterable<GaugeChartLegend> $segments
      */
     public function addSegments(iterable $segments): self
     {
@@ -96,7 +104,7 @@ final class GaugeChart extends AbstractChart
      * The segments to display in the gauge.
      * Valid values: "GaugeChartLegend".
      *
-     * @param iterable<GaugeSegment> $segments
+     * @param iterable<GaugeChartLegend> $segments
      */
     public function segments(iterable $segments): self
     {
@@ -149,3 +157,4 @@ final class GaugeChart extends AbstractChart
         return 'Chart.Gauge';
     }
 }
+

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Chart;
 
-use AdaptiveCards\Chart\Data\ChartSeries;
 use AdaptiveCards\Enum\ChartColorSet;
 use AdaptiveCards\Enum\Width;
 
@@ -14,7 +13,7 @@ use AdaptiveCards\Enum\Width;
 final class LineChart extends AbstractCartesianChart
 {
     /**
-     * @param iterable<ChartSeries>|null $data
+     * @param iterable<LineChartData>|null $data
      */
     public function __construct(
         string $title,
@@ -44,7 +43,7 @@ final class LineChart extends AbstractCartesianChart
     }
 
     /**
-     * @param iterable<ChartSeries>|null $data
+     * @param iterable<LineChartData>|null $data
      */
     public static function make(
         string $title,
@@ -85,36 +84,32 @@ final class LineChart extends AbstractCartesianChart
     }
 
     /**
-     * Add a series of data points to the line chart.
-     */
-    public function addSeries(ChartSeries $series): self
-    {
-        return $this->push('data', $series);
-    }
-
-    /**
-     * Add multiple series of data points to the line chart.
+     * Add data to the line chart (accepts a single series or an iterable of series).
      *
-     * @param iterable<ChartSeries> $data
+     * @param LineChartData|iterable<LineChartData> $data
      */
-    public function addSeriesList(iterable $data): self
+    public function addData(LineChartData|iterable $data): self
     {
-        foreach ($data as $series) {
-            $this->addSeries($series);
+        if (is_iterable($data)) {
+            foreach ($data as $item) {
+                $this->push('data', $item);
+            }
+
+            return $this;
         }
 
-        return $this;
+        return $this->push('data', $data);
     }
 
     /**
      * The data point series in the line chart.
      * Valid values: "LineChartData".
      *
-     * @param iterable<ChartSeries> $data
+     * @param iterable<LineChartData> $data
      */
     public function data(iterable $data): self
     {
-        return $this->addSeriesList($data);
+        return $this->addData($data);
     }
 
     public function getType(): string

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace AdaptiveCards\Chart\VerticalBar;
 
 use AdaptiveCards\Chart\AbstractCartesianChart;
-use AdaptiveCards\Chart\Data\ChartSeries;
 use AdaptiveCards\Enum\ChartColorSet;
 
 /**
@@ -14,7 +13,7 @@ use AdaptiveCards\Enum\ChartColorSet;
 final class GroupedVerticalBarChart extends AbstractCartesianChart
 {
     /**
-     * @param iterable<ChartSeries>|null $data
+     * @param iterable<GroupedVerticalBarChartData>|null $data
      */
     public function __construct(
         string $title,
@@ -44,7 +43,7 @@ final class GroupedVerticalBarChart extends AbstractCartesianChart
     }
 
     /**
-     * @param iterable<ChartSeries>|null $data
+     * @param iterable<GroupedVerticalBarChartData>|null $data
      */
     public static function make(
         string $title,
@@ -66,36 +65,32 @@ final class GroupedVerticalBarChart extends AbstractCartesianChart
     }
 
     /**
-     * Add a series of data points.
-     */
-    public function addSeries(ChartSeries $series): self
-    {
-        return $this->push('data', $series);
-    }
-
-    /**
-     * Add multiple series of data points.
+     * Add data to the grouped vertical bar chart (accepts a single series or an iterable of series).
      *
-     * @param iterable<ChartSeries> $data
+     * @param GroupedVerticalBarChartData|iterable<GroupedVerticalBarChartData> $data
      */
-    public function addSeriesList(iterable $data): self
+    public function addData(GroupedVerticalBarChartData|iterable $data): self
     {
-        foreach ($data as $series) {
-            $this->addSeries($series);
+        if (is_iterable($data)) {
+            foreach ($data as $item) {
+                $this->push('data', $item);
+            }
+
+            return $this;
         }
 
-        return $this;
+        return $this->push('data', $data);
     }
 
     /**
      * The data points in a series.
      * Valid values: "GroupedVerticalBarChartData".
      *
-     * @param iterable<ChartSeries> $data
+     * @param iterable<GroupedVerticalBarChartData> $data
      */
     public function data(iterable $data): self
     {
-        return $this->addSeriesList($data);
+        return $this->addData($data);
     }
 
     /**
