@@ -5,10 +5,11 @@ declare(strict_types=1);
 namespace AdaptiveCards;
 
 use AdaptiveCards\Action\AbstractAction;
-use AdaptiveCards\Element\AbstractElement;
+use AdaptiveCards\Element\AbstractBlockElement;
 use AdaptiveCards\Enum\ContainerStyle;
 use AdaptiveCards\Enum\VerticalAlignment;
 use AdaptiveCards\Layout\AbstractLayout;
+use AdaptiveCards\Other\HostCapabilities;
 use AdaptiveCards\Shared\AdaptiveCardReference;
 use AdaptiveCards\Shared\Authentication;
 use AdaptiveCards\Shared\BackgroundImage;
@@ -70,7 +71,7 @@ final class AdaptiveCard extends Node
      * "Input.Text", "Input.Time", "Input.Toggle", "LoopComponent", "Media", "ProgressBar",
      * "ProgressRing", "Rating", "RichTextBlock", "Table", "TabSet", "TextBlock".
      *
-     * @param iterable<AbstractElement> $elements
+     * @param iterable<AbstractBlockElement> $elements
      */
     public function body(iterable $elements): self
     {
@@ -121,10 +122,11 @@ final class AdaptiveCard extends Node
     }
 
     /**
-     * An Action that will be invoked when the card is tapped or clicked.
-     * Action.ShowCard is not supported.
-     * Valid values: "Action.Execute", "Action.InsertImage", "Action.OpenUrl", "Action.OpenUrlDialog",
-     * "Action.Popover", "Action.ResetInputs", "Action.RunCommands", "Action.Submit", "Action.ToggleVisibility".
+     * An Action that will be invoked when the element is tapped or clicked. `Action.ShowCard` is
+     * not supported. 
+     * Valid values: "Action.Execute", "Action.InsertImage", "Action.OpenUrl",
+     * "Action.OpenUrlDialog", "Action.Popover", "Action.ResetInputs", "Action.RunCommands",
+     * "Action.Submit", "Action.ToggleVisibility".
      */
     public function selectAction(AbstractAction $action): self
     {
@@ -188,10 +190,8 @@ final class AdaptiveCard extends Node
      * If the host application doesn't support at least one of the listed capabilities,
      * the element is not rendered (or its fallback is rendered if provided).
      * Valid values: "HostCapabilities".
-     *
-     * @param array<string, string> $requires
      */
-    public function requires(array $requires): self
+    public function requires(HostCapabilities $requires): self
     {
         return $this->set('requires', $requires);
     }

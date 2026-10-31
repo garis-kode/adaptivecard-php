@@ -4,18 +4,23 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Element\Table;
 
-use AdaptiveCards\Element\AbstractElement;
+use AdaptiveCards\Element\AbstractBlockElement;
 use AdaptiveCards\Element\TextBlock;
 use AdaptiveCards\Enum\ContainerStyle;
 use AdaptiveCards\Enum\HorizontalAlignment;
 use AdaptiveCards\Enum\VerticalAlignment;
 use AdaptiveCards\Enum\Width;
+use AdaptiveCards\Support\HasHeight;
+use AdaptiveCards\Support\HasHorizontalAlignment;
+use AdaptiveCards\Support\HasSpacing;
 
 /**
  * Use tables to display data in a tabular way, with rows, columns and cells.
  */
-final class Table extends AbstractElement
+final class Table extends AbstractBlockElement
 {
+    use HasHeight, HasHorizontalAlignment, HasSpacing;
+
     /**
      * @param iterable<TableColumnDefinition>|null $columns
      * @param iterable<TableRow>|null $rows

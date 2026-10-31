@@ -5,12 +5,16 @@ declare(strict_types=1);
 namespace AdaptiveCards\Action\ToggleVisibility;
 
 use AdaptiveCards\Action\AbstractAction;
+use AdaptiveCards\Support\HasMenuActions;
 
 /**
- * Toggles the visibility of a set of elements.
+ * Toggles the visibility of a set of elements. `Action.ToggleVisibility` is useful for creating
+ * "Show more" type UI patterns.
  */
 final class ToggleVisibilityAction extends AbstractAction
 {
+    use HasMenuActions;
+
     public function __construct(?string $title = null)
     {
         if ($title !== null) {

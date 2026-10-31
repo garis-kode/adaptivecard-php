@@ -8,12 +8,18 @@ use AdaptiveCards\Element\AbstractElement;
 use AdaptiveCards\Enum\ContainerStyle;
 use AdaptiveCards\Enum\HorizontalAlignment;
 use AdaptiveCards\Enum\VerticalAlignment;
+use AdaptiveCards\Support\HasHeight;
+use AdaptiveCards\Support\HasHorizontalAlignment;
+use AdaptiveCards\Support\HasSeparator;
+use AdaptiveCards\Support\HasSpacing;
 
 /**
  * Represents a row of cells in a table.
  */
 final class TableRow extends AbstractElement
 {
+    use HasHeight, HasHorizontalAlignment, HasSeparator, HasSpacing;
+
     public static function make(): self
     {
         return new self();

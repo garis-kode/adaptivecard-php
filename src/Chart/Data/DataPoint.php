@@ -101,7 +101,7 @@ final class DataPoint extends Node
     }
 
     /**
-     * The color to use for the data point. See Chart colors reference.
+     * The color to use for the data point.
      */
     public function color(ChartColor $color): self
     {

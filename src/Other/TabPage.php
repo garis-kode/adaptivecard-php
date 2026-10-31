@@ -1,0 +1,182 @@
+<?php
+
+declare(strict_types=1);
+
+namespace AdaptiveCards\Other;
+
+use AdaptiveCards\Action\AbstractAction;
+use AdaptiveCards\Element\AbstractElement;
+use AdaptiveCards\Enum\ContainerStyle;
+use AdaptiveCards\Enum\TabStyle;
+use AdaptiveCards\Enum\VerticalAlignment;
+use AdaptiveCards\Layout\AbstractLayout;
+use AdaptiveCards\Shared\BackgroundImage;
+use AdaptiveCards\Support\HasHeight;
+use AdaptiveCards\Support\HasItems;
+
+/**
+ * A page inside a `TabSet` element.
+ */
+final class TabPage extends AbstractElement
+{
+    use HasHeight, HasItems;
+
+    public function __construct(?string $title = null)
+    {
+        if ($title !== null) {
+            $this->title($title);
+        }
+    }
+
+    public static function make(?string $title = null): self
+    {
+        return new self($title);
+    }
+
+    /**
+     * The name of the icon to display in the tab.
+     */
+    public function iconName(string $name): self
+    {
+        return $this->set('iconName', $name);
+    }
+
+    /**
+     * The style of the tab. If the style is `IconOnly`, only the icon will be displayed,
+     * but the title will still be used for accessibility purposes.
+     * Valid values: "IconOnly", "IconAndText".
+     */
+    public function tabStyle(TabStyle $style): self
+    {
+        return $this->set('tabStyle', $style->value);
+    }
+
+    /**
+     * The title of the tab page, as it appears on tabs.
+     */
+    public function title(string $title): self
+    {
+        return $this->set('title', $title);
+    }
+
+    /**
+     * The style of the container. Container styles control the colors of the background,
+     * border and text inside the container, in such a way that contrast requirements are always met.
+     * Valid values: "default", "emphasis", "accent", "good", "attention", "warning".
+     */
+    public function style(ContainerStyle $style): self
+    {
+        return $this->set('style', $style->value);
+    }
+
+    /**
+     * Controls if a border should be displayed around the container.
+     */
+    public function showBorder(bool $showBorder = true): self
+    {
+        return $this->set('showBorder', $showBorder);
+    }
+
+    /**
+     * Controls if the container should have rounded corners.
+     */
+    public function roundedCorners(bool $roundedCorners = true): self
+    {
+        return $this->set('roundedCorners', $roundedCorners);
+    }
+
+    /**
+     * The minimum height, in pixels, of the container, in the `<number>px` format.
+     * Valid values: "<number>px".
+     */
+    public function minHeight(string $minHeight): self
+    {
+        return $this->set('minHeight', $minHeight);
+    }
+
+    /**
+     * The maximum height, in pixels, of the container, in the `<number>px` format. When the content of a container
+     * exceeds the container's maximum height, a vertical scrollbar is displayed.
+     * Valid values: "<number>px".
+     */
+    public function maxHeight(string $maxHeight): self
+    {
+        return $this->set('maxHeight', $maxHeight);
+    }
+
+    /**
+     * Add a layout associated with the container.
+     */
+    public function addLayout(AbstractLayout $layout): self
+    {
+        return $this->push('layouts', $layout);
+    }
+
+    /**
+     * Add multiple layouts associated with the container.
+     *
+     * @param iterable<AbstractLayout> $layouts
+     */
+    public function addLayouts(iterable $layouts): self
+    {
+        foreach ($layouts as $layout) {
+            $this->addLayout($layout);
+        }
+
+        return $this;
+    }
+
+    /**
+     * The layouts associated with the container. The container can dynamically switch
+     * from one layout to another as the card's width changes.
+     * Valid values: "Layout.Stack", "Layout.Flow", "Layout.AreaGrid".
+     *
+     * @param iterable<AbstractLayout> $layouts
+     */
+    public function layouts(iterable $layouts): self
+    {
+        return $this->addLayouts($layouts);
+    }
+
+    /**
+     * Controls how the container's content should be vertically aligned.
+     * Valid values: "Top", "Center", "Bottom".
+     */
+    public function verticalContentAlignment(VerticalAlignment $alignment): self
+    {
+        return $this->set('verticalContentAlignment', $alignment->value);
+    }
+
+    /**
+     * Controls if the content of the card is to be rendered left-to-right or right-to-left.
+     */
+    public function rtl(bool $rtl = true): self
+    {
+        return $this->set('rtl', $rtl);
+    }
+
+    /**
+     * Defines the container's background image.
+     * Valid values: "BackgroundImage".
+     */
+    public function backgroundImage(BackgroundImage $backgroundImage): self
+    {
+        return $this->set('backgroundImage', $backgroundImage);
+    }
+
+    /**
+     * An Action that will be invoked when the element is tapped or clicked.
+     * Action.ShowCard is not supported.
+     * Valid values: "Action.Execute", "Action.InsertImage", "Action.OpenUrl", "Action.OpenUrlDialog",
+     * "Action.Popover", "Action.ResetInputs", "Action.RunCommands", "Action.Submit", "Action.ToggleVisibility".
+     */
+    public function selectAction(AbstractAction $action): self
+    {
+        return $this->set('selectAction', $action);
+    }
+
+    public function getType(): string
+    {
+        return 'TabPage';
+    }
+}

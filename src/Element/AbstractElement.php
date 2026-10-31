@@ -4,17 +4,10 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Element;
 
-use AdaptiveCards\Enum\Height;
-use AdaptiveCards\Enum\HorizontalAlignment;
-use AdaptiveCards\Enum\Spacing;
 use AdaptiveCards\Enum\TargetWidth;
 use AdaptiveCards\Node;
+use AdaptiveCards\Other\HostCapabilities;
 
-/**
- * Shared base for every card element. Provides the properties defined on the
- * schema's `Element` type: id, isVisible, spacing, separator, height,
- * requires and fallback.
- */
 abstract class AbstractElement extends Node
 {
     /**
@@ -42,46 +35,6 @@ abstract class AbstractElement extends Node
     public function isVisibleDynamic(string $expression): static
     {
         return $this->set('isVisible.dynamic', $expression);
-    }
-
-    /**
-     * Controls the amount of space between this element and the previous one.
-     * No space will be added for the first element in a container.
-     * Valid values: "None", "ExtraSmall", "Small", "Default", "Medium", "Large", "ExtraLarge", "Padding".
-     */
-    public function spacing(Spacing $spacing): static
-    {
-        return $this->set('spacing', $spacing->value);
-    }
-
-    /**
-     * Controls whether a separator line should be displayed above the element
-     * to visually separate it from the previous element. No separator will be
-     * displayed for the first element in a container, even if this property is
-     * set to true.
-     */
-    public function separator(bool $separator = true): static
-    {
-        return $this->set('separator', $separator);
-    }
-
-    /**
-     * The height of the element. When set to `stretch`, the element will use
-     * the remaining vertical space in its container.
-     * Valid values: "auto", "stretch".
-     */
-    public function height(Height $height): static
-    {
-        return $this->set('height', $height->value);
-    }
-
-    /**
-     * Controls how the element should be horizontally aligned.
-     * Valid values: "Left", "Center", "Right".
-     */
-    public function horizontalAlignment(HorizontalAlignment $alignment): static
-    {
-        return $this->set('horizontalAlignment', $alignment->value);
     }
 
     /**
@@ -129,10 +82,8 @@ abstract class AbstractElement extends Node
      * capabilities, the element is not rendered (or its fallback is rendered
      * if provided).
      * Valid values: "HostCapabilities".
-     *
-     * @param array<string, string> $requires feature name => minimum version
      */
-    public function requires(array $requires): static
+    public function requires(HostCapabilities $requires): static
     {
         return $this->set('requires', $requires);
     }
@@ -140,7 +91,7 @@ abstract class AbstractElement extends Node
     /**
      * An alternate element to render if the type of this one is unsupported or
      * if the host application doesn't support all the capabilities specified in
-     * the `requires` property. Either the literal "drop" or a replacement element.
+     * the `requires` property.
      * Valid values: "Container", "ActionSet", "ColumnSet", "Media", "RichTextBlock", "Table",
      * "TextBlock", "FactSet", "ImageSet", "Image", "Input.Text", "Input.Date", "Input.Time",
      * "Input.Number", "Input.Toggle", "Input.ChoiceSet", "Input.Rating", "Rating", "CompoundButton",

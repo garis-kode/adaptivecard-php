@@ -18,6 +18,14 @@ final class ChoiceSetInput extends AbstractInput
     }
 
     /**
+     * The default value of the input.
+     */
+    public function value(string $value): self
+    {
+        return $this->set('value', $value);
+    }
+
+    /**
      * Add a choice to the set.
      */
     public function addChoice(Choice $choice): self
@@ -93,8 +101,8 @@ final class ChoiceSetInput extends AbstractInput
     }
 
     /**
-     * The minimum width, in pixels, for each column when using a multi-column layout.
-     * This ensures that choice items remain readable even when horizontal space is limited.
+     * The minimum width, in pixels, for each column when using a multi-column layout. This ensures
+     * that choice items remain readable even when horizontal space is limited. Default is 100 pixels.
      * Valid values: "<number>px".
      */
     public function minColumnWidth(string $width): self
@@ -103,8 +111,8 @@ final class ChoiceSetInput extends AbstractInput
     }
 
     /**
-     * Controls whether choice items are arranged in multiple columns in expanded mode,
-     * or in a single column.
+     * Controls whether choice items are arranged in multiple columns in expanded mode, or in a
+     * single column. Default is false.
      */
     public function useMultipleColumns(bool $multiple = true): self
     {

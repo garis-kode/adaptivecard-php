@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace AdaptiveCards\Element\Image;
 
 use AdaptiveCards\Action\AbstractAction;
-use AdaptiveCards\Element\AbstractElement;
+use AdaptiveCards\Element\AbstractBlockElement;
 use AdaptiveCards\Enum\Height;
 use AdaptiveCards\Enum\HorizontalAlignment;
 use AdaptiveCards\Enum\ImageFitMode;
@@ -13,12 +13,17 @@ use AdaptiveCards\Enum\ImageSize;
 use AdaptiveCards\Enum\ImageStyle;
 use AdaptiveCards\Enum\VerticalAlignment;
 use AdaptiveCards\Enum\Width;
+use AdaptiveCards\Other\ThemedUrl;
+use AdaptiveCards\Support\HasHorizontalAlignment;
+use AdaptiveCards\Support\HasSpacing;
 
 /**
  * A standalone image element.
  */
-final class Image extends AbstractElement
+final class Image extends AbstractBlockElement
 {
+    use HasHorizontalAlignment, HasSpacing;
+
     public function __construct(?string $url = null)
     {
         if ($url !== null) {
@@ -137,14 +142,36 @@ final class Image extends AbstractElement
     }
 
     /**
+     * Add a theme-specific image URL.
+     */
+    public function addThemedUrl(ThemedUrl $themedUrl): self
+    {
+        return $this->push('themedUrls', $themedUrl);
+    }
+
+    /**
+     * Add multiple theme-specific image URLs.
+     *
+     * @param iterable<ThemedUrl> $themedUrls
+     */
+    public function addThemedUrls(iterable $themedUrls): self
+    {
+        foreach ($themedUrls as $themedUrl) {
+            $this->addThemedUrl($themedUrl);
+        }
+
+        return $this;
+    }
+
+    /**
      * A set of theme-specific image URLs.
      * Valid values: "ThemedUrl".
      *
-     * @param list<array<string, mixed>> $themedUrls
+     * @param iterable<ThemedUrl> $themedUrls
      */
-    public function themedUrls(array $themedUrls): self
+    public function themedUrls(iterable $themedUrls): self
     {
-        return $this->set('themedUrls', $themedUrls);
+        return $this->addThemedUrls($themedUrls);
     }
 
     /**

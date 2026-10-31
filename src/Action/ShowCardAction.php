@@ -5,12 +5,15 @@ declare(strict_types=1);
 namespace AdaptiveCards\Action;
 
 use AdaptiveCards\AdaptiveCard;
+use AdaptiveCards\Support\HasMenuActions;
 
 /**
  * Expands or collapses an embedded card within the main card.
  */
 final class ShowCardAction extends AbstractAction
 {
+    use HasMenuActions;
+
     public function __construct(AdaptiveCard $card, ?string $title = null)
     {
         $this->card($card);

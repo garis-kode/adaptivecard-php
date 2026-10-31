@@ -6,16 +6,20 @@ namespace AdaptiveCards\Element;
 
 use AdaptiveCards\Enum\Colors;
 use AdaptiveCards\Enum\FontType;
-use AdaptiveCards\Enum\HorizontalAlignment;
 use AdaptiveCards\Enum\TextBlockStyle;
 use AdaptiveCards\Enum\TextSize;
 use AdaptiveCards\Enum\TextWeight;
+use AdaptiveCards\Support\HasHeight;
+use AdaptiveCards\Support\HasHorizontalAlignment;
+use AdaptiveCards\Support\HasSpacing;
 
 /**
  * A block of text, optionally formatted using Markdown.
  */
-final class TextBlock extends AbstractElement
+final class TextBlock extends AbstractBlockElement
 {
+    use HasHeight, HasHorizontalAlignment, HasSpacing;
+
     public function __construct(?string $text = null, ?bool $wrap = null)
     {
         if ($text !== null) {
@@ -85,7 +89,7 @@ final class TextBlock extends AbstractElement
     }
 
     /**
-     * Controls whether the text should be rendered using a subtler variant of the select color.
+     * Controls whether the text should be renderer using a subtler variant of the select color.
      */
     public function isSubtle(bool $subtle = true): self
     {

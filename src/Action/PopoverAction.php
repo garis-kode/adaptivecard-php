@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Action;
 
-use AdaptiveCards\Element\AbstractElement;
+use AdaptiveCards\Element\AbstractBlockElement;
+use AdaptiveCards\Element\AbstractInlineElement;
 use AdaptiveCards\Enum\PopoverPosition;
-use AdaptiveCards\Node;
 
 /**
  * Shows a popover to display more information to the user.
@@ -36,7 +36,7 @@ final class PopoverAction extends AbstractAction
      * "LoopComponent", "Media", "ProgressBar", "ProgressRing", "Rating", "RichTextBlock", "Table",
      * "TabSet", "TextBlock", "TextRun".
      */
-    public function content(Node|AbstractElement $content): self
+    public function content(AbstractBlockElement|AbstractInlineElement $content): self
     {
         return $this->set('content', $content);
     }

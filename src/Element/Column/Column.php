@@ -11,14 +11,18 @@ use AdaptiveCards\Enum\VerticalAlignment;
 use AdaptiveCards\Enum\Width;
 use AdaptiveCards\Layout\AbstractLayout;
 use AdaptiveCards\Shared\BackgroundImage;
+use AdaptiveCards\Support\HasHeight;
+use AdaptiveCards\Support\HasHorizontalAlignment;
 use AdaptiveCards\Support\HasItems;
+use AdaptiveCards\Support\HasSeparator;
+use AdaptiveCards\Support\HasSpacing;
 
 /**
  * A column in a `ColumnSet` element.
  */
 final class Column extends AbstractElement
 {
-    use HasItems;
+    use HasHeight, HasHorizontalAlignment, HasItems, HasSeparator, HasSpacing;
 
     public static function make(): self
     {
@@ -61,7 +65,6 @@ final class Column extends AbstractElement
 
     /**
      * Controls if the container should bleed into its parent. A bleeding container extends into its parent's padding.
-     * See **Edge-to-edge content** for more information.
      */
     public function bleed(bool $bleed = true): self
     {

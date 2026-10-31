@@ -4,15 +4,21 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Element\RichTextBlock;
 
-use AdaptiveCards\Element\AbstractElement;
+use AdaptiveCards\Element\AbstractBlockElement;
+use AdaptiveCards\Element\AbstractInlineElement;
+use AdaptiveCards\Support\HasHeight;
+use AdaptiveCards\Support\HasHorizontalAlignment;
+use AdaptiveCards\Support\HasSpacing;
 
 /**
  * A rich text block that displays formatted text.
  */
-final class RichTextBlock extends AbstractElement
+final class RichTextBlock extends AbstractBlockElement
 {
+    use HasHeight, HasHorizontalAlignment, HasSpacing;
+
     /**
-     * @param iterable<TextRun|IconRun|ImageRun>|null $inlines
+     * @param iterable<AbstractInlineElement>|null $inlines
      */
     public function __construct(?iterable $inlines = null)
     {
@@ -22,7 +28,7 @@ final class RichTextBlock extends AbstractElement
     }
 
     /**
-     * @param iterable<TextRun|IconRun|ImageRun>|null $inlines
+     * @param iterable<AbstractInlineElement>|null $inlines
      */
     public static function make(?iterable $inlines = null): self
     {
@@ -32,7 +38,7 @@ final class RichTextBlock extends AbstractElement
     /**
      * Append an inline run.
      */
-    public function addInline(TextRun|IconRun|ImageRun $inline): self
+    public function addInline(AbstractInlineElement $inline): self
     {
         return $this->push('inlines', $inline);
     }
@@ -40,7 +46,7 @@ final class RichTextBlock extends AbstractElement
     /**
      * Append multiple inlines.
      *
-     * @param iterable<TextRun|IconRun|ImageRun> $inlines
+     * @param iterable<AbstractInlineElement> $inlines
      */
     public function addInlines(iterable $inlines): self
     {
@@ -55,7 +61,7 @@ final class RichTextBlock extends AbstractElement
      * The inlines making up the rich text block.
      * Valid values: "TextRun", "IconRun", "ImageRun", "CitationRun".
      *
-     * @param iterable<TextRun|IconRun|ImageRun> $inlines
+     * @param iterable<AbstractInlineElement> $inlines
      */
     public function inlines(iterable $inlines): self
     {

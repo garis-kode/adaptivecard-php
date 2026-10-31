@@ -9,6 +9,8 @@ use AdaptiveCards\Enum\ActionInitialState;
 use AdaptiveCards\Enum\ActionMode;
 use AdaptiveCards\Enum\ActionStyle;
 use AdaptiveCards\Node;
+use AdaptiveCards\Other\HostCapabilities;
+use AdaptiveCards\Other\ThemedUrl;
 
 abstract class AbstractAction extends Node
 {
@@ -22,7 +24,10 @@ abstract class AbstractAction extends Node
 
     /**
      * A URL (or Base64-encoded Data URI) to a PNG, GIF, JPEG or SVG image to be displayed
-     * on the left of the action's title.
+     * on the left of the action's title. `iconUrl` also accepts the `icon:<icon-name>[,regular|filled]`
+     * format to display an icon from the vast Adaptive Card icon catalog instead of an image.
+     * For example, use `icon:Calendar` for the regular style or `icon:Calendar,filled` for the
+     * filled style.
      */
     public function iconUrl(string $url): static
     {
@@ -39,7 +44,8 @@ abstract class AbstractAction extends Node
     }
 
     /**
-     * A unique identifier for the element or action.
+     * A unique identifier for the element or action. Input elements must have an `id`,
+     * otherwise they will not be validated and their values will not be sent to the Bot.
      */
     public function id(string $id): static
     {
@@ -144,48 +150,58 @@ abstract class AbstractAction extends Node
     }
 
     /**
-     * Add an action to the flyout menu.
+     * Add a theme-specific icon URL.
      */
-    public function addMenuAction(AbstractAction $action): static
+    public function addThemedIconUrl(ThemedUrl $themedUrl): static
     {
-        return $this->push('menuActions', $action);
+        return $this->push('themedIconUrls', $themedUrl);
     }
 
     /**
-     * Add multiple actions to the flyout menu.
+     * Add multiple theme-specific icon URLs.
      *
-     * @param iterable<AbstractAction> $actions
+     * @param iterable<ThemedUrl> $themedUrls
      */
-    public function addMenuActions(iterable $actions): static
+    public function addThemedIconUrls(iterable $themedUrls): static
     {
-        foreach ($actions as $action) {
-            $this->addMenuAction($action);
+        foreach ($themedUrls as $themedUrl) {
+            $this->addThemedIconUrl($themedUrl);
         }
 
         return $this;
     }
 
     /**
-     * The actions to display in the overflow menu of a Split action button.
-     * Valid values: "Action.Execute", "Action.InsertImage", "Action.OpenUrl", "Action.OpenUrlDialog",
-     * "Action.ResetInputs", "Action.RunCommands", "Action.Submit", "Action.ToggleVisibility".
-     *
-     * @param iterable<AbstractAction> $actions
-     */
-    public function menuActions(iterable $actions): static
-    {
-        return $this->addMenuActions($actions);
-    }
-
-    /**
      * A set of theme-specific icon URLs.
      * Valid values: "ThemedUrl".
      *
-     * @param array<string, string> $themedUrls
+     * @param iterable<ThemedUrl> $themedUrls
      */
-    public function themedIconUrls(array $themedUrls): static
+    public function themedIconUrls(iterable $themedUrls): static
     {
-        return $this->set('themedIconUrls', $themedUrls);
+        return $this->addThemedIconUrls($themedUrls);
+    }
+
+    /**
+     * Add a theme-specific icon URL to use when the action is in the toggled state.
+     */
+    public function addToggledThemedIconUrl(ThemedUrl $themedUrl): static
+    {
+        return $this->push('themedIconUrls.toggled', $themedUrl);
+    }
+
+    /**
+     * Add multiple theme-specific icon URLs to use when the action is in the toggled state.
+     *
+     * @param iterable<ThemedUrl> $themedUrls
+     */
+    public function addToggledThemedIconUrls(iterable $themedUrls): static
+    {
+        foreach ($themedUrls as $themedUrl) {
+            $this->addToggledThemedIconUrl($themedUrl);
+        }
+
+        return $this;
     }
 
     /**
@@ -193,19 +209,11 @@ abstract class AbstractAction extends Node
      * Only applies when `behavior` is set to `Toggle`.
      * Valid values: "ThemedUrl".
      *
-     * @param array<string, string> $themedUrls
+     * @param iterable<ThemedUrl> $themedUrls
      */
-    public function toggledThemedIconUrls(array $themedUrls): static
+    public function toggledThemedIconUrls(iterable $themedUrls): static
     {
-        return $this->set('themedIconUrls.toggled', $themedUrls);
-    }
-
-    /**
-     * Controls if the action is enabled only if at least one required input has been filled by the user.
-     */
-    public function conditionallyEnabled(bool $enabled = true): static
-    {
-        return $this->set('conditionallyEnabled', $enabled);
+        return $this->addToggledThemedIconUrls($themedUrls);
     }
 
     /**
@@ -232,10 +240,8 @@ abstract class AbstractAction extends Node
      * If the host application doesn't support at least one of the listed capabilities,
      * the element is not rendered (or its fallback is rendered if provided).
      * Valid values: "HostCapabilities".
-     *
-     * @param array<string, string> $requires feature name => minimum version
      */
-    public function requires(array $requires): static
+    public function requires(HostCapabilities $requires): static
     {
         return $this->set('requires', $requires);
     }
@@ -243,7 +249,7 @@ abstract class AbstractAction extends Node
     /**
      * An alternate action to render if the type of this one is unsupported or
      * if the host application doesn't support all the capabilities specified in
-     * the `requires` property. Either the literal "drop" or an action.
+     * the `requires` property.
      * Valid values: "Action.Submit", "Action.OpenUrl", "Action.Execute", "Action.ToggleVisibility",
      * "Action.ShowCard", "Action.ResetInputs", "Action.Popover", "Action.OpenUrlDialog",
      * "Action.InsertImage", "Action.RunCommands", "drop".

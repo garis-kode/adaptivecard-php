@@ -9,15 +9,18 @@ use AdaptiveCards\Enum\ContainerStyle;
 use AdaptiveCards\Enum\VerticalAlignment;
 use AdaptiveCards\Layout\AbstractLayout;
 use AdaptiveCards\Shared\BackgroundImage;
+use AdaptiveCards\Support\HasHeight;
+use AdaptiveCards\Support\HasHorizontalAlignment;
 use AdaptiveCards\Support\HasItems;
+use AdaptiveCards\Support\HasSpacing;
 
 /**
  * A container for other elements. Use containers for styling purposes and/or to logically
  * group a set of elements together, which can be especially useful when used with `Action.ToggleVisibility`.
  */
-final class Container extends AbstractElement
+final class Container extends AbstractBlockElement
 {
-    use HasItems;
+    use HasHeight, HasHorizontalAlignment, HasItems, HasSpacing;
 
     public static function make(): self
     {
@@ -45,7 +48,6 @@ final class Container extends AbstractElement
 
     /**
      * Controls if the container should bleed into its parent. A bleeding container extends into its parent's padding.
-     * See **Edge-to-edge content** for more information.
      */
     public function bleed(bool $bleed = true): self
     {
@@ -105,10 +107,11 @@ final class Container extends AbstractElement
     }
 
     /**
-     * An Action that will be invoked when the container is tapped or clicked.
-     * Action.ShowCard is not supported.
-     * Valid values: "Action.Execute", "Action.InsertImage", "Action.OpenUrl", "Action.OpenUrlDialog",
-     * "Action.Popover", "Action.ResetInputs", "Action.RunCommands", "Action.Submit", "Action.ToggleVisibility".
+     * An Action that will be invoked when the element is tapped or clicked. `Action.ShowCard` is
+     * not supported.
+     * Valid values: "Action.Execute", "Action.InsertImage", "Action.OpenUrl",
+     * "Action.OpenUrlDialog", "Action.Popover", "Action.ResetInputs", "Action.RunCommands",
+     * "Action.Submit", "Action.ToggleVisibility".
      */
     public function selectAction(AbstractAction $action): self
     {

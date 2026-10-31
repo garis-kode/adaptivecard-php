@@ -10,14 +10,17 @@ use AdaptiveCards\Enum\ContainerStyle;
 use AdaptiveCards\Enum\VerticalAlignment;
 use AdaptiveCards\Layout\AbstractLayout;
 use AdaptiveCards\Shared\BackgroundImage;
+use AdaptiveCards\Support\HasHeight;
 use AdaptiveCards\Support\HasItems;
+use AdaptiveCards\Support\HasSeparator;
+use AdaptiveCards\Support\HasSpacing;
 
 /**
  * Represents a cell in a table row.
  */
 final class TableCell extends AbstractElement
 {
-    use HasItems;
+    use HasHeight, HasItems, HasSeparator, HasSpacing;
 
     public static function make(): self
     {
@@ -45,7 +48,6 @@ final class TableCell extends AbstractElement
 
     /**
      * Controls if the container should bleed into its parent. A bleeding container extends into its parent's padding.
-     * See **Edge-to-edge content** for more information.
      */
     public function bleed(bool $bleed = true): self
     {

@@ -4,14 +4,18 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Element\Carousel;
 
-use AdaptiveCards\Element\AbstractElement;
+use AdaptiveCards\Element\AbstractBlockElement;
 use AdaptiveCards\Enum\PageAnimation;
+use AdaptiveCards\Support\HasHeight;
+use AdaptiveCards\Support\HasSpacing;
 
 /**
  * A carousel with sliding pages.
  */
-final class Carousel extends AbstractElement
+final class Carousel extends AbstractBlockElement
 {
+    use HasHeight, HasSpacing;
+
     public static function make(): self
     {
         return new self();
@@ -70,7 +74,6 @@ final class Carousel extends AbstractElement
 
     /**
      * Controls if the container should bleed into its parent. A bleeding container extends into its parent's padding.
-     * See **Edge-to-edge content** for more information.
      */
     public function bleed(bool $bleed = true): self
     {

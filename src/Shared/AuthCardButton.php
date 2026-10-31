@@ -8,7 +8,6 @@ use AdaptiveCards\Node;
 
 /**
  * Defines a button as displayed when prompting a user to authenticate.
- * For more information, refer to the Bot Framework CardAction type.
  */
 final class AuthCardButton extends Node
 {

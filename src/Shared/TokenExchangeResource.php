@@ -8,7 +8,6 @@ use AdaptiveCards\Node;
 
 /**
  * Defines information required to enable on-behalf-of single sign-on user authentication.
- * For more information, refer to the Bot Framework TokenExchangeResource type.
  */
 final class TokenExchangeResource extends Node
 {
@@ -37,7 +36,7 @@ final class TokenExchangeResource extends Node
     }
 
     /**
-     * The unique identifier of this token exchange instance.
+     * The unique identified of this token exchange instance.
      */
     public function id(string $id): self
     {

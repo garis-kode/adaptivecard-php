@@ -5,12 +5,15 @@ declare(strict_types=1);
 namespace AdaptiveCards\Action;
 
 use AdaptiveCards\Enum\InsertPosition;
+use AdaptiveCards\Support\HasMenuActions;
 
 /**
  * Inserts an image into the host application's canvas.
  */
 final class InsertImageAction extends AbstractAction
 {
+    use HasMenuActions;
+
     public function __construct(string $url, string $altText, ?string $title = null)
     {
         $this->url($url);

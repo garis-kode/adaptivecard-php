@@ -10,6 +10,7 @@ use AdaptiveCards\Enum\ContainerStyle;
 use AdaptiveCards\Enum\VerticalAlignment;
 use AdaptiveCards\Layout\AbstractLayout;
 use AdaptiveCards\Shared\BackgroundImage;
+use AdaptiveCards\Support\HasHeight;
 use AdaptiveCards\Support\HasItems;
 
 /**
@@ -17,7 +18,7 @@ use AdaptiveCards\Support\HasItems;
  */
 final class CarouselPage extends AbstractElement
 {
-    use HasItems;
+    use HasHeight, HasItems;
 
     public static function make(): self
     {

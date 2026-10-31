@@ -5,15 +5,20 @@ declare(strict_types=1);
 namespace AdaptiveCards\Element\Column;
 
 use AdaptiveCards\Action\AbstractAction;
-use AdaptiveCards\Element\AbstractElement;
+use AdaptiveCards\Element\AbstractBlockElement;
 use AdaptiveCards\Enum\ContainerStyle;
 use AdaptiveCards\Enum\Width;
+use AdaptiveCards\Support\HasHeight;
+use AdaptiveCards\Support\HasHorizontalAlignment;
+use AdaptiveCards\Support\HasSpacing;
 
 /**
  * Splits the available horizontal space into separate columns, so elements can be organized in a row.
  */
-final class ColumnSet extends AbstractElement
+final class ColumnSet extends AbstractBlockElement
 {
+    use HasHeight, HasHorizontalAlignment, HasSpacing;
+
     public static function make(): self
     {
         return new self();
@@ -82,7 +87,6 @@ final class ColumnSet extends AbstractElement
 
     /**
      * Controls if the container should bleed into its parent. A bleeding container extends into its parent's padding.
-     * See **Edge-to-edge content** for more information.
      */
     public function bleed(bool $bleed = true): self
     {

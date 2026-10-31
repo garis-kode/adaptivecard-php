@@ -5,12 +5,18 @@ declare(strict_types=1);
 namespace AdaptiveCards\Element;
 
 use AdaptiveCards\Action\AbstractAction;
+use AdaptiveCards\Other\IconInfo;
+use AdaptiveCards\Support\HasHeight;
+use AdaptiveCards\Support\HasHorizontalAlignment;
+use AdaptiveCards\Support\HasSpacing;
 
 /**
  * A special type of button with an icon, title and description.
  */
-final class CompoundButton extends AbstractElement
+final class CompoundButton extends AbstractBlockElement
 {
+    use HasHeight, HasHorizontalAlignment, HasSpacing;
+
     public function __construct(?string $title = null, ?string $description = null)
     {
         if ($title !== null) {
@@ -53,15 +59,9 @@ final class CompoundButton extends AbstractElement
     /**
      * The icon to show on the button.
      * Valid values: "IconInfo".
-     *
-     * @param string|array{name: string, style?: string} $icon
      */
-    public function icon(string|array $icon): self
+    public function icon(IconInfo $icon): self
     {
-        if (is_string($icon)) {
-            $icon = ['name' => $icon];
-        }
-
         return $this->set('icon', $icon);
     }
 

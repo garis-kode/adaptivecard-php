@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Action;
 
+use AdaptiveCards\Action\Submit\SubmitActionData;
+use AdaptiveCards\Action\Submit\TeamsSubmitActionProperties;
 use AdaptiveCards\Enum\AssociatedInputs;
+use AdaptiveCards\Support\HasMenuActions;
 
 /**
  * Gathers input values, merges them with the `data` property if specified,
@@ -13,6 +16,8 @@ use AdaptiveCards\Enum\AssociatedInputs;
  */
 final class SubmitAction extends AbstractAction
 {
+    use HasMenuActions;
+
     public function __construct(?string $title = null)
     {
         if ($title !== null) {
@@ -26,19 +31,20 @@ final class SubmitAction extends AbstractAction
     }
 
     /**
-     * The data to send to the Bot when the action is executed.
+     * The data to send to the Bot when the action is executed. When expressed as an object, `data`
+     * is sent back to the Bot when the action is executed, adorned with the values of the inputs
+     * expressed as key/value pairs, where the key is the Id of the input. If `data` is expressed as
+     * a string, input values are not sent to the Bot. 
      * Valid values: "SubmitActionData".
-     *
-     * @param array<string, mixed>|string $data
      */
-    public function data(array|string $data): self
+    public function data(SubmitActionData $data): self
     {
         return $this->set('data', $data);
     }
 
     /**
      * The Ids of the inputs associated with the Action.Submit. When the action is executed,
-     * the values of the associated inputs are sent to the Bot. See **Input validation** for more details.
+     * the values of the associated inputs are sent to the Bot.
      * Valid values: "auto", "none".
      */
     public function associatedInputs(AssociatedInputs $associatedInputs): self
@@ -47,13 +53,18 @@ final class SubmitAction extends AbstractAction
     }
 
     /**
+     * Controls if the action is enabled only if at least one required input has been filled by the user.
+     */
+    public function conditionallyEnabled(bool $enabled = true): self
+    {
+        return $this->set('conditionallyEnabled', $enabled);
+    }
+
+    /**
      * Teams-specific metadata associated with the action.
      * Valid values: "TeamsSubmitActionProperties".
-     * Supported properties include `feedback` (e.g. `['hide' => true]` to hide the card after execution).
-     *
-     * @param array<string, mixed> $properties TeamsSubmitActionProperties (e.g. ['feedback' => ['hide' => true]])
      */
-    public function msteams(array $properties, bool $useCamelCaseKey = false): self
+    public function msteams(TeamsSubmitActionProperties $properties, bool $useCamelCaseKey = false): self
     {
         if ($useCamelCaseKey) {
             return $this->set('msTeams', $properties);

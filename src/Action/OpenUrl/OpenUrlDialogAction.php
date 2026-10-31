@@ -6,12 +6,15 @@ namespace AdaptiveCards\Action\OpenUrl;
 
 use AdaptiveCards\Action\AbstractAction;
 use AdaptiveCards\Enum\DialogSize;
+use AdaptiveCards\Support\HasMenuActions;
 
 /**
  * Opens a task module in a modal dialog hosting the content at a provided URL.
  */
 final class OpenUrlDialogAction extends AbstractAction
 {
+    use HasMenuActions;
+
     public function __construct(
         string $dialogTitle,
         DialogSize|string $dialogHeight,

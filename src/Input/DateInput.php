@@ -24,6 +24,14 @@ final class DateInput extends AbstractInput
     }
 
     /**
+     * The default value of the input, in the `YYYY-MM-DD` format.
+     */
+    public function value(string $value): self
+    {
+        return $this->set('value', $value);
+    }
+
+    /**
      * The text to display as a placeholder when the user has not selected a date.
      */
     public function placeholder(string $placeholder): self
