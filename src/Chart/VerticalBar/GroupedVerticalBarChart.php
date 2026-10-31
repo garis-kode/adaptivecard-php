@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Chart\VerticalBar;
 
-use AdaptiveCards\Chart\AbstractChart;
+use AdaptiveCards\Chart\AbstractCartesianChart;
 use AdaptiveCards\Chart\Data\ChartSeries;
 use AdaptiveCards\Enum\ChartColorSet;
 
 /**
  * A grouped vertical bar chart.
  */
-final class GroupedVerticalBarChart extends AbstractChart
+final class GroupedVerticalBarChart extends AbstractCartesianChart
 {
     /**
      * @param iterable<ChartSeries>|null $data

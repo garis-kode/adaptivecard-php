@@ -11,7 +11,7 @@ use AdaptiveCards\Enum\Width;
 /**
  * A line chart.
  */
-final class LineChart extends AbstractChart
+final class LineChart extends AbstractCartesianChart
 {
     /**
      * @param iterable<ChartSeries>|null $data

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Chart\HorizontalBar;
 
-use AdaptiveCards\Chart\AbstractChart;
+use AdaptiveCards\Chart\AbstractCartesianChart;
 use AdaptiveCards\Chart\Data\DataPoint;
 use AdaptiveCards\Enum\ChartColorSet;
 use AdaptiveCards\Enum\ChartDisplayMode;
@@ -12,7 +12,7 @@ use AdaptiveCards\Enum\ChartDisplayMode;
 /**
  * A horizontal bar chart.
  */
-final class HorizontalBarChart extends AbstractChart
+final class HorizontalBarChart extends AbstractCartesianChart
 {
     /**
      * @param iterable<DataPoint> $data

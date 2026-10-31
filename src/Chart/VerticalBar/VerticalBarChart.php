@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Chart\VerticalBar;
 
-use AdaptiveCards\Chart\AbstractChart;
+use AdaptiveCards\Chart\AbstractCartesianChart;
 use AdaptiveCards\Chart\Data\DataPoint;
 use AdaptiveCards\Enum\ChartColorSet;
 
 /**
  * A vertical bar chart.
  */
-final class VerticalBarChart extends AbstractChart
+final class VerticalBarChart extends AbstractCartesianChart
 {
     /**
      * @param iterable<DataPoint> $data

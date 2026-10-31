@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Chart\HorizontalBar;
 
-use AdaptiveCards\Chart\AbstractChart;
+use AdaptiveCards\Chart\AbstractCartesianChart;
 use AdaptiveCards\Chart\Data\ChartSeries;
 
 /**
  * A stacked horizontal bar chart.
  */
-final class StackedHorizontalBarChart extends AbstractChart
+final class StackedHorizontalBarChart extends AbstractCartesianChart
 {
     /**
      * @param iterable<ChartSeries> $data
