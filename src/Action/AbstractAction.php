@@ -251,14 +251,6 @@ abstract class AbstractAction extends Node
     }
 
     /**
-     * Controls if the action is enabled only if at least one required input has been filled by the user.
-     */
-    public function conditionallyEnabled(bool $enabled = true): static
-    {
-        return $this->set('conditionallyEnabled', $enabled);
-    }
-
-    /**
      * Controls the behavior of the action. When set to Toggle, the action acts as a toggle
      * that alternates between the normal and toggled states each time it's executed.
      * Valid values: "Default", "Toggle".

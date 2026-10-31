@@ -7,7 +7,7 @@ namespace AdaptiveCards\Action\Submit;
 use AdaptiveCards\Node;
 
 /**
- * Represents Teams-specific properties associated with an Action.Submit.
+ * Teams-specific properties associated with the action.
  */
 final class TeamsSubmitActionProperties extends Node
 {

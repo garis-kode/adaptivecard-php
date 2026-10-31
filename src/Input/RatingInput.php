@@ -59,14 +59,6 @@ final class RatingInput extends AbstractInput
         return $this->set('allowHalfSteps', $allow);
     }
 
-    /**
-     * The number of "votes" associated with the rating.
-     */
-    public function count(int $count): self
-    {
-        return $this->set('count', $count);
-    }
-
     public function getType(): string
     {
         return 'Input.Rating';

@@ -55,6 +55,14 @@ final class ExecuteAction extends AbstractAction
         return $this->set('associatedInputs', $associatedInputs->value);
     }
 
+    /**
+     * Controls if the action is enabled only if at least one required input has been filled by the user.
+     */
+    public function conditionallyEnabled(bool $enabled = true): self
+    {
+        return $this->set('conditionallyEnabled', $enabled);
+    }
+
     public function getType(): string
     {
         return 'Action.Execute';
