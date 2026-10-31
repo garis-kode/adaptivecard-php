@@ -5,12 +5,15 @@ declare(strict_types=1);
 namespace AdaptiveCards\Element;
 
 use AdaptiveCards\Enum\CodeBlockLanguage;
+use AdaptiveCards\Support\HasHorizontalAlignment;
 
 /**
  * A formatted and syntax-colored code block.
  */
 final class CodeBlock extends AbstractBlockElement
 {
+    use HasHorizontalAlignment;
+
     public static function make(): self
     {
         return new self();

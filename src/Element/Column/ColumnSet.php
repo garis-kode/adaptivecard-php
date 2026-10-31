@@ -8,12 +8,15 @@ use AdaptiveCards\Action\AbstractAction;
 use AdaptiveCards\Element\AbstractBlockElement;
 use AdaptiveCards\Enum\ContainerStyle;
 use AdaptiveCards\Enum\Width;
+use AdaptiveCards\Support\HasHorizontalAlignment;
 
 /**
  * Splits the available horizontal space into separate columns, so elements can be organized in a row.
  */
 final class ColumnSet extends AbstractBlockElement
 {
+    use HasHorizontalAlignment;
+
     public static function make(): self
     {
         return new self();

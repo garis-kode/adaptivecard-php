@@ -6,12 +6,15 @@ namespace AdaptiveCards\Element\RichTextBlock;
 
 use AdaptiveCards\Element\AbstractBlockElement;
 use AdaptiveCards\Element\AbstractInlineElement;
+use AdaptiveCards\Support\HasHorizontalAlignment;
 
 /**
  * A rich text block that displays formatted text.
  */
 final class RichTextBlock extends AbstractBlockElement
 {
+    use HasHorizontalAlignment;
+
     /**
      * @param iterable<AbstractInlineElement>|null $inlines
      */

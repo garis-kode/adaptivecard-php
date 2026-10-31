@@ -8,12 +8,15 @@ use AdaptiveCards\Action\AbstractAction;
 use AdaptiveCards\Enum\Colors;
 use AdaptiveCards\Enum\IconSize;
 use AdaptiveCards\Enum\IconStyle;
+use AdaptiveCards\Support\HasHorizontalAlignment;
 
 /**
  * A standalone icon element. Icons can be picked from the vast Adaptive Card icon catalog.
  */
 final class Icon extends AbstractBlockElement
 {
+    use HasHorizontalAlignment;
+
     public static function make(): self
     {
         return new self();

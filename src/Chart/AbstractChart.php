@@ -7,9 +7,11 @@ namespace AdaptiveCards\Chart;
 use AdaptiveCards\Element\AbstractBlockElement;
 use AdaptiveCards\Enum\ChartColor;
 use AdaptiveCards\Enum\ChartColorSet;
+use AdaptiveCards\Support\HasHorizontalAlignment;
 
 abstract class AbstractChart extends AbstractBlockElement
 {
+    use HasHorizontalAlignment;
     /**
      * The title of the chart.
      */

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace AdaptiveCards\Element;
 
 use AdaptiveCards\Enum\Height;
-use AdaptiveCards\Enum\HorizontalAlignment;
 use AdaptiveCards\Enum\Spacing;
 use AdaptiveCards\Enum\TargetWidth;
 use AdaptiveCards\Node;
@@ -69,15 +68,6 @@ abstract class AbstractElement extends Node
     public function height(Height $height): static
     {
         return $this->set('height', $height->value);
-    }
-
-    /**
-     * Controls how the element should be horizontally aligned.
-     * Valid values: "Left", "Center", "Right".
-     */
-    public function horizontalAlignment(HorizontalAlignment $alignment): static
-    {
-        return $this->set('horizontalAlignment', $alignment->value);
     }
 
     /**

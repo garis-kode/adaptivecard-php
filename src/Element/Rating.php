@@ -7,12 +7,15 @@ namespace AdaptiveCards\Element;
 use AdaptiveCards\Enum\RatingColor;
 use AdaptiveCards\Enum\RatingSize;
 use AdaptiveCards\Enum\RatingStyle;
+use AdaptiveCards\Support\HasHorizontalAlignment;
 
 /**
  * A read-only star rating element, to display the rating of something.
  */
 final class Rating extends AbstractBlockElement
 {
+    use HasHorizontalAlignment;
+
     public static function make(): self
     {
         return new self();

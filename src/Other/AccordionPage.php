@@ -12,6 +12,7 @@ use AdaptiveCards\Enum\HeaderSize;
 use AdaptiveCards\Enum\VerticalAlignment;
 use AdaptiveCards\Layout\AbstractLayout;
 use AdaptiveCards\Shared\BackgroundImage;
+use AdaptiveCards\Support\HasHorizontalAlignment;
 use AdaptiveCards\Support\HasItems;
 
 /**
@@ -19,7 +20,7 @@ use AdaptiveCards\Support\HasItems;
  */
 final class AccordionPage extends AbstractElement
 {
-    use HasItems;
+    use HasHorizontalAlignment, HasItems;
 
     public function __construct(?string $headerTitle = null)
     {

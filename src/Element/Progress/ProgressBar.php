@@ -6,12 +6,15 @@ namespace AdaptiveCards\Element\Progress;
 
 use AdaptiveCards\Element\AbstractBlockElement;
 use AdaptiveCards\Enum\ProgressBarColor;
+use AdaptiveCards\Support\HasHorizontalAlignment;
 
 /**
  * A progress bar element, to represent a value within a range.
  */
 final class ProgressBar extends AbstractBlockElement
 {
+    use HasHorizontalAlignment;
+
     public static function make(): self
     {
         return new self();

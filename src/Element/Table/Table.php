@@ -10,12 +10,15 @@ use AdaptiveCards\Enum\ContainerStyle;
 use AdaptiveCards\Enum\HorizontalAlignment;
 use AdaptiveCards\Enum\VerticalAlignment;
 use AdaptiveCards\Enum\Width;
+use AdaptiveCards\Support\HasHorizontalAlignment;
 
 /**
  * Use tables to display data in a tabular way, with rows, columns and cells.
  */
 final class Table extends AbstractBlockElement
 {
+    use HasHorizontalAlignment;
+
     /**
      * @param iterable<TableColumnDefinition>|null $columns
      * @param iterable<TableRow>|null $rows

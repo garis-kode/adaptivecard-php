@@ -5,12 +5,15 @@ declare(strict_types=1);
 namespace AdaptiveCards\Element;
 
 use AdaptiveCards\Action\AbstractAction;
+use AdaptiveCards\Support\HasHorizontalAlignment;
 
 /**
  * Displays a set of action, which can be placed anywhere in the card.
  */
 final class ActionSet extends AbstractBlockElement
 {
+    use HasHorizontalAlignment;
+
     public static function make(): self
     {
         return new self();

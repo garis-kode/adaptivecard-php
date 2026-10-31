@@ -6,12 +6,15 @@ namespace AdaptiveCards\Element\Image;
 
 use AdaptiveCards\Element\AbstractBlockElement;
 use AdaptiveCards\Enum\ImageSetSize;
+use AdaptiveCards\Support\HasHorizontalAlignment;
 
 /**
  * A set of images, displayed side-by-side and wrapped across multiple rows as needed.
  */
 final class ImageSet extends AbstractBlockElement
 {
+    use HasHorizontalAlignment;
+
     public static function make(): self
     {
         return new self();

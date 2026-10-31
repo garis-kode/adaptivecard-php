@@ -14,12 +14,15 @@ use AdaptiveCards\Enum\ImageStyle;
 use AdaptiveCards\Enum\VerticalAlignment;
 use AdaptiveCards\Enum\Width;
 use AdaptiveCards\Other\ThemedUrl;
+use AdaptiveCards\Support\HasHorizontalAlignment;
 
 /**
  * A standalone image element.
  */
 final class Image extends AbstractBlockElement
 {
+    use HasHorizontalAlignment;
+
     public function __construct(?string $url = null)
     {
         if ($url !== null) {

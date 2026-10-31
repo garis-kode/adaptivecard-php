@@ -11,6 +11,7 @@ use AdaptiveCards\Enum\VerticalAlignment;
 use AdaptiveCards\Enum\Width;
 use AdaptiveCards\Layout\AbstractLayout;
 use AdaptiveCards\Shared\BackgroundImage;
+use AdaptiveCards\Support\HasHorizontalAlignment;
 use AdaptiveCards\Support\HasItems;
 
 /**
@@ -18,7 +19,7 @@ use AdaptiveCards\Support\HasItems;
  */
 final class Column extends AbstractElement
 {
-    use HasItems;
+    use HasHorizontalAlignment, HasItems;
 
     public static function make(): self
     {
