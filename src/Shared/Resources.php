@@ -5,12 +5,15 @@ declare(strict_types=1);
 namespace AdaptiveCards\Shared;
 
 use AdaptiveCards\Node;
+use AdaptiveCards\Support\HasKey;
 
 /**
  * The resources that can be used in the body of the card.
  */
 final class Resources extends Node
 {
+    use HasKey;
+
     public static function make(): self
     {
         return new self();

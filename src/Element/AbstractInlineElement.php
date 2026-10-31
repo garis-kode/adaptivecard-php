@@ -5,9 +5,12 @@ declare(strict_types=1);
 namespace AdaptiveCards\Element;
 
 use AdaptiveCards\Node;
+use AdaptiveCards\Support\HasKey;
 
 abstract class AbstractInlineElement extends Node
 {
+    use HasKey;
+
     /**
      * A unique identifier for the element or action. Input elements must have
      * an `id`, otherwise they will not be validated and their values will not

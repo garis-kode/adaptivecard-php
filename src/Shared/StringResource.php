@@ -5,12 +5,15 @@ declare(strict_types=1);
 namespace AdaptiveCards\Shared;
 
 use AdaptiveCards\Node;
+use AdaptiveCards\Support\HasKey;
 
 /**
  * Defines the replacement string values.
  */
 final class StringResource extends Node
 {
+    use HasKey;
+
     /**
      * @param array<string, string> $localizedValues
      */

@@ -6,12 +6,15 @@ namespace AdaptiveCards\Shared;
 
 use AdaptiveCards\Enum\MentionType;
 use AdaptiveCards\Node;
+use AdaptiveCards\Support\HasKey;
 
 /**
  * Represents a mentioned person or tag.
  */
 final class MentionedEntity extends Node
 {
+    use HasKey;
+
     public function __construct(string $id, string $name, MentionType $mentionType = MentionType::Person)
     {
         $this->id($id);

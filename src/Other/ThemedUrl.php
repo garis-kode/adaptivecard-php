@@ -6,12 +6,15 @@ namespace AdaptiveCards\Other;
 
 use AdaptiveCards\Enum\Theme;
 use AdaptiveCards\Node;
+use AdaptiveCards\Support\HasKey;
 
 /**
  * Defines a theme-specific URL.
  */
 final class ThemedUrl extends Node
 {
+    use HasKey;
+
     public function __construct(?Theme $theme = null, ?string $url = null)
     {
         if ($theme !== null) {

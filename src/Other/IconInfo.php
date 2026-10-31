@@ -8,12 +8,15 @@ use AdaptiveCards\Enum\Colors;
 use AdaptiveCards\Enum\IconSize;
 use AdaptiveCards\Enum\IconStyle;
 use AdaptiveCards\Node;
+use AdaptiveCards\Support\HasKey;
 
 /**
  * Defines information about a Fluent icon and how it should be rendered.
  */
 final class IconInfo extends Node
 {
+    use HasKey;
+
     public function __construct(
         ?string $name = null,
         ?Colors $color = null,

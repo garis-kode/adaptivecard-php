@@ -5,12 +5,15 @@ declare(strict_types=1);
 namespace AdaptiveCards\Other;
 
 use AdaptiveCards\Node;
+use AdaptiveCards\Support\HasKey;
 
 /**
  * Represents a list of versioned capabilities a host application must support.
  */
 final class HostCapabilities extends Node
 {
+    use HasKey;
+
     /**
      * @param array<string, string> $capabilities
      */

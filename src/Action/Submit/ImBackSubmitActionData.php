@@ -5,12 +5,15 @@ declare(strict_types=1);
 namespace AdaptiveCards\Action\Submit;
 
 use AdaptiveCards\Node;
+use AdaptiveCards\Support\HasKey;
 
 /**
  * Represents Teams-specific data in an Action.Submit to send an Instant Message back to the Bot.
  */
 final class ImBackSubmitActionData extends Node implements TeamsSubmitActionDataInterface
 {
+    use HasKey;
+
     public function __construct(?string $value = null)
     {
         if ($value !== null) {

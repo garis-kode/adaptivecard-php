@@ -5,12 +5,15 @@ declare(strict_types=1);
 namespace AdaptiveCards\Action\Submit;
 
 use AdaptiveCards\Node;
+use AdaptiveCards\Support\HasKey;
 
 /**
  * Represents Teams-specific data in an Action.Submit to sign in a user.
  */
 final class SigninSubmitActionData extends Node implements TeamsSubmitActionDataInterface
 {
+    use HasKey;
+
     public function __construct(?string $value = null)
     {
         if ($value !== null) {

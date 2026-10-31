@@ -5,12 +5,15 @@ declare(strict_types=1);
 namespace AdaptiveCards\Shared;
 
 use AdaptiveCards\Node;
+use AdaptiveCards\Support\HasKey;
 
 /**
  * Defines a button as displayed when prompting a user to authenticate.
  */
 final class AuthCardButton extends Node
 {
+    use HasKey;
+
     public function __construct(
         string $type = 'signin',
         ?string $title = null,

@@ -52,16 +52,6 @@ abstract class Node implements \JsonSerializable
     }
 
     /**
-     * Defines an optional key for the object. Keys are seldom needed, but in
-     * some scenarios, specifying keys can help maintain visual state in the
-     * host application.
-     */
-    public function key(string $key): static
-    {
-        return $this->set('key', $key);
-    }
-
-    /**
      * Convert the node (and its children) to a plain nested array.
      *
      * @return array<string, mixed>

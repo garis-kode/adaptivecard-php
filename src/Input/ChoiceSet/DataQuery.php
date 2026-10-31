@@ -6,12 +6,15 @@ namespace AdaptiveCards\Input\ChoiceSet;
 
 use AdaptiveCards\Enum\AssociatedInputs;
 use AdaptiveCards\Node;
+use AdaptiveCards\Support\HasKey;
 
 /**
  * Defines a query to dynamically fetch data from a Bot.
  */
 final class DataQuery extends Node
 {
+    use HasKey;
+
     public function __construct(
         ?string $dataset = null,
         ?string $value = null,

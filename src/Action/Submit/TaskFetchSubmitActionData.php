@@ -5,12 +5,15 @@ declare(strict_types=1);
 namespace AdaptiveCards\Action\Submit;
 
 use AdaptiveCards\Node;
+use AdaptiveCards\Support\HasKey;
 
 /**
  * Represents Teams-specific data in an Action.Submit to open a task module.
  */
 final class TaskFetchSubmitActionData extends Node implements TeamsSubmitActionDataInterface
 {
+    use HasKey;
+
     public static function make(): self
     {
         return new self();

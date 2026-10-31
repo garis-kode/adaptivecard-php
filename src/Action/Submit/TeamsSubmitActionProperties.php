@@ -5,12 +5,15 @@ declare(strict_types=1);
 namespace AdaptiveCards\Action\Submit;
 
 use AdaptiveCards\Node;
+use AdaptiveCards\Support\HasKey;
 
 /**
  * Teams-specific properties associated with the action.
  */
 final class TeamsSubmitActionProperties extends Node
 {
+    use HasKey;
+
     public function __construct(?TeamsSubmitActionFeedback $feedback = null)
     {
         if ($feedback !== null) {

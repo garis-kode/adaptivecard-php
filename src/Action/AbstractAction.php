@@ -11,9 +11,12 @@ use AdaptiveCards\Enum\ActionStyle;
 use AdaptiveCards\Node;
 use AdaptiveCards\Other\HostCapabilities;
 use AdaptiveCards\Other\ThemedUrl;
+use AdaptiveCards\Support\HasKey;
 
 abstract class AbstractAction extends Node
 {
+    use HasKey;
+
     /**
      * The title of the action, as it appears on buttons.
      */

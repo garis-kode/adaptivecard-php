@@ -5,12 +5,15 @@ declare(strict_types=1);
 namespace AdaptiveCards\Shared;
 
 use AdaptiveCards\Node;
+use AdaptiveCards\Support\HasKey;
 
 /**
  * Defines information required to enable on-behalf-of single sign-on user authentication.
  */
 final class TokenExchangeResource extends Node
 {
+    use HasKey;
+
     public function __construct(
         ?string $id = null,
         ?string $providerId = null,

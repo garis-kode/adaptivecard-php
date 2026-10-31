@@ -19,13 +19,14 @@ use AdaptiveCards\Shared\Refresh;
 use AdaptiveCards\Shared\Resources;
 use AdaptiveCards\Shared\TeamsCardProperties;
 use AdaptiveCards\Support\HasItems;
+use AdaptiveCards\Support\HasKey;
 
 /**
  * An Adaptive Card, containing a free-form body of card elements, and an optional set of actions.
  */
 final class AdaptiveCard extends Node
 {
-    use HasItems;
+    use HasItems, HasKey;
 
     public const SCHEMA_URL = 'http://adaptivecards.io/schemas/adaptive-card.json';
     public const DEFAULT_VERSION = '1.6';

@@ -6,12 +6,15 @@ namespace AdaptiveCards\Shared;
 
 use AdaptiveCards\Enum\DocumentReferenceIcon;
 use AdaptiveCards\Node;
+use AdaptiveCards\Support\HasKey;
 
 /**
  * A Document type reference.
  */
 final class DocumentReference extends Node
 {
+    use HasKey;
+
     public static function make(): self
     {
         return new self();

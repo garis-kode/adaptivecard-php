@@ -5,12 +5,15 @@ declare(strict_types=1);
 namespace AdaptiveCards\Action\Submit;
 
 use AdaptiveCards\Node;
+use AdaptiveCards\Support\HasKey;
 
 /**
  * Represents Teams-specific data in an Action.Submit to make an Invoke request to the Bot.
  */
 final class InvokeSubmitActionData extends Node implements TeamsSubmitActionDataInterface
 {
+    use HasKey;
+
     public function __construct(CollabStageInvokeDataValue|string|int|float|bool|null $value = null)
     {
         if ($value !== null) {

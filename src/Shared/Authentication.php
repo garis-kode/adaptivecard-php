@@ -5,12 +5,15 @@ declare(strict_types=1);
 namespace AdaptiveCards\Shared;
 
 use AdaptiveCards\Node;
+use AdaptiveCards\Support\HasKey;
 
 /**
  * Defines authentication information associated with a card.
  */
 final class Authentication extends Node
 {
+    use HasKey;
+
     public static function make(): self
     {
         return new self();

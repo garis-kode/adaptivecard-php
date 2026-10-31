@@ -5,12 +5,15 @@ declare(strict_types=1);
 namespace AdaptiveCards\Action\Submit;
 
 use AdaptiveCards\Node;
+use AdaptiveCards\Support\HasKey;
 
 /**
  * Represents the data of an Action.Submit or Action.Execute.
  */
 final class SubmitActionData extends Node
 {
+    use HasKey;
+
     /**
      * @param array<string, mixed> $customProperties
      */

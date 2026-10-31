@@ -5,12 +5,15 @@ declare(strict_types=1);
 namespace AdaptiveCards\Action\Submit;
 
 use AdaptiveCards\Node;
+use AdaptiveCards\Support\HasKey;
 
 /**
  * Represents feedback options for an Action.Submit.
  */
 final class TeamsSubmitActionFeedback extends Node
 {
+    use HasKey;
+
     public function __construct(?bool $hide = null)
     {
         if ($hide !== null) {
