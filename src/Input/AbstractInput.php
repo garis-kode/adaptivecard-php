@@ -6,7 +6,6 @@ namespace AdaptiveCards\Input;
 
 use AdaptiveCards\Action\AbstractAction;
 use AdaptiveCards\Element\AbstractBlockElement;
-use AdaptiveCards\Enum\InputLabelPosition;
 use AdaptiveCards\Support\HasHeight;
 use AdaptiveCards\Support\HasSpacing;
 
@@ -42,24 +41,6 @@ abstract class AbstractInput extends AbstractBlockElement
     public function errorMessage(string $message): static
     {
         return $this->set('errorMessage', $message);
-    }
-
-    /**
-     * Specifies the position of the label relative to the input control.
-     * Valid values: "inline", "above", "before".
-     */
-    public function labelPosition(InputLabelPosition $position): static
-    {
-        return $this->set('labelPosition', $position->value);
-    }
-
-    /**
-     * Controls the width of the label when labelPosition is set to Before.
-     * Supports pixel values, percentage values, or "auto".
-     */
-    public function labelWidth(string $width): static
-    {
-        return $this->set('labelWidth', $width);
     }
 
     /**
