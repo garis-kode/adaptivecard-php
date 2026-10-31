@@ -297,16 +297,18 @@ final class CardBuilderTest extends TestCase
                                         ->rtl(false)
                                         ->addRichTextBlock(function (RichTextBlock $rtb) use ($createToggleAction): void {
                                             $rtb->id('showMore1')
-                                                ->addTextRun('See more', function (TextRun $tr) use ($createToggleAction): void {
-                                                    $tr->selectAction($createToggleAction());
-                                                });
+                                                ->addInline(
+                                                    TextRun::make('See more')
+                                                        ->selectAction($createToggleAction())
+                                                );
                                         })
                                         ->addRichTextBlock(function (RichTextBlock $rtb) use ($createToggleAction): void {
                                             $rtb->id('showLess1')
                                                 ->isVisible(false)
-                                                ->addTextRun('See less', function (TextRun $tr) use ($createToggleAction): void {
-                                                    $tr->selectAction($createToggleAction());
-                                                });
+                                                ->addInline(
+                                                    TextRun::make('See less')
+                                                        ->selectAction($createToggleAction())
+                                                );
                                         });
                                 })
                                 ->column(Width::Auto, function (Column $col) use ($createToggleAction): void {
@@ -338,16 +340,18 @@ final class CardBuilderTest extends TestCase
                     $c->verticalContentAlignment(VerticalAlignment::Center)
                         ->addRichTextBlock(function (RichTextBlock $rtb) use ($createToggleAction): void {
                             $rtb->id('showMore2')
-                                ->addTextRun('See more', function (TextRun $tr) use ($createToggleAction): void {
-                                    $tr->selectAction($createToggleAction());
-                                  });
+                                ->addInline(
+                                    TextRun::make('See more')
+                                        ->selectAction($createToggleAction())
+                                );
                         })
                         ->addRichTextBlock(function (RichTextBlock $rtb) use ($createToggleAction): void {
                             $rtb->id('showLess2')
                                 ->isVisible(false)
-                                ->addTextRun('See less', function (TextRun $tr) use ($createToggleAction): void {
-                                    $tr->selectAction($createToggleAction());
-                                });
+                                ->addInline(
+                                    TextRun::make('See less')
+                                        ->selectAction($createToggleAction())
+                                );
                         });
                 })
                 ->column(Width::Auto, function (Column $c) use ($createToggleAction): void {
@@ -1937,22 +1941,24 @@ final class CardBuilderTest extends TestCase
                 $rtb->id('showMore')
                     ->targetWidth(TargetWidth::AtLeastNarrow)
                     ->spacing(Spacing::None)
-                    ->addTextRun('Show more', function (TextRun $tr) use ($toggleTargets): void {
-                        $tr->selectAction(
-                            ToggleVisibilityAction::make()->targetElements($toggleTargets)
-                        );
-                    });
+                    ->addInline(
+                        TextRun::make('Show more')
+                            ->selectAction(
+                                ToggleVisibilityAction::make()->targetElements($toggleTargets)
+                            )
+                    );
             })
             ->addRichTextBlock(function (RichTextBlock $rtb) use ($toggleTargets): void {
                 $rtb->id('showLess')
                     ->targetWidth(TargetWidth::AtLeastNarrow)
                     ->spacing(Spacing::None)
                     ->isVisible(false)
-                    ->addTextRun('Show less', function (TextRun $tr) use ($toggleTargets): void {
-                        $tr->selectAction(
-                            ToggleVisibilityAction::make()->targetElements($toggleTargets)
-                        );
-                    });
+                    ->addInline(
+                        TextRun::make('Show less')
+                            ->selectAction(
+                                ToggleVisibilityAction::make()->targetElements($toggleTargets)
+                            )
+                    );
             })
             ->addActionSet(function (ActionSet $as): void {
                 $as->spacing(Spacing::Large)
@@ -2165,10 +2171,11 @@ final class CardBuilderTest extends TestCase
             ->schema('https://adaptivecards.io/schemas/adaptive-card.json')
             ->speak('Version 2.2 performance optimization')
             ->addRichTextBlock(function (RichTextBlock $rtb): void {
-                $rtb->addTextRun('Android Scrum Project / SSP-98', function (TextRun $tr): void {
-                    $tr->size(TextSize::Small)
-                        ->selectAction(OpenUrlAction::make('https://adaptivecards.io'));
-                });
+                $rtb->addInline(
+                    TextRun::make('Android Scrum Project / SSP-98')
+                        ->size(TextSize::Small)
+                        ->selectAction(OpenUrlAction::make('https://adaptivecards.io'))
+                );
             })
             ->addColumnSet(function (ColumnSet $cs): void {
                 $cs->spacing(Spacing::Small)

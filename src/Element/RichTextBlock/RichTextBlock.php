@@ -18,21 +18,21 @@ final class RichTextBlock extends AbstractBlockElement
     use HasHeight, HasHorizontalAlignment, HasSpacing;
 
     /**
-     * @param iterable<AbstractInlineElement>|null $inlines
+     * @param AbstractInlineElement|iterable<AbstractInlineElement>|null ...$inlines
      */
-    public function __construct(?iterable $inlines = null)
+    public function __construct(AbstractInlineElement|iterable|null ...$inlines)
     {
-        if ($inlines !== null) {
-            $this->inlines($inlines);
+        if (!empty($inlines)) {
+            $this->addInlines(...$inlines);
         }
     }
 
     /**
-     * @param iterable<AbstractInlineElement>|null $inlines
+     * @param AbstractInlineElement|iterable<AbstractInlineElement>|null ...$inlines
      */
-    public static function make(?iterable $inlines = null): self
+    public static function make(AbstractInlineElement|iterable|null ...$inlines): self
     {
-        return new self($inlines);
+        return new self(...$inlines);
     }
 
     /**
@@ -44,14 +44,26 @@ final class RichTextBlock extends AbstractBlockElement
     }
 
     /**
-     * Append multiple inlines.
+     * Append one or more inlines (accepts variadic items or an array/iterable).
      *
-     * @param iterable<AbstractInlineElement> $inlines
+     * @param AbstractInlineElement|iterable<AbstractInlineElement>|null ...$inlines
      */
-    public function addInlines(iterable $inlines): self
+    public function addInlines(AbstractInlineElement|iterable|null ...$inlines): self
     {
         foreach ($inlines as $inline) {
-            $this->addInline($inline);
+            if ($inline === null) {
+                continue;
+            }
+
+            if (is_iterable($inline)) {
+                foreach ($inline as $item) {
+                    if ($item instanceof AbstractInlineElement) {
+                        $this->addInline($item);
+                    }
+                }
+            } else {
+                $this->addInline($inline);
+            }
         }
 
         return $this;
@@ -61,50 +73,11 @@ final class RichTextBlock extends AbstractBlockElement
      * The inlines making up the rich text block.
      * Valid values: "TextRun", "IconRun", "ImageRun", "CitationRun".
      *
-     * @param iterable<AbstractInlineElement> $inlines
+     * @param AbstractInlineElement|iterable<AbstractInlineElement>|null ...$inlines
      */
-    public function inlines(iterable $inlines): self
+    public function inlines(AbstractInlineElement|iterable|null ...$inlines): self
     {
-        return $this->addInlines($inlines);
-    }
-
-    /**
-     * Add a TextRun to the RichTextBlock.
-     */
-    public function addTextRun(string $text, ?callable $configure = null): self
-    {
-        $run = new TextRun($text);
-        if ($configure !== null) {
-            $configure($run);
-        }
-
-        return $this->addInline($run);
-    }
-
-    /**
-     * Add an IconRun to the RichTextBlock.
-     */
-    public function addIconRun(string $name, ?callable $configure = null): self
-    {
-        $run = new IconRun($name);
-        if ($configure !== null) {
-            $configure($run);
-        }
-
-        return $this->addInline($run);
-    }
-
-    /**
-     * Add an ImageRun to the RichTextBlock.
-     */
-    public function addImageRun(string $url, ?callable $configure = null): self
-    {
-        $run = new ImageRun($url);
-        if ($configure !== null) {
-            $configure($run);
-        }
-
-        return $this->addInline($run);
+        return $this->addInlines(...$inlines);
     }
 
     /**
