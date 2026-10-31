@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace AdaptiveCards\Element;
 
 use AdaptiveCards\Action\AbstractAction;
+use AdaptiveCards\Support\HasHeight;
 use AdaptiveCards\Support\HasHorizontalAlignment;
 use AdaptiveCards\Support\HasSpacing;
 
@@ -13,7 +14,7 @@ use AdaptiveCards\Support\HasSpacing;
  */
 final class ActionSet extends AbstractBlockElement
 {
-    use HasHorizontalAlignment, HasSpacing;
+    use HasHeight, HasHorizontalAlignment, HasSpacing;
 
     public static function make(): self
     {

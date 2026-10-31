@@ -6,6 +6,7 @@ namespace AdaptiveCards\Element\Progress;
 
 use AdaptiveCards\Element\AbstractBlockElement;
 use AdaptiveCards\Enum\ProgressBarColor;
+use AdaptiveCards\Support\HasHeight;
 use AdaptiveCards\Support\HasHorizontalAlignment;
 use AdaptiveCards\Support\HasSpacing;
 
@@ -14,7 +15,7 @@ use AdaptiveCards\Support\HasSpacing;
  */
 final class ProgressBar extends AbstractBlockElement
 {
-    use HasHorizontalAlignment, HasSpacing;
+    use HasHeight, HasHorizontalAlignment, HasSpacing;
 
     public static function make(): self
     {

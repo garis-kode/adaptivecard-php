@@ -6,6 +6,7 @@ namespace AdaptiveCards\Element\Carousel;
 
 use AdaptiveCards\Element\AbstractBlockElement;
 use AdaptiveCards\Enum\PageAnimation;
+use AdaptiveCards\Support\HasHeight;
 use AdaptiveCards\Support\HasSpacing;
 
 /**
@@ -13,7 +14,7 @@ use AdaptiveCards\Support\HasSpacing;
  */
 final class Carousel extends AbstractBlockElement
 {
-    use HasSpacing;
+    use HasHeight, HasSpacing;
 
     public static function make(): self
     {

@@ -10,6 +10,7 @@ use AdaptiveCards\Enum\ContainerStyle;
 use AdaptiveCards\Enum\VerticalAlignment;
 use AdaptiveCards\Layout\AbstractLayout;
 use AdaptiveCards\Shared\BackgroundImage;
+use AdaptiveCards\Support\HasHeight;
 use AdaptiveCards\Support\HasItems;
 use AdaptiveCards\Support\HasSeparator;
 use AdaptiveCards\Support\HasSpacing;
@@ -19,7 +20,7 @@ use AdaptiveCards\Support\HasSpacing;
  */
 final class TableCell extends AbstractElement
 {
-    use HasItems, HasSeparator, HasSpacing;
+    use HasHeight, HasItems, HasSeparator, HasSpacing;
 
     public static function make(): self
     {

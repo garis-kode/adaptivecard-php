@@ -9,6 +9,7 @@ use AdaptiveCards\Enum\FontType;
 use AdaptiveCards\Enum\TextBlockStyle;
 use AdaptiveCards\Enum\TextSize;
 use AdaptiveCards\Enum\TextWeight;
+use AdaptiveCards\Support\HasHeight;
 use AdaptiveCards\Support\HasHorizontalAlignment;
 use AdaptiveCards\Support\HasSpacing;
 
@@ -17,7 +18,7 @@ use AdaptiveCards\Support\HasSpacing;
  */
 final class TextBlock extends AbstractBlockElement
 {
-    use HasHorizontalAlignment, HasSpacing;
+    use HasHeight, HasHorizontalAlignment, HasSpacing;
 
     public function __construct(?string $text = null, ?bool $wrap = null)
     {

@@ -9,6 +9,7 @@ use AdaptiveCards\Enum\ContainerStyle;
 use AdaptiveCards\Enum\VerticalAlignment;
 use AdaptiveCards\Layout\AbstractLayout;
 use AdaptiveCards\Shared\BackgroundImage;
+use AdaptiveCards\Support\HasHeight;
 use AdaptiveCards\Support\HasHorizontalAlignment;
 use AdaptiveCards\Support\HasItems;
 use AdaptiveCards\Support\HasSpacing;
@@ -19,7 +20,7 @@ use AdaptiveCards\Support\HasSpacing;
  */
 final class Container extends AbstractBlockElement
 {
-    use HasHorizontalAlignment, HasItems, HasSpacing;
+    use HasHeight, HasHorizontalAlignment, HasItems, HasSpacing;
 
     public static function make(): self
     {

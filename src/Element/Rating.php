@@ -7,6 +7,7 @@ namespace AdaptiveCards\Element;
 use AdaptiveCards\Enum\RatingColor;
 use AdaptiveCards\Enum\RatingSize;
 use AdaptiveCards\Enum\RatingStyle;
+use AdaptiveCards\Support\HasHeight;
 use AdaptiveCards\Support\HasHorizontalAlignment;
 use AdaptiveCards\Support\HasSpacing;
 
@@ -15,7 +16,7 @@ use AdaptiveCards\Support\HasSpacing;
  */
 final class Rating extends AbstractBlockElement
 {
-    use HasHorizontalAlignment, HasSpacing;
+    use HasHeight, HasHorizontalAlignment, HasSpacing;
 
     public static function make(): self
     {

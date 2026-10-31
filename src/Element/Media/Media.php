@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace AdaptiveCards\Element\Media;
 
 use AdaptiveCards\Element\AbstractBlockElement;
+use AdaptiveCards\Support\HasHeight;
 use AdaptiveCards\Support\HasSpacing;
 
 /**
@@ -12,7 +13,7 @@ use AdaptiveCards\Support\HasSpacing;
  */
 final class Media extends AbstractBlockElement
 {
-    use HasSpacing;
+    use HasHeight, HasSpacing;
 
     public static function make(): self
     {

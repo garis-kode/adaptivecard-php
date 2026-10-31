@@ -7,6 +7,7 @@ namespace AdaptiveCards\Element\Progress;
 use AdaptiveCards\Element\AbstractBlockElement;
 use AdaptiveCards\Enum\ProgressRingLabelPosition;
 use AdaptiveCards\Enum\ProgressRingSize;
+use AdaptiveCards\Support\HasHeight;
 use AdaptiveCards\Support\HasHorizontalAlignment;
 use AdaptiveCards\Support\HasSpacing;
 
@@ -15,7 +16,7 @@ use AdaptiveCards\Support\HasSpacing;
  */
 final class ProgressRing extends AbstractBlockElement
 {
-    use HasHorizontalAlignment, HasSpacing;
+    use HasHeight, HasHorizontalAlignment, HasSpacing;
 
     public function __construct(?string $label = null)
     {

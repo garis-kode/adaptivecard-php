@@ -6,6 +6,7 @@ namespace AdaptiveCards\Element\RichTextBlock;
 
 use AdaptiveCards\Element\AbstractBlockElement;
 use AdaptiveCards\Element\AbstractInlineElement;
+use AdaptiveCards\Support\HasHeight;
 use AdaptiveCards\Support\HasHorizontalAlignment;
 use AdaptiveCards\Support\HasSpacing;
 
@@ -14,7 +15,7 @@ use AdaptiveCards\Support\HasSpacing;
  */
 final class RichTextBlock extends AbstractBlockElement
 {
-    use HasHorizontalAlignment, HasSpacing;
+    use HasHeight, HasHorizontalAlignment, HasSpacing;
 
     /**
      * @param iterable<AbstractInlineElement>|null $inlines

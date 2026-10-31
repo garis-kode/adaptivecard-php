@@ -8,6 +8,7 @@ use AdaptiveCards\Action\AbstractAction;
 use AdaptiveCards\Element\AbstractBlockElement;
 use AdaptiveCards\Enum\ContainerStyle;
 use AdaptiveCards\Enum\Width;
+use AdaptiveCards\Support\HasHeight;
 use AdaptiveCards\Support\HasHorizontalAlignment;
 use AdaptiveCards\Support\HasSpacing;
 
@@ -16,7 +17,7 @@ use AdaptiveCards\Support\HasSpacing;
  */
 final class ColumnSet extends AbstractBlockElement
 {
-    use HasHorizontalAlignment, HasSpacing;
+    use HasHeight, HasHorizontalAlignment, HasSpacing;
 
     public static function make(): self
     {

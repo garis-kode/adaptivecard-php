@@ -6,6 +6,7 @@ namespace AdaptiveCards\Element;
 
 use AdaptiveCards\Action\AbstractAction;
 use AdaptiveCards\Other\IconInfo;
+use AdaptiveCards\Support\HasHeight;
 use AdaptiveCards\Support\HasHorizontalAlignment;
 use AdaptiveCards\Support\HasSpacing;
 
@@ -14,7 +15,7 @@ use AdaptiveCards\Support\HasSpacing;
  */
 final class CompoundButton extends AbstractBlockElement
 {
-    use HasHorizontalAlignment, HasSpacing;
+    use HasHeight, HasHorizontalAlignment, HasSpacing;
 
     public function __construct(?string $title = null, ?string $description = null)
     {

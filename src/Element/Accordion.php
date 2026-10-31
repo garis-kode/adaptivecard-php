@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace AdaptiveCards\Element;
 
 use AdaptiveCards\Other\AccordionPage;
+use AdaptiveCards\Support\HasHeight;
 
 /**
  * An element that allows the end-user to toggle the display of content by expanding
@@ -12,6 +13,8 @@ use AdaptiveCards\Other\AccordionPage;
  */
 final class Accordion extends AbstractBlockElement
 {
+    use HasHeight;
+
     public static function make(): self
     {
         return new self();

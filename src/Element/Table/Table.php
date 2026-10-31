@@ -10,6 +10,7 @@ use AdaptiveCards\Enum\ContainerStyle;
 use AdaptiveCards\Enum\HorizontalAlignment;
 use AdaptiveCards\Enum\VerticalAlignment;
 use AdaptiveCards\Enum\Width;
+use AdaptiveCards\Support\HasHeight;
 use AdaptiveCards\Support\HasHorizontalAlignment;
 use AdaptiveCards\Support\HasSpacing;
 
@@ -18,7 +19,7 @@ use AdaptiveCards\Support\HasSpacing;
  */
 final class Table extends AbstractBlockElement
 {
-    use HasHorizontalAlignment, HasSpacing;
+    use HasHeight, HasHorizontalAlignment, HasSpacing;
 
     /**
      * @param iterable<TableColumnDefinition>|null $columns

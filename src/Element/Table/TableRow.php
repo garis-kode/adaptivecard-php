@@ -8,6 +8,7 @@ use AdaptiveCards\Element\AbstractElement;
 use AdaptiveCards\Enum\ContainerStyle;
 use AdaptiveCards\Enum\HorizontalAlignment;
 use AdaptiveCards\Enum\VerticalAlignment;
+use AdaptiveCards\Support\HasHeight;
 use AdaptiveCards\Support\HasHorizontalAlignment;
 use AdaptiveCards\Support\HasSeparator;
 use AdaptiveCards\Support\HasSpacing;
@@ -17,7 +18,7 @@ use AdaptiveCards\Support\HasSpacing;
  */
 final class TableRow extends AbstractElement
 {
-    use HasHorizontalAlignment, HasSeparator, HasSpacing;
+    use HasHeight, HasHorizontalAlignment, HasSeparator, HasSpacing;
 
     public static function make(): self
     {

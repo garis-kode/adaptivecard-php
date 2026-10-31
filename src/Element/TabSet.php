@@ -6,6 +6,7 @@ namespace AdaptiveCards\Element;
 
 use AdaptiveCards\Enum\TabSetSize;
 use AdaptiveCards\Other\TabPage;
+use AdaptiveCards\Support\HasHeight;
 use AdaptiveCards\Support\HasSpacing;
 
 /**
@@ -13,7 +14,7 @@ use AdaptiveCards\Support\HasSpacing;
  */
 final class TabSet extends AbstractBlockElement
 {
-    use HasSpacing;
+    use HasHeight, HasSpacing;
 
     public static function make(): self
     {

@@ -11,6 +11,7 @@ use AdaptiveCards\Enum\TabStyle;
 use AdaptiveCards\Enum\VerticalAlignment;
 use AdaptiveCards\Layout\AbstractLayout;
 use AdaptiveCards\Shared\BackgroundImage;
+use AdaptiveCards\Support\HasHeight;
 use AdaptiveCards\Support\HasItems;
 
 /**
@@ -18,7 +19,7 @@ use AdaptiveCards\Support\HasItems;
  */
 final class TabPage extends AbstractElement
 {
-    use HasItems;
+    use HasHeight, HasItems;
 
     public function __construct(?string $title = null)
     {

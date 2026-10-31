@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Element;
 
-use AdaptiveCards\Enum\Height;
 use AdaptiveCards\Enum\TargetWidth;
 use AdaptiveCards\Node;
 use AdaptiveCards\Other\HostCapabilities;
@@ -36,16 +35,6 @@ abstract class AbstractElement extends Node
     public function isVisibleDynamic(string $expression): static
     {
         return $this->set('isVisible.dynamic', $expression);
-    }
-
-    /**
-     * The height of the element. When set to `stretch`, the element will use
-     * the remaining vertical space in its container.
-     * Valid values: "auto", "stretch".
-     */
-    public function height(Height $height): static
-    {
-        return $this->set('height', $height->value);
     }
 
     /**

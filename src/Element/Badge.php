@@ -9,6 +9,7 @@ use AdaptiveCards\Enum\BadgeShape;
 use AdaptiveCards\Enum\BadgeSize;
 use AdaptiveCards\Enum\BadgeStyle;
 use AdaptiveCards\Enum\IconPosition;
+use AdaptiveCards\Support\HasHeight;
 use AdaptiveCards\Support\HasHorizontalAlignment;
 use AdaptiveCards\Support\HasSpacing;
 
@@ -17,7 +18,7 @@ use AdaptiveCards\Support\HasSpacing;
  */
 final class Badge extends AbstractBlockElement
 {
-    use HasHorizontalAlignment, HasSpacing;
+    use HasHeight, HasHorizontalAlignment, HasSpacing;
 
     public function __construct(
         ?string $text = null,
