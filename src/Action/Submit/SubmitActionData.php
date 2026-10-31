@@ -31,8 +31,12 @@ final class SubmitActionData extends Node
      * Defines the optional Teams-specific portion of the action's data.
      * Valid values: "ImBackSubmitActionData", "InvokeSubmitActionData", "MessageBackSubmitActionData", "SigninSubmitActionData", "TaskFetchSubmitActionData".
      */
-    public function msteams(TeamsSubmitActionDataInterface $msteams): self
+    public function msteams(TeamsSubmitActionDataInterface $msteams, bool $useCamelCaseKey = false): self
     {
+        if ($useCamelCaseKey) {
+            return $this->set('msTeams', $msteams);
+        }
+
         return $this->set('msteams', $msteams);
     }
 

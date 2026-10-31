@@ -53,11 +53,23 @@ final class SubmitAction extends AbstractAction
     }
 
     /**
+     * Controls if the action is enabled only if at least one required input has been filled by the user.
+     */
+    public function conditionallyEnabled(bool $enabled = true): self
+    {
+        return $this->set('conditionallyEnabled', $enabled);
+    }
+
+    /**
      * Teams-specific metadata associated with the action.
      * Valid values: "TeamsSubmitActionProperties".
      */
-    public function msteams(TeamsSubmitActionProperties $properties): self
+    public function msteams(TeamsSubmitActionProperties $properties, bool $useCamelCaseKey = false): self
     {
+        if ($useCamelCaseKey) {
+            return $this->set('msTeams', $properties);
+        }
+
         return $this->set('msteams', $properties);
     }
 
