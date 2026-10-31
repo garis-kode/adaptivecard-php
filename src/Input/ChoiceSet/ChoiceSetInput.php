@@ -18,6 +18,14 @@ final class ChoiceSetInput extends AbstractInput
     }
 
     /**
+     * The default value of the input.
+     */
+    public function value(string $value): self
+    {
+        return $this->set('value', $value);
+    }
+
+    /**
      * Add a choice to the set.
      */
     public function addChoice(Choice $choice): self

@@ -26,6 +26,14 @@ final class RatingInput extends AbstractInput
     }
 
     /**
+     * The default value of the input.
+     */
+    public function value(int|float $value): self
+    {
+        return $this->set('value', $value);
+    }
+
+    /**
      * The number of stars to display.
      */
     public function max(float|int $max): self

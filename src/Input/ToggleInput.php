@@ -41,6 +41,14 @@ final class ToggleInput extends AbstractInput
     }
 
     /**
+     * The default value of the input.
+     */
+    public function value(string $value): self
+    {
+        return $this->set('value', $value);
+    }
+
+    /**
      * The value to send to the Bot when the toggle is on.
      */
     public function valueOn(string $valueOn): self

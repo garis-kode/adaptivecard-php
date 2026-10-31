@@ -59,14 +59,6 @@ abstract class AbstractInput extends AbstractBlockElement
     }
 
     /**
-     * The default value of the input.
-     */
-    public function value(string|int|float|bool $value): static
-    {
-        return $this->set('value', $value);
-    }
-
-    /**
      * Controls whether the input's label is visually rendered. When set to false,
      * the label is still applied as the input's accessible name to ensure the best
      * user experience especially for users of assistive technology.

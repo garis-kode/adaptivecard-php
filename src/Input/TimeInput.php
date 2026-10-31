@@ -24,6 +24,14 @@ final class TimeInput extends AbstractInput
     }
 
     /**
+     * The default value of the input, in the `HH:MM` format.
+     */
+    public function value(string $value): self
+    {
+        return $this->set('value', $value);
+    }
+
+    /**
      * The text to display as a placeholder when the user hasn't entered a value.
      */
     public function placeholder(string $placeholder): self
