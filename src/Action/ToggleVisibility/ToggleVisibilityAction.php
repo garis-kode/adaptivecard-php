@@ -33,29 +33,25 @@ final class ToggleVisibilityAction extends AbstractAction
      */
     public function target(string $elementId, ?bool $isVisible = null): self
     {
-        return $this->addTarget(new TargetElement($elementId, $isVisible));
+        return $this->addTargetElements(new TargetElement($elementId, $isVisible));
     }
 
     /**
      * Add a target element.
-     */
-    public function addTarget(TargetElement $target): self
-    {
-        return $this->push('targetElements', $target);
-    }
-
-    /**
-     * Add multiple target elements to toggle visibility.
      *
-     * @param iterable<TargetElement> $targets
+     * @param TargetElement|iterable<TargetElement> $target
      */
-    public function addTargetElements(iterable $targets): self
+    public function addTargetElements(TargetElement|iterable $target): self
     {
-        foreach ($targets as $target) {
-            $this->addTarget($target);
+        if (is_iterable($target)) {
+            foreach ($target as $item) {
+                $this->push('targetElements', $item);
+            }
+
+            return $this;
         }
 
-        return $this;
+        return $this->push('targetElements', $target);
     }
 
     /**

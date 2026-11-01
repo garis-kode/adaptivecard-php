@@ -89,24 +89,20 @@ final class AdaptiveCard extends Node
 
     /**
      * Add a card level action, which always appears at the bottom of the card.
-     */
-    public function addAction(AbstractAction $action): self
-    {
-        return $this->push('actions', $action);
-    }
-
-    /**
-     * Add multiple card level actions.
      *
-     * @param iterable<AbstractAction> $actions
+     * @param AbstractAction|iterable<AbstractAction> $action
      */
-    public function addActions(iterable $actions): self
+    public function addActions(AbstractAction|iterable $action): self
     {
-        foreach ($actions as $action) {
-            $this->addAction($action);
+        if (is_iterable($action)) {
+            foreach ($action as $item) {
+                $this->push('actions', $item);
+            }
+
+            return $this;
         }
 
-        return $this;
+        return $this->push('actions', $action);
     }
 
     /**
@@ -310,24 +306,20 @@ final class AdaptiveCard extends Node
 
     /**
      * Add a reference that can be cited in TextBlock and RichTextBlock elements.
-     */
-    public function addReference(AdaptiveCardReference|DocumentReference $reference): self
-    {
-        return $this->push('references', $reference);
-    }
-
-    /**
-     * Add multiple references.
      *
-     * @param iterable<AdaptiveCardReference|DocumentReference> $references
+     * @param AdaptiveCardReference|DocumentReference|iterable<AdaptiveCardReference|DocumentReference> $reference
      */
-    public function addReferences(iterable $references): self
+    public function addReferences(AdaptiveCardReference|DocumentReference|iterable $reference): self
     {
-        foreach ($references as $reference) {
-            $this->addReference($reference);
+        if (is_iterable($reference)) {
+            foreach ($reference as $item) {
+                $this->push('references', $item);
+            }
+
+            return $this;
         }
 
-        return $this;
+        return $this->push('references', $reference);
     }
 
     /**

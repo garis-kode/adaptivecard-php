@@ -65,24 +65,20 @@ final class LineChartData extends Node
 
     /**
      * Add a value data point to the series.
-     */
-    public function addValue(LineChartValue $point): self
-    {
-        return $this->push('values', $point);
-    }
-
-    /**
-     * Add multiple value data points to the series.
      *
-     * @param iterable<LineChartValue> $values
+     * @param LineChartValue|iterable<LineChartValue> $point
      */
-    public function addValues(iterable $values): self
+    public function addValues(LineChartValue|iterable $point): self
     {
-        foreach ($values as $point) {
-            $this->addValue($point);
+        if (is_iterable($point)) {
+            foreach ($point as $item) {
+                $this->push('values', $item);
+            }
+
+            return $this;
         }
 
-        return $this;
+        return $this->push('values', $point);
     }
 
     /**

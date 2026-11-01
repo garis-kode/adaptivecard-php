@@ -22,8 +22,10 @@ final class RichTextBlock extends AbstractBlockElement
      */
     public function __construct(AbstractInlineElement|iterable|null ...$inlines)
     {
-        if (!empty($inlines)) {
-            $this->addInlines(...$inlines);
+        foreach ($inlines as $inline) {
+            if ($inline !== null) {
+                $this->addInlines($inline);
+            }
         }
     }
 
@@ -37,36 +39,22 @@ final class RichTextBlock extends AbstractBlockElement
 
     /**
      * Append an inline run.
-     */
-    public function addInline(AbstractInlineElement $inline): self
-    {
-        return $this->push('inlines', $inline);
-    }
-
-    /**
-     * Append one or more inlines (accepts variadic items or an array/iterable).
      *
-     * @param AbstractInlineElement|iterable<AbstractInlineElement>|null ...$inlines
+     * @param AbstractInlineElement|iterable<AbstractInlineElement> $inline
      */
-    public function addInlines(AbstractInlineElement|iterable|null ...$inlines): self
+    public function addInlines(AbstractInlineElement|iterable $inline): self
     {
-        foreach ($inlines as $inline) {
-            if ($inline === null) {
-                continue;
+        if (is_iterable($inline)) {
+            foreach ($inline as $item) {
+                if ($item instanceof AbstractInlineElement) {
+                    $this->push('inlines', $item);
+                }
             }
 
-            if (is_iterable($inline)) {
-                foreach ($inline as $item) {
-                    if ($item instanceof AbstractInlineElement) {
-                        $this->addInline($item);
-                    }
-                }
-            } else {
-                $this->addInline($inline);
-            }
+            return $this;
         }
 
-        return $this;
+        return $this->push('inlines', $inline);
     }
 
     /**
@@ -77,7 +65,13 @@ final class RichTextBlock extends AbstractBlockElement
      */
     public function inlines(AbstractInlineElement|iterable|null ...$inlines): self
     {
-        return $this->addInlines(...$inlines);
+        foreach ($inlines as $inline) {
+            if ($inline !== null) {
+                $this->addInlines($inline);
+            }
+        }
+
+        return $this;
     }
 
     /**

@@ -23,24 +23,20 @@ final class ActionSet extends AbstractBlockElement
 
     /**
      * Add an action to the set.
-     */
-    public function addAction(AbstractAction $action): self
-    {
-        return $this->push('actions', $action);
-    }
-
-    /**
-     * Add multiple actions to the set.
      *
-     * @param iterable<AbstractAction> $actions
+     * @param AbstractAction|iterable<AbstractAction> $action
      */
-    public function addActions(iterable $actions): self
+    public function addActions(AbstractAction|iterable $action): self
     {
-        foreach ($actions as $action) {
-            $this->addAction($action);
+        if (is_iterable($action)) {
+            foreach ($action as $item) {
+                $this->push('actions', $item);
+            }
+
+            return $this;
         }
 
-        return $this;
+        return $this->push('actions', $action);
     }
 
     /**

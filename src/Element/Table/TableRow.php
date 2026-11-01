@@ -27,24 +27,20 @@ final class TableRow extends AbstractElement
 
     /**
      * Add a cell to the row.
-     */
-    public function addCell(TableCell $cell): self
-    {
-        return $this->push('cells', $cell);
-    }
-
-    /**
-     * Add multiple cells to the row.
      *
-     * @param iterable<TableCell> $cells
+     * @param TableCell|iterable<TableCell> $cell
      */
-    public function addCells(iterable $cells): self
+    public function addCells(TableCell|iterable $cell): self
     {
-        foreach ($cells as $cell) {
-            $this->addCell($cell);
+        if (is_iterable($cell)) {
+            foreach ($cell as $item) {
+                $this->push('cells', $item);
+            }
+
+            return $this;
         }
 
-        return $this;
+        return $this->push('cells', $cell);
     }
 
     /**
@@ -66,7 +62,7 @@ final class TableRow extends AbstractElement
         $cell = new TableCell();
         $cell->addTextBlock($text, $configure);
 
-        return $this->addCell($cell);
+        return $this->addCells($cell);
     }
 
     /**

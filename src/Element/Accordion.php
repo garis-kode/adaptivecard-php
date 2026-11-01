@@ -38,24 +38,20 @@ final class Accordion extends AbstractBlockElement
 
     /**
      * Add a page to the accordion.
-     */
-    public function addPage(AccordionPage $page): self
-    {
-        return $this->push('pages', $page);
-    }
-
-    /**
-     * Add multiple pages to the accordion.
      *
-     * @param iterable<AccordionPage> $pages
+     * @param AccordionPage|iterable<AccordionPage> $page
      */
-    public function addPages(iterable $pages): self
+    public function addPages(AccordionPage|iterable $page): self
     {
-        foreach ($pages as $page) {
-            $this->addPage($page);
+        if (is_iterable($page)) {
+            foreach ($page as $item) {
+                $this->push('pages', $item);
+            }
+
+            return $this;
         }
 
-        return $this;
+        return $this->push('pages', $page);
     }
 
     /**

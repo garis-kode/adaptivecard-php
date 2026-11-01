@@ -23,24 +23,20 @@ final class Carousel extends AbstractBlockElement
 
     /**
      * Add a page to the carousel.
-     */
-    public function addPage(CarouselPage $page): self
-    {
-        return $this->push('pages', $page);
-    }
-
-    /**
-     * Add multiple pages to the carousel.
      *
-     * @param iterable<CarouselPage> $pages
+     * @param CarouselPage|iterable<CarouselPage> $page
      */
-    public function addPages(iterable $pages): self
+    public function addPages(CarouselPage|iterable $page): self
     {
-        foreach ($pages as $page) {
-            $this->addPage($page);
+        if (is_iterable($page)) {
+            foreach ($page as $item) {
+                $this->push('pages', $item);
+            }
+
+            return $this;
         }
 
-        return $this;
+        return $this->push('pages', $page);
     }
 
     /**

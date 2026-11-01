@@ -14,24 +14,20 @@ trait HasLayouts
 {
     /**
      * Add a layout associated with the container.
-     */
-    public function addLayout(AbstractLayout $layout): static
-    {
-        return $this->push('layouts', $layout);
-    }
-
-    /**
-     * Add multiple layouts associated with the container.
      *
-     * @param iterable<AbstractLayout> $layouts
+     * @param AbstractLayout|iterable<AbstractLayout> $layout
      */
-    public function addLayouts(iterable $layouts): static
+    public function addLayouts(AbstractLayout|iterable $layout): static
     {
-        foreach ($layouts as $layout) {
-            $this->addLayout($layout);
+        if (is_iterable($layout)) {
+            foreach ($layout as $item) {
+                $this->push('layouts', $item);
+            }
+
+            return $this;
         }
 
-        return $this;
+        return $this->push('layouts', $layout);
     }
 
     /**
@@ -58,7 +54,7 @@ trait HasLayouts
             $callback($layout);
         }
 
-        return $this->addLayout($layout);
+        return $this->addLayouts($layout);
     }
 
     /**
@@ -73,7 +69,7 @@ trait HasLayouts
             $callback($layout);
         }
 
-        return $this->addLayout($layout);
+        return $this->addLayouts($layout);
     }
 
     /**
@@ -88,6 +84,6 @@ trait HasLayouts
             $callback($layout);
         }
 
-        return $this->addLayout($layout);
+        return $this->addLayouts($layout);
     }
 }

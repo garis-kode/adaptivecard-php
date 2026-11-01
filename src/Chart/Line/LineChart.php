@@ -103,16 +103,6 @@ final class LineChart extends AbstractCartesianChart
     }
 
     /**
-     * Add multiple data items to the line chart.
-     *
-     * @param iterable<LineChartData> $data
-     */
-    public function addDataList(iterable $data): self
-    {
-        return $this->addData($data);
-    }
-
-    /**
      * The data point series in the line chart.
      * Valid values: "LineChartData".
      *

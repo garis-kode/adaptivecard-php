@@ -53,24 +53,20 @@ final class ImageRun extends AbstractInlineElement
 
     /**
      * Add a theme-specific image URL.
-     */
-    public function addThemedUrl(ThemedUrl $themedUrl): self
-    {
-        return $this->push('themedUrls', $themedUrl);
-    }
-
-    /**
-     * Add multiple theme-specific image URLs.
      *
-     * @param iterable<ThemedUrl> $themedUrls
+     * @param ThemedUrl|iterable<ThemedUrl> $themedUrl
      */
-    public function addThemedUrls(iterable $themedUrls): self
+    public function addThemedUrls(ThemedUrl|iterable $themedUrl): self
     {
-        foreach ($themedUrls as $themedUrl) {
-            $this->addThemedUrl($themedUrl);
+        if (is_iterable($themedUrl)) {
+            foreach ($themedUrl as $item) {
+                $this->push('themedUrls', $item);
+            }
+
+            return $this;
         }
 
-        return $this;
+        return $this->push('themedUrls', $themedUrl);
     }
 
     /**

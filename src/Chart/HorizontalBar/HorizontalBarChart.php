@@ -74,16 +74,6 @@ final class HorizontalBarChart extends AbstractCartesianChart
     }
 
     /**
-     * Add multiple data items to the horizontal bar chart.
-     *
-     * @param iterable<HorizontalBarChartDataValue|BarChartDataValue> $data
-     */
-    public function addDataList(iterable $data): self
-    {
-        return $this->addData($data);
-    }
-
-    /**
      * The data to display in the chart.
      * Valid values: "HorizontalBarChartDataValue".
      *

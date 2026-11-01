@@ -22,9 +22,19 @@ final class FactSet extends AbstractBlockElement
 
     /**
      * Add a Fact to the set.
+     *
+     * @param Fact|iterable<Fact> $fact
      */
-    public function addFact(Fact $fact): self
+    public function addFacts(Fact|iterable $fact): self
     {
+        if (is_iterable($fact)) {
+            foreach ($fact as $item) {
+                $this->push('facts', $item);
+            }
+
+            return $this;
+        }
+
         return $this->push('facts', $fact);
     }
 
@@ -33,21 +43,7 @@ final class FactSet extends AbstractBlockElement
      */
     public function fact(string $title, string $value): self
     {
-        return $this->addFact(new Fact($title, $value));
-    }
-
-    /**
-     * Add multiple facts to the set.
-     *
-     * @param iterable<Fact> $facts
-     */
-    public function addFacts(iterable $facts): self
-    {
-        foreach ($facts as $fact) {
-            $this->addFact($fact);
-        }
-
-        return $this;
+        return $this->addFacts(new Fact($title, $value));
     }
 
     /**

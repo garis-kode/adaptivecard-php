@@ -65,24 +65,20 @@ final class GroupedVerticalBarChartData extends Node
 
     /**
      * Add a value data point to the series.
-     */
-    public function addValue(BarChartDataValue $point): self
-    {
-        return $this->push('values', $point);
-    }
-
-    /**
-     * Add multiple value data points to the series.
      *
-     * @param iterable<BarChartDataValue> $values
+     * @param BarChartDataValue|iterable<BarChartDataValue> $point
      */
-    public function addValues(iterable $values): self
+    public function addValues(BarChartDataValue|iterable $point): self
     {
-        foreach ($values as $point) {
-            $this->addValue($point);
+        if (is_iterable($point)) {
+            foreach ($point as $item) {
+                $this->push('values', $item);
+            }
+
+            return $this;
         }
 
-        return $this;
+        return $this->push('values', $point);
     }
 
     /**

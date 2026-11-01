@@ -72,32 +72,30 @@ final class GaugeChart extends AbstractChart
 
     /**
      * Add a segment/legend to the gauge chart.
+     *
+     * @param GaugeChartLegend|iterable<GaugeChartLegend> $segment
      */
-    public function addSegment(GaugeChartLegend $segment): self
+    public function addSegments(GaugeChartLegend|iterable $segment): self
     {
+        if (is_iterable($segment)) {
+            foreach ($segment as $item) {
+                $this->push('segments', $item);
+            }
+
+            return $this;
+        }
+
         return $this->push('segments', $segment);
     }
 
     /**
      * Add a legend to the gauge chart.
-     */
-    public function addLegend(GaugeChartLegend $legend): self
-    {
-        return $this->addSegment($legend);
-    }
-
-    /**
-     * Add multiple segments to the gauge chart.
      *
-     * @param iterable<GaugeChartLegend> $segments
+     * @param GaugeChartLegend|iterable<GaugeChartLegend> $legend
      */
-    public function addSegments(iterable $segments): self
+    public function addLegends(GaugeChartLegend|iterable $legend): self
     {
-        foreach ($segments as $segment) {
-            $this->addSegment($segment);
-        }
-
-        return $this;
+        return $this->addSegments($legend);
     }
 
     /**

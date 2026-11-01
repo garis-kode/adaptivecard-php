@@ -27,9 +27,19 @@ final class ChoiceSetInput extends AbstractInput
 
     /**
      * Add a choice to the set.
+     *
+     * @param Choice|iterable<Choice> $choice
      */
-    public function addChoice(Choice $choice): self
+    public function addChoices(Choice|iterable $choice): self
     {
+        if (is_iterable($choice)) {
+            foreach ($choice as $item) {
+                $this->push('choices', $item);
+            }
+
+            return $this;
+        }
+
         return $this->push('choices', $choice);
     }
 
@@ -38,21 +48,7 @@ final class ChoiceSetInput extends AbstractInput
      */
     public function choice(string $title, string $value): self
     {
-        return $this->addChoice(new Choice($title, $value));
-    }
-
-    /**
-     * Add multiple choices to the set.
-     *
-     * @param iterable<Choice> $choices
-     */
-    public function addChoices(iterable $choices): self
-    {
-        foreach ($choices as $choice) {
-            $this->addChoice($choice);
-        }
-
-        return $this;
+        return $this->addChoices(new Choice($title, $value));
     }
 
     /**

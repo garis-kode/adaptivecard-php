@@ -23,24 +23,20 @@ final class TabSet extends AbstractBlockElement
 
     /**
      * Add a page to the tab set.
-     */
-    public function addPage(TabPage $page): self
-    {
-        return $this->push('pages', $page);
-    }
-
-    /**
-     * Add multiple pages to the tab set.
      *
-     * @param iterable<TabPage> $pages
+     * @param TabPage|iterable<TabPage> $page
      */
-    public function addPages(iterable $pages): self
+    public function addPages(TabPage|iterable $page): self
     {
-        foreach ($pages as $page) {
-            $this->addPage($page);
+        if (is_iterable($page)) {
+            foreach ($page as $item) {
+                $this->push('pages', $item);
+            }
+
+            return $this;
         }
 
-        return $this;
+        return $this->push('pages', $page);
     }
 
     /**

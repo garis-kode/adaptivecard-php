@@ -26,24 +26,20 @@ final class ColumnSet extends AbstractBlockElement
 
     /**
      * Add a column to the column set.
-     */
-    public function addColumn(Column $column): self
-    {
-        return $this->push('columns', $column);
-    }
-
-    /**
-     * Add multiple columns to the column set.
      *
-     * @param iterable<Column> $columns
+     * @param Column|iterable<Column> $column
      */
-    public function addColumns(iterable $columns): self
+    public function addColumns(Column|iterable $column): self
     {
-        foreach ($columns as $column) {
-            $this->addColumn($column);
+        if (is_iterable($column)) {
+            foreach ($column as $item) {
+                $this->push('columns', $item);
+            }
+
+            return $this;
         }
 
-        return $this;
+        return $this->push('columns', $column);
     }
 
     /**
@@ -72,7 +68,7 @@ final class ColumnSet extends AbstractBlockElement
             $configure($column);
         }
 
-        return $this->addColumn($column);
+        return $this->addColumns($column);
     }
 
     /**

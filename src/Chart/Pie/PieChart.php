@@ -107,16 +107,6 @@ final class PieChart extends AbstractChart
     }
 
     /**
-     * Add multiple data items to the pie chart.
-     *
-     * @param iterable<DonutChartData> $data
-     */
-    public function addDataList(iterable $data): self
-    {
-        return $this->addData($data);
-    }
-
-    /**
      * The data to display in the chart.
      * Valid values: "DonutChartData".
      *

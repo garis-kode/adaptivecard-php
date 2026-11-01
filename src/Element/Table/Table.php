@@ -50,24 +50,20 @@ final class Table extends AbstractBlockElement
 
     /**
      * Add a column to the table.
-     */
-    public function addColumn(TableColumnDefinition $column): self
-    {
-        return $this->push('columns', $column);
-    }
-
-    /**
-     * Add multiple columns to the table.
      *
-     * @param iterable<TableColumnDefinition> $columns
+     * @param TableColumnDefinition|iterable<TableColumnDefinition> $column
      */
-    public function addColumns(iterable $columns): self
+    public function addColumns(TableColumnDefinition|iterable $column): self
     {
-        foreach ($columns as $column) {
-            $this->addColumn($column);
+        if (is_iterable($column)) {
+            foreach ($column as $item) {
+                $this->push('columns', $item);
+            }
+
+            return $this;
         }
 
-        return $this;
+        return $this->push('columns', $column);
     }
 
     /**
@@ -83,24 +79,20 @@ final class Table extends AbstractBlockElement
 
     /**
      * Add a row to the table.
-     */
-    public function addRow(TableRow $row): self
-    {
-        return $this->push('rows', $row);
-    }
-
-    /**
-     * Add multiple rows to the table.
      *
-     * @param iterable<TableRow> $rows
+     * @param TableRow|iterable<TableRow> $row
      */
-    public function addRows(iterable $rows): self
+    public function addRows(TableRow|iterable $row): self
     {
-        foreach ($rows as $row) {
-            $this->addRow($row);
+        if (is_iterable($row)) {
+            foreach ($row as $item) {
+                $this->push('rows', $item);
+            }
+
+            return $this;
         }
 
-        return $this;
+        return $this->push('rows', $row);
     }
 
     /**
@@ -126,7 +118,7 @@ final class Table extends AbstractBlockElement
             $row->addTextCell($text, static fn (TextBlock $tb) => $tb->wrap(true));
         }
 
-        return $this->addRow($row);
+        return $this->addRows($row);
     }
 
     /**

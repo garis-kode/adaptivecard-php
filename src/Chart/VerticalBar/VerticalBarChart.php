@@ -73,16 +73,6 @@ final class VerticalBarChart extends AbstractCartesianChart
     }
 
     /**
-     * Add multiple data items to the vertical bar chart.
-     *
-     * @param iterable<VerticalBarChartDataValue> $data
-     */
-    public function addDataList(iterable $data): self
-    {
-        return $this->addData($data);
-    }
-
-    /**
      * The data to display in the chart.
      * Valid values: "VerticalBarChartDataValue".
      *

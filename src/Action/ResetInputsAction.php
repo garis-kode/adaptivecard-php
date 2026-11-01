@@ -27,24 +27,20 @@ final class ResetInputsAction extends AbstractAction
 
     /**
      * Add an input ID to the list of inputs that should be reset.
-     */
-    public function addTargetInputId(string $id): self
-    {
-        return $this->push('targetInputIds', $id);
-    }
-
-    /**
-     * Add multiple input IDs to the list of inputs that should be reset.
      *
-     * @param iterable<string> $targetInputIds
+     * @param string|iterable<string> $id
      */
-    public function addTargetInputIds(iterable $targetInputIds): self
+    public function addTargetInputIds(string|iterable $id): self
     {
-        foreach ($targetInputIds as $id) {
-            $this->addTargetInputId($id);
+        if (is_iterable($id)) {
+            foreach ($id as $item) {
+                $this->push('targetInputIds', $item);
+            }
+
+            return $this;
         }
 
-        return $this;
+        return $this->push('targetInputIds', $id);
     }
 
     /**

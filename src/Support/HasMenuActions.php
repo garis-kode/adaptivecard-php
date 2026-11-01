@@ -10,24 +10,20 @@ trait HasMenuActions
 {
     /**
      * Add an action to the flyout menu.
-     */
-    public function addMenuAction(AbstractAction $action): static
-    {
-        return $this->push('menuActions', $action);
-    }
-
-    /**
-     * Add multiple actions to the flyout menu.
      *
-     * @param iterable<AbstractAction> $actions
+     * @param AbstractAction|iterable<AbstractAction> $action
      */
-    public function addMenuActions(iterable $actions): static
+    public function addMenuActions(AbstractAction|iterable $action): static
     {
-        foreach ($actions as $action) {
-            $this->addMenuAction($action);
+        if (is_iterable($action)) {
+            foreach ($action as $item) {
+                $this->push('menuActions', $item);
+            }
+
+            return $this;
         }
 
-        return $this;
+        return $this->push('menuActions', $action);
     }
 
     /**

@@ -154,24 +154,20 @@ abstract class AbstractAction extends Node
 
     /**
      * Add a theme-specific icon URL.
-     */
-    public function addThemedIconUrl(ThemedUrl $themedUrl): static
-    {
-        return $this->push('themedIconUrls', $themedUrl);
-    }
-
-    /**
-     * Add multiple theme-specific icon URLs.
      *
-     * @param iterable<ThemedUrl> $themedUrls
+     * @param ThemedUrl|iterable<ThemedUrl> $themedUrl
      */
-    public function addThemedIconUrls(iterable $themedUrls): static
+    public function addThemedIconUrls(ThemedUrl|iterable $themedUrl): static
     {
-        foreach ($themedUrls as $themedUrl) {
-            $this->addThemedIconUrl($themedUrl);
+        if (is_iterable($themedUrl)) {
+            foreach ($themedUrl as $item) {
+                $this->push('themedIconUrls', $item);
+            }
+
+            return $this;
         }
 
-        return $this;
+        return $this->push('themedIconUrls', $themedUrl);
     }
 
     /**
@@ -187,24 +183,20 @@ abstract class AbstractAction extends Node
 
     /**
      * Add a theme-specific icon URL to use when the action is in the toggled state.
-     */
-    public function addToggledThemedIconUrl(ThemedUrl $themedUrl): static
-    {
-        return $this->push('themedIconUrls.toggled', $themedUrl);
-    }
-
-    /**
-     * Add multiple theme-specific icon URLs to use when the action is in the toggled state.
      *
-     * @param iterable<ThemedUrl> $themedUrls
+     * @param ThemedUrl|iterable<ThemedUrl> $themedUrl
      */
-    public function addToggledThemedIconUrls(iterable $themedUrls): static
+    public function addToggledThemedIconUrls(ThemedUrl|iterable $themedUrl): static
     {
-        foreach ($themedUrls as $themedUrl) {
-            $this->addToggledThemedIconUrl($themedUrl);
+        if (is_iterable($themedUrl)) {
+            foreach ($themedUrl as $item) {
+                $this->push('themedIconUrls.toggled', $item);
+            }
+
+            return $this;
         }
 
-        return $this;
+        return $this->push('themedIconUrls.toggled', $themedUrl);
     }
 
     /**

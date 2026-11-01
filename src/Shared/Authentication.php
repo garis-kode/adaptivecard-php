@@ -46,24 +46,20 @@ final class Authentication extends Node
 
     /**
      * Add a button that should be displayed to the user to authenticate.
-     */
-    public function addButton(AuthCardButton $button): self
-    {
-        return $this->push('buttons', $button);
-    }
-
-    /**
-     * Add multiple buttons that should be displayed to the user to authenticate.
      *
-     * @param iterable<AuthCardButton> $buttons
+     * @param AuthCardButton|iterable<AuthCardButton> $button
      */
-    public function addButtons(iterable $buttons): self
+    public function addButtons(AuthCardButton|iterable $button): self
     {
-        foreach ($buttons as $button) {
-            $this->addButton($button);
+        if (is_iterable($button)) {
+            foreach ($button as $item) {
+                $this->push('buttons', $item);
+            }
+
+            return $this;
         }
 
-        return $this;
+        return $this->push('buttons', $button);
     }
 
     /**

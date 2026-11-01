@@ -19,9 +19,19 @@ final class AreaGridLayout extends AbstractLayout
     /**
      * Add a column definition to the area grid layout. Columns can be defined
      * as a percentage of the available width (number) or in pixels ("<number>px").
+     *
+     * @param int|float|string|iterable<int|float|string> $column
      */
-    public function addColumn(int|float|string $column): self
+    public function addColumns(int|float|string|iterable $column): self
     {
+        if (is_iterable($column)) {
+            foreach ($column as $item) {
+                $this->push('columns', $item);
+            }
+
+            return $this;
+        }
+
         return $this->push('columns', $column);
     }
 
@@ -33,34 +43,25 @@ final class AreaGridLayout extends AbstractLayout
      */
     public function columns(iterable $columns): self
     {
-        $items = [];
-        foreach ($columns as $column) {
-            $items[] = $column;
-        }
-
-        return $this->set('columns', $items);
+        return $this->addColumns($columns);
     }
 
     /**
      * Add an area definition to the grid layout.
-     */
-    public function addArea(GridArea $area): self
-    {
-        return $this->push('areas', $area);
-    }
-
-    /**
-     * Add multiple area definitions to the grid layout.
      *
-     * @param iterable<GridArea> $areas
+     * @param GridArea|iterable<GridArea> $area
      */
-    public function addAreas(iterable $areas): self
+    public function addAreas(GridArea|iterable $area): self
     {
-        foreach ($areas as $area) {
-            $this->addArea($area);
+        if (is_iterable($area)) {
+            foreach ($area as $item) {
+                $this->push('areas', $item);
+            }
+
+            return $this;
         }
 
-        return $this;
+        return $this->push('areas', $area);
     }
 
     /**

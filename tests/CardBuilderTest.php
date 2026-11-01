@@ -127,45 +127,45 @@ final class CardBuilderTest extends TestCase
             })
             ->addTable(function (Table $table): void {
                 $table->targetWidth(TargetWidth::Narrow)
-                    ->addColumn(TableColumnDefinition::make(2))
-                    ->addColumn(TableColumnDefinition::make(3))
-                    ->addRow(
+                    ->addColumns(TableColumnDefinition::make(2))
+                    ->addColumns(TableColumnDefinition::make(3))
+                    ->addRows(
                         TableRow::make()
                             ->verticalCellContentAlignment(VerticalAlignment::Center)
-                            ->addCell(
+                            ->addCells(
                                 TableCell::make()->addTextBlock('Account', function (TextBlock $t): void {
                                     $t->wrap(true)->isSubtle(true);
                                 })
                             )
-                            ->addCell(
+                            ->addCells(
                                 TableCell::make()->addTextBlock('Fourth Coffee', function (TextBlock $t): void {
                                     $t->wrap(true);
                                 })
                             )
                     )
-                    ->addRow(
+                    ->addRows(
                         TableRow::make()
                             ->verticalCellContentAlignment(VerticalAlignment::Center)
-                            ->addCell(
+                            ->addCells(
                                 TableCell::make()->addTextBlock('Est. Revenue', function (TextBlock $t): void {
                                     $t->wrap(true)->isSubtle(true);
                                 })
                             )
-                            ->addCell(
+                            ->addCells(
                                 TableCell::make()->addTextBlock('$3,000,000.00', function (TextBlock $t): void {
                                     $t->wrap(true);
                                 })
                             )
                     )
-                    ->addRow(
+                    ->addRows(
                         TableRow::make()
                             ->verticalCellContentAlignment(VerticalAlignment::Center)
-                            ->addCell(
+                            ->addCells(
                                 TableCell::make()->addTextBlock('Owner', function (TextBlock $t): void {
                                     $t->wrap(true)->isSubtle(true);
                                 })
                             )
-                            ->addCell(
+                            ->addCells(
                                 TableCell::make()->addColumnSet(function (ColumnSet $cs): void {
                                     $cs->column(Width::Auto, function (Column $c): void {
                                         $c->verticalContentAlignment(VerticalAlignment::Center)
@@ -297,7 +297,7 @@ final class CardBuilderTest extends TestCase
                                         ->rtl(false)
                                         ->addRichTextBlock(function (RichTextBlock $rtb) use ($createToggleAction): void {
                                             $rtb->id('showMore1')
-                                                ->addInline(
+                                                ->addInlines(
                                                     TextRun::make('See more')
                                                         ->selectAction($createToggleAction())
                                                 );
@@ -305,7 +305,7 @@ final class CardBuilderTest extends TestCase
                                         ->addRichTextBlock(function (RichTextBlock $rtb) use ($createToggleAction): void {
                                             $rtb->id('showLess1')
                                                 ->isVisible(false)
-                                                ->addInline(
+                                                ->addInlines(
                                                     TextRun::make('See less')
                                                         ->selectAction($createToggleAction())
                                                 );
@@ -340,7 +340,7 @@ final class CardBuilderTest extends TestCase
                     $c->verticalContentAlignment(VerticalAlignment::Center)
                         ->addRichTextBlock(function (RichTextBlock $rtb) use ($createToggleAction): void {
                             $rtb->id('showMore2')
-                                ->addInline(
+                                ->addInlines(
                                     TextRun::make('See more')
                                         ->selectAction($createToggleAction())
                                 );
@@ -348,7 +348,7 @@ final class CardBuilderTest extends TestCase
                         ->addRichTextBlock(function (RichTextBlock $rtb) use ($createToggleAction): void {
                             $rtb->id('showLess2')
                                 ->isVisible(false)
-                                ->addInline(
+                                ->addInlines(
                                     TextRun::make('See less')
                                         ->selectAction($createToggleAction())
                                 );
@@ -380,7 +380,7 @@ final class CardBuilderTest extends TestCase
             ->addActionSet(function (ActionSet $as): void {
                 $as->separator(true)
                     ->spacing(Spacing::ExtraLarge)
-                    ->addAction(OpenUrlAction::make('https://adaptivecards.io/', 'View Details'));
+                    ->addActions(OpenUrlAction::make('https://adaptivecards.io/', 'View Details'));
             });
 
         $expected = [
@@ -1023,8 +1023,8 @@ final class CardBuilderTest extends TestCase
                     ->wrap(true);
             })
             ->addActionSet(function (ActionSet $as): void {
-                $as->addAction(OpenUrlAction::make('https://adaptivecards.io/', 'Open'))
-                    ->addAction(
+                $as->addActions(OpenUrlAction::make('https://adaptivecards.io/', 'Open'))
+                    ->addActions(
                         OpenUrlAction::make('https://adaptivecards.io/', 'Remind me')
                             ->iconUrl('icon:AlertUrgent')
                     );
@@ -1282,10 +1282,10 @@ final class CardBuilderTest extends TestCase
                         ->addActionSet(function (ActionSet $as) use ($toggleTargets): void {
                             $as->targetWidth(TargetWidth::AtLeastStandard)
                                 ->spacing(Spacing::Medium)
-                                ->addAction(
+                                ->addActions(
                                     ToggleVisibilityAction::make('Like')->targetElements($toggleTargets)
                                 )
-                                ->addAction(
+                                ->addActions(
                                     SubmitAction::make('Comment')
                                 );
                         });
@@ -1389,10 +1389,10 @@ final class CardBuilderTest extends TestCase
             ->addActionSet(function (ActionSet $as) use ($toggleTargets): void {
                 $as->targetWidth(TargetWidth::AtMostNarrow)
                     ->spacing(Spacing::Medium)
-                    ->addAction(
+                    ->addActions(
                         ToggleVisibilityAction::make('Like')->targetElements($toggleTargets)
                     )
-                    ->addAction(
+                    ->addActions(
                         SubmitAction::make('Comment')
                     );
             });
@@ -1941,7 +1941,7 @@ final class CardBuilderTest extends TestCase
                 $rtb->id('showMore')
                     ->targetWidth(TargetWidth::AtLeastNarrow)
                     ->spacing(Spacing::None)
-                    ->addInline(
+                    ->addInlines(
                         TextRun::make('Show more')
                             ->selectAction(
                                 ToggleVisibilityAction::make()->targetElements($toggleTargets)
@@ -1953,7 +1953,7 @@ final class CardBuilderTest extends TestCase
                     ->targetWidth(TargetWidth::AtLeastNarrow)
                     ->spacing(Spacing::None)
                     ->isVisible(false)
-                    ->addInline(
+                    ->addInlines(
                         TextRun::make('Show less')
                             ->selectAction(
                                 ToggleVisibilityAction::make()->targetElements($toggleTargets)
@@ -1963,14 +1963,14 @@ final class CardBuilderTest extends TestCase
             ->addActionSet(function (ActionSet $as): void {
                 $as->spacing(Spacing::Large)
                     ->targetWidth(TargetWidth::AtLeastNarrow)
-                    ->addAction(OpenUrlAction::make('https://adaptivecards.io/', 'Open'))
-                    ->addAction(ExecuteAction::make('Bookmark')->iconUrl('icon:Bookmark'));
+                    ->addActions(OpenUrlAction::make('https://adaptivecards.io/', 'Open'))
+                    ->addActions(ExecuteAction::make('Bookmark')->iconUrl('icon:Bookmark'));
             })
             ->addActionSet(function (ActionSet $as): void {
                 $as->spacing(Spacing::Large)
                     ->targetWidth(TargetWidth::VeryNarrow)
-                    ->addAction(OpenUrlAction::make('https://adaptivecards.io/', 'Open'))
-                    ->addAction(ExecuteAction::make()->iconUrl('icon:Bookmark'));
+                    ->addActions(OpenUrlAction::make('https://adaptivecards.io/', 'Open'))
+                    ->addActions(ExecuteAction::make()->iconUrl('icon:Bookmark'));
             });
 
         $expected = [
@@ -2171,7 +2171,7 @@ final class CardBuilderTest extends TestCase
             ->schema('https://adaptivecards.io/schemas/adaptive-card.json')
             ->speak('Version 2.2 performance optimization')
             ->addRichTextBlock(function (RichTextBlock $rtb): void {
-                $rtb->addInline(
+                $rtb->addInlines(
                     TextRun::make('Android Scrum Project / SSP-98')
                         ->size(TextSize::Small)
                         ->selectAction(OpenUrlAction::make('https://adaptivecards.io'))
@@ -2196,11 +2196,11 @@ final class CardBuilderTest extends TestCase
             })
             ->addTable(function (Table $table): void {
                 $table->targetWidth(TargetWidth::AtLeastNarrow)
-                    ->addColumn(TableColumnDefinition::make(1))
-                    ->addColumn(TableColumnDefinition::make(2))
-                    ->addRow(
+                    ->addColumns(TableColumnDefinition::make(1))
+                    ->addColumns(TableColumnDefinition::make(2))
+                    ->addRows(
                         TableRow::make()
-                            ->addCell(
+                            ->addCells(
                                 TableCell::make()
                                     ->verticalContentAlignment(VerticalAlignment::Center)
                                     ->addTextBlock('Status', function (TextBlock $t): void {
@@ -2208,7 +2208,7 @@ final class CardBuilderTest extends TestCase
                                             ->weight(TextWeight::Bolder);
                                     })
                             )
-                            ->addCell(
+                            ->addCells(
                                 TableCell::make()
                                     ->verticalContentAlignment(VerticalAlignment::Center)
                                     ->addTextBlock('Waiting for Review', function (TextBlock $t): void {
@@ -2216,25 +2216,25 @@ final class CardBuilderTest extends TestCase
                                     })
                             )
                     )
-                    ->addRow(
+                    ->addRows(
                         TableRow::make()
-                            ->addCell(
+                            ->addCells(
                                 TableCell::make()
                                     ->addTextBlock('Due Date', function (TextBlock $t): void {
                                         $t->wrap(true)
                                             ->weight(TextWeight::Bolder);
                                     })
                             )
-                            ->addCell(
+                            ->addCells(
                                 TableCell::make()
                                     ->addTextBlock('May 21, 2023', function (TextBlock $t): void {
                                         $t->wrap(true);
                                     })
                             )
                     )
-                    ->addRow(
+                    ->addRows(
                         TableRow::make()
-                            ->addCell(
+                            ->addCells(
                                 TableCell::make()
                                     ->verticalContentAlignment(VerticalAlignment::Center)
                                     ->addTextBlock('Priority', function (TextBlock $t): void {
@@ -2242,7 +2242,7 @@ final class CardBuilderTest extends TestCase
                                             ->weight(TextWeight::Bolder);
                                     })
                             )
-                            ->addCell(
+                            ->addCells(
                                 TableCell::make()
                                     ->verticalContentAlignment(VerticalAlignment::Center)
                                     ->addColumnSet(function (ColumnSet $cs): void {
@@ -2265,9 +2265,9 @@ final class CardBuilderTest extends TestCase
                                     })
                             )
                     )
-                    ->addRow(
+                    ->addRows(
                         TableRow::make()
-                            ->addCell(
+                            ->addCells(
                                 TableCell::make()
                                     ->verticalContentAlignment(VerticalAlignment::Center)
                                     ->addTextBlock('Assigned To', function (TextBlock $t): void {
@@ -2275,7 +2275,7 @@ final class CardBuilderTest extends TestCase
                                             ->weight(TextWeight::Bolder);
                                     })
                             )
-                            ->addCell(
+                            ->addCells(
                                 TableCell::make()
                                     ->addColumnSet(function (ColumnSet $cs): void {
                                         $cs->column(Width::Auto, function (Column $c): void {
@@ -2365,14 +2365,14 @@ final class CardBuilderTest extends TestCase
             ->addActionSet(function (ActionSet $as): void {
                 $as->spacing(Spacing::ExtraLarge)
                     ->targetWidth(TargetWidth::AtLeastNarrow)
-                    ->addAction(OpenUrlAction::make('https://adaptivecards.io/', 'Comment'))
-                    ->addAction(OpenUrlAction::make('https://adaptivecards.io/', 'Edit Issue'));
+                    ->addActions(OpenUrlAction::make('https://adaptivecards.io/', 'Comment'))
+                    ->addActions(OpenUrlAction::make('https://adaptivecards.io/', 'Edit Issue'));
             })
             ->addActionSet(function (ActionSet $as): void {
                 $as->spacing(Spacing::ExtraLarge)
                     ->targetWidth(TargetWidth::VeryNarrow)
-                    ->addAction(OpenUrlAction::make('https://adaptivecards.io/', 'Comment'))
-                    ->addAction(OpenUrlAction::make('https://adaptivecards.io/')->iconUrl('icon:Edit'));
+                    ->addActions(OpenUrlAction::make('https://adaptivecards.io/', 'Comment'))
+                    ->addActions(OpenUrlAction::make('https://adaptivecards.io/')->iconUrl('icon:Edit'));
             });
 
         $expected = [
