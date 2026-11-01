@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Chart\VerticalBar;
 
-use AdaptiveCards\Chart\Data\BarChartDataValue;
+use AdaptiveCards\Chart\HorizontalBar\BarChartDataValue;
 use AdaptiveCards\Enum\ChartColor;
 use AdaptiveCards\Node;
 use AdaptiveCards\Support\HasKey;

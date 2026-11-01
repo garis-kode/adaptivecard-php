@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Support;
 
-use AdaptiveCards\Chart\DonutChart;
-use AdaptiveCards\Chart\DonutChartData;
+use AdaptiveCards\Chart\Donut\DonutChart;
+use AdaptiveCards\Chart\Donut\DonutChartData;
 use AdaptiveCards\Chart\Gauge\GaugeChart;
 use AdaptiveCards\Chart\Gauge\GaugeChartLegend;
 use AdaptiveCards\Chart\HorizontalBar\HorizontalBarChart;
 use AdaptiveCards\Chart\HorizontalBar\HorizontalBarChartDataValue;
 use AdaptiveCards\Chart\HorizontalBar\StackedHorizontalBarChart;
 use AdaptiveCards\Chart\HorizontalBar\StackedHorizontalBarChartData;
-use AdaptiveCards\Chart\LineChart;
-use AdaptiveCards\Chart\LineChartData;
-use AdaptiveCards\Chart\PieChart;
+use AdaptiveCards\Chart\Line\LineChart;
+use AdaptiveCards\Chart\Line\LineChartData;
+use AdaptiveCards\Chart\Pie\PieChart;
 use AdaptiveCards\Chart\VerticalBar\GroupedVerticalBarChart;
 use AdaptiveCards\Chart\VerticalBar\GroupedVerticalBarChartData;
 use AdaptiveCards\Chart\VerticalBar\VerticalBarChart;

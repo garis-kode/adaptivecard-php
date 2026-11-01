@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace AdaptiveCards\Chart\HorizontalBar;
 
 use AdaptiveCards\Chart\AbstractCartesianChart;
-use AdaptiveCards\Chart\Data\BarChartDataValue;
 use AdaptiveCards\Enum\ChartColorSet;
 use AdaptiveCards\Enum\ChartDisplayMode;
 

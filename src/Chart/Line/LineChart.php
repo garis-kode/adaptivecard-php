@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace AdaptiveCards\Chart;
+namespace AdaptiveCards\Chart\Line;
 
+use AdaptiveCards\Chart\AbstractCartesianChart;
 use AdaptiveCards\Enum\ChartColorSet;
 use AdaptiveCards\Enum\Width;
 
@@ -99,6 +100,16 @@ final class LineChart extends AbstractCartesianChart
         }
 
         return $this->push('data', $data);
+    }
+
+    /**
+     * Add multiple data items to the line chart.
+     *
+     * @param iterable<LineChartData> $data
+     */
+    public function addDataList(iterable $data): self
+    {
+        return $this->addData($data);
     }
 
     /**

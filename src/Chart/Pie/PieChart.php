@@ -2,15 +2,17 @@
 
 declare(strict_types=1);
 
-namespace AdaptiveCards\Chart;
+namespace AdaptiveCards\Chart\Pie;
 
+use AdaptiveCards\Chart\AbstractChart;
+use AdaptiveCards\Chart\Donut\DonutChartData;
 use AdaptiveCards\Enum\ChartColor;
 use AdaptiveCards\Enum\ChartThickness;
 
 /**
- * A donut chart.
+ * A pie chart.
  */
-final class DonutChart extends AbstractChart
+final class PieChart extends AbstractChart
 {
     /**
      * @param iterable<DonutChartData>|null $data
@@ -21,7 +23,7 @@ final class DonutChart extends AbstractChart
         ?iterable $data = null,
     ) {
         $this->title($title);
-     
+      
         if ($showTitle !== null) {
             $this->showTitle($showTitle);
         }
@@ -59,8 +61,7 @@ final class DonutChart extends AbstractChart
     }
 
     /**
-     * The value that should be displayed in the center of a Donut chart. `value` is
-     * ignored for Pie charts.
+     * The value that should be displayed in the center of a Donut chart. `value` is ignored for Pie charts.
      */
     public function value(string|int|float $value): self
     {
@@ -88,7 +89,7 @@ final class DonutChart extends AbstractChart
     }
 
     /**
-     * Add data to the donut chart (accepts a single item or an iterable of items).
+     * Add data to the pie chart (accepts a single item or an iterable of items).
      *
      * @param DonutChartData|iterable<DonutChartData> $data
      */
@@ -106,7 +107,7 @@ final class DonutChart extends AbstractChart
     }
 
     /**
-     * Add multiple data items to the donut chart.
+     * Add multiple data items to the pie chart.
      *
      * @param iterable<DonutChartData> $data
      */
@@ -128,7 +129,6 @@ final class DonutChart extends AbstractChart
 
     public function getType(): string
     {
-        return 'Chart.Donut';
+        return 'Chart.Pie';
     }
 }
-

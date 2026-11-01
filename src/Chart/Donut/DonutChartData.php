@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace AdaptiveCards\Chart;
+namespace AdaptiveCards\Chart\Donut;
 
 use AdaptiveCards\Enum\ChartColor;
 use AdaptiveCards\Node;

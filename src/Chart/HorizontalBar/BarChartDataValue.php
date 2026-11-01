@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace AdaptiveCards\Chart\Data;
+namespace AdaptiveCards\Chart\HorizontalBar;
 
 use AdaptiveCards\Node;
 use AdaptiveCards\Support\HasKey;
