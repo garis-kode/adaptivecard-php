@@ -22,7 +22,7 @@
                 },
                 {
                     "type": "Column",
-                    "targetWidth": "AtLeast:Standard",
+                    "targetWidth": "atLeast:Standard",
                     "width": "auto",
                     "items": [
                         {
@@ -47,7 +47,7 @@
                 },
                 {
                     "type": "Column",
-                    "targetWidth": "AtLeast:Standard",
+                    "targetWidth": "atLeast:Standard",
                     "width": "auto",
                     "separator": true,
                     "items": [
@@ -81,7 +81,7 @@
         },
         {
             "type": "TextBlock",
-            "targetWidth": "AtMost:Narrow",
+            "targetWidth": "atMost:Narrow",
             "text": "In Progress",
             "color": "Good",
             "weight": "Bolder",
@@ -89,7 +89,7 @@
         },
         {
             "type": "TextBlock",
-            "targetWidth": "AtMost:Narrow",
+            "targetWidth": "atMost:Narrow",
             "text": "91 - Grade A",
             "wrap": true,
             "weight": "Bolder",
@@ -290,7 +290,7 @@
         },
         {
             "type": "ColumnSet",
-            "targetWidth": "AtLeast:Standard",
+            "targetWidth": "atLeast:Standard",
             "columns": [
                 {
                     "type": "Column",
@@ -425,7 +425,7 @@
                             "columns": [
                                 {
                                     "type": "Column",
-                                    "targetWidth": "AtLeast:Narrow",
+                                    "targetWidth": "atLeast:Narrow",
                                     "width": "auto",
                                     "items": [
                                         {
@@ -438,15 +438,33 @@
                                                     "selectAction": {
                                                         "type": "Action.ToggleVisibility",
                                                         "targetElements": [
-                                                            "showMore1",
-                                                            "showLess1",
-                                                            "showMore2",
-                                                            "showLess2",
-                                                            "chevronDown1",
-                                                            "chevronUp1",
-                                                            "chevronDown2",
-                                                            "chevronUp2",
-                                                            "moreText"
+                                                            {
+                                                                "elementId": "showMore1"
+                                                            },
+                                                            {
+                                                                "elementId": "showLess1"
+                                                            },
+                                                            {
+                                                                "elementId": "showMore2"
+                                                            },
+                                                            {
+                                                                "elementId": "showLess2"
+                                                            },
+                                                            {
+                                                                "elementId": "chevronDown1"
+                                                            },
+                                                            {
+                                                                "elementId": "chevronUp1"
+                                                            },
+                                                            {
+                                                                "elementId": "chevronDown2"
+                                                            },
+                                                            {
+                                                                "elementId": "chevronUp2"
+                                                            },
+                                                            {
+                                                                "elementId": "moreText"
+                                                            }
                                                         ]
                                                     }
                                                 }
@@ -463,15 +481,33 @@
                                                     "selectAction": {
                                                         "type": "Action.ToggleVisibility",
                                                         "targetElements": [
-                                                            "showMore1",
-                                                            "showLess1",
-                                                            "showMore2",
-                                                            "showLess2",
-                                                            "chevronDown1",
-                                                            "chevronUp1",
-                                                            "chevronDown2",
-                                                            "chevronUp2",
-                                                            "moreText"
+                                                            {
+                                                                "elementId": "showMore1"
+                                                            },
+                                                            {
+                                                                "elementId": "showLess1"
+                                                            },
+                                                            {
+                                                                "elementId": "showMore2"
+                                                            },
+                                                            {
+                                                                "elementId": "showLess2"
+                                                            },
+                                                            {
+                                                                "elementId": "chevronDown1"
+                                                            },
+                                                            {
+                                                                "elementId": "chevronUp1"
+                                                            },
+                                                            {
+                                                                "elementId": "chevronDown2"
+                                                            },
+                                                            {
+                                                                "elementId": "chevronUp2"
+                                                            },
+                                                            {
+                                                                "elementId": "moreText"
+                                                            }
                                                         ]
                                                     }
                                                 }
@@ -483,7 +519,7 @@
                                 },
                                 {
                                     "type": "Column",
-                                    "targetWidth": "AtLeast:Narrow",
+                                    "targetWidth": "atLeast:Narrow",
                                     "width": "auto",
                                     "items": [
                                         {
@@ -495,15 +531,33 @@
                                             "selectAction": {
                                                 "type": "Action.ToggleVisibility",
                                                 "targetElements": [
-                                                    "showMore1",
-                                                    "showLess1",
-                                                    "showMore2",
-                                                    "showLess2",
-                                                    "chevronDown1",
-                                                    "chevronUp1",
-                                                    "chevronDown2",
-                                                    "chevronUp2",
-                                                    "moreText"
+                                                    {
+                                                        "elementId": "showMore1"
+                                                    },
+                                                    {
+                                                        "elementId": "showLess1"
+                                                    },
+                                                    {
+                                                        "elementId": "showMore2"
+                                                    },
+                                                    {
+                                                        "elementId": "showLess2"
+                                                    },
+                                                    {
+                                                        "elementId": "chevronDown1"
+                                                    },
+                                                    {
+                                                        "elementId": "chevronUp1"
+                                                    },
+                                                    {
+                                                        "elementId": "chevronDown2"
+                                                    },
+                                                    {
+                                                        "elementId": "chevronUp2"
+                                                    },
+                                                    {
+                                                        "elementId": "moreText"
+                                                    }
                                                 ]
                                             }
                                         },
@@ -517,15 +571,33 @@
                                             "selectAction": {
                                                 "type": "Action.ToggleVisibility",
                                                 "targetElements": [
-                                                    "showMore1",
-                                                    "showLess1",
-                                                    "showMore2",
-                                                    "showLess2",
-                                                    "chevronDown1",
-                                                    "chevronUp1",
-                                                    "chevronDown2",
-                                                    "chevronUp2",
-                                                    "moreText"
+                                                    {
+                                                        "elementId": "showMore1"
+                                                    },
+                                                    {
+                                                        "elementId": "showLess1"
+                                                    },
+                                                    {
+                                                        "elementId": "showMore2"
+                                                    },
+                                                    {
+                                                        "elementId": "showLess2"
+                                                    },
+                                                    {
+                                                        "elementId": "chevronDown1"
+                                                    },
+                                                    {
+                                                        "elementId": "chevronUp1"
+                                                    },
+                                                    {
+                                                        "elementId": "chevronDown2"
+                                                    },
+                                                    {
+                                                        "elementId": "chevronUp2"
+                                                    },
+                                                    {
+                                                        "elementId": "moreText"
+                                                    }
                                                 ]
                                             }
                                         }
@@ -560,15 +632,33 @@
                                     "selectAction": {
                                         "type": "Action.ToggleVisibility",
                                         "targetElements": [
-                                            "showMore1",
-                                            "showLess1",
-                                            "showMore2",
-                                            "showLess2",
-                                            "chevronDown1",
-                                            "chevronUp1",
-                                            "chevronDown2",
-                                            "chevronUp2",
-                                            "moreText"
+                                            {
+                                                "elementId": "showMore1"
+                                            },
+                                            {
+                                                "elementId": "showLess1"
+                                            },
+                                            {
+                                                "elementId": "showMore2"
+                                            },
+                                            {
+                                                "elementId": "showLess2"
+                                            },
+                                            {
+                                                "elementId": "chevronDown1"
+                                            },
+                                            {
+                                                "elementId": "chevronUp1"
+                                            },
+                                            {
+                                                "elementId": "chevronDown2"
+                                            },
+                                            {
+                                                "elementId": "chevronUp2"
+                                            },
+                                            {
+                                                "elementId": "moreText"
+                                            }
                                         ]
                                     }
                                 }
@@ -585,15 +675,33 @@
                                     "selectAction": {
                                         "type": "Action.ToggleVisibility",
                                         "targetElements": [
-                                            "showMore1",
-                                            "showLess1",
-                                            "showMore2",
-                                            "showLess2",
-                                            "chevronDown1",
-                                            "chevronUp1",
-                                            "chevronDown2",
-                                            "chevronUp2",
-                                            "moreText"
+                                            {
+                                                "elementId": "showMore1"
+                                            },
+                                            {
+                                                "elementId": "showLess1"
+                                            },
+                                            {
+                                                "elementId": "showMore2"
+                                            },
+                                            {
+                                                "elementId": "showLess2"
+                                            },
+                                            {
+                                                "elementId": "chevronDown1"
+                                            },
+                                            {
+                                                "elementId": "chevronUp1"
+                                            },
+                                            {
+                                                "elementId": "chevronDown2"
+                                            },
+                                            {
+                                                "elementId": "chevronUp2"
+                                            },
+                                            {
+                                                "elementId": "moreText"
+                                            }
                                         ]
                                     }
                                 }
@@ -615,15 +723,33 @@
                             "selectAction": {
                                 "type": "Action.ToggleVisibility",
                                 "targetElements": [
-                                    "showMore1",
-                                    "showLess1",
-                                    "showMore2",
-                                    "showLess2",
-                                    "chevronDown1",
-                                    "chevronUp1",
-                                    "chevronDown2",
-                                    "chevronUp2",
-                                    "moreText"
+                                    {
+                                        "elementId": "showMore1"
+                                    },
+                                    {
+                                        "elementId": "showLess1"
+                                    },
+                                    {
+                                        "elementId": "showMore2"
+                                    },
+                                    {
+                                        "elementId": "showLess2"
+                                    },
+                                    {
+                                        "elementId": "chevronDown1"
+                                    },
+                                    {
+                                        "elementId": "chevronUp1"
+                                    },
+                                    {
+                                        "elementId": "chevronDown2"
+                                    },
+                                    {
+                                        "elementId": "chevronUp2"
+                                    },
+                                    {
+                                        "elementId": "moreText"
+                                    }
                                 ]
                             }
                         },
@@ -637,15 +763,33 @@
                             "selectAction": {
                                 "type": "Action.ToggleVisibility",
                                 "targetElements": [
-                                    "showMore1",
-                                    "showLess1",
-                                    "showMore2",
-                                    "showLess2",
-                                    "chevronDown1",
-                                    "chevronUp1",
-                                    "chevronDown2",
-                                    "chevronUp2",
-                                    "moreText"
+                                    {
+                                        "elementId": "showMore1"
+                                    },
+                                    {
+                                        "elementId": "showLess1"
+                                    },
+                                    {
+                                        "elementId": "showMore2"
+                                    },
+                                    {
+                                        "elementId": "showLess2"
+                                    },
+                                    {
+                                        "elementId": "chevronDown1"
+                                    },
+                                    {
+                                        "elementId": "chevronUp1"
+                                    },
+                                    {
+                                        "elementId": "chevronDown2"
+                                    },
+                                    {
+                                        "elementId": "chevronUp2"
+                                    },
+                                    {
+                                        "elementId": "moreText"
+                                    }
                                 ]
                             }
                         }

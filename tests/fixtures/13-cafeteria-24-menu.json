@@ -21,7 +21,7 @@
                 }
             ],
             "verticalContentAlignment": "Bottom",
-            "targetWidth": "AtLeast:Narrow"
+            "targetWidth": "atLeast:Narrow"
         },
         {
             "type": "Container",
@@ -67,7 +67,7 @@
                                         {
                                             "type": "Container",
                                             "backgroundImage": {
-                                                "fillMode": "RepeatHorizontally",
+                                                "fillMode": "repeatHorizontally",
                                                 "verticalAlignment": "Center",
                                                 "url": "https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Adaptive-Card-Samples/main/samples/cafe-menu/assets/tabline.png"
                                             },
@@ -91,8 +91,12 @@
                                     "selectAction": {
                                         "type": "Action.ToggleVisibility",
                                         "targetElements": [
-                                            "menu",
-                                            "info"
+                                            {
+                                                "elementId": "menu"
+                                            },
+                                            {
+                                                "elementId": "info"
+                                            }
                                         ]
                                     }
                                 }
@@ -204,7 +208,7 @@
                                     "spacing": "ExtraSmall"
                                 }
                             ],
-                            "targetWidth": "AtLeast:Narrow"
+                            "targetWidth": "atLeast:Narrow"
                         },
                         {
                             "type": "Container",
@@ -320,7 +324,7 @@
                                     "spacing": "ExtraSmall"
                                 }
                             ],
-                            "targetWidth": "AtLeast:Narrow"
+                            "targetWidth": "atLeast:Narrow"
                         },
                         {
                             "type": "Container",
@@ -458,7 +462,7 @@
                                     "spacing": "ExtraSmall"
                                 }
                             ],
-                            "targetWidth": "AtLeast:Narrow"
+                            "targetWidth": "atLeast:Narrow"
                         },
                         {
                             "type": "Container",
@@ -527,8 +531,12 @@
                             "selectAction": {
                                 "type": "Action.ToggleVisibility",
                                 "targetElements": [
-                                    "menu",
-                                    "info"
+                                    {
+                                        "elementId": "menu"
+                                    },
+                                    {
+                                        "elementId": "info"
+                                    }
                                 ]
                             }
                         },
@@ -546,7 +554,7 @@
                                 {
                                     "type": "Container",
                                     "backgroundImage": {
-                                        "fillMode": "RepeatHorizontally",
+                                        "fillMode": "repeatHorizontally",
                                         "verticalAlignment": "Center",
                                         "url": "https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Adaptive-Card-Samples/main/samples/cafe-menu/assets/tabline.png"
                                     },

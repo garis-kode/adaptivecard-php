@@ -33,7 +33,7 @@
                         },
                         {
                             "type": "ColumnSet",
-                            "targetWidth": "AtLeast:Standard",
+                            "targetWidth": "atLeast:Standard",
                             "columns": [
                                 {
                                     "type": "Column",

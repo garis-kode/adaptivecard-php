@@ -35,14 +35,14 @@
                             "width": "190px"
                         }
                     ],
-                    "targetWidth": "AtLeast:Standard",
+                    "targetWidth": "atLeast:Standard",
                     "type": "ColumnSet"
                 }
             ],
             "minHeight": "200px",
             "roundedCorners": true,
             "style": "emphasis",
-            "targetWidth": "AtLeast:Standard",
+            "targetWidth": "atLeast:Standard",
             "type": "Container",
             "verticalContentAlignment": "Bottom"
         },
@@ -130,7 +130,7 @@
                 }
             ],
             "spacing": "Medium",
-            "targetWidth": "AtMost:Narrow"
+            "targetWidth": "atMost:Narrow"
         },
         {
             "columns": [
@@ -156,7 +156,7 @@
                         }
                     ],
                     "spacing": "Small",
-                    "targetWidth": "AtLeast:Narrow",
+                    "targetWidth": "atLeast:Narrow",
                     "type": "Column",
                     "width": "auto",
                     "verticalContentAlignment": "Center"
@@ -171,7 +171,7 @@
                         }
                     ],
                     "spacing": "Small",
-                    "targetWidth": "AtLeast:Narrow",
+                    "targetWidth": "atLeast:Narrow",
                     "type": "Column",
                     "verticalContentAlignment": "Center",
                     "width": "auto"
@@ -187,7 +187,7 @@
                         }
                     ],
                     "spacing": "Small",
-                    "targetWidth": "AtLeast:Narrow",
+                    "targetWidth": "atLeast:Narrow",
                     "type": "Column",
                     "verticalContentAlignment": "Center",
                     "width": "stretch"
@@ -195,7 +195,7 @@
             ],
             "spacing": "Medium",
             "type": "ColumnSet",
-            "targetWidth": "AtLeast:Standard"
+            "targetWidth": "atLeast:Standard"
         },
         {
             "items": [
@@ -289,9 +289,15 @@
                                 {
                                     "selectAction": {
                                         "targetElements": [
-                                            "notes",
-                                            "chevronUp",
-                                            "chevronDown"
+                                            {
+                                                "elementId": "notes"
+                                            },
+                                            {
+                                                "elementId": "chevronUp"
+                                            },
+                                            {
+                                                "elementId": "chevronDown"
+                                            }
                                         ],
                                         "type": "Action.ToggleVisibility"
                                     },
@@ -299,7 +305,7 @@
                                     "type": "TextRun"
                                 }
                             ],
-                            "targetWidth": "AtLeast:Narrow",
+                            "targetWidth": "atLeast:Narrow",
                             "type": "RichTextBlock"
                         },
                         {
@@ -307,9 +313,15 @@
                                 {
                                     "selectAction": {
                                         "targetElements": [
-                                            "notes",
-                                            "chevronUp",
-                                            "chevronDown"
+                                            {
+                                                "elementId": "notes"
+                                            },
+                                            {
+                                                "elementId": "chevronUp"
+                                            },
+                                            {
+                                                "elementId": "chevronDown"
+                                            }
                                         ],
                                         "type": "Action.ToggleVisibility"
                                     },
@@ -347,9 +359,15 @@
                     ],
                     "selectAction": {
                         "targetElements": [
-                            "notes",
-                            "chevronUp",
-                            "chevronDown"
+                            {
+                                "elementId": "notes"
+                            },
+                            {
+                                "elementId": "chevronUp"
+                            },
+                            {
+                                "elementId": "chevronDown"
+                            }
                         ],
                         "type": "Action.ToggleVisibility"
                     },

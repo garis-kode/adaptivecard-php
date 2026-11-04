@@ -398,7 +398,7 @@ final class CardBuilderTest extends TestCase
                     ->addActions(OpenUrlAction::make('https://adaptivecards.io/', 'View Details'));
             });
 
-        $this->assertMatchesFixture($card, 'opportunity');
+        $this->assertMatchesFixture($card, '1-fabricam-opportunity-status');
     }
 
     public function testBuildAuthorHighlightVideoCard(): void
@@ -449,7 +449,7 @@ final class CardBuilderTest extends TestCase
                     );
             });
 
-        $this->assertMatchesFixture($card, 'author-highlight-video');
+        $this->assertMatchesFixture($card, '2-author-video-3-minute-energy-flow');
     }
 
     public function testBuildCommunicationHolidayDealsCard(): void
@@ -732,7 +732,7 @@ final class CardBuilderTest extends TestCase
                     );
             });
 
-        $this->assertMatchesFixture($card, 'communication-holiday-deals');
+        $this->assertMatchesFixture($card, '3-social-post-hawaii-holiday-deals');
     }
 
     public function testBuildCourseVideoCard(): void
@@ -853,7 +853,7 @@ final class CardBuilderTest extends TestCase
                     ->addActions(ExecuteAction::make()->iconUrl('icon:Bookmark'));
             });
 
-        $this->assertMatchesFixture($card, 'course-video');
+        $this->assertMatchesFixture($card, '4-course-video-intro-to-graphic-design');
     }
 
     public function testBuildIssueCard(): void
@@ -1066,7 +1066,7 @@ final class CardBuilderTest extends TestCase
                     ->addActions(OpenUrlAction::make('https://adaptivecards.io/')->iconUrl('icon:Edit'));
             });
 
-        $this->assertMatchesFixture($card, 'issue');
+        $this->assertMatchesFixture($card, '5-issue-ssp-98-performance-optimization');
     }
 
     public function testBuildWeeklyPicksCard(): void
@@ -1291,7 +1291,7 @@ final class CardBuilderTest extends TestCase
                     );
             });
 
-        $this->assertMatchesFixture($card, 'weekly-picks');
+        $this->assertMatchesFixture($card, '6-weekly-picks-learning-recommendations');
     }
 
     public function testBuildRecipeCard(): void
@@ -1388,7 +1388,7 @@ final class CardBuilderTest extends TestCase
                     ->spacing(Spacing::Medium);
             });
 
-        $this->assertMatchesFixture($card, 'recipe');
+        $this->assertMatchesFixture($card, '7-recipe-apricot-chile-glazed-chicken');
     }
 
     public function testBuildWebDevelopmentBootcampVideoCard(): void
@@ -1461,7 +1461,7 @@ final class CardBuilderTest extends TestCase
                     );
             });
 
-        $this->assertMatchesFixture($card, 'web-development-bootcamp-video');
+        $this->assertMatchesFixture($card, '8-video-web-development-bootcamp');
     }
 
     public function testBuildBug2837IconsNotRenderingInDarkModeCard(): void
@@ -1581,7 +1581,7 @@ final class CardBuilderTest extends TestCase
                     ->addActions(SubmitAction::make('Follow')->iconUrl('icon:Eye'));
             });
 
-        $this->assertMatchesFixture($card, 'bug-2837-icons-not-rendering-in-dark-mode');
+        $this->assertMatchesFixture($card, '9-bug-2837-dark-mode-icons');
     }
 
     public function testBuildTimeOffRequestCard(): void
@@ -2109,7 +2109,7 @@ final class CardBuilderTest extends TestCase
                     );
             });
 
-        $this->assertMatchesFixture($card, 'time-off-request');
+        $this->assertMatchesFixture($card, '10-time-off-request-form');
     }
 
     public function testBuildExpenseReportCard(): void
@@ -2493,7 +2493,7 @@ final class CardBuilderTest extends TestCase
                     ->addActions(OpenUrlAction::make('https://github.com/OfficeDev/Microsoft-Teams-Adaptive-Card-Samples', 'View statement'));
             });
 
-        $this->assertMatchesFixture($card, 'expense-report');
+        $this->assertMatchesFixture($card, '11-expense-report-travel-to-seattle-approved');
     }
 
     public function testBuildBookARoomCard(): void
@@ -2707,7 +2707,7 @@ final class CardBuilderTest extends TestCase
                     ->addActions(SubmitAction::make('Submit')->style(ActionStyle::Positive));
             });
 
-        $this->assertMatchesFixture($card, 'book-a-room');
+        $this->assertMatchesFixture($card, '12-meeting-room-booking-form');
     }
 
     public function testBuildCafeMenuCard(): void
@@ -3145,7 +3145,7 @@ final class CardBuilderTest extends TestCase
                     });
             });
 
-        $this->assertMatchesFixture($card, 'cafe-menu');
+        $this->assertMatchesFixture($card, '13-cafeteria-24-menu');
     }
 
     /**
@@ -3155,7 +3155,7 @@ final class CardBuilderTest extends TestCase
      */
     private function assertMatchesFixture(AdaptiveCard $card, string $fixture): void
     {
-        $path = dirname(__DIR__) . '/fixtures/cards/' . $fixture . '.json';
+        $path = dirname(__DIR__) . '/fixtures/' . $fixture . '.json';
 
         self::assertFileExists($path);
 

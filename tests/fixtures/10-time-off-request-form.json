@@ -15,7 +15,7 @@
             "type": "Image",
             "url": "https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Adaptive-Card-Samples/main/samples/time-off-request/assets/hero-image-default.png",
             "style": "RoundedCorners",
-            "targetWidth": "AtMost:Standard"
+            "targetWidth": "atMost:Standard"
         },
         {
             "type": "Image",
@@ -29,7 +29,7 @@
             "wrap": true,
             "weight": "Bolder",
             "color": "Accent",
-            "targetWidth": "AtLeast:Narrow"
+            "targetWidth": "atLeast:Narrow"
         },
         {
             "type": "Container",
@@ -511,9 +511,15 @@
                                     "selectAction": {
                                         "type": "Action.ToggleVisibility",
                                         "targetElements": [
-                                            "vNarrowBalance",
-                                            "balanceDown",
-                                            "balanceUp"
+                                            {
+                                                "elementId": "vNarrowBalance"
+                                            },
+                                            {
+                                                "elementId": "balanceDown"
+                                            },
+                                            {
+                                                "elementId": "balanceUp"
+                                            }
                                         ]
                                     }
                                 }
@@ -532,9 +538,15 @@
                             "selectAction": {
                                 "type": "Action.ToggleVisibility",
                                 "targetElements": [
-                                    "vNarrowBalance",
-                                    "balanceDown",
-                                    "balanceUp"
+                                    {
+                                        "elementId": "vNarrowBalance"
+                                    },
+                                    {
+                                        "elementId": "balanceDown"
+                                    },
+                                    {
+                                        "elementId": "balanceUp"
+                                    }
                                 ]
                             },
                             "color": "Accent",
@@ -544,15 +556,21 @@
                             "type": "Icon",
                             "isVisible": false,
                             "id": "balanceUp",
-                            "name": "chevronUp",
+                            "name": "ChevronUp",
                             "size": "xxSmall",
                             "color": "Accent",
                             "selectAction": {
                                 "type": "Action.ToggleVisibility",
                                 "targetElements": [
-                                    "vNarrowBalance",
-                                    "balanceDown",
-                                    "balanceUp"
+                                    {
+                                        "elementId": "vNarrowBalance"
+                                    },
+                                    {
+                                        "elementId": "balanceDown"
+                                    },
+                                    {
+                                        "elementId": "balanceUp"
+                                    }
                                 ]
                             }
                         }
@@ -809,9 +827,15 @@
                                 {
                                     "selectAction": {
                                         "targetElements": [
-                                            "comments",
-                                            "chevronUp",
-                                            "chevronDown"
+                                            {
+                                                "elementId": "comments"
+                                            },
+                                            {
+                                                "elementId": "chevronUp"
+                                            },
+                                            {
+                                                "elementId": "chevronDown"
+                                            }
                                         ],
                                         "type": "Action.ToggleVisibility"
                                     },
@@ -819,7 +843,7 @@
                                     "type": "TextRun"
                                 }
                             ],
-                            "targetWidth": "AtLeast:Narrow",
+                            "targetWidth": "atLeast:Narrow",
                             "type": "RichTextBlock"
                         }
                     ],
@@ -848,9 +872,15 @@
                     ],
                     "selectAction": {
                         "targetElements": [
-                            "comments",
-                            "chevronUp",
-                            "chevronDown"
+                            {
+                                "elementId": "comments"
+                            },
+                            {
+                                "elementId": "chevronUp"
+                            },
+                            {
+                                "elementId": "chevronDown"
+                            }
                         ],
                         "type": "Action.ToggleVisibility"
                     },

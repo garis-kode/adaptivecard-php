@@ -50,7 +50,7 @@
         },
         {
             "type": "Table",
-            "targetWidth": "AtLeast:Narrow",
+            "targetWidth": "atLeast:Narrow",
             "columns": [
                 {
                     "width": 1
@@ -350,7 +350,7 @@
                 }
             ],
             "type": "ActionSet",
-            "targetWidth": "AtLeast:Narrow",
+            "targetWidth": "atLeast:Narrow",
             "spacing": "ExtraLarge"
         },
         {
