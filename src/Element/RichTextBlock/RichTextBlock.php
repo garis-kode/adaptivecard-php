@@ -46,9 +46,7 @@ final class RichTextBlock extends AbstractBlockElement
     {
         if (is_iterable($inline)) {
             foreach ($inline as $item) {
-                if ($item instanceof AbstractInlineElement) {
-                    $this->push('inlines', $item);
-                }
+                $this->push('inlines', $item);
             }
 
             return $this;
