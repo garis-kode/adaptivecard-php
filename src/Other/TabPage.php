@@ -19,7 +19,9 @@ use AdaptiveCards\Support\HasLayouts;
  */
 final class TabPage extends AbstractElement
 {
-    use HasHeight, HasItems, HasLayouts;
+    use HasHeight;
+    use HasItems;
+    use HasLayouts;
 
     public function __construct(?string $title = null)
     {

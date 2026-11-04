@@ -15,7 +15,9 @@ use AdaptiveCards\Support\HasSpacing;
  */
 final class RichTextBlock extends AbstractBlockElement
 {
-    use HasHeight, HasHorizontalAlignment, HasSpacing;
+    use HasHeight;
+    use HasHorizontalAlignment;
+    use HasSpacing;
 
     /**
      * @param AbstractInlineElement|iterable<AbstractInlineElement>|null ...$inlines

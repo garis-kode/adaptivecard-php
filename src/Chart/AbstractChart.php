@@ -12,7 +12,9 @@ use AdaptiveCards\Support\HasSpacing;
 
 abstract class AbstractChart extends AbstractBlockElement
 {
-    use HasHeight, HasHorizontalAlignment, HasSpacing;
+    use HasHeight;
+    use HasHorizontalAlignment;
+    use HasSpacing;
     /**
      * The title of the chart.
      */

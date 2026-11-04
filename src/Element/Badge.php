@@ -18,7 +18,9 @@ use AdaptiveCards\Support\HasSpacing;
  */
 final class Badge extends AbstractBlockElement
 {
-    use HasHeight, HasHorizontalAlignment, HasSpacing;
+    use HasHeight;
+    use HasHorizontalAlignment;
+    use HasSpacing;
 
     public function __construct(
         ?string $text = null,

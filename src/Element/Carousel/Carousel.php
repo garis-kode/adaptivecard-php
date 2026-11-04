@@ -14,7 +14,8 @@ use AdaptiveCards\Support\HasSpacing;
  */
 final class Carousel extends AbstractBlockElement
 {
-    use HasHeight, HasSpacing;
+    use HasHeight;
+    use HasSpacing;
 
     public static function make(): self
     {

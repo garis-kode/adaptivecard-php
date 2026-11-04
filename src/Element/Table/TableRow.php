@@ -18,7 +18,10 @@ use AdaptiveCards\Support\HasSpacing;
  */
 final class TableRow extends AbstractElement
 {
-    use HasHeight, HasHorizontalAlignment, HasSeparator, HasSpacing;
+    use HasHeight;
+    use HasHorizontalAlignment;
+    use HasSeparator;
+    use HasSpacing;
 
     public static function make(): self
     {

@@ -20,7 +20,11 @@ use AdaptiveCards\Support\HasSpacing;
  */
 final class TableCell extends AbstractElement
 {
-    use HasHeight, HasItems, HasLayouts, HasSeparator, HasSpacing;
+    use HasHeight;
+    use HasItems;
+    use HasLayouts;
+    use HasSeparator;
+    use HasSpacing;
 
     public static function make(): self
     {

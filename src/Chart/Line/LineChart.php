@@ -25,7 +25,7 @@ final class LineChart extends AbstractCartesianChart
         ?iterable $data = null,
     ) {
         $this->title($title);
-     
+
         if ($showTitle !== null) {
             $this->showTitle($showTitle);
         }

@@ -11,7 +11,8 @@ use AdaptiveCards\Support\HasSpacing;
 
 abstract class AbstractInput extends AbstractBlockElement
 {
-    use HasHeight, HasSpacing;
+    use HasHeight;
+    use HasSpacing;
 
     public function __construct(string $id)
     {

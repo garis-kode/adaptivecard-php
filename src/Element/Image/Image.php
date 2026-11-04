@@ -22,7 +22,8 @@ use AdaptiveCards\Support\HasSpacing;
  */
 final class Image extends AbstractBlockElement
 {
-    use HasHorizontalAlignment, HasSpacing;
+    use HasHorizontalAlignment;
+    use HasSpacing;
 
     public function __construct(?string $url = null)
     {

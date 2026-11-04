@@ -12,7 +12,7 @@ final class ToggleInput extends AbstractInput
     public function __construct(string $id, ?string $title = null)
     {
         parent::__construct($id);
-    
+
         if ($title !== null) {
             $this->title($title);
         }

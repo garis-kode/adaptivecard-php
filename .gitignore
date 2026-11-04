@@ -18,3 +18,7 @@ Thumbs.db
 /vendor
 composer.phar
 composer.lock
+
+# PHP CS Fixer
+/.php-cs-fixer.cache
+/.php-cs-fixer.php

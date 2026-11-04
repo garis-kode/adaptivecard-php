@@ -20,7 +20,11 @@ use AdaptiveCards\Support\HasSpacing;
  */
 final class Container extends AbstractBlockElement
 {
-    use HasHeight, HasHorizontalAlignment, HasItems, HasLayouts, HasSpacing;
+    use HasHeight;
+    use HasHorizontalAlignment;
+    use HasItems;
+    use HasLayouts;
+    use HasSpacing;
 
     public static function make(): self
     {

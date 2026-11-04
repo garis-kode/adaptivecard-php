@@ -16,7 +16,8 @@ use AdaptiveCards\Support\HasSpacing;
  */
 final class Icon extends AbstractBlockElement
 {
-    use HasHorizontalAlignment, HasSpacing;
+    use HasHorizontalAlignment;
+    use HasSpacing;
 
     public static function make(): self
     {

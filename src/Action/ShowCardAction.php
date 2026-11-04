@@ -17,7 +17,7 @@ final class ShowCardAction extends AbstractAction
     public function __construct(AdaptiveCard $card, ?string $title = null)
     {
         $this->card($card);
-       
+
         if ($title !== null) {
             $this->title($title);
         }

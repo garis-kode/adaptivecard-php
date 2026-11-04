@@ -17,7 +17,9 @@ use AdaptiveCards\Support\HasSpacing;
  */
 final class ColumnSet extends AbstractBlockElement
 {
-    use HasHeight, HasHorizontalAlignment, HasSpacing;
+    use HasHeight;
+    use HasHorizontalAlignment;
+    use HasSpacing;
 
     public static function make(): self
     {

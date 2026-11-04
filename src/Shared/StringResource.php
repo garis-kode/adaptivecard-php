@@ -28,7 +28,7 @@ final class StringResource extends Node
     /**
      * @param array<string, string> $localizedValues
      */
-    public static function make(string $defaultValue, array $localizedValues = []) : self
+    public static function make(string $defaultValue, array $localizedValues = []): self
     {
         return new self($defaultValue, $localizedValues);
     }

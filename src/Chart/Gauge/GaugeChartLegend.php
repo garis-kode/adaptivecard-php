@@ -23,7 +23,7 @@ final class GaugeChartLegend extends Node
     ) {
         $this->legend($legend);
         $this->size($size);
-        
+
         if ($color !== null) {
             $this->color($color);
         }

@@ -14,7 +14,9 @@ use AdaptiveCards\Support\HasSpacing;
  */
 final class CodeBlock extends AbstractBlockElement
 {
-    use HasHeight, HasHorizontalAlignment, HasSpacing;
+    use HasHeight;
+    use HasHorizontalAlignment;
+    use HasSpacing;
 
     public static function make(): self
     {

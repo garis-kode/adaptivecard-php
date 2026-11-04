@@ -25,7 +25,7 @@ final class LineChartData extends Node
         ?string $key = null,
     ) {
         $this->legend($legend);
-       
+
         if ($color !== null) {
             $this->color($color);
         }

@@ -21,7 +21,7 @@ final class LineChartValue extends Node
     ) {
         $this->x($x);
         $this->y($y);
-      
+
         if ($key !== null) {
             $this->key($key);
         }

@@ -22,7 +22,7 @@ final class GaugeChart extends AbstractChart
         ?iterable $segments = null,
     ) {
         $this->title($title);
-       
+
         if ($showTitle !== null) {
             $this->showTitle($showTitle);
         }
@@ -155,4 +155,3 @@ final class GaugeChart extends AbstractChart
         return 'Chart.Gauge';
     }
 }
-

@@ -19,7 +19,9 @@ use AdaptiveCards\Support\HasSpacing;
  */
 final class Table extends AbstractBlockElement
 {
-    use HasHeight, HasHorizontalAlignment, HasSpacing;
+    use HasHeight;
+    use HasHorizontalAlignment;
+    use HasSpacing;
 
     /**
      * @param iterable<TableColumnDefinition>|null $columns

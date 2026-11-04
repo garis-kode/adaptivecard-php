@@ -12,7 +12,7 @@ final class DateInput extends AbstractInput
     public function __construct(string $id, ?string $label = null)
     {
         parent::__construct($id);
-        
+
         if ($label !== null) {
             $this->label($label);
         }

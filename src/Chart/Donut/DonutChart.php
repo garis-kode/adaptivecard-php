@@ -22,7 +22,7 @@ final class DonutChart extends AbstractChart
         ?iterable $data = null,
     ) {
         $this->title($title);
-     
+
         if ($showTitle !== null) {
             $this->showTitle($showTitle);
         }

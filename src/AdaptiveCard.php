@@ -26,9 +26,11 @@ use AdaptiveCards\Support\HasLayouts;
  */
 final class AdaptiveCard extends Node
 {
-    use HasItems, HasKey, HasLayouts;
+    use HasItems;
+    use HasKey;
+    use HasLayouts;
 
-    public const SCHEMA_URL = 'http://adaptivecards.io/schemas/adaptive-card.json';
+    public const SCHEMA_URL = 'https://adaptivecards.io/schemas/adaptive-card.json';
     public const DEFAULT_VERSION = '1.6';
 
     public function __construct(string $version = self::DEFAULT_VERSION)
@@ -120,7 +122,7 @@ final class AdaptiveCard extends Node
 
     /**
      * An Action that will be invoked when the element is tapped or clicked. `Action.ShowCard` is
-     * not supported. 
+     * not supported.
      * Valid values: "Action.Execute", "Action.InsertImage", "Action.OpenUrl",
      * "Action.OpenUrlDialog", "Action.Popover", "Action.ResetInputs", "Action.RunCommands",
      * "Action.Submit", "Action.ToggleVisibility".

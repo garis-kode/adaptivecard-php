@@ -18,7 +18,7 @@ final class InsertImageAction extends AbstractAction
     {
         $this->url($url);
         $this->altText($altText);
-      
+
         if ($title !== null) {
             $this->title($title);
         }

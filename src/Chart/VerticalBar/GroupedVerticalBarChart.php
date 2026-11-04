@@ -24,7 +24,7 @@ final class GroupedVerticalBarChart extends AbstractCartesianChart
         ?ChartColorSet $colorSet = null,
     ) {
         $this->title($title);
-      
+
         if ($data !== null) {
             $this->data($data);
         }

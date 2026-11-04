@@ -34,7 +34,7 @@ final class SubmitAction extends AbstractAction
      * The data to send to the Bot when the action is executed. When expressed as an object, `data`
      * is sent back to the Bot when the action is executed, adorned with the values of the inputs
      * expressed as key/value pairs, where the key is the Id of the input. If `data` is expressed as
-     * a string, input values are not sent to the Bot. 
+     * a string, input values are not sent to the Bot.
      * Valid values: "SubmitActionData".
      */
     public function data(SubmitActionData $data): self

@@ -21,7 +21,7 @@ final class StackedHorizontalBarChart extends AbstractCartesianChart
     ) {
         $this->title($title);
         $this->data($data);
-       
+
         if ($showTitle !== null) {
             $this->showTitle($showTitle);
         }

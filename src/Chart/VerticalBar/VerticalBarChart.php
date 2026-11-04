@@ -25,7 +25,7 @@ final class VerticalBarChart extends AbstractCartesianChart
     ) {
         $this->title($title);
         $this->data($data);
-      
+
         if ($showTitle !== null) {
             $this->showTitle($showTitle);
         }

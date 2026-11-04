@@ -18,7 +18,9 @@ use AdaptiveCards\Support\HasLayouts;
  */
 final class CarouselPage extends AbstractElement
 {
-    use HasHeight, HasItems, HasLayouts;
+    use HasHeight;
+    use HasItems;
+    use HasLayouts;
 
     public static function make(): self
     {

@@ -22,7 +22,12 @@ use AdaptiveCards\Support\HasSpacing;
  */
 final class Column extends AbstractElement
 {
-    use HasHeight, HasHorizontalAlignment, HasItems, HasLayouts, HasSeparator, HasSpacing;
+    use HasHeight;
+    use HasHorizontalAlignment;
+    use HasItems;
+    use HasLayouts;
+    use HasSeparator;
+    use HasSpacing;
 
     public static function make(): self
     {

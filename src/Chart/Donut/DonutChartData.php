@@ -23,7 +23,7 @@ final class DonutChartData extends Node
     ) {
         $this->legend($legend);
         $this->value($value);
-       
+
         if ($color !== null) {
             $this->color($color);
         }

@@ -11,7 +11,9 @@ use AdaptiveCards\Support\HasSpacing;
 
 abstract class AbstractGraphComponent extends AbstractBlockElement
 {
-    use HasHeight, HasHorizontalAlignment, HasSpacing;
+    use HasHeight;
+    use HasHorizontalAlignment;
+    use HasSpacing;
 
     public function __construct()
     {

@@ -16,7 +16,9 @@ use AdaptiveCards\Support\HasSpacing;
  */
 final class ProgressRing extends AbstractBlockElement
 {
-    use HasHeight, HasHorizontalAlignment, HasSpacing;
+    use HasHeight;
+    use HasHorizontalAlignment;
+    use HasSpacing;
 
     public function __construct(?string $label = null)
     {

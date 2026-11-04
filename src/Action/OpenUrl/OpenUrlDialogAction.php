@@ -24,7 +24,7 @@ final class OpenUrlDialogAction extends AbstractAction
         $this->dialogTitle($dialogTitle);
         $this->dialogHeight($dialogHeight);
         $this->url($url);
-       
+
         if ($title !== null) {
             $this->title($title);
         }

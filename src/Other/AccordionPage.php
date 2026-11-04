@@ -23,7 +23,12 @@ use AdaptiveCards\Support\HasSpacing;
  */
 final class AccordionPage extends AbstractElement
 {
-    use HasHeight, HasHorizontalAlignment, HasItems, HasLayouts, HasSeparator, HasSpacing;
+    use HasHeight;
+    use HasHorizontalAlignment;
+    use HasItems;
+    use HasLayouts;
+    use HasSeparator;
+    use HasSpacing;
 
     public function __construct(?string $headerTitle = null)
     {
