@@ -1,6 +1,6 @@
 {
-    "$schema": "https://adaptivecards.io/schemas/adaptive-card.json",
     "type": "AdaptiveCard",
+    "$schema": "https://adaptivecards.io/schemas/adaptive-card.json",
     "version": "1.6",
     "body": [
         {
@@ -15,7 +15,7 @@
             "type": "Image",
             "url": "https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Adaptive-Card-Samples/main/samples/time-off-request/assets/hero-image-default.png",
             "style": "RoundedCorners",
-            "targetWidth": "atMost:Standard"
+            "targetWidth": "AtMost:Standard"
         },
         {
             "type": "Image",
@@ -29,7 +29,7 @@
             "wrap": true,
             "weight": "Bolder",
             "color": "Accent",
-            "targetWidth": "atLeast:Narrow"
+            "targetWidth": "AtLeast:Narrow"
         },
         {
             "type": "Container",
@@ -54,7 +54,6 @@
                                 },
                                 {
                                     "type": "ColumnSet",
-                                    "spacing": "ExtraSmall",
                                     "columns": [
                                         {
                                             "type": "Column",
@@ -82,7 +81,8 @@
                                             ],
                                             "spacing": "ExtraSmall"
                                         }
-                                    ]
+                                    ],
+                                    "spacing": "ExtraSmall"
                                 },
                                 {
                                     "type": "TextBlock",
@@ -108,7 +108,6 @@
                                 },
                                 {
                                     "type": "ColumnSet",
-                                    "spacing": "ExtraSmall",
                                     "columns": [
                                         {
                                             "type": "Column",
@@ -135,7 +134,8 @@
                                             ],
                                             "spacing": "ExtraSmall"
                                         }
-                                    ]
+                                    ],
+                                    "spacing": "ExtraSmall"
                                 },
                                 {
                                     "type": "TextBlock",
@@ -162,7 +162,6 @@
                                 },
                                 {
                                     "type": "ColumnSet",
-                                    "spacing": "ExtraSmall",
                                     "columns": [
                                         {
                                             "type": "Column",
@@ -189,7 +188,8 @@
                                             ],
                                             "spacing": "ExtraSmall"
                                         }
-                                    ]
+                                    ],
+                                    "spacing": "ExtraSmall"
                                 },
                                 {
                                     "type": "TextBlock",
@@ -232,7 +232,6 @@
                                 },
                                 {
                                     "type": "ColumnSet",
-                                    "spacing": "ExtraSmall",
                                     "columns": [
                                         {
                                             "type": "Column",
@@ -259,7 +258,8 @@
                                             ],
                                             "spacing": "ExtraSmall"
                                         }
-                                    ]
+                                    ],
+                                    "spacing": "ExtraSmall"
                                 },
                                 {
                                     "type": "TextBlock",
@@ -285,7 +285,6 @@
                                 },
                                 {
                                     "type": "ColumnSet",
-                                    "spacing": "ExtraSmall",
                                     "columns": [
                                         {
                                             "type": "Column",
@@ -312,7 +311,8 @@
                                             ],
                                             "spacing": "ExtraSmall"
                                         }
-                                    ]
+                                    ],
+                                    "spacing": "ExtraSmall"
                                 },
                                 {
                                     "type": "TextBlock",
@@ -338,7 +338,6 @@
                                 },
                                 {
                                     "type": "ColumnSet",
-                                    "spacing": "ExtraSmall",
                                     "columns": [
                                         {
                                             "type": "Column",
@@ -365,7 +364,8 @@
                                             ],
                                             "spacing": "ExtraSmall"
                                         }
-                                    ]
+                                    ],
+                                    "spacing": "ExtraSmall"
                                 },
                                 {
                                     "type": "TextBlock",
@@ -497,7 +497,6 @@
         },
         {
             "type": "ColumnSet",
-            "targetWidth": "VeryNarrow",
             "columns": [
                 {
                     "type": "Column",
@@ -512,15 +511,9 @@
                                     "selectAction": {
                                         "type": "Action.ToggleVisibility",
                                         "targetElements": [
-                                            {
-                                                "elementId": "vNarrowBalance"
-                                            },
-                                            {
-                                                "elementId": "balanceDown"
-                                            },
-                                            {
-                                                "elementId": "balanceUp"
-                                            }
+                                            "vNarrowBalance",
+                                            "balanceDown",
+                                            "balanceUp"
                                         ]
                                     }
                                 }
@@ -539,15 +532,9 @@
                             "selectAction": {
                                 "type": "Action.ToggleVisibility",
                                 "targetElements": [
-                                    {
-                                        "elementId": "vNarrowBalance"
-                                    },
-                                    {
-                                        "elementId": "balanceDown"
-                                    },
-                                    {
-                                        "elementId": "balanceUp"
-                                    }
+                                    "vNarrowBalance",
+                                    "balanceDown",
+                                    "balanceUp"
                                 ]
                             },
                             "color": "Accent",
@@ -557,21 +544,15 @@
                             "type": "Icon",
                             "isVisible": false,
                             "id": "balanceUp",
-                            "name": "ChevronUp",
+                            "name": "chevronUp",
                             "size": "xxSmall",
                             "color": "Accent",
                             "selectAction": {
                                 "type": "Action.ToggleVisibility",
                                 "targetElements": [
-                                    {
-                                        "elementId": "vNarrowBalance"
-                                    },
-                                    {
-                                        "elementId": "balanceDown"
-                                    },
-                                    {
-                                        "elementId": "balanceUp"
-                                    }
+                                    "vNarrowBalance",
+                                    "balanceDown",
+                                    "balanceUp"
                                 ]
                             }
                         }
@@ -579,7 +560,8 @@
                     "verticalContentAlignment": "Bottom",
                     "spacing": "ExtraSmall"
                 }
-            ]
+            ],
+            "targetWidth": "VeryNarrow"
         },
         {
             "type": "Container",
@@ -747,7 +729,6 @@
         },
         {
             "type": "Input.ChoiceSet",
-            "id": "leave_reason",
             "label": "Reason for leave",
             "choices": [
                 {
@@ -768,12 +749,13 @@
                 }
             ],
             "value": "Vacation",
+            "id": "leave_reason",
             "spacing": "Medium"
         },
         {
             "type": "Input.Toggle",
-            "id": "all_day",
             "title": "All day (8hrs)",
+            "id": "all_day",
             "spacing": "Small"
         },
         {
@@ -789,8 +771,8 @@
             "items": [
                 {
                     "type": "Input.Date",
-                    "id": "date",
                     "label": "Date",
+                    "id": "date",
                     "isRequired": true,
                     "errorMessage": "Date is required"
                 }
@@ -813,104 +795,92 @@
         },
         {
             "type": "Input.Number",
-            "id": "days_off",
             "label": "Estimated days off",
             "placeholder": "Select how many days",
+            "id": "days_off",
             "spacing": "Medium"
         },
         {
-            "type": "ColumnSet",
-            "spacing": "Medium",
             "columns": [
                 {
-                    "type": "Column",
-                    "width": "auto",
                     "items": [
                         {
-                            "type": "RichTextBlock",
-                            "targetWidth": "atLeast:Narrow",
                             "inlines": [
                                 {
-                                    "type": "TextRun",
-                                    "text": "Add comments",
                                     "selectAction": {
-                                        "type": "Action.ToggleVisibility",
                                         "targetElements": [
-                                            {
-                                                "elementId": "comments"
-                                            },
-                                            {
-                                                "elementId": "chevronUp"
-                                            },
-                                            {
-                                                "elementId": "chevronDown"
-                                            }
-                                        ]
-                                    }
+                                            "comments",
+                                            "chevronUp",
+                                            "chevronDown"
+                                        ],
+                                        "type": "Action.ToggleVisibility"
+                                    },
+                                    "text": "Add comments",
+                                    "type": "TextRun"
                                 }
-                            ]
+                            ],
+                            "targetWidth": "AtLeast:Narrow",
+                            "type": "RichTextBlock"
                         }
                     ],
-                    "verticalContentAlignment": "Center"
+                    "type": "Column",
+                    "verticalContentAlignment": "Center",
+                    "width": "auto"
                 },
                 {
-                    "type": "Column",
-                    "width": "auto",
                     "items": [
                         {
-                            "type": "Icon",
                             "color": "Accent",
                             "id": "chevronDown",
                             "name": "ChevronDown",
-                            "size": "xxSmall"
+                            "size": "xxSmall",
+                            "type": "Icon"
                         },
                         {
-                            "type": "Icon",
                             "color": "Accent",
                             "id": "chevronUp",
                             "isVisible": false,
                             "name": "ChevronUp",
                             "size": "xxSmall",
-                            "spacing": "None"
+                            "spacing": "None",
+                            "type": "Icon"
                         }
                     ],
                     "selectAction": {
-                        "type": "Action.ToggleVisibility",
                         "targetElements": [
-                            {
-                                "elementId": "comments"
-                            },
-                            {
-                                "elementId": "chevronUp"
-                            },
-                            {
-                                "elementId": "chevronDown"
-                            }
-                        ]
+                            "comments",
+                            "chevronUp",
+                            "chevronDown"
+                        ],
+                        "type": "Action.ToggleVisibility"
                     },
                     "spacing": "Small",
-                    "verticalContentAlignment": "Center"
+                    "type": "Column",
+                    "verticalContentAlignment": "Center",
+                    "width": "auto"
                 }
-            ]
+            ],
+            "spacing": "Medium",
+            "type": "ColumnSet"
         },
         {
             "type": "Input.Text",
-            "id": "comments",
             "placeholder": "Enter any comments",
+            "id": "comments",
             "isVisible": false,
             "isMultiline": true
         },
         {
             "type": "ActionSet",
-            "separator": true,
-            "spacing": "ExtraLarge",
             "actions": [
                 {
                     "type": "Action.Submit",
                     "title": "Submit",
                     "style": "positive"
                 }
-            ]
+            ],
+            "separator": true,
+            "spacing": "ExtraLarge"
         }
     ]
 }

@@ -1,6 +1,6 @@
 {
-    "$schema": "https://adaptivecards.io/schemas/adaptive-card.json",
     "type": "AdaptiveCard",
+    "$schema": "https://adaptivecards.io/schemas/adaptive-card.json",
     "version": "1.6",
     "body": [
         {
@@ -10,8 +10,6 @@
                 "url": "https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Adaptive-Card-Samples/main/samples/cafe-menu/assets/hero.png"
             },
             "minHeight": "160px",
-            "verticalContentAlignment": "Bottom",
-            "targetWidth": "atLeast:Narrow",
             "items": [
                 {
                     "type": "TextBlock",
@@ -21,7 +19,9 @@
                     "weight": "Bolder",
                     "color": "Light"
                 }
-            ]
+            ],
+            "verticalContentAlignment": "Bottom",
+            "targetWidth": "AtLeast:Narrow"
         },
         {
             "type": "Container",
@@ -29,32 +29,29 @@
                 "url": "https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Adaptive-Card-Samples/main/samples/cafe-menu/assets/hero.png",
                 "verticalAlignment": "Center"
             },
-            "verticalContentAlignment": "Bottom",
-            "minHeight": "120px",
-            "roundedCorners": true,
-            "targetWidth": "VeryNarrow",
             "items": [
                 {
                     "type": "TextBlock",
                     "text": "Cafeteria 24",
                     "wrap": true,
                     "size": "ExtraLarge",
-                    "weight": "Bolder",
-                    "color": "Light"
+                    "color": "Light",
+                    "weight": "Bolder"
                 }
-            ]
+            ],
+            "verticalContentAlignment": "Bottom",
+            "minHeight": "120px",
+            "roundedCorners": true,
+            "targetWidth": "VeryNarrow"
         },
         {
             "type": "Container",
-            "id": "menu",
-            "spacing": "Large",
             "items": [
                 {
                     "type": "Container",
                     "items": [
                         {
                             "type": "ColumnSet",
-                            "spacing": "Large",
                             "columns": [
                                 {
                                     "type": "Column",
@@ -70,9 +67,9 @@
                                         {
                                             "type": "Container",
                                             "backgroundImage": {
-                                                "url": "https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Adaptive-Card-Samples/main/samples/cafe-menu/assets/tabline.png",
-                                                "fillMode": "repeatHorizontally",
-                                                "verticalAlignment": "Center"
+                                                "fillMode": "RepeatHorizontally",
+                                                "verticalAlignment": "Center",
+                                                "url": "https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Adaptive-Card-Samples/main/samples/cafe-menu/assets/tabline.png"
                                             },
                                             "minHeight": "3px",
                                             "style": "default",
@@ -83,17 +80,6 @@
                                 {
                                     "type": "Column",
                                     "width": "stretch",
-                                    "selectAction": {
-                                        "type": "Action.ToggleVisibility",
-                                        "targetElements": [
-                                            {
-                                                "elementId": "menu"
-                                            },
-                                            {
-                                                "elementId": "info"
-                                            }
-                                        ]
-                                    },
                                     "items": [
                                         {
                                             "type": "TextBlock",
@@ -101,9 +87,17 @@
                                             "wrap": true,
                                             "horizontalAlignment": "Center"
                                         }
-                                    ]
+                                    ],
+                                    "selectAction": {
+                                        "type": "Action.ToggleVisibility",
+                                        "targetElements": [
+                                            "menu",
+                                            "info"
+                                        ]
+                                    }
                                 }
-                            ]
+                            ],
+                            "spacing": "Large"
                         }
                     ]
                 },
@@ -121,16 +115,13 @@
                     "style": "emphasis",
                     "showBorder": true,
                     "roundedCorners": true,
-                    "spacing": "Small",
                     "items": [
                         {
                             "type": "ColumnSet",
-                            "targetWidth": "atLeast:Narrow",
                             "columns": [
                                 {
                                     "type": "Column",
                                     "width": "80px",
-                                    "minHeight": "80px",
                                     "items": [
                                         {
                                             "type": "Image",
@@ -139,7 +130,8 @@
                                             "width": "80px",
                                             "height": "80px"
                                         }
-                                    ]
+                                    ],
+                                    "minHeight": "80px"
                                 },
                                 {
                                     "type": "Column",
@@ -165,7 +157,6 @@
                                         },
                                         {
                                             "type": "RichTextBlock",
-                                            "spacing": "None",
                                             "inlines": [
                                                 {
                                                     "type": "TextRun",
@@ -177,11 +168,11 @@
                                                     "italic": true,
                                                     "color": "Accent"
                                                 }
-                                            ]
+                                            ],
+                                            "spacing": "None"
                                         },
                                         {
                                             "type": "RichTextBlock",
-                                            "spacing": "None",
                                             "inlines": [
                                                 {
                                                     "type": "TextRun",
@@ -194,30 +185,31 @@
                                                     "text": "  $10.99",
                                                     "isSubtle": true
                                                 }
-                                            ]
+                                            ],
+                                            "spacing": "None"
                                         }
                                     ]
                                 },
                                 {
                                     "type": "Column",
                                     "width": "auto",
-                                    "verticalContentAlignment": "Center",
-                                    "spacing": "ExtraSmall",
                                     "items": [
                                         {
                                             "type": "Icon",
                                             "name": "ChevronRight",
                                             "size": "Small"
                                         }
-                                    ]
+                                    ],
+                                    "verticalContentAlignment": "Center",
+                                    "spacing": "ExtraSmall"
                                 }
-                            ]
+                            ],
+                            "targetWidth": "AtLeast:Narrow"
                         },
                         {
                             "type": "Container",
                             "spacing": "None",
                             "targetWidth": "VeryNarrow",
-                            "horizontalAlignment": "Center",
                             "items": [
                                 {
                                     "type": "Image",
@@ -235,7 +227,6 @@
                                 },
                                 {
                                     "type": "RichTextBlock",
-                                    "spacing": "None",
                                     "inlines": [
                                         {
                                             "type": "TextRun",
@@ -248,27 +239,27 @@
                                             "text": "  $10.99",
                                             "isSubtle": true
                                         }
-                                    ]
+                                    ],
+                                    "spacing": "None"
                                 }
-                            ]
+                            ],
+                            "horizontalAlignment": "Center"
                         }
-                    ]
+                    ],
+                    "spacing": "Small"
                 },
                 {
                     "type": "Container",
                     "style": "emphasis",
                     "showBorder": true,
                     "roundedCorners": true,
-                    "spacing": "Small",
                     "items": [
                         {
                             "type": "ColumnSet",
-                            "targetWidth": "atLeast:Narrow",
                             "columns": [
                                 {
                                     "type": "Column",
                                     "width": "80px",
-                                    "minHeight": "80px",
                                     "items": [
                                         {
                                             "type": "Image",
@@ -277,7 +268,8 @@
                                             "width": "80px",
                                             "height": "80px"
                                         }
-                                    ]
+                                    ],
+                                    "minHeight": "80px"
                                 },
                                 {
                                     "type": "Column",
@@ -297,7 +289,6 @@
                                         },
                                         {
                                             "type": "RichTextBlock",
-                                            "spacing": "None",
                                             "inlines": [
                                                 {
                                                     "type": "TextRun",
@@ -310,30 +301,31 @@
                                                     "text": "  $12.00",
                                                     "isSubtle": true
                                                 }
-                                            ]
+                                            ],
+                                            "spacing": "None"
                                         }
                                     ]
                                 },
                                 {
                                     "type": "Column",
                                     "width": "auto",
-                                    "verticalContentAlignment": "Center",
-                                    "spacing": "ExtraSmall",
                                     "items": [
                                         {
                                             "type": "Icon",
                                             "name": "ChevronRight",
                                             "size": "Small"
                                         }
-                                    ]
+                                    ],
+                                    "verticalContentAlignment": "Center",
+                                    "spacing": "ExtraSmall"
                                 }
-                            ]
+                            ],
+                            "targetWidth": "AtLeast:Narrow"
                         },
                         {
                             "type": "Container",
                             "spacing": "None",
                             "targetWidth": "VeryNarrow",
-                            "horizontalAlignment": "Center",
                             "items": [
                                 {
                                     "type": "Image",
@@ -351,7 +343,6 @@
                                 },
                                 {
                                     "type": "RichTextBlock",
-                                    "spacing": "None",
                                     "inlines": [
                                         {
                                             "type": "TextRun",
@@ -364,27 +355,27 @@
                                             "text": "  $12.00",
                                             "isSubtle": true
                                         }
-                                    ]
+                                    ],
+                                    "spacing": "None"
                                 }
-                            ]
+                            ],
+                            "horizontalAlignment": "Center"
                         }
-                    ]
+                    ],
+                    "spacing": "Small"
                 },
                 {
                     "type": "Container",
                     "style": "emphasis",
                     "showBorder": true,
                     "roundedCorners": true,
-                    "spacing": "Small",
                     "items": [
                         {
                             "type": "ColumnSet",
-                            "targetWidth": "atLeast:Narrow",
                             "columns": [
                                 {
                                     "type": "Column",
                                     "width": "80px",
-                                    "minHeight": "80px",
                                     "items": [
                                         {
                                             "type": "Image",
@@ -393,7 +384,8 @@
                                             "width": "80px",
                                             "height": "80px"
                                         }
-                                    ]
+                                    ],
+                                    "minHeight": "80px"
                                 },
                                 {
                                     "type": "Column",
@@ -419,7 +411,6 @@
                                         },
                                         {
                                             "type": "RichTextBlock",
-                                            "spacing": "None",
                                             "inlines": [
                                                 {
                                                     "type": "TextRun",
@@ -431,11 +422,11 @@
                                                     "italic": true,
                                                     "color": "Accent"
                                                 }
-                                            ]
+                                            ],
+                                            "spacing": "None"
                                         },
                                         {
                                             "type": "RichTextBlock",
-                                            "spacing": "None",
                                             "inlines": [
                                                 {
                                                     "type": "TextRun",
@@ -448,30 +439,31 @@
                                                     "text": "  $11.99",
                                                     "isSubtle": true
                                                 }
-                                            ]
+                                            ],
+                                            "spacing": "None"
                                         }
                                     ]
                                 },
                                 {
                                     "type": "Column",
                                     "width": "auto",
-                                    "verticalContentAlignment": "Center",
-                                    "spacing": "ExtraSmall",
                                     "items": [
                                         {
                                             "type": "Icon",
                                             "name": "ChevronRight",
                                             "size": "Small"
                                         }
-                                    ]
+                                    ],
+                                    "verticalContentAlignment": "Center",
+                                    "spacing": "ExtraSmall"
                                 }
-                            ]
+                            ],
+                            "targetWidth": "AtLeast:Narrow"
                         },
                         {
                             "type": "Container",
                             "spacing": "None",
                             "targetWidth": "VeryNarrow",
-                            "horizontalAlignment": "Center",
                             "items": [
                                 {
                                     "type": "Image",
@@ -489,7 +481,6 @@
                                 },
                                 {
                                     "type": "RichTextBlock",
-                                    "spacing": "None",
                                     "inlines": [
                                         {
                                             "type": "TextRun",
@@ -502,38 +493,29 @@
                                             "text": "  $11.99",
                                             "isSubtle": true
                                         }
-                                    ]
+                                    ],
+                                    "spacing": "None"
                                 }
-                            ]
+                            ],
+                            "horizontalAlignment": "Center"
                         }
-                    ]
+                    ],
+                    "spacing": "Small"
                 }
-            ]
+            ],
+            "spacing": "Large",
+            "id": "menu"
         },
         {
             "type": "Container",
             "id": "info",
-            "spacing": "Large",
-            "isVisible": false,
             "items": [
                 {
                     "type": "ColumnSet",
-                    "spacing": "Large",
                     "columns": [
                         {
                             "type": "Column",
                             "width": "stretch",
-                            "selectAction": {
-                                "type": "Action.ToggleVisibility",
-                                "targetElements": [
-                                    {
-                                        "elementId": "menu"
-                                    },
-                                    {
-                                        "elementId": "info"
-                                    }
-                                ]
-                            },
                             "items": [
                                 {
                                     "type": "TextBlock",
@@ -541,7 +523,14 @@
                                     "wrap": true,
                                     "horizontalAlignment": "Center"
                                 }
-                            ]
+                            ],
+                            "selectAction": {
+                                "type": "Action.ToggleVisibility",
+                                "targetElements": [
+                                    "menu",
+                                    "info"
+                                ]
+                            }
                         },
                         {
                             "type": "Column",
@@ -557,9 +546,9 @@
                                 {
                                     "type": "Container",
                                     "backgroundImage": {
-                                        "url": "https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Adaptive-Card-Samples/main/samples/cafe-menu/assets/tabline.png",
-                                        "fillMode": "repeatHorizontally",
-                                        "verticalAlignment": "Center"
+                                        "fillMode": "RepeatHorizontally",
+                                        "verticalAlignment": "Center",
+                                        "url": "https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Adaptive-Card-Samples/main/samples/cafe-menu/assets/tabline.png"
                                     },
                                     "minHeight": "3px",
                                     "style": "default",
@@ -567,7 +556,8 @@
                                 }
                             ]
                         }
-                    ]
+                    ],
+                    "spacing": "Large"
                 },
                 {
                     "type": "TextBlock",
@@ -578,12 +568,10 @@
                 },
                 {
                     "type": "ColumnSet",
-                    "spacing": "ExtraSmall",
                     "columns": [
                         {
                             "type": "Column",
                             "width": "auto",
-                            "spacing": "ExtraSmall",
                             "items": [
                                 {
                                     "type": "Icon",
@@ -591,7 +579,8 @@
                                     "size": "xxSmall",
                                     "spacing": "ExtraSmall"
                                 }
-                            ]
+                            ],
+                            "spacing": "ExtraSmall"
                         },
                         {
                             "type": "Column",
@@ -610,7 +599,8 @@
                                 }
                             ]
                         }
-                    ]
+                    ],
+                    "spacing": "ExtraSmall"
                 },
                 {
                     "type": "RichTextBlock",
@@ -752,7 +742,9 @@
                         }
                     ]
                 }
-            ]
+            ],
+            "spacing": "Large",
+            "isVisible": false
         }
     ]
 }

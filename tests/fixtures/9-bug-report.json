@@ -1,8 +1,8 @@
 {
-    "$schema": "https://adaptivecards.io/schemas/adaptive-card.json",
     "type": "AdaptiveCard",
-    "version": "1.6",
     "speak": "Bug 2837, icons not rendering in dark mode",
+    "$schema": "https://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.6",
     "body": [
         {
             "type": "ColumnSet",
@@ -33,7 +33,7 @@
                         },
                         {
                             "type": "ColumnSet",
-                            "targetWidth": "atLeast:Standard",
+                            "targetWidth": "AtLeast:Standard",
                             "columns": [
                                 {
                                     "type": "Column",
@@ -205,8 +205,8 @@
             "actions": [
                 {
                     "type": "Action.OpenUrl",
-                    "url": "https://adaptivecards.io/",
-                    "title": "Open"
+                    "title": "Open",
+                    "url": "https://adaptivecards.io/"
                 },
                 {
                     "type": "Action.Submit",

@@ -1,29 +1,24 @@
 {
-    "$schema": "https://adaptivecards.io/schemas/adaptive-card.json",
     "type": "AdaptiveCard",
-    "version": "1.6",
     "speak": "Version 2.2 performance optimization",
     "body": [
         {
-            "type": "RichTextBlock",
             "inlines": [
                 {
                     "type": "TextRun",
-                    "text": "Android Scrum Project / SSP-98",
                     "size": "Small",
+                    "text": "Android Scrum Project / SSP-98",
                     "selectAction": {
-                        "type": "Action.OpenUrl",
-                        "url": "https://adaptivecards.io"
+                        "url": "https://adaptivecards.io",
+                        "type": "Action.OpenUrl"
                     }
                 }
-            ]
+            ],
+            "type": "RichTextBlock"
         },
         {
-            "type": "ColumnSet",
-            "spacing": "Small",
             "columns": [
                 {
-                    "type": "Column",
                     "width": "auto",
                     "items": [
                         {
@@ -31,28 +26,31 @@
                             "name": "Branch",
                             "color": "Accent"
                         }
-                    ]
+                    ],
+                    "type": "Column"
                 },
                 {
-                    "type": "Column",
                     "width": "stretch",
-                    "verticalContentAlignment": "Center",
-                    "spacing": "Small",
                     "items": [
                         {
-                            "type": "TextBlock",
-                            "text": "Version 2.2 Performance Optimization",
                             "size": "Large",
+                            "text": "Version 2.2 Performance Optimization",
                             "weight": "Bolder",
-                            "wrap": true
+                            "wrap": true,
+                            "type": "TextBlock"
                         }
-                    ]
+                    ],
+                    "verticalContentAlignment": "Center",
+                    "spacing": "Small",
+                    "type": "Column"
                 }
-            ]
+            ],
+            "spacing": "Small",
+            "type": "ColumnSet"
         },
         {
             "type": "Table",
-            "targetWidth": "atLeast:Narrow",
+            "targetWidth": "AtLeast:Narrow",
             "columns": [
                 {
                     "width": 1
@@ -67,7 +65,6 @@
                     "cells": [
                         {
                             "type": "TableCell",
-                            "verticalContentAlignment": "Center",
                             "items": [
                                 {
                                     "type": "TextBlock",
@@ -75,18 +72,19 @@
                                     "wrap": true,
                                     "weight": "Bolder"
                                 }
-                            ]
+                            ],
+                            "verticalContentAlignment": "Center"
                         },
                         {
                             "type": "TableCell",
-                            "verticalContentAlignment": "Center",
                             "items": [
                                 {
                                     "type": "TextBlock",
                                     "text": "Waiting for Review",
                                     "wrap": true
                                 }
-                            ]
+                            ],
+                            "verticalContentAlignment": "Center"
                         }
                     ]
                 },
@@ -121,7 +119,6 @@
                     "cells": [
                         {
                             "type": "TableCell",
-                            "verticalContentAlignment": "Center",
                             "items": [
                                 {
                                     "type": "TextBlock",
@@ -129,15 +126,14 @@
                                     "wrap": true,
                                     "weight": "Bolder"
                                 }
-                            ]
+                            ],
+                            "verticalContentAlignment": "Center"
                         },
                         {
                             "type": "TableCell",
-                            "verticalContentAlignment": "Center",
                             "items": [
                                 {
                                     "type": "ColumnSet",
-                                    "spacing": "Small",
                                     "columns": [
                                         {
                                             "type": "Column",
@@ -155,20 +151,22 @@
                                         {
                                             "type": "Column",
                                             "width": "stretch",
-                                            "spacing": "Small",
                                             "items": [
                                                 {
-                                                    "type": "TextBlock",
-                                                    "text": "Critical",
                                                     "color": "Attention",
+                                                    "text": "Critical",
                                                     "wrap": true,
-                                                    "spacing": "Small"
+                                                    "spacing": "Small",
+                                                    "type": "TextBlock"
                                                 }
-                                            ]
+                                            ],
+                                            "spacing": "Small"
                                         }
-                                    ]
+                                    ],
+                                    "spacing": "Small"
                                 }
-                            ]
+                            ],
+                            "verticalContentAlignment": "Center"
                         }
                     ]
                 },
@@ -177,7 +175,6 @@
                     "cells": [
                         {
                             "type": "TableCell",
-                            "verticalContentAlignment": "Center",
                             "items": [
                                 {
                                     "type": "TextBlock",
@@ -185,7 +182,8 @@
                                     "wrap": true,
                                     "weight": "Bolder"
                                 }
-                            ]
+                            ],
+                            "verticalContentAlignment": "Center"
                         },
                         {
                             "type": "TableCell",
@@ -196,27 +194,27 @@
                                         {
                                             "type": "Column",
                                             "width": "auto",
-                                            "verticalContentAlignment": "Center",
-                                            "horizontalAlignment": "Center",
                                             "items": [
                                                 {
                                                     "type": "Image",
                                                     "url": "https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Card-Samples/main/samples/issue/assets/avatar.png",
                                                     "width": "16px"
                                                 }
-                                            ]
+                                            ],
+                                            "verticalContentAlignment": "Center",
+                                            "horizontalAlignment": "Center"
                                         },
                                         {
                                             "type": "Column",
                                             "width": "stretch",
-                                            "spacing": "Small",
                                             "items": [
                                                 {
                                                     "type": "TextBlock",
                                                     "text": "Charlotte Waltson",
                                                     "wrap": true
                                                 }
-                                            ]
+                                            ],
+                                            "spacing": "Small"
                                         }
                                     ]
                                 }
@@ -233,45 +231,43 @@
             "targetWidth": "VeryNarrow",
             "items": [
                 {
-                    "type": "TextBlock",
                     "text": "Status",
                     "weight": "Bolder",
-                    "wrap": true
+                    "wrap": true,
+                    "type": "TextBlock"
                 },
                 {
-                    "type": "TextBlock",
                     "text": "Waiting for Review",
                     "wrap": true,
+                    "type": "TextBlock",
                     "spacing": "None"
                 },
                 {
-                    "type": "TextBlock",
                     "text": "Due Date",
                     "weight": "Bolder",
                     "wrap": true,
-                    "spacing": "Small"
+                    "spacing": "Small",
+                    "type": "TextBlock"
                 },
                 {
-                    "type": "TextBlock",
                     "text": "May 21, 2023",
                     "wrap": true,
-                    "spacing": "None"
+                    "spacing": "None",
+                    "type": "TextBlock"
                 },
                 {
-                    "type": "TextBlock",
                     "text": "Priority",
                     "weight": "Bolder",
                     "wrap": true,
-                    "spacing": "Small"
+                    "spacing": "Small",
+                    "type": "TextBlock"
                 },
                 {
                     "type": "ColumnSet",
-                    "spacing": "None",
                     "columns": [
                         {
                             "type": "Column",
                             "width": "auto",
-                            "verticalContentAlignment": "Center",
                             "items": [
                                 {
                                     "type": "Icon",
@@ -280,97 +276,101 @@
                                     "size": "xSmall",
                                     "horizontalAlignment": "Center"
                                 }
-                            ]
+                            ],
+                            "verticalContentAlignment": "Center"
                         },
                         {
                             "type": "Column",
                             "width": "stretch",
-                            "spacing": "Small",
                             "items": [
                                 {
-                                    "type": "TextBlock",
-                                    "text": "Critical",
                                     "color": "Attention",
+                                    "text": "Critical",
                                     "wrap": true,
-                                    "spacing": "Small"
+                                    "spacing": "Small",
+                                    "type": "TextBlock"
                                 }
-                            ]
+                            ],
+                            "spacing": "Small"
                         }
-                    ]
+                    ],
+                    "spacing": "None"
                 },
                 {
-                    "type": "TextBlock",
                     "text": "Assigned To",
                     "weight": "Bolder",
                     "wrap": true,
-                    "spacing": "Small"
+                    "spacing": "Small",
+                    "type": "TextBlock"
                 },
                 {
                     "type": "ColumnSet",
-                    "spacing": "None",
                     "columns": [
                         {
                             "type": "Column",
                             "width": "auto",
-                            "verticalContentAlignment": "Center",
-                            "horizontalAlignment": "Center",
                             "items": [
                                 {
                                     "type": "Image",
                                     "url": "https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Card-Samples/main/samples/issue/assets/avatar.png",
                                     "width": "16px"
                                 }
-                            ]
+                            ],
+                            "verticalContentAlignment": "Center",
+                            "horizontalAlignment": "Center"
                         },
                         {
                             "type": "Column",
                             "width": "stretch",
-                            "spacing": "Small",
                             "items": [
                                 {
                                     "type": "TextBlock",
                                     "text": "Charlotte Waltson",
                                     "wrap": true
                                 }
-                            ]
+                            ],
+                            "spacing": "Small"
                         }
-                    ]
+                    ],
+                    "spacing": "None"
                 }
             ]
         },
         {
-            "type": "ActionSet",
-            "spacing": "ExtraLarge",
-            "targetWidth": "atLeast:Narrow",
             "actions": [
                 {
+                    "title": "Comment",
                     "type": "Action.OpenUrl",
-                    "url": "https://adaptivecards.io/",
-                    "title": "Comment"
+                    "url": "https://adaptivecards.io/"
                 },
                 {
+                    "title": "Edit Issue",
                     "type": "Action.OpenUrl",
-                    "url": "https://adaptivecards.io/",
-                    "title": "Edit Issue"
+                    "url": "https://adaptivecards.io/"
                 }
-            ]
+            ],
+            "type": "ActionSet",
+            "targetWidth": "AtLeast:Narrow",
+            "spacing": "ExtraLarge"
         },
         {
-            "type": "ActionSet",
-            "spacing": "ExtraLarge",
-            "targetWidth": "VeryNarrow",
             "actions": [
                 {
+                    "title": "Comment",
                     "type": "Action.OpenUrl",
-                    "url": "https://adaptivecards.io/",
-                    "title": "Comment"
+                    "url": "https://adaptivecards.io/"
                 },
                 {
                     "type": "Action.OpenUrl",
                     "url": "https://adaptivecards.io/",
                     "iconUrl": "icon:Edit"
                 }
-            ]
+            ],
+            "type": "ActionSet",
+            "targetWidth": "VeryNarrow",
+            "spacing": "ExtraLarge"
         }
-    ]
+    ],
+    "$schema": "https://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.6"
 }
