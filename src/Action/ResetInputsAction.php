@@ -26,7 +26,6 @@ final class ResetInputsAction extends AbstractAction
     }
 
     /**
-     * Add an input ID to the list of inputs that should be reset.
      *
      * @param string|iterable<string> $id
      */

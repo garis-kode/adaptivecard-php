@@ -51,7 +51,7 @@ final class Table extends AbstractBlockElement
     }
 
     /**
-     * Add a column to the table.
+     * Add columns to the table.
      *
      * @param TableColumnDefinition|iterable<TableColumnDefinition> $column
      */
@@ -80,7 +80,7 @@ final class Table extends AbstractBlockElement
     }
 
     /**
-     * Add a row to the table.
+     * Add rows to the table.
      *
      * @param TableRow|iterable<TableRow> $row
      */

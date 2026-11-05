@@ -40,7 +40,7 @@ final class RichTextBlock extends AbstractBlockElement
     }
 
     /**
-     * Append an inline run.
+     * Add inlines making up the rich text block.
      *
      * @param AbstractInlineElement|iterable<AbstractInlineElement> $inline
      */

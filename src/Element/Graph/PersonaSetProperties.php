@@ -40,8 +40,7 @@ final class PersonaSetProperties extends Node
     }
 
     /**
-     * Add the users a PersonaSet component should display (accepts a single item or an iterable of items).
-     * Valid values: "PersonaProperties".
+     * Add the users a PersonaSet component should display
      *
      * @param PersonaProperties|iterable<PersonaProperties> $user
      */

@@ -89,7 +89,6 @@ final class DonutChart extends AbstractChart
     }
 
     /**
-     * Add data to the donut chart (accepts a single item or an iterable of items).
      *
      * @param DonutChartData|iterable<DonutChartData> $data
      */

@@ -17,8 +17,8 @@ final class AreaGridLayout extends AbstractLayout
     }
 
     /**
-     * Add a column definition to the area grid layout. Columns can be defined
-     * as a percentage of the available width (number) or in pixels ("<number>px").
+     * Add columns to the grid layout, defined as a percentage of the available width or in pixels using
+     * the `<number>px` format.
      *
      * @param int|float|string|iterable<int|float|string> $column
      */
@@ -47,7 +47,7 @@ final class AreaGridLayout extends AbstractLayout
     }
 
     /**
-     * Add an area definition to the grid layout.
+     * Add areas to the grid layout.
      *
      * @param GridArea|iterable<GridArea> $area
      */

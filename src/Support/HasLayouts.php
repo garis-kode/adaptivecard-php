@@ -13,7 +13,8 @@ use Closure;
 trait HasLayouts
 {
     /**
-     * Add a layout associated with the container.
+     * Add layouts associated with the container. The container can dynamically switch from one layout to
+     * another as the card's width changes.
      *
      * @param AbstractLayout|iterable<AbstractLayout> $layout
      */

@@ -20,8 +20,7 @@ final class CalendarEventProperties extends Node
     }
 
     /**
-     * Add attendees to the event (accepts a single item or an iterable of items).
-     * Valid values: "CalendarEventAttendee".
+     * Add attendees to the event.
      *
      * @param CalendarEventAttendee|iterable<CalendarEventAttendee> $attendee
      */
@@ -71,7 +70,7 @@ final class CalendarEventProperties extends Node
     }
 
     /**
-     * Add locations to the event (accepts a single item or an iterable of items).
+     * Add locations to the event.
      *
      * @param string|iterable<string> $location
      */

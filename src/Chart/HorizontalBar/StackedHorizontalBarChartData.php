@@ -46,7 +46,6 @@ final class StackedHorizontalBarChartData extends Node
     }
 
     /**
-     * Add data point to the series (accepts a single data point or an iterable of data points).
      *
      * @param StackedHorizontalBarChartDataPoint|iterable<StackedHorizontalBarChartDataPoint> $data
      */

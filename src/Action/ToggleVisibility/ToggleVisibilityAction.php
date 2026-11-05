@@ -37,7 +37,6 @@ final class ToggleVisibilityAction extends AbstractAction
     }
 
     /**
-     * Add a target element.
      *
      * @param TargetElement|iterable<TargetElement> $target
      */

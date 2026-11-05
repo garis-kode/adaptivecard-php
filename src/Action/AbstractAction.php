@@ -153,7 +153,6 @@ abstract class AbstractAction extends Node
     }
 
     /**
-     * Add a theme-specific icon URL.
      *
      * @param ThemedUrl|iterable<ThemedUrl> $themedUrl
      */
@@ -182,7 +181,6 @@ abstract class AbstractAction extends Node
     }
 
     /**
-     * Add a theme-specific icon URL to use when the action is in the toggled state.
      *
      * @param ThemedUrl|iterable<ThemedUrl> $themedUrl
      */

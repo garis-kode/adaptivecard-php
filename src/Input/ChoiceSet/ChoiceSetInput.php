@@ -26,7 +26,7 @@ final class ChoiceSetInput extends AbstractInput
     }
 
     /**
-     * Add a choice to the set.
+     * The choices associated with the input. Valid values: `Choice`.
      *
      * @param Choice|iterable<Choice> $choice
      */

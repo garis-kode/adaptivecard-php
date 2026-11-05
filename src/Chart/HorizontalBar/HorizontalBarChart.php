@@ -56,7 +56,6 @@ final class HorizontalBarChart extends AbstractCartesianChart
     }
 
     /**
-     * Add data to the horizontal bar chart (accepts a single item or an iterable of items).
      *
      * @param HorizontalBarChartDataValue|BarChartDataValue|iterable<HorizontalBarChartDataValue|BarChartDataValue> $data
      */

@@ -90,7 +90,6 @@ final class AdaptiveCard extends Node
     }
 
     /**
-     * Add a card level action, which always appears at the bottom of the card.
      *
      * @param AbstractAction|iterable<AbstractAction> $action
      */
@@ -285,8 +284,7 @@ final class AdaptiveCard extends Node
     }
 
     /**
-     * Teams-specific metadata associated with the card.
-     * Valid values: "TeamsCardProperties".
+     * Teams-specific metadata associated with the card. Valid values: `TeamsCardProperties`.
      */
     public function msteams(TeamsCardProperties $msteams, bool $useCamelCaseKey = false): self
     {
@@ -307,8 +305,7 @@ final class AdaptiveCard extends Node
     }
 
     /**
-     * Add a reference that can be cited in TextBlock and RichTextBlock elements.
-     *
+      *
      * @param AdaptiveCardReference|DocumentReference|iterable<AdaptiveCardReference|DocumentReference> $reference
      */
     public function addReferences(AdaptiveCardReference|DocumentReference|iterable $reference): self

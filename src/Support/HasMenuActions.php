@@ -9,7 +9,7 @@ use AdaptiveCards\Action\AbstractAction;
 trait HasMenuActions
 {
     /**
-     * Add an action to the flyout menu.
+     * Add actions to display in the overflow menu of a Split action button.
      *
      * @param AbstractAction|iterable<AbstractAction> $action
      */

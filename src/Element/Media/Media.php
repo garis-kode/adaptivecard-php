@@ -22,7 +22,7 @@ final class Media extends AbstractBlockElement
     }
 
     /**
-     * Add a media source URL.
+     * Add sources for the media.
      *
      * @param MediaSource|iterable<MediaSource> $source
      */
@@ -51,7 +51,7 @@ final class Media extends AbstractBlockElement
     }
 
     /**
-     * Add a caption source URL.
+     * Add caption sources for the media.
      *
      * @param CaptionSource|iterable<CaptionSource> $source
      */

@@ -39,7 +39,6 @@ final class StackedHorizontalBarChart extends AbstractCartesianChart
     }
 
     /**
-     * Add data to the stacked horizontal bar chart (accepts a single series or an iterable of series).
      *
      * @param StackedHorizontalBarChartData|iterable<StackedHorizontalBarChartData> $data
      */

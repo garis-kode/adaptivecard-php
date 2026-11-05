@@ -18,10 +18,7 @@ final class TeamsCardProperties extends Node
     {
         return new self();
     }
-
     /**
-     * Add an entity mention.
-     *
      * @param Mention|iterable<Mention> $mention
      */
     public function addEntities(Mention|iterable $mention): self

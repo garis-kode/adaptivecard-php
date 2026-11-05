@@ -52,7 +52,7 @@ final class ImageRun extends AbstractInlineElement
     }
 
     /**
-     * Add a theme-specific image URL.
+     * Add a theme-specific image URLs.
      *
      * @param ThemedUrl|iterable<ThemedUrl> $themedUrl
      */

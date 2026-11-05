@@ -143,7 +143,7 @@ final class Image extends AbstractBlockElement
     }
 
     /**
-     * Add a theme-specific image URL.
+     * Add a theme-specific image URLs.
      *
      * @param ThemedUrl|iterable<ThemedUrl> $themedUrl
      */

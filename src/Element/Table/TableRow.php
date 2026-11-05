@@ -29,7 +29,7 @@ final class TableRow extends AbstractElement
     }
 
     /**
-     * Add a cell to the row.
+     * Add cells to the row.
      *
      * @param TableCell|iterable<TableCell> $cell
      */
