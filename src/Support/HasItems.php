@@ -51,13 +51,6 @@ use AdaptiveCards\Input\TextInput;
 use AdaptiveCards\Input\TimeInput;
 use AdaptiveCards\Input\ToggleInput;
 
-/**
- * Fluent helpers for nodes that hold a collection of child elements
- * (Container/Column via "items", AdaptiveCard via "body").
- *
- * Every add*() helper creates the element, hands it to an optional
- * configuration callback, appends it, and returns $this for chaining.
- */
 trait HasItems
 {
     /**
@@ -69,6 +62,8 @@ trait HasItems
     }
 
     /**
+     * Add one or more block elements.
+     *
      * @param AbstractBlockElement|iterable<AbstractBlockElement> $element
      */
     public function addItems(AbstractBlockElement|iterable $element): static
@@ -94,11 +89,21 @@ trait HasItems
         return $this->addItems($elements);
     }
 
+    /**
+     * Add a block of text, optionally formatted using Markdown.
+     *
+     * @param (callable(TextBlock): mixed)|null $configure
+     */
     public function addTextBlock(string $text, ?callable $configure = null): static
     {
         return $this->addItems($this->configure(new TextBlock($text), $configure));
     }
 
+    /**
+     * Add a standalone image element.
+     *
+     * @param (callable(Image): mixed)|null $configure
+     */
     public function addImage(string $url, ?callable $configure = null): static
     {
         $image = (new Image())->url($url);
@@ -106,23 +111,43 @@ trait HasItems
         return $this->addItems($this->configure($image, $configure));
     }
 
+    /**
+     * Add a rich text block that displays formatted text.
+     *
+     * @param (callable(RichTextBlock): mixed)|null $configure
+     */
     public function addRichTextBlock(?callable $configure = null): static
     {
         return $this->addItems($this->configure(new RichTextBlock(), $configure));
     }
 
+    /**
+     * Add a container for other elements.
+     *
+     * @param (callable(Container): mixed)|null $configure
+     */
     public function addContainer(?callable $configure = null): static
     {
         return $this->addItems($this->configure(new Container(), $configure));
     }
 
+    /**
+     * Add a set of columns, splitting the available horizontal space so elements
+     * can be organized in a row.
+     *
+     * @param (callable(ColumnSet): mixed)|null $configure
+     */
     public function addColumnSet(?callable $configure = null): static
     {
         return $this->addItems($this->configure(new ColumnSet(), $configure));
     }
 
     /**
-     * @param iterable<Fact> $facts
+     * Add a set of facts, displayed as a table or a vertical list when horizontal
+     * space is constrained.
+     *
+     * @param iterable<Fact>                  $facts
+     * @param (callable(FactSet): mixed)|null $configure
      */
     public function addFactSet(iterable $facts = [], ?callable $configure = null): static
     {
@@ -132,46 +157,95 @@ trait HasItems
         return $this->addItems($this->configure($factSet, $configure));
     }
 
+    /**
+     * Add a set of images, displayed side-by-side and wrapped across multiple rows
+     * as needed.
+     *
+     * @param (callable(ImageSet): mixed)|null $configure
+     */
     public function addImageSet(?callable $configure = null): static
     {
         return $this->addItems($this->configure(new ImageSet(), $configure));
     }
 
+    /**
+     * Add a media element, making it possible to embed videos inside a card.
+     *
+     * @param (callable(Media): mixed)|null $configure
+     */
     public function addMedia(?callable $configure = null): static
     {
         return $this->addItems($this->configure(new Media(), $configure));
     }
 
+    /**
+     * Add a table to display data in a tabular way, with rows, columns and cells.
+     *
+     * @param (callable(Table): mixed)|null $configure
+     */
     public function addTable(?callable $configure = null): static
     {
         return $this->addItems($this->configure(new Table(), $configure));
     }
 
+    /**
+     * Add an action set, which can be placed anywhere in the card.
+     *
+     * @param (callable(ActionSet): mixed)|null $configure
+     */
     public function addActionSet(?callable $configure = null): static
     {
         return $this->addItems($this->configure(new ActionSet(), $configure));
     }
 
+    /**
+     * Add a badge element to show an icon and/or text in a compact form over a
+     * colored background.
+     *
+     * @param (callable(Badge): mixed)|null $configure
+     */
     public function addBadge(?string $text = null, ?callable $configure = null): static
     {
         return $this->addItems($this->configure(new Badge($text), $configure));
     }
 
+    /**
+     * Add a carousel with sliding pages.
+     *
+     * @param (callable(Carousel): mixed)|null $configure
+     */
     public function addCarousel(?callable $configure = null): static
     {
         return $this->addItems($this->configure(new Carousel(), $configure));
     }
 
+    /**
+     * Add an accordion, allowing the end-user to toggle the display of content by
+     * expanding or collapsing pages.
+     *
+     * @param (callable(Accordion): mixed)|null $configure
+     */
     public function addAccordion(?callable $configure = null): static
     {
         return $this->addItems($this->configure(new Accordion(), $configure));
     }
 
+    /**
+     * Add a tab set, allowing the end-user to navigate through pages using a tabbed
+     * interface.
+     *
+     * @param (callable(TabSet): mixed)|null $configure
+     */
     public function addTabSet(?callable $configure = null): static
     {
         return $this->addItems($this->configure(new TabSet(), $configure));
     }
 
+    /**
+     * Add a formatted and syntax-colored code block.
+     *
+     * @param (callable(CodeBlock): mixed)|null $configure
+     */
     public function addCodeBlock(
         string $code,
         CodeBlockLanguage $language = CodeBlockLanguage::PlainText,
@@ -182,6 +256,11 @@ trait HasItems
         return $this->addItems($this->configure($codeBlock, $configure));
     }
 
+    /**
+     * Add a special type of button with an icon, title and description.
+     *
+     * @param (callable(CompoundButton): mixed)|null $configure
+     */
     public function addCompoundButton(
         ?string $title = null,
         ?string $description = null,
@@ -190,6 +269,12 @@ trait HasItems
         return $this->addItems($this->configure(new CompoundButton($title, $description), $configure));
     }
 
+    /**
+     * Add a standalone icon element. Icons can be picked from the vast Adaptive Card
+     * icon catalog.
+     *
+     * @param (callable(Icon): mixed)|null $configure
+     */
     public function addIcon(string $name, ?callable $configure = null): static
     {
         $icon = (new Icon())->name($name);
@@ -197,6 +282,11 @@ trait HasItems
         return $this->addItems($this->configure($icon, $configure));
     }
 
+    /**
+     * Add a progress bar element to represent a value within a range.
+     *
+     * @param (callable(ProgressBar): mixed)|null $configure
+     */
     public function addProgressBar(float|int|null $value = null, float|int $max = 100, ?callable $configure = null): static
     {
         $bar = new ProgressBar();
@@ -211,6 +301,8 @@ trait HasItems
     }
 
     /**
+     * Add a spinning ring element to indicate progress.
+     *
      * @param (callable(ProgressRing): mixed)|null $configure
      */
     public function addProgressRing(?string $label = null, ?callable $configure = null): static
@@ -218,6 +310,11 @@ trait HasItems
         return $this->addItems($this->configure(new ProgressRing($label), $configure));
     }
 
+    /**
+     * Add a read-only star rating element to display the rating of something.
+     *
+     * @param (callable(Rating): mixed)|null $configure
+     */
     public function addRating(float|int|null $value = null, float|int $max = 5, ?callable $configure = null): static
     {
         $rating = new Rating();
@@ -232,6 +329,8 @@ trait HasItems
     }
 
     /**
+     * Add an input to allow the user to enter text.
+     *
      * @param (callable(TextInput): mixed)|null $configure
      */
     public function addTextInput(
@@ -244,6 +343,8 @@ trait HasItems
     }
 
     /**
+     * Add an input to allow the user to enter a number.
+     *
      * @param (callable(NumberInput): mixed)|null $configure
      */
     public function addNumberInput(
@@ -256,6 +357,8 @@ trait HasItems
     }
 
     /**
+     * Add an input to allow the user to select a date.
+     *
      * @param (callable(DateInput): mixed)|null $configure
      */
     public function addDateInput(string $id, ?string $label = null, ?callable $configure = null): static
@@ -264,6 +367,8 @@ trait HasItems
     }
 
     /**
+     * Add an input to allow the user to select a time.
+     *
      * @param (callable(TimeInput): mixed)|null $configure
      */
     public function addTimeInput(
@@ -275,6 +380,8 @@ trait HasItems
     }
 
     /**
+     * Add an input to allow the user to select between on/off states.
+     *
      * @param (callable(ToggleInput): mixed)|null $configure
      */
     public function addToggleInput(
@@ -285,12 +392,19 @@ trait HasItems
         return $this->addItems($this->configure(new ToggleInput($id, $title), $configure));
     }
 
+    /**
+     * Add an input to allow the user to select one or more values.
+     *
+     * @param (callable(ChoiceSetInput): mixed)|null $configure
+     */
     public function addChoiceSetInput(string $id, ?callable $configure = null): static
     {
         return $this->addItems($this->configure(new ChoiceSetInput($id), $configure));
     }
 
     /**
+     * Add an input to allow the user to rate something using stars.
+     *
      * @param (callable(RatingInput): mixed)|null $configure
      */
     public function addRatingInput(
@@ -302,6 +416,8 @@ trait HasItems
     }
 
     /**
+     * Add a donut chart.
+     *
      * @param iterable<DonutChartData>|null      $data
      * @param (callable(DonutChart): mixed)|null $configure
      */
@@ -315,6 +431,8 @@ trait HasItems
     }
 
     /**
+     * Add a gauge chart.
+     *
      * @param iterable<GaugeChartLegend>|null    $segments
      * @param (callable(GaugeChart): mixed)|null $configure
      */
@@ -329,6 +447,8 @@ trait HasItems
     }
 
     /**
+     * Add a horizontal bar chart.
+     *
      * @param iterable<HorizontalBarChartDataValue>      $data
      * @param (callable(HorizontalBarChart): mixed)|null $configure
      */
@@ -345,6 +465,8 @@ trait HasItems
     }
 
     /**
+     * Add a stacked horizontal bar chart.
+     *
      * @param iterable<StackedHorizontalBarChartData>           $data
      * @param (callable(StackedHorizontalBarChart): mixed)|null $configure
      */
@@ -358,6 +480,8 @@ trait HasItems
     }
 
     /**
+     * Add a line chart.
+     *
      * @param iterable<LineChartData>|null      $data
      * @param (callable(LineChart): mixed)|null $configure
      */
@@ -374,6 +498,8 @@ trait HasItems
     }
 
     /**
+     * Add a pie chart.
+     *
      * @param iterable<DonutChartData>|null    $data
      * @param (callable(PieChart): mixed)|null $configure
      */
@@ -387,6 +513,8 @@ trait HasItems
     }
 
     /**
+     * Add a vertical bar chart.
+     *
      * @param iterable<VerticalBarChartDataValue>      $data
      * @param (callable(VerticalBarChart): mixed)|null $configure
      */
@@ -403,6 +531,8 @@ trait HasItems
     }
 
     /**
+     * Add a grouped vertical bar chart.
+     *
      * @param iterable<GroupedVerticalBarChartData>|null      $data
      * @param (callable(GroupedVerticalBarChart): mixed)|null $configure
      */
