@@ -88,7 +88,6 @@ final class PieChart extends AbstractChart
     }
 
     /**
-     *
      * @param DonutChartData|iterable<DonutChartData> $data
      */
     public function addData(DonutChartData|iterable $data): self

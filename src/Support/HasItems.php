@@ -302,7 +302,7 @@ trait HasItems
     }
 
     /**
-     * @param iterable<DonutChartData>|null $data
+     * @param iterable<DonutChartData>|null      $data
      * @param (callable(DonutChart): mixed)|null $configure
      */
     public function addDonutChart(
@@ -315,7 +315,7 @@ trait HasItems
     }
 
     /**
-     * @param iterable<GaugeChartLegend>|null $segments
+     * @param iterable<GaugeChartLegend>|null    $segments
      * @param (callable(GaugeChart): mixed)|null $configure
      */
     public function addGaugeChart(
@@ -329,7 +329,7 @@ trait HasItems
     }
 
     /**
-     * @param iterable<HorizontalBarChartDataValue> $data
+     * @param iterable<HorizontalBarChartDataValue>      $data
      * @param (callable(HorizontalBarChart): mixed)|null $configure
      */
     public function addHorizontalBarChart(
@@ -345,7 +345,7 @@ trait HasItems
     }
 
     /**
-     * @param iterable<StackedHorizontalBarChartData> $data
+     * @param iterable<StackedHorizontalBarChartData>           $data
      * @param (callable(StackedHorizontalBarChart): mixed)|null $configure
      */
     public function addStackedHorizontalBarChart(
@@ -358,7 +358,7 @@ trait HasItems
     }
 
     /**
-     * @param iterable<LineChartData>|null $data
+     * @param iterable<LineChartData>|null      $data
      * @param (callable(LineChart): mixed)|null $configure
      */
     public function addLineChart(
@@ -374,7 +374,7 @@ trait HasItems
     }
 
     /**
-     * @param iterable<DonutChartData>|null $data
+     * @param iterable<DonutChartData>|null    $data
      * @param (callable(PieChart): mixed)|null $configure
      */
     public function addPieChart(
@@ -387,7 +387,7 @@ trait HasItems
     }
 
     /**
-     * @param iterable<VerticalBarChartDataValue> $data
+     * @param iterable<VerticalBarChartDataValue>      $data
      * @param (callable(VerticalBarChart): mixed)|null $configure
      */
     public function addVerticalBarChart(
@@ -403,7 +403,7 @@ trait HasItems
     }
 
     /**
-     * @param iterable<GroupedVerticalBarChartData>|null $data
+     * @param iterable<GroupedVerticalBarChartData>|null      $data
      * @param (callable(GroupedVerticalBarChart): mixed)|null $configure
      */
     public function addGroupedVerticalBarChart(
@@ -420,7 +420,9 @@ trait HasItems
 
     /**
      * @template T of object
+     *
      * @param T $element
+     *
      * @return T
      */
     private function configure(object $element, ?callable $configure): object

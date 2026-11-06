@@ -90,7 +90,6 @@ final class AdaptiveCard extends Node
     }
 
     /**
-     *
      * @param AbstractAction|iterable<AbstractAction> $action
      */
     public function addActions(AbstractAction|iterable $action): self
@@ -305,7 +304,6 @@ final class AdaptiveCard extends Node
     }
 
     /**
-      *
      * @param AdaptiveCardReference|DocumentReference|iterable<AdaptiveCardReference|DocumentReference> $reference
      */
     public function addReferences(AdaptiveCardReference|DocumentReference|iterable $reference): self

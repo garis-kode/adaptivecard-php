@@ -71,7 +71,6 @@ final class GaugeChart extends AbstractChart
     }
 
     /**
-     *
      * @param GaugeChartLegend|iterable<GaugeChartLegend> $segment
      */
     public function addSegments(GaugeChartLegend|iterable $segment): self

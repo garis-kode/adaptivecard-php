@@ -153,7 +153,6 @@ abstract class AbstractAction extends Node
     }
 
     /**
-     *
      * @param ThemedUrl|iterable<ThemedUrl> $themedUrl
      */
     public function addThemedIconUrls(ThemedUrl|iterable $themedUrl): static
@@ -181,7 +180,6 @@ abstract class AbstractAction extends Node
     }
 
     /**
-     *
      * @param ThemedUrl|iterable<ThemedUrl> $themedUrl
      */
     public function addToggledThemedIconUrls(ThemedUrl|iterable $themedUrl): static

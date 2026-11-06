@@ -15,6 +15,7 @@ abstract class AbstractChart extends AbstractBlockElement
     use HasHeight;
     use HasHorizontalAlignment;
     use HasSpacing;
+
     /**
      * The title of the chart.
      */

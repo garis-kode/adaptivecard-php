@@ -18,6 +18,7 @@ final class TeamsCardProperties extends Node
     {
         return new self();
     }
+
     /**
      * @param Mention|iterable<Mention> $mention
      */

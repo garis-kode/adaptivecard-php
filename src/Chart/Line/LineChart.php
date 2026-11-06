@@ -88,7 +88,6 @@ final class LineChart extends AbstractCartesianChart
     }
 
     /**
-     *
      * @param LineChartData|iterable<LineChartData> $data
      */
     public function addData(LineChartData|iterable $data): self

@@ -73,8 +73,7 @@ final class CardBuilderTest extends TestCase
             TargetElement::make('moreText'),
         ];
 
-        $createToggleAction = static fn (): ToggleVisibilityAction =>
-            ToggleVisibilityAction::make()->targetElements($toggleTargets);
+        $createToggleAction = static fn (): ToggleVisibilityAction => ToggleVisibilityAction::make()->targetElements($toggleTargets);
 
         $card = AdaptiveCard::make('1.6')
             ->schema('https://adaptivecards.io/schemas/adaptive-card.json')
@@ -1096,7 +1095,6 @@ final class CardBuilderTest extends TestCase
              *     next: string,
              *     dots: list<string|null>,
              * } $config */
-
             $page = (new Container())->id($config['id']);
 
             $page->addContainer(function (Container $cover) use ($assets, $config): void {
@@ -1326,8 +1324,7 @@ final class CardBuilderTest extends TestCase
             TargetElement::make('showLess'),
         ];
 
-        $createToggleAction = static fn (): ToggleVisibilityAction =>
-            ToggleVisibilityAction::make()->targetElements($toggleTargets);
+        $createToggleAction = static fn (): ToggleVisibilityAction => ToggleVisibilityAction::make()->targetElements($toggleTargets);
 
         $card = AdaptiveCard::make('1.6')
             ->schema('https://adaptivecards.io/schemas/adaptive-card.json')
@@ -1607,8 +1604,7 @@ final class CardBuilderTest extends TestCase
             TargetElement::make('balanceUp'),
         ];
 
-        $createToggleAction = static fn (): ToggleVisibilityAction =>
-            ToggleVisibilityAction::make()->targetElements($toggleTargets);
+        $createToggleAction = static fn (): ToggleVisibilityAction => ToggleVisibilityAction::make()->targetElements($toggleTargets);
 
         $commentToggleTargets = [
             TargetElement::make('comments'),
@@ -1616,8 +1612,7 @@ final class CardBuilderTest extends TestCase
             TargetElement::make('chevronDown'),
         ];
 
-        $createCommentToggleAction = static fn (): ToggleVisibilityAction =>
-            ToggleVisibilityAction::make()->targetElements($commentToggleTargets);
+        $createCommentToggleAction = static fn (): ToggleVisibilityAction => ToggleVisibilityAction::make()->targetElements($commentToggleTargets);
 
         $heroImageUrl = 'https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Adaptive-Card-Samples/main/samples/time-off-request/assets/hero-image-default.png';
         $heroWideImageUrl = 'https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Adaptive-Card-Samples/main/samples/time-off-request/assets/hero-wide.png';
@@ -2135,8 +2130,7 @@ final class CardBuilderTest extends TestCase
             TargetElement::make('chevronDown'),
         ];
 
-        $createToggleAction = static fn (): ToggleVisibilityAction =>
-            ToggleVisibilityAction::make()->targetElements($toggleTargets);
+        $createToggleAction = static fn (): ToggleVisibilityAction => ToggleVisibilityAction::make()->targetElements($toggleTargets);
 
         $card = AdaptiveCard::make('1.6')
             ->schema('https://adaptivecards.io/schemas/adaptive-card.json')
@@ -2519,8 +2513,7 @@ final class CardBuilderTest extends TestCase
             TargetElement::make('chevronDown'),
         ];
 
-        $createToggleAction = static fn (): ToggleVisibilityAction =>
-            ToggleVisibilityAction::make()->targetElements($toggleTargets);
+        $createToggleAction = static fn (): ToggleVisibilityAction => ToggleVisibilityAction::make()->targetElements($toggleTargets);
 
         $heroUrl = 'https://raw.githubusercontent.com/suzto/StarterCards/refs/heads/main/samples/book-a-room/assets/room_hero.png';
 
@@ -2732,8 +2725,7 @@ final class CardBuilderTest extends TestCase
             TargetElement::make('info'),
         ];
 
-        $createToggleAction = static fn (): ToggleVisibilityAction =>
-            ToggleVisibilityAction::make()->targetElements($toggleTargets);
+        $createToggleAction = static fn (): ToggleVisibilityAction => ToggleVisibilityAction::make()->targetElements($toggleTargets);
 
         $assets = 'https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Adaptive-Card-Samples/main/samples/cafe-menu/assets/';
 

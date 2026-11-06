@@ -26,7 +26,6 @@ final class ResetInputsAction extends AbstractAction
     }
 
     /**
-     *
      * @param string|iterable<string> $id
      */
     public function addTargetInputIds(string|iterable $id): self

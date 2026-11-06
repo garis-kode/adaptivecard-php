@@ -8,7 +8,6 @@ use AdaptiveCards\Layout\AbstractLayout;
 use AdaptiveCards\Layout\AreaGridLayout;
 use AdaptiveCards\Layout\FlowLayout;
 use AdaptiveCards\Layout\StackLayout;
-use Closure;
 
 trait HasLayouts
 {
@@ -46,9 +45,9 @@ trait HasLayouts
     /**
      * Add a StackLayout to the container.
      *
-     * @param (Closure(StackLayout): void)|null $callback
+     * @param (\Closure(StackLayout): void)|null $callback
      */
-    public function addStackLayout(?Closure $callback = null): static
+    public function addStackLayout(?\Closure $callback = null): static
     {
         $layout = StackLayout::make();
         if ($callback !== null) {
@@ -61,9 +60,9 @@ trait HasLayouts
     /**
      * Add a FlowLayout to the container.
      *
-     * @param (Closure(FlowLayout): void)|null $callback
+     * @param (\Closure(FlowLayout): void)|null $callback
      */
-    public function addFlowLayout(?Closure $callback = null): static
+    public function addFlowLayout(?\Closure $callback = null): static
     {
         $layout = FlowLayout::make();
         if ($callback !== null) {
@@ -76,9 +75,9 @@ trait HasLayouts
     /**
      * Add an AreaGridLayout to the container.
      *
-     * @param (Closure(AreaGridLayout): void)|null $callback
+     * @param (\Closure(AreaGridLayout): void)|null $callback
      */
-    public function addAreaGridLayout(?Closure $callback = null): static
+    public function addAreaGridLayout(?\Closure $callback = null): static
     {
         $layout = AreaGridLayout::make();
         if ($callback !== null) {

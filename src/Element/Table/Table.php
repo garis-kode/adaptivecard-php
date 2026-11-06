@@ -25,7 +25,7 @@ final class Table extends AbstractBlockElement
 
     /**
      * @param iterable<TableColumnDefinition>|null $columns
-     * @param iterable<TableRow>|null $rows
+     * @param iterable<TableRow>|null              $rows
      */
     public function __construct(
         ?iterable $columns = null,
@@ -41,7 +41,7 @@ final class Table extends AbstractBlockElement
 
     /**
      * @param iterable<TableColumnDefinition>|null $columns
-     * @param iterable<TableRow>|null $rows
+     * @param iterable<TableRow>|null              $rows
      */
     public static function make(
         ?iterable $columns = null,
