@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace AdaptiveCards\Tests\Card;
+namespace AdaptiveCards\Tests;
 
 use AdaptiveCards\Action\ExecuteAction;
 use AdaptiveCards\Action\OpenUrl\OpenUrlAction;
@@ -3162,7 +3162,7 @@ final class CardBuilderTest extends TestCase
      */
     private function assertMatchesFixture(AdaptiveCard $card, string $fixture): void
     {
-        $path = dirname(__DIR__) . '/fixtures/' . $fixture . '.json';
+        $path = __DIR__ . '/fixtures/' . $fixture . '.json';
 
         self::assertFileExists($path);
 
