@@ -1,10 +1,8 @@
 name: Tests
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
     branches:
       - main
 permissions:
@@ -12,6 +10,7 @@ permissions:
 
 jobs:
   tests:
+    if: ${{ !github.event.pull_request.draft }}
     name: PHP ${{ matrix.php }} - ${{ matrix.stability }}
     runs-on: ubuntu-24.04
     strategy:
@@ -48,6 +47,7 @@ jobs:
         run: composer analyse
 
   style:
+    if: ${{ !github.event.pull_request.draft }}
     name: PHP code style
     runs-on: ubuntu-24.04
     steps:
