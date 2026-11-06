@@ -56,6 +56,8 @@ final class HorizontalBarChart extends AbstractCartesianChart
     }
 
     /**
+     * Add the data points in the chart.
+     *
      * @param HorizontalBarChartDataValue|BarChartDataValue|iterable<HorizontalBarChartDataValue|BarChartDataValue> $data
      */
     public function addData(HorizontalBarChartDataValue|BarChartDataValue|iterable $data): self

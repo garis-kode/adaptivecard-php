@@ -75,6 +75,8 @@ final class LineChartData extends Node
     }
 
     /**
+     * Add the data points in the series.
+     *
      * @param LineChartValue|iterable<LineChartValue> $point
      */
     public function addValues(LineChartValue|iterable $point): self

@@ -75,6 +75,8 @@ final class GroupedVerticalBarChartData extends Node
     }
 
     /**
+     * Add the data points in the series.
+     *
      * @param BarChartDataValue|iterable<BarChartDataValue> $point
      */
     public function addValues(BarChartDataValue|iterable $point): self

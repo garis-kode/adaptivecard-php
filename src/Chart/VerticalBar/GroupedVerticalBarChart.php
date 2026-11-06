@@ -65,6 +65,8 @@ final class GroupedVerticalBarChart extends AbstractCartesianChart
     }
 
     /**
+     * Add the data points in a series.
+     *
      * @param GroupedVerticalBarChartData|iterable<GroupedVerticalBarChartData> $data
      */
     public function addData(GroupedVerticalBarChartData|iterable $data): self

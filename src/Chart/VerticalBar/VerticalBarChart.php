@@ -55,6 +55,8 @@ final class VerticalBarChart extends AbstractCartesianChart
     }
 
     /**
+     * Add the data to display in the chart.
+     *
      * @param VerticalBarChartDataValue|iterable<VerticalBarChartDataValue> $data
      */
     public function addData(VerticalBarChartDataValue|iterable $data): self

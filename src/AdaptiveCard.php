@@ -90,6 +90,8 @@ final class AdaptiveCard extends Node
     }
 
     /**
+     * Add card level actions, which always appear at the bottom of the card.
+     *
      * @param AbstractAction|iterable<AbstractAction> $action
      */
     public function addActions(AbstractAction|iterable $action): self
@@ -304,6 +306,8 @@ final class AdaptiveCard extends Node
     }
 
     /**
+     * Add references that can be cited in `TextBlock` and `RichTextBlock` elements.
+     *
      * @param AdaptiveCardReference|DocumentReference|iterable<AdaptiveCardReference|DocumentReference> $reference
      */
     public function addReferences(AdaptiveCardReference|DocumentReference|iterable $reference): self

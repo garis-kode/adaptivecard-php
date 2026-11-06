@@ -153,6 +153,8 @@ abstract class AbstractAction extends Node
     }
 
     /**
+     * Add a set of theme-specific icon URLs.
+     *
      * @param ThemedUrl|iterable<ThemedUrl> $themedUrl
      */
     public function addThemedIconUrls(ThemedUrl|iterable $themedUrl): static
@@ -180,6 +182,9 @@ abstract class AbstractAction extends Node
     }
 
     /**
+     * Add a set of theme-specific icon URLs to use when the action is in the toggled state. Only applies
+     * when `behavior` is set to `Toggle`.
+     *
      * @param ThemedUrl|iterable<ThemedUrl> $themedUrl
      */
     public function addToggledThemedIconUrls(ThemedUrl|iterable $themedUrl): static
