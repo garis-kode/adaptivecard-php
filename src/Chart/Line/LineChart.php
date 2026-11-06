@@ -88,6 +88,8 @@ final class LineChart extends AbstractCartesianChart
     }
 
     /**
+     * Add the data point series in the line chart.
+     *
      * @param LineChartData|iterable<LineChartData> $data
      */
     public function addData(LineChartData|iterable $data): self

@@ -37,6 +37,8 @@ final class ToggleVisibilityAction extends AbstractAction
     }
 
     /**
+     * Add the Ids of the elements to toggle the visibility of.
+     *
      * @param TargetElement|iterable<TargetElement> $target
      */
     public function addTargetElements(TargetElement|iterable $target): self

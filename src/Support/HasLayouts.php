@@ -43,7 +43,8 @@ trait HasLayouts
     }
 
     /**
-     * Add a StackLayout to the container.
+     * Add a layout that stacks elements on top of each other (the default layout) to the container's
+     * layouts.
      *
      * @param (\Closure(StackLayout): void)|null $callback
      */
@@ -58,7 +59,8 @@ trait HasLayouts
     }
 
     /**
-     * Add a FlowLayout to the container.
+     * Add a layout that spreads elements horizontally and wraps them across multiple rows, as needed, to the
+     * container's layouts.
      *
      * @param (\Closure(FlowLayout): void)|null $callback
      */
@@ -73,7 +75,8 @@ trait HasLayouts
     }
 
     /**
-     * Add an AreaGridLayout to the container.
+     * Add a layout that divides the container into named areas, into which elements can be placed via the
+     * `grid.area` property, to the container's layouts.
      *
      * @param (\Closure(AreaGridLayout): void)|null $callback
      */
