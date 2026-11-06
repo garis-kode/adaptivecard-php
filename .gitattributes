@@ -10,3 +10,5 @@ phpstan.neon export-ignore
 phpstan.neon.dist export-ignore
 .gitignore export-ignore
 .gitattributes export-ignore
+/.php-cs-fixer.dist.php export-ignore
+/RELEASE.md export-ignore
