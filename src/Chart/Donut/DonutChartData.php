@@ -54,7 +54,7 @@ final class DonutChartData extends Node
     }
 
     /**
-     * The color to use for the data point. 
+     * The color to use for the data point.
      * Valid values: "good", "warning", "attention", "neutral",
      * "categoricalRed", "categoricalPurple", "categoricalLavender", "categoricalBlue",
      * "categoricalLightBlue", "categoricalTeal", "categoricalGreen", "categoricalLime",

@@ -46,7 +46,7 @@ final class Authentication extends Node
 
     /**
      * Add buttons that should be displayed to the user when prompting for authentication. The array MUST
-     * contain one button of type "signin". Other button types are not currently supported. 
+     * contain one button of type "signin". Other button types are not currently supported.
      *
      * @param AuthCardButton|iterable<AuthCardButton> $button
      */

@@ -77,7 +77,7 @@ final class LineChart extends AbstractCartesianChart
      * The minimum width reserved for the x axis labels. When the available space is insufficient, the
      * chart selectively renders fewer labels instead of truncating them. `auto` will automatically adjust
      * the labels' minimum width according to its content and using the `<number>px` format will give the
-     * labels an explicit minimum width in pixels. 
+     * labels an explicit minimum width in pixels.
      * Valid values: "auto", "<number>px".
      */
     public function xAxisLabelMinWidth(Width|string $width): self

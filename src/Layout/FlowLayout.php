@@ -21,7 +21,7 @@ final class FlowLayout extends AbstractLayout
 
     /**
      * The width, in pixels, of each item, in the `<number>px` format. Should not be used if `maxItemWidth`
-     * and/or `minItemWidth` are set. 
+     * and/or `minItemWidth` are set.
      * Valid values: "<number>px".
      */
     public function itemWidth(string $itemWidth): self
@@ -30,7 +30,7 @@ final class FlowLayout extends AbstractLayout
     }
 
     /**
-     * Controls how item should fit inside the container. 
+     * Controls how item should fit inside the container.
      * Valid values: "Fit", "Fill".
      */
     public function itemFit(ItemFit $itemFit): self
@@ -40,7 +40,7 @@ final class FlowLayout extends AbstractLayout
 
     /**
      * The minimum width, in pixels, of each item, in the `<number>px` format. Should not be used if
-     * `itemWidth` is set. 
+     * `itemWidth` is set.
      * Valid values: "<number>px".
      */
     public function minItemWidth(string $minItemWidth): self
@@ -50,7 +50,7 @@ final class FlowLayout extends AbstractLayout
 
     /**
      * The maximum width, in pixels, of each item, in the `<number>px` format. Should not be used if
-     * `itemWidth` is set. 
+     * `itemWidth` is set.
      * Valid values: "<number>px".
      */
     public function maxItemWidth(string $maxItemWidth): self
@@ -77,7 +77,7 @@ final class FlowLayout extends AbstractLayout
     }
 
     /**
-     * Controls how the content of the container should be horizontally aligned. 
+     * Controls how the content of the container should be horizontally aligned.
      * Valid values: "Left", "Center", "Right".
      */
     public function horizontalItemsAlignment(HorizontalAlignment $alignment): self

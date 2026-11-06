@@ -1079,10 +1079,24 @@ final class CardBuilderTest extends TestCase
             'content2AndContent3' => [TargetElement::make('content2'), TargetElement::make('content3')],
         ];
 
-        $toggle = static fn (array $targets): ToggleVisibilityAction =>
-            ToggleVisibilityAction::make()->targetElements($targets);
+        $toggle = static function (array $targets): ToggleVisibilityAction {
+            /** @var TargetElement[] $targets */
+            return ToggleVisibilityAction::make()->targetElements($targets);
+        };
 
         $makePage = function (array $config) use ($assets, $toggle, $toggleTargets): Container {
+            /** @var array{
+             *     id: string,
+             *     isVisible: bool,
+             *     image: string,
+             *     title: string,
+             *     meta: string,
+             *     activeDot: int,
+             *     previous: string,
+             *     next: string,
+             *     dots: list<string|null>,
+             * } $config */
+
             $page = (new Container())->id($config['id']);
 
             $page->addContainer(function (Container $cover) use ($assets, $config): void {
@@ -1122,6 +1136,7 @@ final class CardBuilderTest extends TestCase
                                     if ($isActive) {
                                         $i->style(IconStyle::Filled);
                                     } else {
+                                        assert($targetKey !== null);
                                         $i->selectAction($toggle($toggleTargets[$targetKey]));
                                     }
                                 });
