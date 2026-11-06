@@ -4,17 +4,16 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Chart\VerticalBar;
 
-use AdaptiveCards\Chart\AbstractChart;
-use AdaptiveCards\Chart\Data\ChartSeries;
+use AdaptiveCards\Chart\AbstractCartesianChart;
 use AdaptiveCards\Enum\ChartColorSet;
 
 /**
  * A grouped vertical bar chart.
  */
-final class GroupedVerticalBarChart extends AbstractChart
+final class GroupedVerticalBarChart extends AbstractCartesianChart
 {
     /**
-     * @param iterable<ChartSeries>|null $data
+     * @param iterable<GroupedVerticalBarChartData>|null $data
      */
     public function __construct(
         string $title,
@@ -25,7 +24,7 @@ final class GroupedVerticalBarChart extends AbstractChart
         ?ChartColorSet $colorSet = null,
     ) {
         $this->title($title);
-      
+
         if ($data !== null) {
             $this->data($data);
         }
@@ -44,7 +43,7 @@ final class GroupedVerticalBarChart extends AbstractChart
     }
 
     /**
-     * @param iterable<ChartSeries>|null $data
+     * @param iterable<GroupedVerticalBarChartData>|null $data
      */
     public static function make(
         string $title,
@@ -66,36 +65,30 @@ final class GroupedVerticalBarChart extends AbstractChart
     }
 
     /**
-     * Add a series of data points.
+     * @param GroupedVerticalBarChartData|iterable<GroupedVerticalBarChartData> $data
      */
-    public function addSeries(ChartSeries $series): self
+    public function addData(GroupedVerticalBarChartData|iterable $data): self
     {
-        return $this->push('data', $series);
-    }
+        if (is_iterable($data)) {
+            foreach ($data as $item) {
+                $this->push('data', $item);
+            }
 
-    /**
-     * Add multiple series of data points.
-     *
-     * @param iterable<ChartSeries> $data
-     */
-    public function addSeriesList(iterable $data): self
-    {
-        foreach ($data as $series) {
-            $this->addSeries($series);
+            return $this;
         }
 
-        return $this;
+        return $this->push('data', $data);
     }
 
     /**
      * The data points in a series.
      * Valid values: "GroupedVerticalBarChartData".
      *
-     * @param iterable<ChartSeries> $data
+     * @param iterable<GroupedVerticalBarChartData> $data
      */
     public function data(iterable $data): self
     {
-        return $this->addSeriesList($data);
+        return $this->addData($data);
     }
 
     /**

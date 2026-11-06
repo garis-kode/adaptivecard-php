@@ -5,12 +5,15 @@ declare(strict_types=1);
 namespace AdaptiveCards\Element\Fact;
 
 use AdaptiveCards\Node;
+use AdaptiveCards\Support\HasKey;
 
 /**
  * A fact in a FactSet element.
  */
 final class Fact extends Node
 {
+    use HasKey;
+
     public function __construct(string $title, string $value)
     {
         $this->title($title);

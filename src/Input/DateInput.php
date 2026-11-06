@@ -12,7 +12,7 @@ final class DateInput extends AbstractInput
     public function __construct(string $id, ?string $label = null)
     {
         parent::__construct($id);
-        
+
         if ($label !== null) {
             $this->label($label);
         }
@@ -21,6 +21,14 @@ final class DateInput extends AbstractInput
     public static function make(string $id, ?string $label = null): self
     {
         return new self($id, $label);
+    }
+
+    /**
+     * The default value of the input, in the `YYYY-MM-DD` format.
+     */
+    public function value(string $value): self
+    {
+        return $this->set('value', $value);
     }
 
     /**

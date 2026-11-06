@@ -5,13 +5,15 @@ declare(strict_types=1);
 namespace AdaptiveCards\Shared;
 
 use AdaptiveCards\Node;
+use AdaptiveCards\Support\HasKey;
 
 /**
- * Defines authentication information associated with a card. For more
- * information, refer to the Bot Framework OAuthCard type.
+ * Defines authentication information associated with a card.
  */
 final class Authentication extends Node
 {
+    use HasKey;
+
     public static function make(): self
     {
         return new self();
@@ -43,25 +45,22 @@ final class Authentication extends Node
     }
 
     /**
-     * Add a button that should be displayed to the user to authenticate.
-     */
-    public function addButton(AuthCardButton $button): self
-    {
-        return $this->push('buttons', $button);
-    }
-
-    /**
-     * Add multiple buttons that should be displayed to the user to authenticate.
+     * Add buttons that should be displayed to the user when prompting for authentication. The array MUST
+     * contain one button of type "signin". Other button types are not currently supported.
      *
-     * @param iterable<AuthCardButton> $buttons
+     * @param AuthCardButton|iterable<AuthCardButton> $button
      */
-    public function addButtons(iterable $buttons): self
+    public function addButtons(AuthCardButton|iterable $button): self
     {
-        foreach ($buttons as $button) {
-            $this->addButton($button);
+        if (is_iterable($button)) {
+            foreach ($button as $item) {
+                $this->push('buttons', $item);
+            }
+
+            return $this;
         }
 
-        return $this;
+        return $this->push('buttons', $button);
     }
 
     /**

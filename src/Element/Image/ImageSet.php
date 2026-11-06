@@ -4,14 +4,21 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Element\Image;
 
-use AdaptiveCards\Element\AbstractElement;
+use AdaptiveCards\Element\AbstractBlockElement;
 use AdaptiveCards\Enum\ImageSetSize;
+use AdaptiveCards\Support\HasHeight;
+use AdaptiveCards\Support\HasHorizontalAlignment;
+use AdaptiveCards\Support\HasSpacing;
 
 /**
  * A set of images, displayed side-by-side and wrapped across multiple rows as needed.
  */
-final class ImageSet extends AbstractElement
+final class ImageSet extends AbstractBlockElement
 {
+    use HasHeight;
+    use HasHorizontalAlignment;
+    use HasSpacing;
+
     public static function make(): self
     {
         return new self();
@@ -19,24 +26,20 @@ final class ImageSet extends AbstractElement
 
     /**
      * Add an image to the image set.
-     */
-    public function addImage(Image $image): self
-    {
-        return $this->push('images', $image);
-    }
-
-    /**
-     * Add multiple images to the image set.
      *
-     * @param iterable<Image> $images
+     * @param Image|iterable<Image> $image
      */
-    public function addImages(iterable $images): self
+    public function addImages(Image|iterable $image): self
     {
-        foreach ($images as $image) {
-            $this->addImage($image);
+        if (is_iterable($image)) {
+            foreach ($image as $item) {
+                $this->push('images', $item);
+            }
+
+            return $this;
         }
 
-        return $this;
+        return $this->push('images', $image);
     }
 
     /**

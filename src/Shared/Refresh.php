@@ -6,12 +6,15 @@ namespace AdaptiveCards\Shared;
 
 use AdaptiveCards\Action\ExecuteAction;
 use AdaptiveCards\Node;
+use AdaptiveCards\Support\HasKey;
 
 /**
  * Defines how a card can be refreshed by making a request to the target Bot.
  */
 final class Refresh extends Node
 {
+    use HasKey;
+
     public static function make(): self
     {
         return new self();

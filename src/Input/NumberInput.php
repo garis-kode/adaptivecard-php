@@ -33,6 +33,14 @@ final class NumberInput extends AbstractInput
     }
 
     /**
+     * The default value of the input.
+     */
+    public function value(int|float $value): self
+    {
+        return $this->set('value', $value);
+    }
+
+    /**
      * The text to display as a placeholder when the user hasn't entered a value.
      */
     public function placeholder(string $placeholder): self

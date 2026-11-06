@@ -5,12 +5,15 @@ declare(strict_types=1);
 namespace AdaptiveCards\Shared;
 
 use AdaptiveCards\Node;
+use AdaptiveCards\Support\HasKey;
 
 /**
  * Represents a mention to a person.
  */
 final class Mention extends Node
 {
+    use HasKey;
+
     public function __construct(string $text, MentionedEntity $mentioned)
     {
         $this->text($text);

@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace AdaptiveCards\Chart;
+namespace AdaptiveCards\Chart\Line;
 
-use AdaptiveCards\Chart\Data\ChartSeries;
+use AdaptiveCards\Chart\AbstractCartesianChart;
 use AdaptiveCards\Enum\ChartColorSet;
 use AdaptiveCards\Enum\Width;
 
 /**
  * A line chart.
  */
-final class LineChart extends AbstractChart
+final class LineChart extends AbstractCartesianChart
 {
     /**
-     * @param iterable<ChartSeries>|null $data
+     * @param iterable<LineChartData>|null $data
      */
     public function __construct(
         string $title,
@@ -25,7 +25,7 @@ final class LineChart extends AbstractChart
         ?iterable $data = null,
     ) {
         $this->title($title);
-     
+
         if ($showTitle !== null) {
             $this->showTitle($showTitle);
         }
@@ -44,7 +44,7 @@ final class LineChart extends AbstractChart
     }
 
     /**
-     * @param iterable<ChartSeries>|null $data
+     * @param iterable<LineChartData>|null $data
      */
     public static function make(
         string $title,
@@ -74,7 +74,10 @@ final class LineChart extends AbstractChart
     }
 
     /**
-     * The minimum width reserved for the x axis labels. When the available space is insufficient, the chart selectively renders fewer labels instead of truncating them. auto will automatically adjust the labels' minimum width according to its content and using the <number>px format will give the labels an explicit minimum width in pixels.
+     * The minimum width reserved for the x axis labels. When the available space is insufficient, the
+     * chart selectively renders fewer labels instead of truncating them. `auto` will automatically adjust
+     * the labels' minimum width according to its content and using the `<number>px` format will give the
+     * labels an explicit minimum width in pixels.
      * Valid values: "auto", "<number>px".
      */
     public function xAxisLabelMinWidth(Width|string $width): self
@@ -85,36 +88,30 @@ final class LineChart extends AbstractChart
     }
 
     /**
-     * Add a series of data points to the line chart.
+     * @param LineChartData|iterable<LineChartData> $data
      */
-    public function addSeries(ChartSeries $series): self
+    public function addData(LineChartData|iterable $data): self
     {
-        return $this->push('data', $series);
-    }
+        if (is_iterable($data)) {
+            foreach ($data as $item) {
+                $this->push('data', $item);
+            }
 
-    /**
-     * Add multiple series of data points to the line chart.
-     *
-     * @param iterable<ChartSeries> $data
-     */
-    public function addSeriesList(iterable $data): self
-    {
-        foreach ($data as $series) {
-            $this->addSeries($series);
+            return $this;
         }
 
-        return $this;
+        return $this->push('data', $data);
     }
 
     /**
      * The data point series in the line chart.
      * Valid values: "LineChartData".
      *
-     * @param iterable<ChartSeries> $data
+     * @param iterable<LineChartData> $data
      */
     public function data(iterable $data): self
     {
-        return $this->addSeriesList($data);
+        return $this->addData($data);
     }
 
     public function getType(): string

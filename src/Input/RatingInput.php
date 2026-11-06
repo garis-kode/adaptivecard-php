@@ -26,6 +26,14 @@ final class RatingInput extends AbstractInput
     }
 
     /**
+     * The default value of the input.
+     */
+    public function value(int|float $value): self
+    {
+        return $this->set('value', $value);
+    }
+
+    /**
      * The number of stars to display.
      */
     public function max(float|int $max): self
@@ -57,14 +65,6 @@ final class RatingInput extends AbstractInput
     public function allowHalfSteps(bool $allow = true): self
     {
         return $this->set('allowHalfSteps', $allow);
-    }
-
-    /**
-     * The number of "votes" associated with the rating.
-     */
-    public function count(int $count): self
-    {
-        return $this->set('count', $count);
     }
 
     public function getType(): string

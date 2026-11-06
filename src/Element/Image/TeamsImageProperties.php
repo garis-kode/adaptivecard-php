@@ -5,12 +5,15 @@ declare(strict_types=1);
 namespace AdaptiveCards\Element\Image;
 
 use AdaptiveCards\Node;
+use AdaptiveCards\Support\HasKey;
 
 /**
  * Represents a set of Teams-specific properties on an image.
  */
 final class TeamsImageProperties extends Node
 {
+    use HasKey;
+
     public function __construct(?bool $allowExpand = null)
     {
         if ($allowExpand !== null) {

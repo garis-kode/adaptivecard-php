@@ -5,12 +5,15 @@ declare(strict_types=1);
 namespace AdaptiveCards\Input\ChoiceSet;
 
 use AdaptiveCards\Node;
+use AdaptiveCards\Support\HasKey;
 
 /**
  * A choice as used by the Input.ChoiceSet input.
  */
 final class Choice extends Node
 {
+    use HasKey;
+
     public function __construct(string $title, string $value)
     {
         $this->title($title);

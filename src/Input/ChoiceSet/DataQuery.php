@@ -6,24 +6,23 @@ namespace AdaptiveCards\Input\ChoiceSet;
 
 use AdaptiveCards\Enum\AssociatedInputs;
 use AdaptiveCards\Node;
+use AdaptiveCards\Support\HasKey;
 
 /**
  * Defines a query to dynamically fetch data from a Bot.
  */
 final class DataQuery extends Node
 {
+    use HasKey;
+
     public function __construct(
         ?string $dataset = null,
-        ?string $value = null,
         ?int $count = null,
         ?int $skip = null,
         ?AssociatedInputs $associatedInputs = null,
     ) {
         if ($dataset !== null) {
             $this->dataset($dataset);
-        }
-        if ($value !== null) {
-            $this->value($value);
         }
         if ($count !== null) {
             $this->count($count);
@@ -38,12 +37,11 @@ final class DataQuery extends Node
 
     public static function make(
         ?string $dataset = null,
-        ?string $value = null,
         ?int $count = null,
         ?int $skip = null,
         ?AssociatedInputs $associatedInputs = null,
     ): self {
-        return new self($dataset, $value, $count, $skip, $associatedInputs);
+        return new self($dataset, $count, $skip, $associatedInputs);
     }
 
     /**
@@ -52,14 +50,6 @@ final class DataQuery extends Node
     public function dataset(string $dataset): self
     {
         return $this->set('dataset', $dataset);
-    }
-
-    /**
-     * The search query string.
-     */
-    public function value(string $value): self
-    {
-        return $this->set('value', $value);
     }
 
     /**

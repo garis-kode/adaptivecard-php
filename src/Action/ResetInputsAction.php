@@ -4,11 +4,15 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Action;
 
+use AdaptiveCards\Support\HasMenuActions;
+
 /**
  * Resets the values of the inputs in the card.
  */
 final class ResetInputsAction extends AbstractAction
 {
+    use HasMenuActions;
+
     public function __construct(?string $title = null)
     {
         if ($title !== null) {
@@ -22,25 +26,19 @@ final class ResetInputsAction extends AbstractAction
     }
 
     /**
-     * Add an input ID to the list of inputs that should be reset.
+     * @param string|iterable<string> $id
      */
-    public function addTargetInputId(string $id): self
+    public function addTargetInputIds(string|iterable $id): self
     {
-        return $this->push('targetInputIds', $id);
-    }
+        if (is_iterable($id)) {
+            foreach ($id as $item) {
+                $this->push('targetInputIds', $item);
+            }
 
-    /**
-     * Add multiple input IDs to the list of inputs that should be reset.
-     *
-     * @param iterable<string> $targetInputIds
-     */
-    public function addTargetInputIds(iterable $targetInputIds): self
-    {
-        foreach ($targetInputIds as $id) {
-            $this->addTargetInputId($id);
+            return $this;
         }
 
-        return $this;
+        return $this->push('targetInputIds', $id);
     }
 
     /**

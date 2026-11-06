@@ -4,13 +4,18 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Element\Fact;
 
-use AdaptiveCards\Element\AbstractElement;
+use AdaptiveCards\Element\AbstractBlockElement;
+use AdaptiveCards\Support\HasHeight;
+use AdaptiveCards\Support\HasSpacing;
 
 /**
  * A set of facts, displayed as a table or a vertical list when horizontal space is constrained.
  */
-final class FactSet extends AbstractElement
+final class FactSet extends AbstractBlockElement
 {
+    use HasHeight;
+    use HasSpacing;
+
     public static function make(): self
     {
         return new self();
@@ -18,9 +23,19 @@ final class FactSet extends AbstractElement
 
     /**
      * Add a Fact to the set.
+     *
+     * @param Fact|iterable<Fact> $fact
      */
-    public function addFact(Fact $fact): self
+    public function addFacts(Fact|iterable $fact): self
     {
+        if (is_iterable($fact)) {
+            foreach ($fact as $item) {
+                $this->push('facts', $item);
+            }
+
+            return $this;
+        }
+
         return $this->push('facts', $fact);
     }
 
@@ -29,21 +44,7 @@ final class FactSet extends AbstractElement
      */
     public function fact(string $title, string $value): self
     {
-        return $this->addFact(new Fact($title, $value));
-    }
-
-    /**
-     * Add multiple facts to the set.
-     *
-     * @param iterable<Fact> $facts
-     */
-    public function addFacts(iterable $facts): self
-    {
-        foreach ($facts as $fact) {
-            $this->addFact($fact);
-        }
-
-        return $this;
+        return $this->addFacts(new Fact($title, $value));
     }
 
     /**

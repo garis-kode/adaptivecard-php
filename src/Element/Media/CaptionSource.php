@@ -5,12 +5,15 @@ declare(strict_types=1);
 namespace AdaptiveCards\Element\Media;
 
 use AdaptiveCards\Node;
+use AdaptiveCards\Support\HasKey;
 
 /**
  * Defines a source URL for a video captions.
  */
 final class CaptionSource extends Node
 {
+    use HasKey;
+
     public function __construct(string $url, string $mimeType, string $label)
     {
         $this->url($url);

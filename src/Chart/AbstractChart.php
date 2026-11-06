@@ -4,15 +4,18 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Chart;
 
-use AdaptiveCards\Element\AbstractElement;
-use AdaptiveCards\Enum\ChartColor;
+use AdaptiveCards\Element\AbstractBlockElement;
 use AdaptiveCards\Enum\ChartColorSet;
+use AdaptiveCards\Support\HasHeight;
+use AdaptiveCards\Support\HasHorizontalAlignment;
+use AdaptiveCards\Support\HasSpacing;
 
-/**
- * Base class for all Chart elements.
- */
-abstract class AbstractChart extends AbstractElement
+abstract class AbstractChart extends AbstractBlockElement
 {
+    use HasHeight;
+    use HasHorizontalAlignment;
+    use HasSpacing;
+
     /**
      * The title of the chart.
      */
@@ -22,36 +25,12 @@ abstract class AbstractChart extends AbstractElement
     }
 
     /**
-     * The name of the set of colors to use to render the chart. See Chart colors reference.
+     * The name of the set of colors to use to render the chart.
      * Valid values: "categorical", "sequential", "sequentialred", "sequentialgreen", "sequentialyellow", "diverging".
      */
     public function colorSet(ChartColorSet $colorSet): static
     {
         return $this->set('colorSet', $colorSet->value);
-    }
-
-    /**
-     * The color to use for all data points. See Chart colors reference.
-     */
-    public function color(ChartColor $color): static
-    {
-        return $this->set('color', $color->value);
-    }
-
-    /**
-     * The title of the x axis.
-     */
-    public function xAxisTitle(string $xAxisTitle): static
-    {
-        return $this->set('xAxisTitle', $xAxisTitle);
-    }
-
-    /**
-     * The title of the y axis.
-     */
-    public function yAxisTitle(string $yAxisTitle): static
-    {
-        return $this->set('yAxisTitle', $yAxisTitle);
     }
 
     /**

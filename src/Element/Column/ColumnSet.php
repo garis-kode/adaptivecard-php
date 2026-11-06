@@ -5,15 +5,22 @@ declare(strict_types=1);
 namespace AdaptiveCards\Element\Column;
 
 use AdaptiveCards\Action\AbstractAction;
-use AdaptiveCards\Element\AbstractElement;
+use AdaptiveCards\Element\AbstractBlockElement;
 use AdaptiveCards\Enum\ContainerStyle;
 use AdaptiveCards\Enum\Width;
+use AdaptiveCards\Support\HasHeight;
+use AdaptiveCards\Support\HasHorizontalAlignment;
+use AdaptiveCards\Support\HasSpacing;
 
 /**
  * Splits the available horizontal space into separate columns, so elements can be organized in a row.
  */
-final class ColumnSet extends AbstractElement
+final class ColumnSet extends AbstractBlockElement
 {
+    use HasHeight;
+    use HasHorizontalAlignment;
+    use HasSpacing;
+
     public static function make(): self
     {
         return new self();
@@ -21,24 +28,20 @@ final class ColumnSet extends AbstractElement
 
     /**
      * Add a column to the column set.
-     */
-    public function addColumn(Column $column): self
-    {
-        return $this->push('columns', $column);
-    }
-
-    /**
-     * Add multiple columns to the column set.
      *
-     * @param iterable<Column> $columns
+     * @param Column|iterable<Column> $column
      */
-    public function addColumns(iterable $columns): self
+    public function addColumns(Column|iterable $column): self
     {
-        foreach ($columns as $column) {
-            $this->addColumn($column);
+        if (is_iterable($column)) {
+            foreach ($column as $item) {
+                $this->push('columns', $item);
+            }
+
+            return $this;
         }
 
-        return $this;
+        return $this->push('columns', $column);
     }
 
     /**
@@ -67,7 +70,7 @@ final class ColumnSet extends AbstractElement
             $configure($column);
         }
 
-        return $this->addColumn($column);
+        return $this->addColumns($column);
     }
 
     /**
@@ -82,7 +85,6 @@ final class ColumnSet extends AbstractElement
 
     /**
      * Controls if the container should bleed into its parent. A bleeding container extends into its parent's padding.
-     * See **Edge-to-edge content** for more information.
      */
     public function bleed(bool $bleed = true): self
     {

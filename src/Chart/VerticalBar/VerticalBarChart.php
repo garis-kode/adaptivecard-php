@@ -4,17 +4,16 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Chart\VerticalBar;
 
-use AdaptiveCards\Chart\AbstractChart;
-use AdaptiveCards\Chart\Data\DataPoint;
+use AdaptiveCards\Chart\AbstractCartesianChart;
 use AdaptiveCards\Enum\ChartColorSet;
 
 /**
  * A vertical bar chart.
  */
-final class VerticalBarChart extends AbstractChart
+final class VerticalBarChart extends AbstractCartesianChart
 {
     /**
-     * @param iterable<DataPoint> $data
+     * @param iterable<VerticalBarChartDataValue> $data
      */
     public function __construct(
         string $title,
@@ -26,7 +25,7 @@ final class VerticalBarChart extends AbstractChart
     ) {
         $this->title($title);
         $this->data($data);
-      
+
         if ($showTitle !== null) {
             $this->showTitle($showTitle);
         }
@@ -42,7 +41,7 @@ final class VerticalBarChart extends AbstractChart
     }
 
     /**
-     * @param iterable<DataPoint> $data
+     * @param iterable<VerticalBarChartDataValue> $data
      */
     public static function make(
         string $title,
@@ -56,36 +55,30 @@ final class VerticalBarChart extends AbstractChart
     }
 
     /**
-     * Add a data point to the vertical bar chart.
+     * @param VerticalBarChartDataValue|iterable<VerticalBarChartDataValue> $data
      */
-    public function addDataPoint(DataPoint $point): self
+    public function addData(VerticalBarChartDataValue|iterable $data): self
     {
-        return $this->push('data', $point);
-    }
+        if (is_iterable($data)) {
+            foreach ($data as $item) {
+                $this->push('data', $item);
+            }
 
-    /**
-     * Add multiple data points to the vertical bar chart.
-     *
-     * @param iterable<DataPoint> $data
-     */
-    public function addDataPoints(iterable $data): self
-    {
-        foreach ($data as $point) {
-            $this->addDataPoint($point);
+            return $this;
         }
 
-        return $this;
+        return $this->push('data', $data);
     }
 
     /**
      * The data to display in the chart.
      * Valid values: "VerticalBarChartDataValue".
      *
-     * @param iterable<DataPoint> $data
+     * @param iterable<VerticalBarChartDataValue> $data
      */
     public function data(iterable $data): self
     {
-        return $this->addDataPoints($data);
+        return $this->addData($data);
     }
 
     /**

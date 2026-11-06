@@ -13,7 +13,7 @@ use AdaptiveCards\Enum\GaugeValueFormat;
 final class GaugeChart extends AbstractChart
 {
     /**
-     * @param iterable<GaugeSegment>|null $segments
+     * @param iterable<GaugeChartLegend>|null $segments
      */
     public function __construct(
         string $title,
@@ -22,7 +22,7 @@ final class GaugeChart extends AbstractChart
         ?iterable $segments = null,
     ) {
         $this->title($title);
-       
+
         if ($showTitle !== null) {
             $this->showTitle($showTitle);
         }
@@ -35,7 +35,7 @@ final class GaugeChart extends AbstractChart
     }
 
     /**
-     * @param iterable<GaugeSegment>|null $segments
+     * @param iterable<GaugeChartLegend>|null $segments
      */
     public static function make(
         string $title,
@@ -71,32 +71,36 @@ final class GaugeChart extends AbstractChart
     }
 
     /**
-     * Add a segment to the gauge chart.
+     * @param GaugeChartLegend|iterable<GaugeChartLegend> $segment
      */
-    public function addSegment(GaugeSegment $segment): self
+    public function addSegments(GaugeChartLegend|iterable $segment): self
     {
+        if (is_iterable($segment)) {
+            foreach ($segment as $item) {
+                $this->push('segments', $item);
+            }
+
+            return $this;
+        }
+
         return $this->push('segments', $segment);
     }
 
     /**
-     * Add multiple segments to the gauge chart.
+     * Add a legend to the gauge chart.
      *
-     * @param iterable<GaugeSegment> $segments
+     * @param GaugeChartLegend|iterable<GaugeChartLegend> $legend
      */
-    public function addSegments(iterable $segments): self
+    public function addLegends(GaugeChartLegend|iterable $legend): self
     {
-        foreach ($segments as $segment) {
-            $this->addSegment($segment);
-        }
-
-        return $this;
+        return $this->addSegments($legend);
     }
 
     /**
      * The segments to display in the gauge.
      * Valid values: "GaugeChartLegend".
      *
-     * @param iterable<GaugeSegment> $segments
+     * @param iterable<GaugeChartLegend> $segments
      */
     public function segments(iterable $segments): self
     {

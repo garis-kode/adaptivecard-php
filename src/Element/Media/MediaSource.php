@@ -5,12 +5,15 @@ declare(strict_types=1);
 namespace AdaptiveCards\Element\Media;
 
 use AdaptiveCards\Node;
+use AdaptiveCards\Support\HasKey;
 
 /**
  * Defines the source URL of a media stream. YouTube, Dailymotion, Vimeo, and Microsoft Stream URLs are supported.
  */
 final class MediaSource extends Node
 {
+    use HasKey;
+
     public function __construct(?string $url = null, ?string $mimeType = null)
     {
         if ($url !== null) {

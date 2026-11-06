@@ -68,7 +68,7 @@ echo $card->toJson();
 
 ```json
 {
-    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "$schema": "https://adaptivecards.io/schemas/adaptive-card.json",
     "type": "AdaptiveCard",
     "version": "1.6",
     "body": [
@@ -100,6 +100,18 @@ For comprehensive schema specifications, interactive designer, and payload sampl
 ## Changelog
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). For a complete record of updates and release notes, visit the [GitHub Releases](https://github.com/garis-kode/adaptivecard-php/releases) page.
+
+---
+
+## Development
+
+Install development dependencies with `composer install`.
+
+- `composer cs:fix` formats PHP source and tests using PSR-12.
+- `composer cs:check` checks formatting without changing files.
+- `composer run check` runs PHPUnit, PHPStan, and the formatting check.
+
+GitHub Actions checks formatting on pushes and pull requests to `main`.
 
 ---
 

@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace AdaptiveCards\Input;
 
 use AdaptiveCards\Action\AbstractAction;
-use AdaptiveCards\Element\AbstractElement;
-use AdaptiveCards\Enum\InputLabelPosition;
+use AdaptiveCards\Element\AbstractBlockElement;
+use AdaptiveCards\Support\HasHeight;
+use AdaptiveCards\Support\HasSpacing;
 
-/**
- * Shared base for all Input.* elements. Inputs extend the element base and add
- * id (required), label, error messaging and validation-related properties.
- */
-abstract class AbstractInput extends AbstractElement
+abstract class AbstractInput extends AbstractBlockElement
 {
+    use HasHeight;
+    use HasSpacing;
+
     public function __construct(string $id)
     {
         $this->id($id);
@@ -42,32 +42,6 @@ abstract class AbstractInput extends AbstractElement
     public function errorMessage(string $message): static
     {
         return $this->set('errorMessage', $message);
-    }
-
-    /**
-     * Specifies the position of the label relative to the input control.
-     * Valid values: "inline", "above", "before".
-     */
-    public function labelPosition(InputLabelPosition $position): static
-    {
-        return $this->set('labelPosition', $position->value);
-    }
-
-    /**
-     * Controls the width of the label when labelPosition is set to Before.
-     * Supports pixel values, percentage values, or "auto".
-     */
-    public function labelWidth(string $width): static
-    {
-        return $this->set('labelWidth', $width);
-    }
-
-    /**
-     * The default value of the input.
-     */
-    public function value(string|int|float|bool $value): static
-    {
-        return $this->set('value', $value);
     }
 
     /**

@@ -5,12 +5,16 @@ declare(strict_types=1);
 namespace AdaptiveCards\Action\ToggleVisibility;
 
 use AdaptiveCards\Action\AbstractAction;
+use AdaptiveCards\Support\HasMenuActions;
 
 /**
- * Toggles the visibility of a set of elements.
+ * Toggles the visibility of a set of elements. `Action.ToggleVisibility` is useful for creating
+ * "Show more" type UI patterns.
  */
 final class ToggleVisibilityAction extends AbstractAction
 {
+    use HasMenuActions;
+
     public function __construct(?string $title = null)
     {
         if ($title !== null) {
@@ -29,29 +33,23 @@ final class ToggleVisibilityAction extends AbstractAction
      */
     public function target(string $elementId, ?bool $isVisible = null): self
     {
-        return $this->addTarget(new TargetElement($elementId, $isVisible));
+        return $this->addTargetElements(new TargetElement($elementId, $isVisible));
     }
 
     /**
-     * Add a target element.
+     * @param TargetElement|iterable<TargetElement> $target
      */
-    public function addTarget(TargetElement $target): self
+    public function addTargetElements(TargetElement|iterable $target): self
     {
-        return $this->push('targetElements', $target);
-    }
+        if (is_iterable($target)) {
+            foreach ($target as $item) {
+                $this->push('targetElements', $item);
+            }
 
-    /**
-     * Add multiple target elements to toggle visibility.
-     *
-     * @param iterable<TargetElement> $targets
-     */
-    public function addTargetElements(iterable $targets): self
-    {
-        foreach ($targets as $target) {
-            $this->addTarget($target);
+            return $this;
         }
 
-        return $this;
+        return $this->push('targetElements', $target);
     }
 
     /**

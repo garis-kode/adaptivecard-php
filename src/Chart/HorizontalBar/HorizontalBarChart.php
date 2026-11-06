@@ -4,18 +4,17 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Chart\HorizontalBar;
 
-use AdaptiveCards\Chart\AbstractChart;
-use AdaptiveCards\Chart\Data\DataPoint;
+use AdaptiveCards\Chart\AbstractCartesianChart;
 use AdaptiveCards\Enum\ChartColorSet;
 use AdaptiveCards\Enum\ChartDisplayMode;
 
 /**
  * A horizontal bar chart.
  */
-final class HorizontalBarChart extends AbstractChart
+final class HorizontalBarChart extends AbstractCartesianChart
 {
     /**
-     * @param iterable<DataPoint> $data
+     * @param iterable<HorizontalBarChartDataValue|BarChartDataValue> $data
      */
     public function __construct(
         string $title,
@@ -27,7 +26,7 @@ final class HorizontalBarChart extends AbstractChart
     ) {
         $this->title($title);
         $this->data($data);
-     
+
         if ($showTitle !== null) {
             $this->showTitle($showTitle);
         }
@@ -43,7 +42,7 @@ final class HorizontalBarChart extends AbstractChart
     }
 
     /**
-     * @param iterable<DataPoint> $data
+     * @param iterable<HorizontalBarChartDataValue|BarChartDataValue> $data
      */
     public static function make(
         string $title,
@@ -57,36 +56,30 @@ final class HorizontalBarChart extends AbstractChart
     }
 
     /**
-     * Add a data point to the horizontal bar chart.
+     * @param HorizontalBarChartDataValue|BarChartDataValue|iterable<HorizontalBarChartDataValue|BarChartDataValue> $data
      */
-    public function addDataPoint(DataPoint $point): self
+    public function addData(HorizontalBarChartDataValue|BarChartDataValue|iterable $data): self
     {
-        return $this->push('data', $point);
-    }
+        if (is_iterable($data)) {
+            foreach ($data as $item) {
+                $this->push('data', $item);
+            }
 
-    /**
-     * Add multiple data points to the horizontal bar chart.
-     *
-     * @param iterable<DataPoint> $data
-     */
-    public function addDataPoints(iterable $data): self
-    {
-        foreach ($data as $point) {
-            $this->addDataPoint($point);
+            return $this;
         }
 
-        return $this;
+        return $this->push('data', $data);
     }
 
     /**
-     * The data points in the chart.
+     * The data to display in the chart.
      * Valid values: "HorizontalBarChartDataValue".
      *
-     * @param iterable<DataPoint> $data
+     * @param iterable<HorizontalBarChartDataValue|BarChartDataValue> $data
      */
     public function data(iterable $data): self
     {
-        return $this->addDataPoints($data);
+        return $this->addData($data);
     }
 
     /**

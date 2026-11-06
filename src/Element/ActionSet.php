@@ -5,12 +5,19 @@ declare(strict_types=1);
 namespace AdaptiveCards\Element;
 
 use AdaptiveCards\Action\AbstractAction;
+use AdaptiveCards\Support\HasHeight;
+use AdaptiveCards\Support\HasHorizontalAlignment;
+use AdaptiveCards\Support\HasSpacing;
 
 /**
  * Displays a set of action, which can be placed anywhere in the card.
  */
-final class ActionSet extends AbstractElement
+final class ActionSet extends AbstractBlockElement
 {
+    use HasHeight;
+    use HasHorizontalAlignment;
+    use HasSpacing;
+
     public static function make(): self
     {
         return new self();
@@ -18,24 +25,20 @@ final class ActionSet extends AbstractElement
 
     /**
      * Add an action to the set.
-     */
-    public function addAction(AbstractAction $action): self
-    {
-        return $this->push('actions', $action);
-    }
-
-    /**
-     * Add multiple actions to the set.
      *
-     * @param iterable<AbstractAction> $actions
+     * @param AbstractAction|iterable<AbstractAction> $action
      */
-    public function addActions(iterable $actions): self
+    public function addActions(AbstractAction|iterable $action): self
     {
-        foreach ($actions as $action) {
-            $this->addAction($action);
+        if (is_iterable($action)) {
+            foreach ($action as $item) {
+                $this->push('actions', $item);
+            }
+
+            return $this;
         }
 
-        return $this;
+        return $this->push('actions', $action);
     }
 
     /**

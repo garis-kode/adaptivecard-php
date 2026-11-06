@@ -14,7 +14,7 @@ final class TargetElement extends Node
     public function __construct(string $elementId, ?bool $isVisible = null)
     {
         $this->elementId($elementId);
-       
+
         if ($isVisible !== null) {
             $this->isVisible($isVisible);
         }

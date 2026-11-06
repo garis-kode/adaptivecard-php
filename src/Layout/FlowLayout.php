@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Layout;
 
+use AdaptiveCards\Enum\HorizontalAlignment;
+use AdaptiveCards\Enum\ItemFit;
+use AdaptiveCards\Enum\Spacing;
+use AdaptiveCards\Enum\VerticalAlignment;
+
 /**
  * Flow layout: wraps child elements horizontally across rows.
  */
@@ -15,7 +20,8 @@ final class FlowLayout extends AbstractLayout
     }
 
     /**
-     * The fixed width for all items in the flow layout.
+     * The width, in pixels, of each item, in the `<number>px` format. Should not be used if `maxItemWidth`
+     * and/or `minItemWidth` are set.
      * Valid values: "<number>px".
      */
     public function itemWidth(string $itemWidth): self
@@ -24,17 +30,17 @@ final class FlowLayout extends AbstractLayout
     }
 
     /**
-     * Controls how items fit within the flow layout.
-     *
-     * @param "Fit"|"Fill"|string $itemFit
+     * Controls how item should fit inside the container.
+     * Valid values: "Fit", "Fill".
      */
-    public function itemFit(string $itemFit): self
+    public function itemFit(ItemFit $itemFit): self
     {
-        return $this->set('itemFit', $itemFit);
+        return $this->set('itemFit', $itemFit->value);
     }
 
     /**
-     * The minimum width of items in the flow layout, in pixels.
+     * The minimum width, in pixels, of each item, in the `<number>px` format. Should not be used if
+     * `itemWidth` is set.
      * Valid values: "<number>px".
      */
     public function minItemWidth(string $minItemWidth): self
@@ -43,7 +49,8 @@ final class FlowLayout extends AbstractLayout
     }
 
     /**
-     * The maximum width of items in the flow layout, in pixels.
+     * The maximum width, in pixels, of each item, in the `<number>px` format. Should not be used if
+     * `itemWidth` is set.
      * Valid values: "<number>px".
      */
     public function maxItemWidth(string $maxItemWidth): self
@@ -52,13 +59,39 @@ final class FlowLayout extends AbstractLayout
     }
 
     /**
-     * Controls horizontal alignment of items.
-     *
-     * @param "Left"|"Center"|"Right"|string $alignment
+     * The space between items.
+     * Valid values: "None", "ExtraSmall", "Small", "Default", "Medium", "Large", "ExtraLarge", "Padding".
      */
-    public function horizontalItemsAlignment(string $alignment): self
+    public function columnSpacing(Spacing $spacing): self
     {
-        return $this->set('horizontalItemsAlignment', $alignment);
+        return $this->set('columnSpacing', $spacing->value);
+    }
+
+    /**
+     * The space between rows of items.
+     * Valid values: "None", "ExtraSmall", "Small", "Default", "Medium", "Large", "ExtraLarge", "Padding".
+     */
+    public function rowSpacing(Spacing $spacing): self
+    {
+        return $this->set('rowSpacing', $spacing->value);
+    }
+
+    /**
+     * Controls how the content of the container should be horizontally aligned.
+     * Valid values: "Left", "Center", "Right".
+     */
+    public function horizontalItemsAlignment(HorizontalAlignment $alignment): self
+    {
+        return $this->set('horizontalItemsAlignment', $alignment->value);
+    }
+
+    /**
+     * Controls how the content of the container should be vertically aligned.
+     * Valid values: "Top", "Center", "Bottom".
+     */
+    public function verticalItemsAlignment(VerticalAlignment $alignment): self
+    {
+        return $this->set('verticalItemsAlignment', $alignment->value);
     }
 
     public function getType(): string

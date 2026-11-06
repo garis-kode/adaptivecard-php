@@ -8,12 +8,15 @@ use AdaptiveCards\Enum\HorizontalAlignment;
 use AdaptiveCards\Enum\VerticalAlignment;
 use AdaptiveCards\Enum\Width;
 use AdaptiveCards\Node;
+use AdaptiveCards\Support\HasKey;
 
 /**
  * Defines a column in a Table element.
  */
 final class TableColumnDefinition extends Node
 {
+    use HasKey;
+
     public function __construct(Width|string|int|null $width = null)
     {
         if ($width !== null) {

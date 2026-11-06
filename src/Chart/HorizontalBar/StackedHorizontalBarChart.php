@@ -4,16 +4,15 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Chart\HorizontalBar;
 
-use AdaptiveCards\Chart\AbstractChart;
-use AdaptiveCards\Chart\Data\ChartSeries;
+use AdaptiveCards\Chart\AbstractCartesianChart;
 
 /**
  * A stacked horizontal bar chart.
  */
-final class StackedHorizontalBarChart extends AbstractChart
+final class StackedHorizontalBarChart extends AbstractCartesianChart
 {
     /**
-     * @param iterable<ChartSeries> $data
+     * @param iterable<StackedHorizontalBarChartData> $data
      */
     public function __construct(
         string $title,
@@ -22,14 +21,14 @@ final class StackedHorizontalBarChart extends AbstractChart
     ) {
         $this->title($title);
         $this->data($data);
-       
+
         if ($showTitle !== null) {
             $this->showTitle($showTitle);
         }
     }
 
     /**
-     * @param iterable<ChartSeries> $data
+     * @param iterable<StackedHorizontalBarChartData> $data
      */
     public static function make(
         string $title,
@@ -40,36 +39,30 @@ final class StackedHorizontalBarChart extends AbstractChart
     }
 
     /**
-     * Add a series of data points.
+     * @param StackedHorizontalBarChartData|iterable<StackedHorizontalBarChartData> $data
      */
-    public function addSeries(ChartSeries $series): self
+    public function addData(StackedHorizontalBarChartData|iterable $data): self
     {
-        return $this->push('data', $series);
-    }
+        if (is_iterable($data)) {
+            foreach ($data as $item) {
+                $this->push('data', $item);
+            }
 
-    /**
-     * Add multiple series of data points.
-     *
-     * @param iterable<ChartSeries> $data
-     */
-    public function addSeriesList(iterable $data): self
-    {
-        foreach ($data as $series) {
-            $this->addSeries($series);
+            return $this;
         }
 
-        return $this;
+        return $this->push('data', $data);
     }
 
     /**
      * The data to display in the chart.
      * Valid values: "StackedHorizontalBarChartData".
      *
-     * @param iterable<ChartSeries> $data
+     * @param iterable<StackedHorizontalBarChartData> $data
      */
     public function data(iterable $data): self
     {
-        return $this->addSeriesList($data);
+        return $this->addData($data);
     }
 
     public function getType(): string

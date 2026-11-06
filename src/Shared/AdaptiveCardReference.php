@@ -5,12 +5,15 @@ declare(strict_types=1);
 namespace AdaptiveCards\Shared;
 
 use AdaptiveCards\Node;
+use AdaptiveCards\Support\HasKey;
 
 /**
  * A type of reference whose content is an Adaptive Card.
  */
 final class AdaptiveCardReference extends Node
 {
+    use HasKey;
+
     public static function make(): self
     {
         return new self();

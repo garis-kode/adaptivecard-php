@@ -12,7 +12,7 @@ final class ToggleInput extends AbstractInput
     public function __construct(string $id, ?string $title = null)
     {
         parent::__construct($id);
-    
+
         if ($title !== null) {
             $this->title($title);
         }
@@ -38,6 +38,14 @@ final class ToggleInput extends AbstractInput
     public function showTitle(bool $show = true): self
     {
         return $this->set('showTitle', $show);
+    }
+
+    /**
+     * The default value of the input.
+     */
+    public function value(string $value): self
+    {
+        return $this->set('value', $value);
     }
 
     /**

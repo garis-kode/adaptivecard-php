@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace AdaptiveCards\Chart;
+namespace AdaptiveCards\Chart\Donut;
 
-use AdaptiveCards\Chart\Data\DataPoint;
+use AdaptiveCards\Chart\AbstractChart;
 use AdaptiveCards\Enum\ChartColor;
 use AdaptiveCards\Enum\ChartThickness;
 
@@ -14,7 +14,7 @@ use AdaptiveCards\Enum\ChartThickness;
 final class DonutChart extends AbstractChart
 {
     /**
-     * @param iterable<DataPoint>|null $data
+     * @param iterable<DonutChartData>|null $data
      */
     public function __construct(
         string $title,
@@ -22,7 +22,7 @@ final class DonutChart extends AbstractChart
         ?iterable $data = null,
     ) {
         $this->title($title);
-     
+
         if ($showTitle !== null) {
             $this->showTitle($showTitle);
         }
@@ -32,7 +32,7 @@ final class DonutChart extends AbstractChart
     }
 
     /**
-     * @param iterable<DataPoint>|null $data
+     * @param iterable<DonutChartData>|null $data
      */
     public static function make(
         string $title,
@@ -69,7 +69,19 @@ final class DonutChart extends AbstractChart
     }
 
     /**
-     * Controls the color of the value displayed in the center of a Donut chart.
+     * Controls the color of the value displayed in the center of a Donut chart. Valid values:
+     * "good", "warning", "attention", "neutral", "categoricalRed", "categoricalPurple",
+     * "categoricalLavender", "categoricalBlue", "categoricalLightBlue", "categoricalTeal",
+     * "categoricalGreen", "categoricalLime", "categoricalMarigold", "sequential1", "sequential2",
+     * "sequential3", "sequential4", "sequential5", "sequential6", "sequential7", "sequential8",
+     * "divergingBlue", "divergingLightBlue", "divergingCyan", "divergingTeal", "divergingYellow",
+     * "divergingPeach", "divergingLightRed", "divergingRed", "divergingMaroon", "divergingGray",
+     * "sequentialRed1", "sequentialRed2", "sequentialRed3", "sequentialRed4", "sequentialRed5",
+     * "sequentialRed6", "sequentialRed7", "sequentialRed8", "sequentialGreen1", "sequentialGreen2",
+     * "sequentialGreen3", "sequentialGreen4", "sequentialGreen5", "sequentialGreen6",
+     * "sequentialGreen7", "sequentialGreen8", "sequentialYellow1", "sequentialYellow2",
+     * "sequentialYellow3", "sequentialYellow4", "sequentialYellow5", "sequentialYellow6",
+     * "sequentialYellow7", "sequentialYellow8".
      */
     public function valueColor(ChartColor $color): self
     {
@@ -77,36 +89,30 @@ final class DonutChart extends AbstractChart
     }
 
     /**
-     * Add a data point to the donut chart.
+     * @param DonutChartData|iterable<DonutChartData> $data
      */
-    public function addDataPoint(DataPoint $point): self
+    public function addData(DonutChartData|iterable $data): self
     {
-        return $this->push('data', $point);
-    }
+        if (is_iterable($data)) {
+            foreach ($data as $item) {
+                $this->push('data', $item);
+            }
 
-    /**
-     * Add multiple data points to the donut chart.
-     *
-     * @param iterable<DataPoint> $data
-     */
-    public function addDataPoints(iterable $data): self
-    {
-        foreach ($data as $point) {
-            $this->addDataPoint($point);
+            return $this;
         }
 
-        return $this;
+        return $this->push('data', $data);
     }
 
     /**
      * The data to display in the chart.
      * Valid values: "DonutChartData".
      *
-     * @param iterable<DataPoint> $data
+     * @param iterable<DonutChartData> $data
      */
     public function data(iterable $data): self
     {
-        return $this->addDataPoints($data);
+        return $this->addData($data);
     }
 
     public function getType(): string

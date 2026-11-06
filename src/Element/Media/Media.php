@@ -4,38 +4,39 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Element\Media;
 
-use AdaptiveCards\Element\AbstractElement;
+use AdaptiveCards\Element\AbstractBlockElement;
+use AdaptiveCards\Support\HasHeight;
+use AdaptiveCards\Support\HasSpacing;
 
 /**
  * A media element that makes it possible to embed videos inside a card.
  */
-final class Media extends AbstractElement
+final class Media extends AbstractBlockElement
 {
+    use HasHeight;
+    use HasSpacing;
+
     public static function make(): self
     {
         return new self();
     }
 
     /**
-     * Add a media source URL.
-     */
-    public function addSource(MediaSource $source): self
-    {
-        return $this->push('sources', $source);
-    }
-
-    /**
-     * Add multiple media sources.
+     * Add sources for the media.
      *
-     * @param iterable<MediaSource> $sources
+     * @param MediaSource|iterable<MediaSource> $source
      */
-    public function addSources(iterable $sources): self
+    public function addSources(MediaSource|iterable $source): self
     {
-        foreach ($sources as $source) {
-            $this->addSource($source);
+        if (is_iterable($source)) {
+            foreach ($source as $item) {
+                $this->push('sources', $item);
+            }
+
+            return $this;
         }
 
-        return $this;
+        return $this->push('sources', $source);
     }
 
     /**
@@ -50,25 +51,21 @@ final class Media extends AbstractElement
     }
 
     /**
-     * Add a caption source URL.
-     */
-    public function addCaptionSource(CaptionSource $source): self
-    {
-        return $this->push('captionSources', $source);
-    }
-
-    /**
-     * Add multiple caption sources.
+     * Add caption sources for the media.
      *
-     * @param iterable<CaptionSource> $captionSources
+     * @param CaptionSource|iterable<CaptionSource> $source
      */
-    public function addCaptionSources(iterable $captionSources): self
+    public function addCaptionSources(CaptionSource|iterable $source): self
     {
-        foreach ($captionSources as $source) {
-            $this->addCaptionSource($source);
+        if (is_iterable($source)) {
+            foreach ($source as $item) {
+                $this->push('captionSources', $item);
+            }
+
+            return $this;
         }
 
-        return $this;
+        return $this->push('captionSources', $source);
     }
 
     /**

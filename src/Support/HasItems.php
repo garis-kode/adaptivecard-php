@@ -4,18 +4,23 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Support;
 
-use AdaptiveCards\Chart\Data\ChartSeries;
-use AdaptiveCards\Chart\Data\DataPoint;
-use AdaptiveCards\Chart\DonutChart;
+use AdaptiveCards\Chart\Donut\DonutChart;
+use AdaptiveCards\Chart\Donut\DonutChartData;
 use AdaptiveCards\Chart\Gauge\GaugeChart;
-use AdaptiveCards\Chart\Gauge\GaugeSegment;
+use AdaptiveCards\Chart\Gauge\GaugeChartLegend;
 use AdaptiveCards\Chart\HorizontalBar\HorizontalBarChart;
+use AdaptiveCards\Chart\HorizontalBar\HorizontalBarChartDataValue;
 use AdaptiveCards\Chart\HorizontalBar\StackedHorizontalBarChart;
-use AdaptiveCards\Chart\LineChart;
-use AdaptiveCards\Chart\PieChart;
+use AdaptiveCards\Chart\HorizontalBar\StackedHorizontalBarChartData;
+use AdaptiveCards\Chart\Line\LineChart;
+use AdaptiveCards\Chart\Line\LineChartData;
+use AdaptiveCards\Chart\Pie\PieChart;
 use AdaptiveCards\Chart\VerticalBar\GroupedVerticalBarChart;
+use AdaptiveCards\Chart\VerticalBar\GroupedVerticalBarChartData;
 use AdaptiveCards\Chart\VerticalBar\VerticalBarChart;
-use AdaptiveCards\Element\AbstractElement;
+use AdaptiveCards\Chart\VerticalBar\VerticalBarChartDataValue;
+use AdaptiveCards\Element\AbstractBlockElement;
+use AdaptiveCards\Element\Accordion;
 use AdaptiveCards\Element\ActionSet;
 use AdaptiveCards\Element\Badge;
 use AdaptiveCards\Element\Carousel\Carousel;
@@ -34,6 +39,7 @@ use AdaptiveCards\Element\Progress\ProgressRing;
 use AdaptiveCards\Element\Rating;
 use AdaptiveCards\Element\RichTextBlock\RichTextBlock;
 use AdaptiveCards\Element\Table\Table;
+use AdaptiveCards\Element\TabSet;
 use AdaptiveCards\Element\TextBlock;
 use AdaptiveCards\Enum\ChartColorSet;
 use AdaptiveCards\Enum\CodeBlockLanguage;
@@ -62,27 +68,26 @@ trait HasItems
         return 'items';
     }
 
-    public function addItem(AbstractElement $element): static
-    {
-        return $this->push($this->itemsKey(), $element);
-    }
-
     /**
-     * @param iterable<AbstractElement> $elements
+     * @param AbstractBlockElement|iterable<AbstractBlockElement> $element
      */
-    public function addItems(iterable $elements): static
+    public function addItems(AbstractBlockElement|iterable $element): static
     {
-        foreach ($elements as $element) {
-            $this->addItem($element);
+        if (is_iterable($element)) {
+            foreach ($element as $item) {
+                $this->push($this->itemsKey(), $item);
+            }
+
+            return $this;
         }
 
-        return $this;
+        return $this->push($this->itemsKey(), $element);
     }
 
     /**
      * The items in the container.
      *
-     * @param iterable<AbstractElement> $elements
+     * @param iterable<AbstractBlockElement> $elements
      */
     public function items(iterable $elements): static
     {
@@ -91,29 +96,29 @@ trait HasItems
 
     public function addTextBlock(string $text, ?callable $configure = null): static
     {
-        return $this->addItem($this->configure(new TextBlock($text), $configure));
+        return $this->addItems($this->configure(new TextBlock($text), $configure));
     }
 
     public function addImage(string $url, ?callable $configure = null): static
     {
         $image = (new Image())->url($url);
 
-        return $this->addItem($this->configure($image, $configure));
+        return $this->addItems($this->configure($image, $configure));
     }
 
     public function addRichTextBlock(?callable $configure = null): static
     {
-        return $this->addItem($this->configure(new RichTextBlock(), $configure));
+        return $this->addItems($this->configure(new RichTextBlock(), $configure));
     }
 
     public function addContainer(?callable $configure = null): static
     {
-        return $this->addItem($this->configure(new Container(), $configure));
+        return $this->addItems($this->configure(new Container(), $configure));
     }
 
     public function addColumnSet(?callable $configure = null): static
     {
-        return $this->addItem($this->configure(new ColumnSet(), $configure));
+        return $this->addItems($this->configure(new ColumnSet(), $configure));
     }
 
     /**
@@ -124,37 +129,47 @@ trait HasItems
         $factSet = new FactSet();
         $factSet->facts($facts);
 
-        return $this->addItem($this->configure($factSet, $configure));
+        return $this->addItems($this->configure($factSet, $configure));
     }
 
     public function addImageSet(?callable $configure = null): static
     {
-        return $this->addItem($this->configure(new ImageSet(), $configure));
+        return $this->addItems($this->configure(new ImageSet(), $configure));
     }
 
     public function addMedia(?callable $configure = null): static
     {
-        return $this->addItem($this->configure(new Media(), $configure));
+        return $this->addItems($this->configure(new Media(), $configure));
     }
 
     public function addTable(?callable $configure = null): static
     {
-        return $this->addItem($this->configure(new Table(), $configure));
+        return $this->addItems($this->configure(new Table(), $configure));
     }
 
     public function addActionSet(?callable $configure = null): static
     {
-        return $this->addItem($this->configure(new ActionSet(), $configure));
+        return $this->addItems($this->configure(new ActionSet(), $configure));
     }
 
     public function addBadge(?string $text = null, ?callable $configure = null): static
     {
-        return $this->addItem($this->configure(new Badge($text), $configure));
+        return $this->addItems($this->configure(new Badge($text), $configure));
     }
 
     public function addCarousel(?callable $configure = null): static
     {
-        return $this->addItem($this->configure(new Carousel(), $configure));
+        return $this->addItems($this->configure(new Carousel(), $configure));
+    }
+
+    public function addAccordion(?callable $configure = null): static
+    {
+        return $this->addItems($this->configure(new Accordion(), $configure));
+    }
+
+    public function addTabSet(?callable $configure = null): static
+    {
+        return $this->addItems($this->configure(new TabSet(), $configure));
     }
 
     public function addCodeBlock(
@@ -164,7 +179,7 @@ trait HasItems
     ): static {
         $codeBlock = (new CodeBlock())->codeSnippet($code)->language($language);
 
-        return $this->addItem($this->configure($codeBlock, $configure));
+        return $this->addItems($this->configure($codeBlock, $configure));
     }
 
     public function addCompoundButton(
@@ -172,14 +187,14 @@ trait HasItems
         ?string $description = null,
         ?callable $configure = null,
     ): static {
-        return $this->addItem($this->configure(new CompoundButton($title, $description), $configure));
+        return $this->addItems($this->configure(new CompoundButton($title, $description), $configure));
     }
 
     public function addIcon(string $name, ?callable $configure = null): static
     {
         $icon = (new Icon())->name($name);
 
-        return $this->addItem($this->configure($icon, $configure));
+        return $this->addItems($this->configure($icon, $configure));
     }
 
     public function addProgressBar(float|int|null $value = null, float|int $max = 100, ?callable $configure = null): static
@@ -192,7 +207,7 @@ trait HasItems
             $bar->max($max);
         }
 
-        return $this->addItem($this->configure($bar, $configure));
+        return $this->addItems($this->configure($bar, $configure));
     }
 
     /**
@@ -200,7 +215,7 @@ trait HasItems
      */
     public function addProgressRing(?string $label = null, ?callable $configure = null): static
     {
-        return $this->addItem($this->configure(new ProgressRing($label), $configure));
+        return $this->addItems($this->configure(new ProgressRing($label), $configure));
     }
 
     public function addRating(float|int|null $value = null, float|int $max = 5, ?callable $configure = null): static
@@ -213,7 +228,7 @@ trait HasItems
             $rating->max($max);
         }
 
-        return $this->addItem($this->configure($rating, $configure));
+        return $this->addItems($this->configure($rating, $configure));
     }
 
     /**
@@ -225,7 +240,7 @@ trait HasItems
         ?string $placeholder = null,
         ?callable $configure = null,
     ): static {
-        return $this->addItem($this->configure(new TextInput($id, $label, $placeholder), $configure));
+        return $this->addItems($this->configure(new TextInput($id, $label, $placeholder), $configure));
     }
 
     /**
@@ -237,7 +252,7 @@ trait HasItems
         ?string $placeholder = null,
         ?callable $configure = null,
     ): static {
-        return $this->addItem($this->configure(new NumberInput($id, $label, $placeholder), $configure));
+        return $this->addItems($this->configure(new NumberInput($id, $label, $placeholder), $configure));
     }
 
     /**
@@ -245,7 +260,7 @@ trait HasItems
      */
     public function addDateInput(string $id, ?string $label = null, ?callable $configure = null): static
     {
-        return $this->addItem($this->configure(new DateInput($id, $label), $configure));
+        return $this->addItems($this->configure(new DateInput($id, $label), $configure));
     }
 
     /**
@@ -256,7 +271,7 @@ trait HasItems
         ?string $label = null,
         ?callable $configure = null,
     ): static {
-        return $this->addItem($this->configure(new TimeInput($id, $label), $configure));
+        return $this->addItems($this->configure(new TimeInput($id, $label), $configure));
     }
 
     /**
@@ -267,12 +282,12 @@ trait HasItems
         ?string $title = null,
         ?callable $configure = null,
     ): static {
-        return $this->addItem($this->configure(new ToggleInput($id, $title), $configure));
+        return $this->addItems($this->configure(new ToggleInput($id, $title), $configure));
     }
 
     public function addChoiceSetInput(string $id, ?callable $configure = null): static
     {
-        return $this->addItem($this->configure(new ChoiceSetInput($id), $configure));
+        return $this->addItems($this->configure(new ChoiceSetInput($id), $configure));
     }
 
     /**
@@ -283,11 +298,11 @@ trait HasItems
         ?string $label = null,
         ?callable $configure = null,
     ): static {
-        return $this->addItem($this->configure(new RatingInput($id, $label), $configure));
+        return $this->addItems($this->configure(new RatingInput($id, $label), $configure));
     }
 
     /**
-     * @param iterable<DataPoint>|null $data
+     * @param iterable<DonutChartData>|null      $data
      * @param (callable(DonutChart): mixed)|null $configure
      */
     public function addDonutChart(
@@ -296,11 +311,11 @@ trait HasItems
         ?iterable $data = null,
         ?callable $configure = null,
     ): static {
-        return $this->addItem($this->configure(new DonutChart($title, $showTitle, $data), $configure));
+        return $this->addItems($this->configure(new DonutChart($title, $showTitle, $data), $configure));
     }
 
     /**
-     * @param iterable<GaugeSegment>|null $segments
+     * @param iterable<GaugeChartLegend>|null    $segments
      * @param (callable(GaugeChart): mixed)|null $configure
      */
     public function addGaugeChart(
@@ -310,11 +325,11 @@ trait HasItems
         ?iterable $segments = null,
         ?callable $configure = null,
     ): static {
-        return $this->addItem($this->configure(new GaugeChart($title, $showTitle, $value, $segments), $configure));
+        return $this->addItems($this->configure(new GaugeChart($title, $showTitle, $value, $segments), $configure));
     }
 
     /**
-     * @param iterable<DataPoint> $data
+     * @param iterable<HorizontalBarChartDataValue>      $data
      * @param (callable(HorizontalBarChart): mixed)|null $configure
      */
     public function addHorizontalBarChart(
@@ -326,11 +341,11 @@ trait HasItems
         ?ChartColorSet $colorSet = null,
         ?callable $configure = null,
     ): static {
-        return $this->addItem($this->configure(new HorizontalBarChart($title, $data, $showTitle, $xAxisTitle, $yAxisTitle, $colorSet), $configure));
+        return $this->addItems($this->configure(new HorizontalBarChart($title, $data, $showTitle, $xAxisTitle, $yAxisTitle, $colorSet), $configure));
     }
 
     /**
-     * @param iterable<ChartSeries> $data
+     * @param iterable<StackedHorizontalBarChartData>           $data
      * @param (callable(StackedHorizontalBarChart): mixed)|null $configure
      */
     public function addStackedHorizontalBarChart(
@@ -339,11 +354,11 @@ trait HasItems
         ?bool $showTitle = null,
         ?callable $configure = null,
     ): static {
-        return $this->addItem($this->configure(new StackedHorizontalBarChart($title, $data, $showTitle), $configure));
+        return $this->addItems($this->configure(new StackedHorizontalBarChart($title, $data, $showTitle), $configure));
     }
 
     /**
-     * @param iterable<ChartSeries>|null $data
+     * @param iterable<LineChartData>|null      $data
      * @param (callable(LineChart): mixed)|null $configure
      */
     public function addLineChart(
@@ -355,11 +370,11 @@ trait HasItems
         ?iterable $data = null,
         ?callable $configure = null,
     ): static {
-        return $this->addItem($this->configure(new LineChart($title, $showTitle, $xAxisTitle, $yAxisTitle, $colorSet, $data), $configure));
+        return $this->addItems($this->configure(new LineChart($title, $showTitle, $xAxisTitle, $yAxisTitle, $colorSet, $data), $configure));
     }
 
     /**
-     * @param iterable<DataPoint>|null $data
+     * @param iterable<DonutChartData>|null    $data
      * @param (callable(PieChart): mixed)|null $configure
      */
     public function addPieChart(
@@ -368,11 +383,11 @@ trait HasItems
         ?iterable $data = null,
         ?callable $configure = null,
     ): static {
-        return $this->addItem($this->configure(new PieChart($title, $showTitle, $data), $configure));
+        return $this->addItems($this->configure(new PieChart($title, $showTitle, $data), $configure));
     }
 
     /**
-     * @param iterable<DataPoint> $data
+     * @param iterable<VerticalBarChartDataValue>      $data
      * @param (callable(VerticalBarChart): mixed)|null $configure
      */
     public function addVerticalBarChart(
@@ -384,11 +399,11 @@ trait HasItems
         ?ChartColorSet $colorSet = null,
         ?callable $configure = null,
     ): static {
-        return $this->addItem($this->configure(new VerticalBarChart($title, $data, $showTitle, $xAxisTitle, $yAxisTitle, $colorSet), $configure));
+        return $this->addItems($this->configure(new VerticalBarChart($title, $data, $showTitle, $xAxisTitle, $yAxisTitle, $colorSet), $configure));
     }
 
     /**
-     * @param iterable<ChartSeries>|null $data
+     * @param iterable<GroupedVerticalBarChartData>|null      $data
      * @param (callable(GroupedVerticalBarChart): mixed)|null $configure
      */
     public function addGroupedVerticalBarChart(
@@ -400,12 +415,14 @@ trait HasItems
         ?ChartColorSet $colorSet = null,
         ?callable $configure = null,
     ): static {
-        return $this->addItem($this->configure(new GroupedVerticalBarChart($title, $data, $showTitle, $xAxisTitle, $yAxisTitle, $colorSet), $configure));
+        return $this->addItems($this->configure(new GroupedVerticalBarChart($title, $data, $showTitle, $xAxisTitle, $yAxisTitle, $colorSet), $configure));
     }
 
     /**
      * @template T of object
+     *
      * @param T $element
+     *
      * @return T
      */
     private function configure(object $element, ?callable $configure): object

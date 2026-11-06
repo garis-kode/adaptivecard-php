@@ -5,12 +5,15 @@ declare(strict_types=1);
 namespace AdaptiveCards\Shared;
 
 use AdaptiveCards\Node;
+use AdaptiveCards\Support\HasKey;
 
 /**
  * Card-level metadata.
  */
 final class Metadata extends Node
 {
+    use HasKey;
+
     public function __construct(?string $webUrl = null)
     {
         if ($webUrl !== null) {

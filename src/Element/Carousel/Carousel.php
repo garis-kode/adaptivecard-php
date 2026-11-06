@@ -4,14 +4,19 @@ declare(strict_types=1);
 
 namespace AdaptiveCards\Element\Carousel;
 
-use AdaptiveCards\Element\AbstractElement;
+use AdaptiveCards\Element\AbstractBlockElement;
 use AdaptiveCards\Enum\PageAnimation;
+use AdaptiveCards\Support\HasHeight;
+use AdaptiveCards\Support\HasSpacing;
 
 /**
  * A carousel with sliding pages.
  */
-final class Carousel extends AbstractElement
+final class Carousel extends AbstractBlockElement
 {
+    use HasHeight;
+    use HasSpacing;
+
     public static function make(): self
     {
         return new self();
@@ -19,24 +24,20 @@ final class Carousel extends AbstractElement
 
     /**
      * Add a page to the carousel.
-     */
-    public function addPage(CarouselPage $page): self
-    {
-        return $this->push('pages', $page);
-    }
-
-    /**
-     * Add multiple pages to the carousel.
      *
-     * @param iterable<CarouselPage> $pages
+     * @param CarouselPage|iterable<CarouselPage> $page
      */
-    public function addPages(iterable $pages): self
+    public function addPages(CarouselPage|iterable $page): self
     {
-        foreach ($pages as $page) {
-            $this->addPage($page);
+        if (is_iterable($page)) {
+            foreach ($page as $item) {
+                $this->push('pages', $item);
+            }
+
+            return $this;
         }
 
-        return $this;
+        return $this->push('pages', $page);
     }
 
     /**
@@ -70,7 +71,6 @@ final class Carousel extends AbstractElement
 
     /**
      * Controls if the container should bleed into its parent. A bleeding container extends into its parent's padding.
-     * See **Edge-to-edge content** for more information.
      */
     public function bleed(bool $bleed = true): self
     {

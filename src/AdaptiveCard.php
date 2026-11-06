@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace AdaptiveCards;
 
 use AdaptiveCards\Action\AbstractAction;
-use AdaptiveCards\Element\AbstractElement;
+use AdaptiveCards\Element\AbstractBlockElement;
 use AdaptiveCards\Enum\ContainerStyle;
 use AdaptiveCards\Enum\VerticalAlignment;
-use AdaptiveCards\Layout\AbstractLayout;
+use AdaptiveCards\Other\HostCapabilities;
 use AdaptiveCards\Shared\AdaptiveCardReference;
 use AdaptiveCards\Shared\Authentication;
 use AdaptiveCards\Shared\BackgroundImage;
@@ -18,6 +18,8 @@ use AdaptiveCards\Shared\Refresh;
 use AdaptiveCards\Shared\Resources;
 use AdaptiveCards\Shared\TeamsCardProperties;
 use AdaptiveCards\Support\HasItems;
+use AdaptiveCards\Support\HasKey;
+use AdaptiveCards\Support\HasLayouts;
 
 /**
  * An Adaptive Card, containing a free-form body of card elements, and an optional set of actions.
@@ -25,8 +27,10 @@ use AdaptiveCards\Support\HasItems;
 final class AdaptiveCard extends Node
 {
     use HasItems;
+    use HasKey;
+    use HasLayouts;
 
-    public const SCHEMA_URL = 'http://adaptivecards.io/schemas/adaptive-card.json';
+    public const SCHEMA_URL = 'https://adaptivecards.io/schemas/adaptive-card.json';
     public const DEFAULT_VERSION = '1.6';
 
     public function __construct(string $version = self::DEFAULT_VERSION)
@@ -70,7 +74,7 @@ final class AdaptiveCard extends Node
      * "Input.Text", "Input.Time", "Input.Toggle", "LoopComponent", "Media", "ProgressBar",
      * "ProgressRing", "Rating", "RichTextBlock", "Table", "TabSet", "TextBlock".
      *
-     * @param iterable<AbstractElement> $elements
+     * @param iterable<AbstractBlockElement> $elements
      */
     public function body(iterable $elements): self
     {
@@ -86,25 +90,19 @@ final class AdaptiveCard extends Node
     }
 
     /**
-     * Add a card level action, which always appears at the bottom of the card.
+     * @param AbstractAction|iterable<AbstractAction> $action
      */
-    public function addAction(AbstractAction $action): self
+    public function addActions(AbstractAction|iterable $action): self
     {
-        return $this->push('actions', $action);
-    }
+        if (is_iterable($action)) {
+            foreach ($action as $item) {
+                $this->push('actions', $item);
+            }
 
-    /**
-     * Add multiple card level actions.
-     *
-     * @param iterable<AbstractAction> $actions
-     */
-    public function addActions(iterable $actions): self
-    {
-        foreach ($actions as $action) {
-            $this->addAction($action);
+            return $this;
         }
 
-        return $this;
+        return $this->push('actions', $action);
     }
 
     /**
@@ -121,10 +119,11 @@ final class AdaptiveCard extends Node
     }
 
     /**
-     * An Action that will be invoked when the card is tapped or clicked.
-     * Action.ShowCard is not supported.
-     * Valid values: "Action.Execute", "Action.InsertImage", "Action.OpenUrl", "Action.OpenUrlDialog",
-     * "Action.Popover", "Action.ResetInputs", "Action.RunCommands", "Action.Submit", "Action.ToggleVisibility".
+     * An Action that will be invoked when the element is tapped or clicked. `Action.ShowCard` is
+     * not supported.
+     * Valid values: "Action.Execute", "Action.InsertImage", "Action.OpenUrl",
+     * "Action.OpenUrlDialog", "Action.Popover", "Action.ResetInputs", "Action.RunCommands",
+     * "Action.Submit", "Action.ToggleVisibility".
      */
     public function selectAction(AbstractAction $action): self
     {
@@ -188,10 +187,8 @@ final class AdaptiveCard extends Node
      * If the host application doesn't support at least one of the listed capabilities,
      * the element is not rendered (or its fallback is rendered if provided).
      * Valid values: "HostCapabilities".
-     *
-     * @param array<string, string> $requires
      */
-    public function requires(array $requires): self
+    public function requires(HostCapabilities $requires): self
     {
         return $this->set('requires', $requires);
     }
@@ -286,8 +283,7 @@ final class AdaptiveCard extends Node
     }
 
     /**
-     * Teams-specific metadata associated with the card.
-     * Valid values: "TeamsCardProperties".
+     * Teams-specific metadata associated with the card. Valid values: `TeamsCardProperties`.
      */
     public function msteams(TeamsCardProperties $msteams, bool $useCamelCaseKey = false): self
     {
@@ -308,25 +304,19 @@ final class AdaptiveCard extends Node
     }
 
     /**
-     * Add a reference that can be cited in TextBlock and RichTextBlock elements.
+     * @param AdaptiveCardReference|DocumentReference|iterable<AdaptiveCardReference|DocumentReference> $reference
      */
-    public function addReference(AdaptiveCardReference|DocumentReference $reference): self
+    public function addReferences(AdaptiveCardReference|DocumentReference|iterable $reference): self
     {
-        return $this->push('references', $reference);
-    }
+        if (is_iterable($reference)) {
+            foreach ($reference as $item) {
+                $this->push('references', $item);
+            }
 
-    /**
-     * Add multiple references.
-     *
-     * @param iterable<AdaptiveCardReference|DocumentReference> $references
-     */
-    public function addReferences(iterable $references): self
-    {
-        foreach ($references as $reference) {
-            $this->addReference($reference);
+            return $this;
         }
 
-        return $this;
+        return $this->push('references', $reference);
     }
 
     /**
@@ -338,40 +328,6 @@ final class AdaptiveCard extends Node
     public function references(iterable $references): self
     {
         return $this->addReferences($references);
-    }
-
-    /**
-     * Add a layout associated with the container.
-     */
-    public function addLayout(AbstractLayout $layout): self
-    {
-        return $this->push('layouts', $layout);
-    }
-
-    /**
-     * Add multiple layouts associated with the container.
-     *
-     * @param iterable<AbstractLayout> $layouts
-     */
-    public function addLayouts(iterable $layouts): self
-    {
-        foreach ($layouts as $layout) {
-            $this->addLayout($layout);
-        }
-
-        return $this;
-    }
-
-    /**
-     * The layouts associated with the container. The container can dynamically switch
-     * from one layout to another as the card's width changes.
-     * Valid values: "Layout.Stack", "Layout.Flow", "Layout.AreaGrid".
-     *
-     * @param iterable<AbstractLayout> $layouts
-     */
-    public function layouts(iterable $layouts): self
-    {
-        return $this->addLayouts($layouts);
     }
 
     /**

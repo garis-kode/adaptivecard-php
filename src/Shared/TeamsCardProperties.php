@@ -5,37 +5,34 @@ declare(strict_types=1);
 namespace AdaptiveCards\Shared;
 
 use AdaptiveCards\Node;
+use AdaptiveCards\Support\HasKey;
 
 /**
  * Represents a set of Teams-specific properties on a card.
  */
 final class TeamsCardProperties extends Node
 {
+    use HasKey;
+
     public static function make(): self
     {
         return new self();
     }
 
     /**
-     * Add an entity mention.
+     * @param Mention|iterable<Mention> $mention
      */
-    public function addEntity(Mention $mention): self
+    public function addEntities(Mention|iterable $mention): self
     {
-        return $this->push('entities', $mention);
-    }
+        if (is_iterable($mention)) {
+            foreach ($mention as $item) {
+                $this->push('entities', $item);
+            }
 
-    /**
-     * Add multiple entity mentions.
-     *
-     * @param iterable<Mention> $entities
-     */
-    public function addEntities(iterable $entities): self
-    {
-        foreach ($entities as $mention) {
-            $this->addEntity($mention);
+            return $this;
         }
 
-        return $this;
+        return $this->push('entities', $mention);
     }
 
     /**

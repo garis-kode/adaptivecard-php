@@ -5,14 +5,15 @@ declare(strict_types=1);
 namespace AdaptiveCards\Element\RichTextBlock;
 
 use AdaptiveCards\Action\AbstractAction;
-use AdaptiveCards\Element\AbstractElement;
+use AdaptiveCards\Element\AbstractInlineElement;
 use AdaptiveCards\Enum\ImageStyle;
 use AdaptiveCards\Enum\TextSize;
+use AdaptiveCards\Other\ThemedUrl;
 
 /**
  * An inline image inside a RichTextBlock element.
  */
-final class ImageRun extends AbstractElement
+final class ImageRun extends AbstractInlineElement
 {
     public function __construct(string $url)
     {
@@ -51,14 +52,32 @@ final class ImageRun extends AbstractElement
     }
 
     /**
+     * Add a theme-specific image URLs.
+     *
+     * @param ThemedUrl|iterable<ThemedUrl> $themedUrl
+     */
+    public function addThemedUrls(ThemedUrl|iterable $themedUrl): self
+    {
+        if (is_iterable($themedUrl)) {
+            foreach ($themedUrl as $item) {
+                $this->push('themedUrls', $item);
+            }
+
+            return $this;
+        }
+
+        return $this->push('themedUrls', $themedUrl);
+    }
+
+    /**
      * A set of theme-specific image URLs.
      * Valid values: "ThemedUrl".
      *
-     * @param list<array{imageBaseUrl: string, mimeType: string}> $themedUrls
+     * @param iterable<ThemedUrl> $themedUrls
      */
-    public function themedUrls(array $themedUrls): self
+    public function themedUrls(iterable $themedUrls): self
     {
-        return $this->set('themedUrls', $themedUrls);
+        return $this->addThemedUrls($themedUrls);
     }
 
     /**

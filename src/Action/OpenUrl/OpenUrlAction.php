@@ -5,12 +5,15 @@ declare(strict_types=1);
 namespace AdaptiveCards\Action\OpenUrl;
 
 use AdaptiveCards\Action\AbstractAction;
+use AdaptiveCards\Support\HasMenuActions;
 
 /**
  * Opens the provided URL in either a separate browser tab or within the host application.
  */
 final class OpenUrlAction extends AbstractAction
 {
+    use HasMenuActions;
+
     public function __construct(string $url, ?string $title = null)
     {
         $this->url($url);
