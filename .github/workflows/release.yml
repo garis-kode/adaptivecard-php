@@ -46,7 +46,7 @@ jobs:
 
       - name: Generate release notes
         id: generated-notes
-        uses: RedCrafter07/release-notes-action@v1
+        uses: RedCrafter07/release-notes-action@304edb57ff4d0cb822b39a00556c015790dee977 # v1.0.2
         with:
           tag-name: v${{ steps.version.outputs.version }}
           token: ${{ secrets.GITHUB_TOKEN }}
