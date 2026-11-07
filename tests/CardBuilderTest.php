@@ -2,15 +2,18 @@
 
 declare(strict_types=1);
 
-namespace AdaptiveCards\Tests\Card;
+namespace AdaptiveCards\Tests;
 
 use AdaptiveCards\Action\ExecuteAction;
 use AdaptiveCards\Action\OpenUrl\OpenUrlAction;
+use AdaptiveCards\Action\ShowCardAction;
 use AdaptiveCards\Action\SubmitAction;
 use AdaptiveCards\Action\ToggleVisibility\TargetElement;
 use AdaptiveCards\Action\ToggleVisibility\ToggleVisibilityAction;
 use AdaptiveCards\AdaptiveCard;
+use AdaptiveCards\Chart\Donut\DonutChartData;
 use AdaptiveCards\Element\ActionSet;
+use AdaptiveCards\Element\Badge;
 use AdaptiveCards\Element\Column\Column;
 use AdaptiveCards\Element\Column\ColumnSet;
 use AdaptiveCards\Element\Container;
@@ -26,6 +29,9 @@ use AdaptiveCards\Element\Table\TableRow;
 use AdaptiveCards\Element\TextBlock;
 use AdaptiveCards\Enum\ActionMode;
 use AdaptiveCards\Enum\ActionStyle;
+use AdaptiveCards\Enum\BadgeAppearance;
+use AdaptiveCards\Enum\BadgeSize;
+use AdaptiveCards\Enum\BadgeStyle;
 use AdaptiveCards\Enum\ChoiceInputStyle;
 use AdaptiveCards\Enum\Colors;
 use AdaptiveCards\Enum\ContainerStyle;
@@ -3155,6 +3161,629 @@ final class CardBuilderTest extends TestCase
         $this->assertMatchesFixture($card, '13-cafeteria-24-menu');
     }
 
+    public function testBuildDesignTalkSeriesCard(): void
+    {
+        $heroImage = 'https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Adaptive-Card-Samples//main/samples/editorial/assets/editorialHero.png';
+
+        $card = AdaptiveCard::make('1.6')
+            ->schema('https://adaptivecards.io/schemas/adaptive-card.json')
+            ->minHeight('300px')
+            ->addContainer(function (Container $cont) use ($heroImage): void {
+                $cont->backgroundImage(
+                    BackgroundImage::make($heroImage)
+                        ->horizontalAlignment(HorizontalAlignment::Center)
+                )
+                    ->bleed(true)
+                    ->minHeight('290px')
+                    ->addTextBlock('DESIGN TALK SERIES', function (TextBlock $t): void {
+                        $t->wrap(true)
+                            ->weight(TextWeight::Bolder)
+                            ->color(Colors::Dark);
+                    })
+                    ->verticalContentAlignment(VerticalAlignment::Bottom)
+                    ->targetWidth(TargetWidth::AtLeastStandard);
+            })
+            ->addContainer(function (Container $cont) use ($heroImage): void {
+                $cont->backgroundImage(
+                    BackgroundImage::make($heroImage)
+                        ->horizontalAlignment(HorizontalAlignment::Center)
+                )
+                    ->bleed(true)
+                    ->minHeight('180px')
+                    ->addColumnSet(function (ColumnSet $cs): void {
+                        $cs->column('8px')
+                            ->column(Width::Stretch, function (Column $c): void {
+                                $c->addTextBlock('DESIGN TALK SERIES', function (TextBlock $t): void {
+                                    $t->wrap(true)
+                                        ->weight(TextWeight::Bolder)
+                                        ->color(Colors::Dark)
+                                        ->spacing(Spacing::None);
+                                })
+                                    ->spacing(Spacing::None);
+                            });
+                    })
+                    ->addColumnSet(function (ColumnSet $cs): void {
+                        $cs->column(Width::Stretch);
+                    })
+                    ->verticalContentAlignment(VerticalAlignment::Bottom)
+                    ->targetWidth(TargetWidth::AtMostNarrow);
+            })
+            ->addTextBlock('AI-DESIGN THINKING', function (TextBlock $t): void {
+                $t->wrap(true)
+                    ->horizontalAlignment(HorizontalAlignment::Center)
+                    ->size(TextSize::Small)
+                    ->weight(TextWeight::Bolder)
+                    ->color(Colors::Good)
+                    ->spacing(Spacing::Medium);
+            })
+            ->addTextBlock('Behind the design: Meet Pointe', function (TextBlock $t): void {
+                $t->wrap(true)
+                    ->horizontalAlignment(HorizontalAlignment::Center)
+                    ->size(TextSize::ExtraLarge)
+                    ->weight(TextWeight::Bolder);
+            })
+            ->addTextBlock('When the system is the product: on crafting the next generation of home based experiences.', function (TextBlock $t): void {
+                $t->wrap(true)
+                    ->horizontalAlignment(HorizontalAlignment::Center)
+                    ->size(TextSize::Large)
+                    ->color(Colors::Default)
+                    ->isSubtle(true);
+            })
+            ->addColumnSet(function (ColumnSet $cs): void {
+                $cs->column(Width::Stretch)
+                    ->column(Width::Auto, function (Column $c): void {
+                        $c->addIcon('ArrowCircleRight', function (Icon $i): void {
+                            $i->horizontalAlignment(HorizontalAlignment::Center)
+                                ->size(IconSize::Medium)
+                                ->color(Colors::Good)
+                                ->style(IconStyle::Filled)
+                                ->selectAction(OpenUrlAction::make('https://github.com/OfficeDev/Microsoft-Teams-Adaptive-Card-Samples'));
+                        });
+                    })
+                    ->column(Width::Stretch)
+                    ->spacing(Spacing::Large);
+            })
+            ->addColumnSet(function (ColumnSet $cs): void {
+                $cs->column(Width::Stretch);
+            });
+
+        $this->assertMatchesFixture($card, '14-design-talk-series');
+    }
+
+    public function testBuildCreditLimitDetailsCard(): void
+    {
+        $card = AdaptiveCard::make('1.6')
+            ->schema('https://adaptivecards.io/schemas/adaptive-card.json')
+            ->addTextBlock('Credit limit details', function (TextBlock $t): void {
+                $t->wrap(true)
+                    ->size(TextSize::Large)
+                    ->weight(TextWeight::Bolder);
+            })
+            ->addTextBlock('StellarEdge Outdoor Equipment', function (TextBlock $t): void {
+                $t->wrap(true)
+                    ->weight(TextWeight::Bolder)
+                    ->targetWidth(TargetWidth::AtMostNarrow);
+            })
+            ->addBadge('Approved', function (Badge $badge): void {
+                $badge->style(BadgeStyle::Good)
+                    ->appearance(BadgeAppearance::Tint)
+                    ->icon('CheckmarkCircle')
+                    ->targetWidth(TargetWidth::AtMostNarrow)
+                    ->spacing(Spacing::ExtraSmall)
+                    ->horizontalAlignment(HorizontalAlignment::Left)
+                    ->size(BadgeSize::Large);
+            })
+            ->addColumnSet(function (ColumnSet $cs): void {
+                $cs->column(Width::Stretch, function (Column $c): void {
+                    $c->addTextBlock('StellarEdge Outdoor Equipment', function (TextBlock $t): void {
+                        $t->size(TextSize::Default)
+                            ->weight(TextWeight::Bolder)
+                            ->maxLines(4)
+                            ->wrap(true);
+                    });
+                })
+                    ->column(Width::Auto, function (Column $c): void {
+                        $c->addBadge('Approved', function (Badge $badge): void {
+                            $badge->size(BadgeSize::Large)
+                                ->style(BadgeStyle::Good)
+                                ->appearance(BadgeAppearance::Tint)
+                                ->icon('CheckmarkCircle')
+                                ->horizontalAlignment(HorizontalAlignment::Right);
+                        });
+                    })
+                    ->targetWidth(TargetWidth::AtLeastStandard);
+            })
+            ->addColumnSet(function (ColumnSet $cs): void {
+                $cs->spacing(Spacing::ExtraLarge)
+                    ->column(Width::Auto, function (Column $c): void {
+                        $c->addTextBlock('Current Risk Class', function (TextBlock $t): void {
+                            $t->wrap(true)
+                                ->size(TextSize::Small)
+                                ->weight(TextWeight::Bolder);
+                        })
+                            ->addColumnSet(function (ColumnSet $cs): void {
+                                $cs->column(Width::Auto, function (Column $c): void {
+                                    $c->addIcon('CheckmarkCircle', function (Icon $i): void {
+                                        $i->style(IconStyle::Filled)
+                                            ->color(Colors::Good)
+                                            ->size(IconSize::XSmall);
+                                    });
+                                })
+                                    ->column(Width::Stretch, function (Column $c): void {
+                                        $c->addTextBlock('E (Low Risk)', function (TextBlock $t): void {
+                                            $t->wrap(true)
+                                                ->spacing(Spacing::None)
+                                                ->size(TextSize::Small);
+                                        })
+                                            ->spacing(Spacing::ExtraSmall);
+                                    })
+                                    ->spacing(Spacing::ExtraSmall);
+                            })
+                            ->verticalContentAlignment(VerticalAlignment::Center);
+                    })
+                    ->column(Width::Auto, function (Column $c): void {
+                        $c->addTextBlock('Requested by', function (TextBlock $t): void {
+                            $t->wrap(true)
+                                ->size(TextSize::Small)
+                                ->weight(TextWeight::Bolder);
+                        })
+                            ->addColumnSet(function (ColumnSet $cs): void {
+                                $cs->spacing(Spacing::ExtraSmall)
+                                    ->column(Width::Auto, function (Column $c): void {
+                                        $c->addImage('https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Adaptive-Card-Samples/main/samples/insights/assets/avatar-requestor.png', function (Image $img): void {
+                                            $img->style(ImageStyle::Person)
+                                                ->size(ImageSize::Small)
+                                                ->width('20px');
+                                        });
+                                    })
+                                    ->column(Width::Stretch, function (Column $c): void {
+                                        $c->addTextBlock('Mark Fullbright', function (TextBlock $t): void {
+                                            $t->wrap(true)
+                                                ->size(TextSize::Small);
+                                        })
+                                            ->spacing(Spacing::Small);
+                                    });
+                            })
+                            ->verticalContentAlignment(VerticalAlignment::Center)
+                            ->spacing(Spacing::ExtraLarge);
+                    })
+                    ->column(Width::Auto, function (Column $c): void {
+                        $c->addTextBlock('Approvers', function (TextBlock $t): void {
+                            $t->wrap(true)
+                                ->size(TextSize::Small)
+                                ->weight(TextWeight::Bolder);
+                        })
+                            ->addColumnSet(function (ColumnSet $cs): void {
+                                $cs->column(Width::Auto, function (Column $c): void {
+                                    $c->addImage('https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Adaptive-Card-Samples/main/samples/insights/assets/avatar-approver1.png', function (Image $img): void {
+                                        $img->width('20px')
+                                            ->style(ImageStyle::Person);
+                                    });
+                                })
+                                    ->column(Width::Auto, function (Column $c): void {
+                                        $c->addImage('https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Adaptive-Card-Samples/main/samples/insights/assets/avatar-approver2.png', function (Image $img): void {
+                                            $img->width('20px')
+                                                ->style(ImageStyle::Person);
+                                        })
+                                            ->spacing(Spacing::Small);
+                                    })
+                                    ->column(Width::Auto, function (Column $c): void {
+                                        $c->addImage('https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Adaptive-Card-Samples/main/samples/insights/assets/avatar-approver3.png', function (Image $img): void {
+                                            $img->width('20px')
+                                                ->style(ImageStyle::Person);
+                                        })
+                                            ->spacing(Spacing::Small);
+                                    })
+                                    ->spacing(Spacing::ExtraSmall);
+                            })
+                            ->spacing(Spacing::ExtraLarge);
+                    })
+                    ->targetWidth(TargetWidth::AtLeastStandard);
+            })
+            ->addContainer(function (Container $cont): void {
+                $cont->addTextBlock('Current Risk Class', function (TextBlock $t): void {
+                    $t->wrap(true)
+                        ->size(TextSize::Small)
+                        ->weight(TextWeight::Bolder)
+                        ->color(Colors::Default);
+                })
+                    ->addColumnSet(function (ColumnSet $cs): void {
+                        $cs->column(Width::Auto, function (Column $c): void {
+                            $c->addIcon('CheckmarkCircle', function (Icon $i): void {
+                                $i->size(IconSize::XSmall)
+                                    ->style(IconStyle::Filled)
+                                    ->color(Colors::Good);
+                            });
+                        })
+                            ->column(Width::Stretch, function (Column $c): void {
+                                $c->spacing(Spacing::ExtraSmall)
+                                    ->addTextBlock('E (Low Risk)', function (TextBlock $t): void {
+                                        $t->wrap(true)
+                                            ->size(TextSize::Small)
+                                            ->color(Colors::Default);
+                                    });
+                            })
+                            ->spacing(Spacing::ExtraSmall);
+                    })
+                    ->addTextBlock('Requested by', function (TextBlock $t): void {
+                        $t->wrap(true)
+                            ->size(TextSize::Small)
+                            ->weight(TextWeight::Bolder)
+                            ->color(Colors::Default);
+                    })
+                    ->addColumnSet(function (ColumnSet $cs): void {
+                        $cs->column(Width::Auto, function (Column $c): void {
+                            $c->addImage('https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Adaptive-Card-Samples/main/samples/insights/assets/avatar-requestor.png', function (Image $img): void {
+                                $img->width('20px')
+                                    ->style(ImageStyle::Person);
+                            });
+                        })
+                            ->column(Width::Stretch, function (Column $c): void {
+                                $c->addTextBlock('Mark Fullbright', function (TextBlock $t): void {
+                                    $t->wrap(true)
+                                        ->size(TextSize::Small)
+                                        ->color(Colors::Default);
+                                })
+                                    ->spacing(Spacing::Small);
+                            })
+                            ->spacing(Spacing::ExtraSmall);
+                    })
+                    ->addTextBlock('Approvers', function (TextBlock $t): void {
+                        $t->wrap(true)
+                            ->size(TextSize::Small)
+                            ->weight(TextWeight::Bolder)
+                            ->color(Colors::Default);
+                    })
+                    ->addColumnSet(function (ColumnSet $cs): void {
+                        $cs->column(Width::Auto, function (Column $c): void {
+                            $c->addImage('https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Adaptive-Card-Samples/main/samples/insights/assets/avatar-approver1.png', function (Image $img): void {
+                                $img->width('20px')
+                                    ->style(ImageStyle::Person);
+                            });
+                        })
+                            ->column(Width::Auto, function (Column $c): void {
+                                $c->spacing(Spacing::ExtraSmall)
+                                    ->addImage('https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Adaptive-Card-Samples/main/samples/insights/assets/avatar-approver2.png', function (Image $img): void {
+                                        $img->width('20px')
+                                            ->style(ImageStyle::Person);
+                                    });
+                            })
+                            ->column(Width::Auto, function (Column $c): void {
+                                $c->spacing(Spacing::ExtraSmall)
+                                    ->addImage('https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Adaptive-Card-Samples/main/samples/insights/assets/avatar-approver3.png', function (Image $img): void {
+                                        $img->width('20px')
+                                            ->style(ImageStyle::Person);
+                                    });
+                            })
+                            ->spacing(Spacing::ExtraSmall);
+                    })
+                    ->targetWidth(TargetWidth::AtMostNarrow)
+                    ->spacing(Spacing::Medium);
+            })
+            ->addTextBlock('Current Credit Management Data', function (TextBlock $t): void {
+                $t->wrap(true)
+                    ->spacing(Spacing::ExtraLarge)
+                    ->size(TextSize::Small)
+                    ->weight(TextWeight::Bolder);
+            })
+            ->addColumnSet(function (ColumnSet $cs): void {
+                $cs->column(Width::Stretch, function (Column $c): void {
+                    $c->addContainer(function (Container $cont): void {
+                        $cont->targetWidth(TargetWidth::AtLeastVeryNarrow)
+                            ->addColumnSet(function (ColumnSet $cs): void {
+                                $cs->column(Width::Stretch, function (Column $c): void {
+                                    $c->addTextBlock('Current Credit Limit', function (TextBlock $t): void {
+                                        $t->wrap(true)
+                                            ->size(TextSize::Small)
+                                            ->color(Colors::Default)
+                                            ->isSubtle(true);
+                                    })
+                                        ->addTextBlock('50.000.000 USD', function (TextBlock $t): void {
+                                            $t->wrap(true)
+                                                ->spacing(Spacing::ExtraSmall)
+                                                ->size(TextSize::Small)
+                                                ->weight(TextWeight::Bolder)
+                                                ->color(Colors::Default);
+                                        })
+                                        ->addTextBlock('Credit Exposure', function (TextBlock $t): void {
+                                            $t->wrap(true)
+                                                ->size(TextSize::Small)
+                                                ->color(Colors::Default)
+                                                ->isSubtle(true);
+                                        })
+                                        ->addTextBlock('34.184 USD', function (TextBlock $t): void {
+                                            $t->wrap(true)
+                                                ->spacing(Spacing::ExtraSmall)
+                                                ->weight(TextWeight::Bolder)
+                                                ->size(TextSize::Small);
+                                        })
+                                        ->addTextBlock('Limit Utilization', function (TextBlock $t): void {
+                                            $t->wrap(true)
+                                                ->size(TextSize::Small)
+                                                ->color(Colors::Default)
+                                                ->isSubtle(true);
+                                        })
+                                        ->addTextBlock('68,4', function (TextBlock $t): void {
+                                            $t->wrap(true)
+                                                ->spacing(Spacing::ExtraSmall)
+                                                ->size(TextSize::Small)
+                                                ->weight(TextWeight::Bolder)
+                                                ->color(Colors::Default);
+                                        });
+                                });
+                            });
+                    });
+                })
+                    ->targetWidth(TargetWidth::VeryNarrow);
+            })
+            ->addColumnSet(function (ColumnSet $cs): void {
+                $cs->column(Width::Stretch, function (Column $c): void {
+                    $c->addTextBlock('Current Credit Limit', function (TextBlock $t): void {
+                        $t->wrap(true)
+                            ->size(TextSize::Small)
+                            ->color(Colors::Default)
+                            ->isSubtle(true);
+                    })
+                        ->addTextBlock('50.000.000 USD', function (TextBlock $t): void {
+                            $t->wrap(true)
+                                ->spacing(Spacing::ExtraSmall)
+                                ->size(TextSize::Small)
+                                ->weight(TextWeight::Bolder);
+                        });
+                })
+                    ->column(Width::Stretch, function (Column $c): void {
+                        $c->addTextBlock('Credit Exposure', function (TextBlock $t): void {
+                            $t->wrap(true)
+                                ->size(TextSize::Small)
+                                ->color(Colors::Default)
+                                ->isSubtle(true);
+                        })
+                            ->addTextBlock('34.184 USD', function (TextBlock $t): void {
+                                $t->wrap(true)
+                                    ->spacing(Spacing::ExtraSmall)
+                                    ->size(TextSize::Small)
+                                    ->weight(TextWeight::Bolder);
+                            });
+                    })
+                    ->column(Width::Stretch, function (Column $c): void {
+                        $c->addTextBlock('Limit Utilization', function (TextBlock $t): void {
+                            $t->wrap(true)
+                                ->size(TextSize::Small)
+                                ->color(Colors::Default)
+                                ->isSubtle(true);
+                        })
+                            ->addTextBlock('68,4', function (TextBlock $t): void {
+                                $t->wrap(true)
+                                    ->spacing(Spacing::ExtraSmall)
+                                    ->size(TextSize::Small)
+                                    ->weight(TextWeight::Bolder);
+                            });
+                    })
+                    ->targetWidth(TargetWidth::AtLeastNarrow);
+            })
+            ->addActionSet(function (ActionSet $as): void {
+                $as->spacing(Spacing::ExtraLarge)
+                    ->addActions(ShowCardAction::make(
+                        AdaptiveCard::make('1.5')
+                            ->schema('https://adaptivecards.io/schemas/adaptive-card.json')
+                            ->addColumnSet(function (ColumnSet $cs): void {
+                                $cs->column(1, function (Column $c): void {
+                                    $c->addDonutChart('Credit management data', data: [
+                                        DonutChartData::make('Limit', 100),
+                                        DonutChartData::make('Exposure', 700),
+                                        DonutChartData::make('Utilization', 1600),
+                                    ])
+                                        ->addActionSet(function (ActionSet $as): void {
+                                            $as->addActions(OpenUrlAction::make('https://www.microsoft.com/en-us/', 'Open analyzer'));
+                                        });
+                                });
+                            }),
+                        'Show graphical data'
+                    ));
+            });
+
+        $this->assertMatchesFixture($card, '15-credit_limit_details');
+    }
+
+    public function testBuildEventRegistrationCard(): void
+    {
+        $heroImage = 'https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Adaptive-Card-Samples/main/samples/simple-event/assets/eventHero.png';
+
+        $configureMonth = static function (TextBlock $t): void {
+            $t->wrap(true)
+                ->color(Colors::Light)
+                ->size(TextSize::Large);
+        };
+
+        $configureDay = static function (TextBlock $t): void {
+            $t->wrap(true)
+                ->color(Colors::Light)
+                ->size(TextSize::ExtraLarge)
+                ->spacing(Spacing::None)
+                ->weight(TextWeight::Bolder);
+        };
+
+        $configureNarrowHero = static function (Container $cont) use ($heroImage, $configureMonth, $configureDay): void {
+            $cont->bleed(true)
+                ->backgroundImage(BackgroundImage::make($heroImage))
+                ->minHeight('200px')
+                ->verticalContentAlignment(VerticalAlignment::Bottom)
+                ->addColumnSet(function (ColumnSet $cs) use ($configureMonth, $configureDay): void {
+                    $cs->column('8px')
+                        ->column(Width::Stretch, function (Column $c) use ($configureMonth, $configureDay): void {
+                            $c->addTextBlock('MAY', $configureMonth)
+                                ->addTextBlock('31', $configureDay)
+                                ->spacing(Spacing::None);
+                        });
+                })
+                ->addColumnSet(function (ColumnSet $cs): void {
+                    $cs->column(Width::Stretch);
+                })
+                ->roundedCorners(true);
+        };
+
+        $card = AdaptiveCard::make('1.6')
+            ->schema('https://adaptivecards.io/schemas/adaptive-card.json')
+            ->addContainer(function (Container $cont) use ($heroImage, $configureMonth, $configureDay): void {
+                $cont->bleed(true)
+                    ->backgroundImage(
+                        BackgroundImage::make($heroImage)
+                            ->verticalAlignment(VerticalAlignment::Center)
+                    )
+                    ->minHeight('200px')
+                    ->verticalContentAlignment(VerticalAlignment::Bottom)
+                    ->addTextBlock('MAY', $configureMonth)
+                    ->addTextBlock('31', $configureDay)
+                    ->targetWidth(TargetWidth::Standard)
+                    ->roundedCorners(false);
+            })
+            ->addContainer(function (Container $cont) use ($heroImage, $configureMonth, $configureDay): void {
+                $cont->bleed(true)
+                    ->backgroundImage(
+                        BackgroundImage::make($heroImage)
+                            ->verticalAlignment(VerticalAlignment::Center)
+                    )
+                    ->minHeight('200px')
+                    ->verticalContentAlignment(VerticalAlignment::Bottom)
+                    ->addTextBlock('MAY', $configureMonth)
+                    ->addTextBlock('31', $configureDay)
+                    ->targetWidth(TargetWidth::Wide)
+                    ->roundedCorners(false);
+            })
+            ->addContainer(function (Container $cont) use ($configureNarrowHero): void {
+                $configureNarrowHero($cont);
+                $cont->targetWidth(TargetWidth::Narrow);
+            })
+            ->addContainer(function (Container $cont) use ($configureNarrowHero): void {
+                $configureNarrowHero($cont);
+                $cont->targetWidth(TargetWidth::VeryNarrow);
+            })
+            ->addTextBlock('AI', function (TextBlock $t): void {
+                $t->wrap(true)
+                    ->size(TextSize::Small)
+                    ->weight(TextWeight::Bolder)
+                    ->isSubtle(true);
+            })
+            ->addTextBlock('AI Reality Check: Accessibility and Personalization ', function (TextBlock $t): void {
+                $t->wrap(true)
+                    ->weight(TextWeight::Bolder)
+                    ->spacing(Spacing::None);
+            })
+            ->addTextBlock('Fri, Aug 23, 12:00 PM', function (TextBlock $t): void {
+                $t->wrap(true)
+                    ->size(TextSize::Small)
+                    ->weight(TextWeight::Bolder);
+            })
+            ->addTextBlock('Online (Teams)', function (TextBlock $t): void {
+                $t->wrap(true)
+                    ->size(TextSize::Small)
+                    ->isSubtle(true)
+                    ->spacing(Spacing::None);
+            })
+            ->addActionSet(function (ActionSet $as): void {
+                $as->addActions(
+                    ShowCardAction::make(
+                        AdaptiveCard::make('1.5')
+                            ->schema('https://adaptivecards.io/schemas/adaptive-card.json')
+                            ->addTextInput('name', 'Name', 'Enter your full name')
+                            ->addTextInput('email', 'Email address', 'Enter your email address', function (TextInput $input): void {
+                                $input->isRequired(true)
+                                    ->errorMessage('An email is required');
+                            })
+                            ->addActionSet(function (ActionSet $as): void {
+                                $as->addActions(
+                                    SubmitAction::make('Submit')
+                                        ->style(ActionStyle::Positive)
+                                );
+                            }),
+                        'Reserve a seat'
+                    )->style(ActionStyle::Positive)
+                );
+            });
+
+        $this->assertMatchesFixture($card, '16-event-registration');
+    }
+
+    public function testBuildTimeOffRequestFormCard(): void
+    {
+        $assets = 'https://raw.githubusercontent.com/OfficeDev/Microsoft-Teams-Adaptive-Card-Samples/main/samples/simple-time-off-request/assets/';
+
+        $card = AdaptiveCard::make('1.6')
+            ->schema('https://adaptivecards.io/schemas/adaptive-card.json')
+            ->addTextBlock('Time Off Request', function (TextBlock $t): void {
+                $t->wrap(true)
+                    ->size(TextSize::Large)
+                    ->weight(TextWeight::Bolder);
+            })
+            ->addContainer(function (Container $cont) use ($assets): void {
+                $cont->backgroundImage(BackgroundImage::make($assets . 'hero.png'))
+                    ->minHeight('140px')
+                    ->targetWidth(TargetWidth::Narrow)
+                    ->roundedCorners(true);
+            })
+            ->addContainer(function (Container $cont) use ($assets): void {
+                $cont->backgroundImage(BackgroundImage::make($assets . 'hero.png'))
+                    ->minHeight('180px')
+                    ->roundedCorners(true)
+                    ->addColumnSet(function (ColumnSet $cs) use ($assets): void {
+                        $cs->column(Width::Stretch, function (Column $c): void {
+                            $c->verticalContentAlignment(VerticalAlignment::Top)
+                                ->roundedCorners(true);
+                        })
+                            ->column(Width::Auto, function (Column $c) use ($assets): void {
+                                $c->backgroundImage(BackgroundImage::make($assets . 'colorSpacer.png'))
+                                    ->addTextBlock('Take a Break', function (TextBlock $t): void {
+                                        $t->wrap(true)
+                                            ->size(TextSize::ExtraLarge)
+                                            ->weight(TextWeight::Bolder)
+                                            ->color(Colors::Dark);
+                                    })
+                                    ->roundedCorners(true)
+                                    ->spacing(Spacing::None);
+                            })
+                            ->horizontalAlignment(HorizontalAlignment::Right)
+                            ->targetWidth(TargetWidth::AtLeastNarrow)
+                            ->spacing(Spacing::ExtraLarge);
+                    })
+                    ->targetWidth(TargetWidth::AtLeastStandard);
+            })
+            ->addContainer(function (Container $cont) use ($assets): void {
+                $cont->backgroundImage(
+                    BackgroundImage::make($assets . 'hero.png')
+                        ->horizontalAlignment(HorizontalAlignment::Center)
+                )
+                    ->minHeight('100px')
+                    ->targetWidth(TargetWidth::VeryNarrow)
+                    ->roundedCorners(true);
+            })
+            ->addChoiceSetInput('Reason', function (ChoiceSetInput $input): void {
+                $input->choice('Vacation', 'Vacation')
+                    ->choice('Sick leave', 'Sick Leave')
+                    ->choice('Sick day', 'Sick day')
+                    ->choice('Family medical leave', 'Family medical leave')
+                    ->placeholder('Enter your reason')
+                    ->label('Reason for leave')
+                    ->value('Vacation')
+                    ->isRequired(true)
+                    ->errorMessage('Please enter a reason')
+                    ->spacing(Spacing::Medium);
+            })
+            ->addDateInput('Date', 'Date', function (DateInput $input): void {
+                $input->isRequired(true)
+                    ->errorMessage('Please enter your date');
+            })
+            ->addActionSet(function (ActionSet $as): void {
+                $as->addActions(
+                    SubmitAction::make('Submit')
+                        ->style(ActionStyle::Positive)
+                        ->tooltip('Submit form')
+                )
+                    ->spacing(Spacing::ExtraLarge);
+            });
+
+        $this->assertMatchesFixture($card, '17-time-off-request-form');
+    }
+
     /**
      * Asserts that the card serialises to the stored JSON fixture.
      *
@@ -3162,7 +3791,7 @@ final class CardBuilderTest extends TestCase
      */
     private function assertMatchesFixture(AdaptiveCard $card, string $fixture): void
     {
-        $path = dirname(__DIR__) . '/fixtures/' . $fixture . '.json';
+        $path = __DIR__ . '/fixtures/' . $fixture . '.json';
 
         self::assertFileExists($path);
 

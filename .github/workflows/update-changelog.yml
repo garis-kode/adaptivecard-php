@@ -22,11 +22,11 @@ permissions:
 jobs:
   update:
     name: Update Changelog
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
         with:
           fetch-depth: 0
           ref: ${{ inputs.branch }}
@@ -39,7 +39,7 @@ jobs:
           echo "date=$FORMATTED_DATE" >> "$GITHUB_OUTPUT"
 
       - name: Update Changelog
-        uses: stefanzweifel/changelog-updater-action@v1
+        uses: stefanzweifel/changelog-updater-action@a938690fad7edf25368f37e43a1ed1b34303eb36 # v1.12.0
         with:
           release-date: ${{ steps.release_date.outputs.date }}
           release-notes: ${{ inputs.notes }}
@@ -48,7 +48,7 @@ jobs:
           parse-github-usernames: true
 
       - name: Commit updated CHANGELOG
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@b863ae1933cb653a53c021fe36dbb774e1fb9403 # v5.2.0
         with:
           branch: ${{ inputs.branch }}
           commit_message: "docs(changelog): update for ${{ inputs.version }}"

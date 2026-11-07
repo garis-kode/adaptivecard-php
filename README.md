@@ -58,7 +58,7 @@ $card = AdaptiveCard::make('1.6') // Version defaults to '1.6' if omitted
         $t->size(TextSize::Large)
             ->weight(TextWeight::Bolder);
     })
-    ->addAction(OpenUrlAction::make('https://adaptivecards.io/', 'Learn More'));
+    ->addActions(OpenUrlAction::make('https://adaptivecards.io/', 'Learn More'));
 
 // Output JSON string
 echo $card->toJson();

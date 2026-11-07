@@ -5,7 +5,6 @@ Thumbs.db
 # PHPUnit
 .phpunit.result.cache
 /.phpunit.cache
-/phpunit.xml
 /tests/*.coverage
 /tests/**/*.coverage
 
